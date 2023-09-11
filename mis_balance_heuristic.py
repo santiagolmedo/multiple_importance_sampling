@@ -84,24 +84,32 @@ def compute_mis_estimate(N, alfai, mu, sigma, a, b):
     sampled_points_X = []
     sampled_points_Y = []
 
+    accumulator1 = []
+    accumulator2 = []
+
     for i in range(K):
-        sum = 0
+        total_sum = 0
         for j in range(ni[i]):
             X = sigma[i] * np.random.randn() + mu[i]
             Y = compute_function_values(X, a, b)
 
             # Compute the weights
-            weights = compute_power_heuristic_weights(X, ni, mu, sigma)
+            weights = compute_balance_heuristic_weights(X, ni, mu, sigma)
 
             # Add the sampled point values to the lists
             sampled_points_X.append(X)
             sampled_points_Y.append(Y)
 
-            sum += weights[i] * (Y / compute_p_k(X, mu[i], sigma[i]))
+            total_sum += weights[i] * (Y / compute_p_k(X, mu[i], sigma[i]))
 
-        F += sum / ni[i]
+            accumulator1.append(((weights[i] ** 2) * (Y ** 2)) / (compute_p_k(X, mu[i], sigma[i]) * ni[i]))
+            accumulator2.append((quad(lambda x: weights[i] * compute_function_values(x, a, b), a[i], b[i])[0] ** 2) / ni[i])
 
-    return F, sampled_points_X, sampled_points_Y
+        F += total_sum / ni[i]
+
+        variance = quad(lambda x: np.sum(accumulator1), min(a), max(b))[0] - sum(accumulator2)
+
+    return F, sampled_points_X, sampled_points_Y, variance
 
 
 def compute_numerical_integral(a, b):
@@ -161,16 +169,17 @@ def main():
     b = mu + 2 * sigma
 
     # Seed for reproducibility
-    # np.random.seed(8)
+    np.random.seed(8)
 
     # Compute MIS estimate
-    Imis, sampled_points_X, _ = compute_mis_estimate(N, alfai, mu, sigma, a, b)
+    Imis, sampled_points_X, _, variance = compute_mis_estimate(N, alfai, mu, sigma, a, b)
 
     # Numerical integration
     numerical_integral = compute_numerical_integral(a, b)
 
     # Display results
     print(f"Resultado de la integral con MIS: {Imis}")
+    print(f"Varianza de la integral con MIS: {variance}")
     print(f"Resultado de la integral con integración numérica: {numerical_integral}")
 
     # Compute the results using the trapezoidal method
