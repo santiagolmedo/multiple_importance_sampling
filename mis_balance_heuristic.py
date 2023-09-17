@@ -76,6 +76,13 @@ def compute_maximum_heuristic_weights(X, ni, mu, sigma):
     return [(ni[i] * pi_X_values[i]) / max_val for i in range(K)]
 
 
+def sbert_weights(X, _, mu, sigma):
+    """Compute the weights using the balance heuristic."""
+    K = len(mu)
+    pi_X_values = [compute_p_k(X, mu[k], sigma[k]) for k in range(K)]
+    return [pi_X_values[i] / sum([pi_X_values[k] for k in range(K)]) for i in range(K)]
+
+
 def compute_mis_estimate(N, alfai, mu, sigma, a, b):
     """Compute the MIS estimate."""
     K = len(alfai)
@@ -163,7 +170,7 @@ def plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b):
         compute_function_values(np.array(sampled_points_X), a, b),
         color="red",
         marker="*",
-        s=10,
+        s=100,
         label="Sampled Points (MIS)",
     )
     plt.xlabel("x")
@@ -172,6 +179,30 @@ def plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b):
     plt.legend()
     plt.grid(True)
     plt.show()
+
+
+def compute_mis_analysis(N, alfai, mu, sigma, a, b):
+    Imis_array = []
+    variance_array = []
+    for i in range(1000):
+        Imis, sampled_points_X, _, variance = compute_mis_estimate(
+            N, alfai, mu, sigma, a, b
+        )
+
+        Imis_array.append(Imis)
+        variance_array.append(variance)
+
+    print(f"Promedio de la integral con MIS: {np.mean(Imis_array)}")
+    print(f"Varianza de la integral con MIS: {np.var(Imis_array)}")
+    print(f"Desviación estándar de la integral con MIS: {np.std(Imis_array)}")
+    print(f"Error de la integral con MIS: {np.std(Imis_array) / np.sqrt(1000)}")
+    print(f"Mínimo de la integral con MIS: {np.min(Imis_array)}")
+    print(f"Máximo de la integral con MIS: {np.max(Imis_array)}")
+
+    ## hacer calculos en base al variance_array
+    print(f"Promedio de la varianza con MIS: {np.mean(variance_array)}")
+    print(f"Mínimo de la varianza con MIS: {np.min(variance_array)}")
+    print(f"Máximo de la varianza con MIS: {np.max(variance_array)}")
 
 
 def main():
@@ -225,4 +256,5 @@ def main():
 
 
 # Execute the main function
-main()
+if __name__ == "__main__":
+    main()
