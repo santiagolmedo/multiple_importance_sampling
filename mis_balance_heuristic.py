@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.integrate import quad
 import matplotlib.pyplot as plt
+import pdb
 
 
 def compute_function_values(x, a, b):
@@ -91,8 +92,7 @@ def compute_mis_estimate(N, alfai, mu, sigma, a, b):
     sampled_points_X = []
     sampled_points_Y = []
 
-    accumulator1 = []
-    accumulator2 = []
+    variance = 0
 
     for i in range(K):
         total_sum = 0
@@ -107,29 +107,14 @@ def compute_mis_estimate(N, alfai, mu, sigma, a, b):
             sampled_points_X.append(X)
             sampled_points_Y.append(Y)
 
-            total_sum += weights[i] * (Y / compute_p_k(X, mu[i], sigma[i]))
+            value_ij = float(weights[i] * (Y / compute_p_k(X, mu[i], sigma[i])))
 
-            accumulator1.append(
-                ((weights[i] ** 2) * (Y**2))
-                / (compute_p_k(X, mu[i], sigma[i]) * ni[i])
-            )
-            accumulator2.append(
-                (
-                    quad(
-                        lambda x: weights[i] * compute_function_values(x, a, b),
-                        a[i],
-                        b[i],
-                    )[0]
-                    ** 2
-                )
-                / ni[i]
-            )
+            total_sum += value_ij
+            variance += value_ij ** 2
 
         F += total_sum / ni[i]
 
-        variance = quad(lambda x: np.sum(accumulator1), min(a), max(b))[0] - sum(
-            accumulator2
-        )
+    variance = variance / (N * (N - 1)) - F ** 2 / (N - 1)
 
     return F, sampled_points_X, sampled_points_Y, variance
 
@@ -252,7 +237,7 @@ def main():
     )
 
     # Plot the results
-    plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b)
+    # plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b)
 
 
 # Execute the main function
