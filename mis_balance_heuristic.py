@@ -92,10 +92,16 @@ def compute_mis_estimate(N, alfai, mu, sigma, a, b):
     sampled_points_X = []
     sampled_points_Y = []
 
+    s = 0
+    t = 0
+    variance_f_estimate = 0
     variance = 0
 
     for i in range(K):
         total_sum = 0
+        s = 0
+        t = 0
+
         for j in range(ni[i]):
             X = sigma[i] * np.random.randn() + mu[i]
             Y = compute_function_values(X, a, b)
@@ -110,11 +116,14 @@ def compute_mis_estimate(N, alfai, mu, sigma, a, b):
             value_ij = float(weights[i] * (Y / compute_p_k(X, mu[i], sigma[i])))
 
             total_sum += value_ij
-            variance += value_ij ** 2
+
+            s += value_ij
+            if j > 0:
+                t += (1 - 1/(j+1)) * value_ij - s/((j)**2)
 
         F += total_sum / ni[i]
-
-    variance = variance / (N * (N - 1)) - F ** 2 / (N - 1)
+        variance_f_estimate += t/(ni[i]-1)
+        variance += variance_f_estimate/ni[i]
 
     return F, sampled_points_X, sampled_points_Y, variance
 
@@ -226,15 +235,15 @@ def main():
         print(f"{row[0]:>9.2f} | {row[1]:>9.3f} | {row[2]:>9.4f} | {row[3]:>18.4f}")
 
     # Compute the function values for plotting
-    x_vals = np.linspace(0, 10, 1000)
-    y_vals = compute_function_values(x_vals, a, b)
-    pdf_vals = sum(
-        [
-            (1 / (sigma[i] * np.sqrt(2 * np.pi)))
-            * np.exp(-((x_vals - mu[i]) ** 2) / (2 * sigma[i] ** 2))
-            for i in range(3)
-        ]
-    )
+    # x_vals = np.linspace(0, 10, 1000)
+    # y_vals = compute_function_values(x_vals, a, b)
+    # pdf_vals = sum(
+    #     [
+    #         (1 / (sigma[i] * np.sqrt(2 * np.pi)))
+    #         * np.exp(-((x_vals - mu[i]) ** 2) / (2 * sigma[i] ** 2))
+    #         for i in range(3)
+    #     ]
+    # )
 
     # Plot the results
     # plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b)
