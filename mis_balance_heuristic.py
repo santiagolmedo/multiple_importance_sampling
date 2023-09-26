@@ -40,48 +40,13 @@ def compute_integrated_function(x, a, b):
     return np.sum(np.maximum(0, -(4 / (b - a) ** 2) * (x - a) * (x - b)), axis=1)
 
 
-def compute_balance_heuristic_weights(X, ni, mu, sigma):
+def compute_balance_heuristic_weights(X, ni, mu, sigma, i):
     """Compute the weights using the balance heuristic."""
-    K = len(mu)
-    pi_X_values = [compute_p_k(X, mu[k], sigma[k]) for k in range(K)]
-    return [
-        (ni[i] * pi_X_values[i]) / sum([(ni[k] * pi_X_values[k]) for k in range(K)])
-        for i in range(K)
-    ]
-
-
-def compute_power_heuristic_weights(X, ni, mu, sigma, beta=2):
-    """Compute the weights using the power heuristic."""
-    K = len(mu)
-    pi_X_values = [compute_p_k(X, mu[k], sigma[k]) for k in range(K)]
-    return [
-        (ni[i] * pi_X_values[i]) ** beta
-        / sum([(ni[k] * pi_X_values[k]) ** beta for k in range(K)])
-        for i in range(K)
-    ]
-
-
-def compute_cutoff_heuristic_weights(X, ni, mu, sigma):
-    """Compute the weights using the cutoff heuristic."""
-    K = len(mu)
-    pi_X_values = [compute_p_k(X, mu[k], sigma[k]) for k in range(K)]
-    max_val_index = np.argmax([ni[k] * pi_X_values[k] for k in range(K)])
-    return [1 if i == max_val_index else 0 for i in range(K)]
-
-
-def compute_maximum_heuristic_weights(X, ni, mu, sigma):
-    """Compute the weights using the maximum heuristic."""
-    K = len(mu)
-    pi_X_values = [compute_p_k(X, mu[k], sigma[k]) for k in range(K)]
-    max_val = max([ni[k] * pi_X_values[k] for k in range(K)])
-    return [(ni[i] * pi_X_values[i]) / max_val for i in range(K)]
-
-
-def sbert_weights(X, _, mu, sigma):
-    """Compute the weights using the balance heuristic."""
-    K = len(mu)
-    pi_X_values = [compute_p_k(X, mu[k], sigma[k]) for k in range(K)]
-    return [pi_X_values[i] / sum([pi_X_values[k] for k in range(K)]) for i in range(K)]
+    return (
+        ni[i]
+        * compute_p_k(X, mu[i], sigma[i])
+        / sum([ni[k] * compute_p_k(X, mu[k], sigma[k]) for k in range(len(mu))])
+    )
 
 
 def compute_mis_estimate(N, alfai, mu, sigma, a, b):
@@ -99,7 +64,6 @@ def compute_mis_estimate(N, alfai, mu, sigma, a, b):
 
     for i in range(K):
         total_sum = 0
-        s = 0
         t = 0
 
         for j in range(ni[i]):
@@ -107,23 +71,21 @@ def compute_mis_estimate(N, alfai, mu, sigma, a, b):
             Y = compute_function_values(X, a, b)
 
             # Compute the weights
-            weights = compute_balance_heuristic_weights(X, ni, mu, sigma)
+            weight = compute_balance_heuristic_weights(X, ni, mu, sigma, i)
 
             # Add the sampled point values to the lists
             sampled_points_X.append(X)
             sampled_points_Y.append(Y)
 
-            value_ij = float(weights[i] * (Y / compute_p_k(X, mu[i], sigma[i])))
+            if j > 0:
+                t += (1 - 1 / (j + 1)) * value_ij - total_sum / ((j) ** 2)
 
+            value_ij = float(weight * (Y / compute_p_k(X, mu[i], sigma[i])))
             total_sum += value_ij
 
-            s += value_ij
-            if j > 0:
-                t += (1 - 1/(j+1)) * value_ij - s/((j)**2)
-
         F += total_sum / ni[i]
-        variance_f_estimate += t/(ni[i]-1)
-        variance += variance_f_estimate/ni[i]
+        variance_f_estimate += t / (ni[i] - 1)
+        variance += variance_f_estimate / ni[i]
 
     return F, sampled_points_X, sampled_points_Y, variance
 
@@ -209,7 +171,7 @@ def main():
     b = mu + 2 * sigma
 
     # Seed for reproducibility
-    np.random.seed(8)
+    # np.random.seed(8)
 
     # Compute MIS estimate
     Imis, sampled_points_X, _, variance = compute_mis_estimate(
