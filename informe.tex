@@ -26,6 +26,14 @@ $$ \int f(x) \,d(x)$$
 solo se necesita la capacidad de evaluar $f(x)$ en un punto dado para poder estimar el valor de la integral.
 
 \subsection{Monte Carlo me base en el curso de Hector}
-%un conjunto X(1), X(2), · · · , X(n), de variables aleatorias i.i.d. (independientes e identicamente distribuidas) a X.%
-Supongamos que se quiere evaluar el valor de la integral $I = \int_{a}^{b} f(x) \,dx$.
+Supongamos que se quiere evaluar el valor de la integral $I = \int_{a}^{b} f(x) \,dx$. Dado un conjunto de $n$ variables aleatorias $X_1, X_2, \dots, X_n$ independientes e identicamente distribuidas con distribución $p(x)$, se puede decir que el valor esperado del estimador
+$$F = \frac{b-a}{n} \sum_{i=1}^{n} f(X_i)$$
+es igual a $I$. Esto se puede ver de la siguiente manera:
+$$E[F] = E\left[\frac{b-a}{n} \sum_{i=1}^{n} f(X_i)\right] = \frac{b-a}{n} \sum_{i=1}^{n} E[f(X_i)] = \frac{b-a}{n} \sum_{i=1}^{n} \int_{a}^{b} f(x) p(x) \,dx = \int_{a}^{b} f(x) \,dx$$.
+Dado que $X_i$ es muestreado de $[a,b]$, $p(x) = \frac{1}{b-a}$ para $x \in [a,b]$. Entonces, sustituyendo $p(x)$ por $\frac{1}{b-a}$, y haciendo $\frac{b-a}{n} * n = b-a$, se cancela con $\frac{1}{b-a}$, y se obtiene la ultima igualdad.
+
+Esto se puede extender a
+$$ F = \frac{1}{n} \sum_{i=1}^{n} \frac{f(X_i)}{p(X_i)}$$
+con la condición de que $p(x) > 0$. Esto se puede ver de la siguiente manera:
+$$E[F] = E\left[\frac{1}{n} \sum_{i=1}^{n} \frac{f(X_i)}{p(X_i)}\right] = \frac{1}{n} \sum_{i=1}^{n} \int_{a}^{b} \frac{f(x)}{p(x)} p(x) \,dx = \frac{1}{n} \sum_{i=1}^{n} \int_{a}^{b} f(x) \,dx = \int_{a}^{b} f(x) \,dx$$
 \end{document}
