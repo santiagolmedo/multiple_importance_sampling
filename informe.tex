@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[spanish]{babel}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\floatname{algorithm}{Algoritmo}
+
+
+\title{Multiple Importance Sampling}
+\author{santiolmedo99}
+\date{July 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+
+En computación gráfica, los problemas de renderizado están llenos de problemas de integración. Comúnmente, estás integrales no tienen soluciones analíticas. Es por ello que se recurre a métodos de resolución numéricos. Los métodos comunes son efectivos para la resolución de problemas de baja dimensión. La integración por Monte Carlo es particularmente atractivo porque su convergencia es independiente de la dimensionalidad del problema.
+
+Otro atractivo del método de Monte Carlo es su facilidad de implementación. A priori, dado
+
+$$ \int f(x) \,d(x)$$
+
+solo se necesita la capacidad de evaluar $f(x)$ en un punto dado para poder estimar el valor de la integral.
+
+\subsection{Monte Carlo me base en el curso de Hector}
+%un conjunto X(1), X(2), · · · , X(n), de variables aleatorias i.i.d. (independientes e identicamente distribuidas) a X.%
+Supongamos que se quiere evaluar el valor de la integral $I = \int_{a}^{b} f(x) \,dx$.
+\end{document}
