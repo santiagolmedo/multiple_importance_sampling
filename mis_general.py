@@ -25,6 +25,11 @@ def compute_p_k(X, mu_k, sigma_k):
         -((X - mu_k) ** 2) / (2 * sigma_k**2)
     )
 
+def compute_balance_heuristic_weights(x_ij, ni, mu, sigma, k, i, pi_x):
+    """Compute the balance heuristic weights."""
+    return (ni[i] * pi_x) / sum(compute_p_k(x_ij, mu[k_iterator], sigma[k_iterator]) for k_iterator in range(k))
+
+
 
 def compute_mis_estimate(n, alfai, mu, sigma, a, b):
     """Compute the MIS estimate."""
@@ -39,24 +44,20 @@ def compute_mis_estimate(n, alfai, mu, sigma, a, b):
     t = 0
     for i in range(K):
         for j in range(ni[i]):
-            X = sigma[i] * np.random.randn() + mu[i]
-            sampled_points_X.append(X)
+            x_ij = sigma[i] * np.random.randn() + mu[i]
+            sampled_points_X.append(x_ij)
 
-            Y = compute_function_values(X, a, b)
-            p_techo = sum(
-                [
-                    (ni[k] / n) * compute_p_k(X, mu[k], sigma[k])
-                    for k in range(len(alfai))
-                ]
-            )
-            x = float(Y / p_techo)
+            Y = compute_function_values(x_ij, a, b)
+            pi_x = compute_p_k(x_ij, mu[i], sigma[i])
+            weights = compute_balance_heuristic_weights(x_ij, ni, mu, sigma, K, i, pi_x)
+
+            x = (float(Y / pi_x) * weights) / ni[i]
 
             if m > 1:
               t += (1 - (1 / m)) * ((x - F / (m - 1)) ** 2)
 
             F += x
             variance += x**2
-
             m += 1
 
     F = F / n
