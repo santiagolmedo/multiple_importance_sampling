@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.integrate import quad
 import matplotlib.pyplot as plt
 import pdb
 
@@ -25,48 +26,55 @@ def compute_p_k(X, mu_k, sigma_k):
         -((X - mu_k) ** 2) / (2 * sigma_k**2)
     )
 
-def compute_balance_heuristic_weights(x_ij, ni, mu, sigma, k, i, pi_x):
-    """Compute the balance heuristic weights."""
-    return (ni[i] * pi_x) / sum(compute_p_k(x_ij, mu[k_iterator], sigma[k_iterator]) for k_iterator in range(k))
+
+def compute_balance_heuristic_weights(X, ni, mu, sigma, i):
+    """Compute the weights using the balance heuristic."""
+    return (
+        ni[i]
+        * compute_p_k(X, mu[i], sigma[i])
+        / sum([ni[k] * compute_p_k(X, mu[k], sigma[k]) for k in range(len(mu))])
+    )
 
 
-
-def compute_mis_estimate(n, alfai, mu, sigma, a, b):
+def compute_mis_estimate(N, alfai, mu, sigma, a, b):
     """Compute the MIS estimate."""
     K = len(alfai)
-    ni = np.round(alfai * n).astype(int)
-    n = sum(ni)
+    ni = np.round(alfai * N).astype(int)
     F = 0
     sampled_points_X = []
+    sampled_points_Y = []
 
     variance = 0
     m = 1
     t = 0
     for i in range(K):
+        total_sum = 0
+        t = 0
+
         for j in range(ni[i]):
-            x_ij = sigma[i] * np.random.randn() + mu[i]
-            sampled_points_X.append(x_ij)
+            X = sigma[i] * np.random.randn() + mu[i]
+            Y = compute_function_values(X, a, b)
 
-            Y = compute_function_values(x_ij, a, b)
-            pi_x = compute_p_k(x_ij, mu[i], sigma[i])
-            weights = compute_balance_heuristic_weights(x_ij, ni, mu, sigma, K, i, pi_x)
+            # Compute the weights
+            weight = compute_balance_heuristic_weights(X, ni, mu, sigma, i)
 
-            x = (float(Y / pi_x) * weights) / ni[i]
+            # Add the sampled point values to the lists
+            sampled_points_X.append(X)
+            sampled_points_Y.append(Y)
 
-            if m > 1:
-              t += (1 - (1 / m)) * ((x - F / (m - 1)) ** 2)
+            if j > 0:
+                t += (1 - 1 / (j + 1)) * value_ij - total_sum / ((j) ** 2)
 
-            F += x
-            variance += x**2
+            value_ij = float(weight * (Y / compute_p_k(X, mu[i], sigma[i])))
+            total_sum += value_ij / ni[i]
+
             m += 1
 
-    F = F / n
-    variance = (variance / (n**2 - n)) - (F**2 / (n - 1))
+        F += total_sum
+        variance_f_estimate += t / (ni[i] - 1)
+        variance += variance_f_estimate / ni[i]
 
-    sigma = t / (n - 1)
-    variance_alt = sigma / n
-
-    return F, variance, variance_alt, sampled_points_X
+    return F, sampled_points_X, sampled_points_Y, variance
 
 
 def plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b):
@@ -90,6 +98,30 @@ def plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b):
     plt.show()
 
 
+def compute_mis_analysis(N, alfai, mu, sigma, a, b):
+    Imis_array = []
+    variance_array = []
+    for i in range(1000):
+        Imis, sampled_points_X, _, variance = compute_mis_estimate(
+            N, alfai, mu, sigma, a, b
+        )
+
+        Imis_array.append(Imis)
+        variance_array.append(variance)
+
+    print(f"Promedio de la integral con MIS: {np.mean(Imis_array)}")
+    print(f"Varianza de la integral con MIS: {np.var(Imis_array)}")
+    print(f"Desviación estándar de la integral con MIS: {np.std(Imis_array)}")
+    print(f"Error de la integral con MIS: {np.std(Imis_array) / np.sqrt(1000)}")
+    print(f"Mínimo de la integral con MIS: {np.min(Imis_array)}")
+    print(f"Máximo de la integral con MIS: {np.max(Imis_array)}")
+
+    ## hacer calculos en base al variance_array
+    print(f"Promedio de la varianza con MIS: {np.mean(variance_array)}")
+    print(f"Mínimo de la varianza con MIS: {np.min(variance_array)}")
+    print(f"Máximo de la varianza con MIS: {np.max(variance_array)}")
+
+
 def main():
     # Initial parameters
     N = 50
@@ -103,28 +135,27 @@ def main():
     np.random.seed(8)
 
     # Compute MIS estimate
-    Imis, variance, variance_alt, sampled_points_X = compute_mis_estimate(
+    Imis, sampled_points_X, _, variance = compute_mis_estimate(
         N, alfai, mu, sigma, a, b
     )
 
     # Display results
     print(f"Resultado de la integral con MIS: {Imis}")
-    print(f"Varianza 1 de la integral con MIS: {variance}")
-    print(f"Varianza 2 de la integral con MIS: {variance_alt}")
+    print(f"Varianza de la integral con MIS: {variance}")
 
     # Compute the function values for plotting
-    x_vals = np.linspace(0, 10, 1000)
-    y_vals = compute_function_values(x_vals, a, b)
-    pdf_vals = sum(
-        [
-            (1 / (sigma[i] * np.sqrt(2 * np.pi)))
-            * np.exp(-((x_vals - mu[i]) ** 2) / (2 * sigma[i] ** 2))
-            for i in range(3)
-        ]
-    )
+    # x_vals = np.linspace(0, 10, 1000)
+    # y_vals = compute_function_values(x_vals, a, b)
+    # pdf_vals = sum(
+    #     [
+    #         (1 / (sigma[i] * np.sqrt(2 * np.pi)))
+    #         * np.exp(-((x_vals - mu[i]) ** 2) / (2 * sigma[i] ** 2))
+    #         for i in range(3)
+    #     ]
+    # )
 
     # Plot the results
-    plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b)
+    # plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b)
 
 
 # Execute the main function
