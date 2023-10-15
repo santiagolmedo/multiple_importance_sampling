@@ -1,90 +1,117 @@
 import numpy as np
-from scipy.integrate import quad
 import matplotlib.pyplot as plt
-import pdb
 
+def calculate_function_values(x_values, lower_bounds, upper_bounds):
+    """Calculate the values of the function to be integrated."""
+    x_values = np.atleast_1d(x_values)
+    return np.array([
+        np.sum([
+            np.maximum(0, -(4 / (upper_bound - lower_bound) ** 2) * (x - lower_bound) * (x - upper_bound))
+            for lower_bound, upper_bound in zip(lower_bounds, upper_bounds)
+        ])
+        for x in x_values
+    ])
 
-def compute_function_values(x, a, b):
-    """Compute the function values for a given set of parameters."""
-    x = np.atleast_1d(x)
-    return np.array(
-        [
-            np.sum(
-                [
-                    np.maximum(0, -(4 / (b[i] - a[i]) ** 2) * (xi - a[i]) * (xi - b[i]))
-                    for i in range(len(a))
-                ]
-            )
-            for xi in x
-        ]
-    )
+def calculate_normal_pdf(x, mean, std_dev):
+    """Calculate the probability density function (PDF) for a normal distribution."""
+    return (1 / (std_dev * np.sqrt(2 * np.pi))) * np.exp(-((x - mean) ** 2) / (2 * std_dev**2))
 
-
-def compute_p_k(X, mu_k, sigma_k):
-    """Compute the p_k value for a given set of parameters."""
-    return (1 / (sigma_k * np.sqrt(2 * np.pi))) * np.exp(
-        -((X - mu_k) ** 2) / (2 * sigma_k**2)
-    )
-
-
-def compute_balance_heuristic_weights(X, ni, mu, sigma, i):
-    """Compute the weights using the balance heuristic."""
+def calculate_balance_heuristic_weights(x, sample_counts, means, std_devs, index):
+    """Calculate weights using the balance heuristic method."""
     return (
-        ni[i]
-        * compute_p_k(X, mu[i], sigma[i])
-        / sum([ni[k] * compute_p_k(X, mu[k], sigma[k]) for k in range(len(mu))])
+        sample_counts[index]
+        * calculate_normal_pdf(x, means[index], std_devs[index])
+        / sum([
+            sample_count * calculate_normal_pdf(x, mean, std_dev)
+            for sample_count, mean, std_dev in zip(sample_counts, means, std_devs)
+        ])
     )
 
+def calculate_power_heuristic_weights(x, sample_counts, means, std_devs, index, beta=2):
+    """Calculate weights using the power heuristic method."""
+    pdf_values = [
+        sample_count * calculate_normal_pdf(x, mean, std_dev)
+        for sample_count, mean, std_dev in zip(sample_counts, means, std_devs)
+    ]
 
-def compute_mis_estimate(N, alfai, mu, sigma, a, b):
-    """Compute the MIS estimate."""
-    K = len(alfai)
-    ni = np.round(alfai * N).astype(int)
-    F = 0
-    sampled_points_X = []
-    sampled_points_Y = []
+    numerator = pdf_values[index] ** beta
+    denominator = sum(pdf_val ** beta for pdf_val in pdf_values)
 
+    return numerator / denominator
+
+def calculate_maximum_heuristic_weights(x, sample_counts, means, std_devs, index):
+    """Calculate weights using the maximum heuristic method."""
+    pdf_values = [
+        sample_count * calculate_normal_pdf(x, mean, std_dev)
+        for sample_count, mean, std_dev in zip(sample_counts, means, std_devs)
+    ]
+
+    return float(pdf_values[index] == max(pdf_values))
+
+def calculate_cutoff_heuristic_weights(x, sample_counts, means, std_devs, index, alpha=0.5):
+    """Calculate weights using the cutoff heuristic method."""
+    pdf_values = [
+        sample_count * calculate_normal_pdf(x, mean, std_dev)
+        for sample_count, mean, std_dev in zip(sample_counts, means, std_devs)
+    ]
+
+    q_max = max(pdf_values)
+    q_index = pdf_values[index]
+
+    if q_index < alpha * q_max:
+        return 0
+    else:
+        denominator = sum(q_k for q_k in pdf_values if q_k >= alpha * q_max)
+        return q_index / denominator
+
+
+def calculate_mis_estimate(total_samples, alpha_values, means, std_devs, lower_bounds, upper_bounds, heuristic="balance"):
+    """Calculate the MIS estimate."""
+    num_distributions = len(alpha_values)
+
+    samples_per_distribution = np.round(alpha_values * total_samples).astype(int)
+    total_samples = sum(samples_per_distribution)
+
+    estimate = 0
+    sampled_points_x = []
+    sampled_points_y = []
     variance = 0
-    m = 1
+    iteration = 1
     t = 0
-    for i in range(K):
-        total_sum = 0
-        t = 0
 
-        for j in range(ni[i]):
-            X = sigma[i] * np.random.randn() + mu[i]
-            Y = compute_function_values(X, a, b)
+    for index in range(num_distributions):
+        for _ in range(samples_per_distribution[index]):
+            x_sample = std_devs[index] * np.random.randn() + means[index]
+            y_sample = calculate_function_values(x_sample, lower_bounds, upper_bounds)
 
-            # Compute the weights
-            weight = compute_balance_heuristic_weights(X, ni, mu, sigma, i)
+            weight = globals()[f"calculate_{heuristic}_heuristic_weights"](x_sample, samples_per_distribution, means, std_devs, index)
 
-            # Add the sampled point values to the lists
-            sampled_points_X.append(X)
-            sampled_points_Y.append(Y)
+            sampled_points_x.append(x_sample)
+            sampled_points_y.append(y_sample)
 
-            if j > 0:
-                t += (1 - 1 / (j + 1)) * value_ij - total_sum / ((j) ** 2)
+            weighted_sample = (float(weight * (y_sample / calculate_normal_pdf(x_sample, means[index], std_devs[index]))) / samples_per_distribution[index]) * total_samples
+            if iteration > 1:
+                t += (1 - (1 / iteration)) * ((weighted_sample - estimate / (iteration - 1)) ** 2)
 
-            value_ij = float(weight * (Y / compute_p_k(X, mu[i], sigma[i])))
-            total_sum += value_ij / ni[i]
+            estimate += weighted_sample
+            variance += weighted_sample**2
+            iteration += 1
 
-            m += 1
+    estimate = estimate / total_samples
+    variance = (variance / (total_samples**2 - total_samples)) - (estimate**2 / (total_samples - 1))
+    sigma_variance = t / (total_samples - 1)
+    alternate_variance = sigma_variance / total_samples
 
-        F += total_sum
-        variance_f_estimate += t / (ni[i] - 1)
-        variance += variance_f_estimate / ni[i]
+    return estimate, sampled_points_x, sampled_points_y, variance, alternate_variance
 
-    return F, sampled_points_X, sampled_points_Y, variance
-
-
-def plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b):
+def plot_results(x_values, y_values, pdf_values, sampled_points_x, lower_bounds, upper_bounds):
     """Plot the results."""
     plt.figure(figsize=(10, 6))
-    plt.plot(x_vals, y_vals, label="Function to be integrated", linewidth=2)
-    plt.plot(x_vals, pdf_vals, "k:", label="PDF")
+    plt.plot(x_values, y_values, label="Function to be integrated", linewidth=2)
+    plt.plot(x_values, pdf_values, "k:", label="PDF")
     plt.scatter(
-        sampled_points_X,
-        compute_function_values(np.array(sampled_points_X), a, b),
+        sampled_points_x,
+        calculate_function_values(np.array(sampled_points_x), lower_bounds, upper_bounds),
         color="red",
         marker="*",
         s=100,
@@ -97,67 +124,35 @@ def plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b):
     plt.grid(True)
     plt.show()
 
-
-def compute_mis_analysis(N, alfai, mu, sigma, a, b):
-    Imis_array = []
-    variance_array = []
-    for i in range(1000):
-        Imis, sampled_points_X, _, variance = compute_mis_estimate(
-            N, alfai, mu, sigma, a, b
-        )
-
-        Imis_array.append(Imis)
-        variance_array.append(variance)
-
-    print(f"Promedio de la integral con MIS: {np.mean(Imis_array)}")
-    print(f"Varianza de la integral con MIS: {np.var(Imis_array)}")
-    print(f"Desviación estándar de la integral con MIS: {np.std(Imis_array)}")
-    print(f"Error de la integral con MIS: {np.std(Imis_array) / np.sqrt(1000)}")
-    print(f"Mínimo de la integral con MIS: {np.min(Imis_array)}")
-    print(f"Máximo de la integral con MIS: {np.max(Imis_array)}")
-
-    ## hacer calculos en base al variance_array
-    print(f"Promedio de la varianza con MIS: {np.mean(variance_array)}")
-    print(f"Mínimo de la varianza con MIS: {np.min(variance_array)}")
-    print(f"Máximo de la varianza con MIS: {np.max(variance_array)}")
-
-
 def main():
-    # Initial parameters
-    N = 50
-    alfai = np.array([0.3333, 0.3333, 0.3333])
-    mu = np.array([2, 5, 7])
-    sigma = np.array([0.8, 0.8, 0.4]) / 2
-    a = mu - 2 * sigma
-    b = mu + 2 * sigma
+    """Main function to compute MIS estimate and plot the results."""
+    NUM_SAMPLES = 50
+    alpha_values = np.array([0.3333, 0.3333, 0.3333])
+    means = np.array([2, 5, 7])
+    std_devs = np.array([0.8, 0.8, 0.4]) / 2
+    lower_bounds = means - 2 * std_devs
+    upper_bounds = means + 2 * std_devs
 
-    # Seed for reproducibility
     np.random.seed(8)
 
-    # Compute MIS estimate
-    Imis, sampled_points_X, _, variance = compute_mis_estimate(
-        N, alfai, mu, sigma, a, b
+    mis_estimate, sampled_points_x, _, variance, alternate_variance = calculate_mis_estimate(
+        NUM_SAMPLES, alpha_values, means, std_devs, lower_bounds, upper_bounds
     )
 
-    # Display results
-    print(f"Resultado de la integral con MIS: {Imis}")
-    print(f"Varianza de la integral con MIS: {variance}")
+    print(f"Result of the integral with MIS: {mis_estimate}")
+    print(f"Variance of the integral with MIS: {variance}")
+    print(f"Alternate variance of the integral with MIS: {alternate_variance}")
 
-    # Compute the function values for plotting
-    # x_vals = np.linspace(0, 10, 1000)
-    # y_vals = compute_function_values(x_vals, a, b)
-    # pdf_vals = sum(
-    #     [
-    #         (1 / (sigma[i] * np.sqrt(2 * np.pi)))
-    #         * np.exp(-((x_vals - mu[i]) ** 2) / (2 * sigma[i] ** 2))
-    #         for i in range(3)
-    #     ]
-    # )
+    x_values = np.linspace(0, 10, 1000)
+    y_values = calculate_function_values(x_values, lower_bounds, upper_bounds)
+    pdf_values = sum([
+        (1 / (std_dev * np.sqrt(2 * np.pi)))
+        * np.exp(-((x_values - mean) ** 2) / (2 * std_dev ** 2))
+        for mean, std_dev in zip(means, std_devs)
+    ])
 
-    # Plot the results
-    # plot_results(x_vals, y_vals, pdf_vals, sampled_points_X, a, b)
+    plot_results(x_values, y_values, pdf_values, sampled_points_x, lower_bounds, upper_bounds)
 
-
-# Execute the main function
 if __name__ == "__main__":
     main()
+
