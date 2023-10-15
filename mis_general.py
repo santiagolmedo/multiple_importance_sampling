@@ -64,8 +64,17 @@ def calculate_cutoff_heuristic_weights(x, sample_counts, means, std_devs, index,
         denominator = sum(q_k for q_k in pdf_values if q_k >= alpha * q_max)
         return q_index / denominator
 
+def calculate_sbert_heuristic_weights(x, sample_counts, means, std_devs, index):
+    """Calculate weights using the SBERT method."""
+    return (
+        calculate_normal_pdf(x, means[index], std_devs[index])
+        / sum([
+            calculate_normal_pdf(x, mean, std_dev)
+            for sample_count, mean, std_dev in zip(sample_counts, means, std_devs)
+        ])
+    )
 
-def calculate_mis_estimate(total_samples, alpha_values, means, std_devs, lower_bounds, upper_bounds, heuristic="balance"):
+def calculate_mis_estimate(total_samples, alpha_values, means, std_devs, lower_bounds, upper_bounds, heuristic="sbert"):
     """Calculate the MIS estimate."""
     num_distributions = len(alpha_values)
 
