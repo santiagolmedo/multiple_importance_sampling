@@ -142,8 +142,6 @@ def main():
     lower_bounds = means - 2 * std_devs
     upper_bounds = means + 2 * std_devs
 
-    np.random.seed(8)
-
     mis_estimate, sampled_points_x, _, variance, alternate_variance = calculate_mis_estimate(
         NUM_SAMPLES, alpha_values, means, std_devs, lower_bounds, upper_bounds
     )
