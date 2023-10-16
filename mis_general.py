@@ -133,6 +133,48 @@ def plot_results(x_values, y_values, pdf_values, sampled_points_x, lower_bounds,
     plt.grid(True)
     plt.show()
 
+
+def run_mis_analysis(num_runs=1000, heuristics=["balance", "power", "maximum", "cutoff", "sbert"], num_samples_list=[10,25,50,100]):
+    results = {heuristic: {num_samples: [] for num_samples in num_samples_list} for heuristic in heuristics}
+
+    alpha_values = np.array([0.3333, 0.3333, 0.3333])
+    means = np.array([2, 5, 7])
+    std_devs = np.array([0.8, 0.8, 0.4]) / 2
+    lower_bounds = means - 2 * std_devs
+    upper_bounds = means + 2 * std_devs
+
+    for heuristic in heuristics:
+        for num_samples in num_samples_list:
+            for _ in range(num_runs):
+                estimate, _, _, variance, alt_variance = calculate_mis_estimate(
+                    num_samples, alpha_values, means, std_devs, lower_bounds, upper_bounds, heuristic=heuristic
+                )
+                results[heuristic][num_samples].append((estimate, variance, alt_variance))
+
+    return results
+
+def analyze_results(results):
+    analysis = {}
+
+    for heuristic, data in results.items():
+        estimates, variances, alt_variances = zip(*data)
+        analysis[heuristic] = {
+            "min_estimate": np.min(estimates),
+            "max_estimate": np.max(estimates),
+            "mean_estimate": np.mean(estimates),
+            "variance_of_estimates": np.var(estimates),
+            "mean_of_variances": np.mean(variances),
+            "mean_of_alternate_variances": np.mean(alt_variances)
+        }
+
+    return analysis
+
+def print_analysis():
+    # Test the modified functions
+    mis_results = run_mis_analysis()
+    analysis = {heuristic: {num_samples: analyze_results({heuristic: data})[heuristic] for num_samples, data in sample_data.items()} for heuristic, sample_data in mis_results.items()}
+    print(analysis)
+
 def main():
     """Main function to compute MIS estimate and plot the results."""
     NUM_SAMPLES = 50
@@ -161,5 +203,6 @@ def main():
     plot_results(x_values, y_values, pdf_values, sampled_points_x, lower_bounds, upper_bounds)
 
 if __name__ == "__main__":
-    main()
+    # main()
+    print_analysis()
 
