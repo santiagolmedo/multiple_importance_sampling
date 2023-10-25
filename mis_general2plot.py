@@ -27,7 +27,7 @@ def calculate_exact_integral(a, m, n):
 
     for i in range(m):
         products = [a[i][j] for j in range(n)]
-        total_sum += np.prod(products)
+        total_sum += (np.pi ** n) / np.prod(products)
 
     return total_sum
 
@@ -155,7 +155,7 @@ def plot_3d_side_view(a, b, m, n):
 def main():
     """Main function to compute MIS estimate and plot the results."""
     NUM_SAMPLES = 50
-    a = np.array([[2.0, 2.0], [2.0, 2.0]])
+    a = np.array([[1.0, 1.0], [1.0, 1.0]])
     b = np.array([[0.0, 0.0], [0.0, 0.0]])
     m = 2
     n = 2

@@ -1,12 +1,13 @@
 import numpy as np
 import mpmath
+import pdb
 
 def calculate_function_values(x, a, b, m, n):
     """Calculate the values of the function to be integrated."""
     total_sum = 0
 
     for i in range(m):
-        products = [mpmath.sech(a[i][j] * (x[i][j] - b[i][j])) for j in range(n)]
+        products = [mpmath.sech(a[i][j] * (x[j] - b[i][j])) for j in range(n)]
         total_sum += np.prod(products)
 
     return total_sum
@@ -17,7 +18,7 @@ def calculate_pdf_i(x, a, b, m, n, index):
     for j in range(n):
       sigma[index][j] = np.log(2 + np.sqrt(3)) / (a[index][j] * np.sqrt(2 * np.log(2)))
 
-    products = [np.exp(-(x[index][j] - b[index][j]) ** 2 / (2 * sigma[index][j] ** 2)) for j in range(n)]
+    products = [np.exp(-(x[j] - b[index][j]) ** 2 / (2 * sigma[index][j] ** 2)) for j in range(n)]
     return np.prod(products)
 
 def calculate_exact_integral(a, m, n):
@@ -26,7 +27,7 @@ def calculate_exact_integral(a, m, n):
 
     for i in range(m):
         products = [a[i][j] for j in range(n)]
-        total_sum += np.prod(products)
+        total_sum += (np.pi ** n) / np.prod(products)
 
     return total_sum
 
@@ -58,7 +59,7 @@ def calculate_mis_estimate(total_samples, a, b, m, n):
 
     for i in range(m):
         for j in range(n):
-            x_sample = np.random.normal(b[i][j], a[i][j], (m,n))
+            x_sample = np.random.normal(b[i][j], a[i][j], n)
             y_sample = calculate_function_values(x_sample, a, b, m, n)
 
             weight = calculate_balance_heuristic_weights(x_sample, samples_per_distribution, a, b, i, m, n)
@@ -84,8 +85,8 @@ def calculate_mis_estimate(total_samples, a, b, m, n):
 def main():
     """Main function to compute MIS estimate and plot the results."""
     NUM_SAMPLES = 50
-    a = np.array([[1.0, 1.0], [1.0, 1.0]])
-    b = np.array([[0.0, 0.0], [0.0, 0.0]])
+    a = np.array([[1, 1], [1, 1]])
+    b = np.array([[0, 0], [0, 0]])
     m = 2
     n = 2
 
