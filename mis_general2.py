@@ -1,6 +1,5 @@
 import numpy as np
 import mpmath
-import pdb
 
 def calculate_function_values(x, a, b, m, n):
     """Calculate the values of the function to be integrated."""
@@ -14,11 +13,11 @@ def calculate_function_values(x, a, b, m, n):
 
 def calculate_pdf_i(x, a, b, m, n, index):
     """Calculate the probability density function (PDF)"""
-    sigma = np.zeros((n, m))
+    sigma = np.zeros((m, n))
     for j in range(n):
       sigma[index][j] = np.log(2 + np.sqrt(3)) / (a[index][j] * np.sqrt(2 * np.log(2)))
 
-    products = [np.exp(-(x[j] - b[index][j]) ** 2 / (2 * sigma[index][j] ** 2)) for j in range(n)]
+    products = [np.exp(-((x[j] - b[index][j]) ** 2) / (2 * sigma[index][j] ** 2)) for j in range(n)]
     return np.prod(products)
 
 def calculate_exact_integral(a, m, n):
@@ -42,12 +41,22 @@ def calculate_balance_heuristic_weights(x, sample_counts, a, b, index, m, n):
         ])
     )
 
+# def calculate_maximum_heuristic_weights(x, sample_counts, a, b, index, m, n):
+#     """Calculate weights using the maximum heuristic method."""
+#     pdf_values = [
+#         sample_count * calculate_pdf_i(x, a, b, m, n, i)
+#         for i, sample_count in enumerate(sample_counts)
+#     ]
+
+#     return float(pdf_values[index] == max(pdf_values))
+
 def calculate_mis_estimate(total_samples, a, b, m, n):
     """Calculate the MIS estimate."""
     num_distributions = m
 
-    samples_per_distribution = [total_samples // num_distributions] * num_distributions
-    samples_per_distribution[0] += total_samples % num_distributions
+    samples_per_distribution = [total_samples / num_distributions] * num_distributions
+    for i in range(num_distributions):
+        samples_per_distribution[i] = int(np.ceil(samples_per_distribution[i]))
     total_samples = sum(samples_per_distribution)
 
     estimate = 0
@@ -56,12 +65,10 @@ def calculate_mis_estimate(total_samples, a, b, m, n):
     variance = 0
     iteration = 1
     t = 0
-
-    for i in range(m):
-        for j in range(n):
-            x_sample = np.random.normal(b[i][j], a[i][j], n)
+    for i in range(num_distributions):
+        for j in range(samples_per_distribution[i]):
+            x_sample = np.array([np.random.normal(b[i, j], a[i, j]) for i in range(m) for j in range(n)])
             y_sample = calculate_function_values(x_sample, a, b, m, n)
-
             weight = calculate_balance_heuristic_weights(x_sample, samples_per_distribution, a, b, i, m, n)
 
             sampled_points_x.append(x_sample)
@@ -85,10 +92,11 @@ def calculate_mis_estimate(total_samples, a, b, m, n):
 def main():
     """Main function to compute MIS estimate and plot the results."""
     NUM_SAMPLES = 50
-    a = np.array([[1, 1], [1, 1]])
-    b = np.array([[0, 0], [0, 0]])
-    m = 2
-    n = 2
+
+    a = np.array([[1], [1], [1]])
+    b = np.array([[0], [0], [0]])
+    m = len(a)
+    n = len(a[0])
 
     mis_estimate, sampled_points_x, _, variance, alternate_variance = calculate_mis_estimate(
         NUM_SAMPLES, a, b, m, n
