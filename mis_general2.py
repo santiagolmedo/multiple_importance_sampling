@@ -1,5 +1,7 @@
 import numpy as np
 import mpmath
+import matplotlib.pyplot as plt
+import pdb
 
 def calculate_function_values(x, a, b, m, n):
     """Calculate the values of the function to be integrated."""
@@ -9,15 +11,19 @@ def calculate_function_values(x, a, b, m, n):
         products = [mpmath.sech(a[i][j] * (x[j] - b[i][j])) for j in range(n)]
         total_sum += np.prod(products)
 
-    return total_sum
+    return float(total_sum)
+
+def normal_pdf(x, mu=0, sigma=1):
+    return (1.0 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * ((x - mu) / sigma)**2)
+
+def calculate_sigma(a, index):
+    sigma = np.log(2 + np.sqrt(3)) / (a[index] * np.sqrt(2 * np.log(2)))
+    return sigma
 
 def calculate_pdf_i(x, a, b, m, n, index):
-    """Calculate the probability density function (PDF)"""
-    sigma = np.zeros((m, n))
-    for j in range(n):
-      sigma[index][j] = np.log(2 + np.sqrt(3)) / (a[index][j] * np.sqrt(2 * np.log(2)))
-
-    products = [np.exp(-((x[j] - b[index][j]) ** 2) / (2 * sigma[index][j] ** 2)) for j in range(n)]
+    """Calculate the probability density function (PDF) using the normal distribution."""
+    sigma = calculate_sigma(a, index)
+    products = [normal_pdf(x[j], mu=b[index][j], sigma=sigma[j]) for j in range(n)]
     return np.prod(products)
 
 def calculate_exact_integral(a, m, n):
@@ -67,7 +73,7 @@ def calculate_mis_estimate(total_samples, a, b, m, n):
     t = 0
     for i in range(num_distributions):
         for j in range(samples_per_distribution[i]):
-            x_sample = np.array([np.random.normal(b[i, j], a[i, j]) for i in range(m) for j in range(n)])
+            x_sample = np.array([np.random.normal(b[i][j_iterator], a[i][j_iterator]) for j_iterator in range(n)])
             y_sample = calculate_function_values(x_sample, a, b, m, n)
             weight = calculate_balance_heuristic_weights(x_sample, samples_per_distribution, a, b, i, m, n)
 
@@ -89,6 +95,28 @@ def calculate_mis_estimate(total_samples, a, b, m, n):
 
     return estimate, sampled_points_x, sampled_points_y, variance, alternate_variance
 
+def plotting(sampled_points_x, sampled_points_y, a, b, m, n):
+    pdf_values_1 = [calculate_pdf_i(sampled_points_x[iterator], a, b, m, n, 0) for iterator in range(len(sampled_points_x))]
+    pdf_values_2 = [calculate_pdf_i(sampled_points_x[iterator], a, b, m, n, 1) for iterator in range(len(sampled_points_x))]
+    pdf_values_3 = [calculate_pdf_i(sampled_points_x[iterator], a, b, m, n, 2) for iterator in range(len(sampled_points_x))]
+
+    sampled_points_x = [float(sampled_points_x[iterator]) for iterator in range(len(sampled_points_x))]
+
+    # Plot the sampled points
+    plt.scatter(sampled_points_x, sampled_points_y, s=1, c='k', label='Sampled Points')
+
+    # Plot the PDFs
+    plt.scatter(sampled_points_x, pdf_values_1, s=5, c='r', marker='o', label='PDF 1')
+    plt.scatter(sampled_points_x, pdf_values_2, s=5, c='g', marker='^', label='PDF 2')
+    plt.scatter(sampled_points_x, pdf_values_3, s=5, c='b', marker='s', label='PDF 3')
+
+    plt.legend(loc='upper right')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('MIS General 2')
+    plt.show()
+
+
 def main():
     """Main function to compute MIS estimate and plot the results."""
     NUM_SAMPLES = 50
@@ -97,8 +125,10 @@ def main():
     b = np.array([[0], [0], [0]])
     m = len(a)
     n = len(a[0])
+    print(f"a: {a}")
+    print(f"b: {b}")
 
-    mis_estimate, sampled_points_x, _, variance, alternate_variance = calculate_mis_estimate(
+    mis_estimate, sampled_points_x, sampled_points_y, variance, alternate_variance = calculate_mis_estimate(
         NUM_SAMPLES, a, b, m, n
     )
 
@@ -106,6 +136,7 @@ def main():
     print(f"Variance of the integral with MIS: {variance}")
     print(f"Alternate variance of the integral with MIS: {alternate_variance}")
     print(f"Exact result of the integral: {calculate_exact_integral(a, m, n)}")
+    plotting(sampled_points_x, sampled_points_y, a, b, m, n)
 
 if __name__ == "__main__":
     main()
