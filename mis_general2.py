@@ -184,25 +184,29 @@ def run_mis_analysis():
                 alternate_variances.append(alternate_variance)
                 exact_integrals.append(exact_integral)
 
-        print(f"Mean of the MIS estimates: {np.mean(mis_estimates)}")
-        print(f"Mean of the variances: {np.mean(variances)}")
-        print(f"Mean of the alternate variances: {np.mean(alternate_variances)}")
-        print(f"Mean of the exact integrals: {np.mean(exact_integrals)}")
-        print(f"Error of the MIS estimates: {np.mean(exact_integrals) - np.mean(mis_estimates)}")
+            print(f"Mean of the MIS estimates: {np.mean(mis_estimates)}")
+            print(f"Mean of the variances: {np.mean(variances)}")
+            print(f"Mean of the alternate variances: {np.mean(alternate_variances)}")
+            print(f"Mean of the exact integrals: {np.mean(exact_integrals)}")
+            print(f"Error of the MIS estimates: {np.mean(exact_integrals) - np.mean(mis_estimates)}")
 
-        # calculate errors
-        errors = []
-        for i in range(NUM_RUNS_PER_HEURISTIC):
-            errors.append(exact_integrals[i] - mis_estimates[i])
+            results[heuristic].append((mis_estimate, variance, alternate_variance, exact_integral))
 
-        print(f"Mean of the errors: {np.mean(errors)}")
-        print(f"Standard deviation of the errors: {np.std(errors)}")
+        # # calculate errors
+        # errors = []
+        # for i in range(NUM_RUNS_PER_HEURISTIC):
+        #     errors.append(exact_integrals[i] - mis_estimates[i])
 
-        plt.hist(errors, bins=100)
-        plt.xlabel('Error')
-        plt.ylabel('Frequency')
-        plt.title('MIS General 2')
-        plt.show()
+        # print(f"Mean of the errors: {np.mean(errors)}")
+        # print(f"Standard deviation of the errors: {np.std(errors)}")
+
+        # plt.hist(errors, bins=100)
+        # plt.xlabel('Error')
+        # plt.ylabel('Frequency')
+        # plt.title('MIS General 2')
+        # plt.show()
+
+    print(results)
 
 def main():
     """Main function to compute MIS estimate and plot the results."""
