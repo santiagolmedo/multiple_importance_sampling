@@ -1,7 +1,6 @@
 import numpy as np
 import mpmath
 import matplotlib.pyplot as plt
-import pdb
 
 def calculate_function_values(x, a, b, m, n):
     """Calculate the values of the function to be integrated."""
@@ -47,16 +46,54 @@ def calculate_balance_heuristic_weights(x, sample_counts, a, b, index, m, n):
         ])
     )
 
-# def calculate_maximum_heuristic_weights(x, sample_counts, a, b, index, m, n):
-#     """Calculate weights using the maximum heuristic method."""
-#     pdf_values = [
-#         sample_count * calculate_pdf_i(x, a, b, m, n, i)
-#         for i, sample_count in enumerate(sample_counts)
-#     ]
+def calculate_maximum_heuristic_weights(x, sample_counts, a, b, index, m, n):
+    """Calculate weights using the maximum heuristic method."""
+    pdf_values = [
+        sample_count * calculate_pdf_i(x, a, b, m, n, i)
+        for i, sample_count in enumerate(sample_counts)
+    ]
 
-#     return float(pdf_values[index] == max(pdf_values))
+    return float(pdf_values[index] == max(pdf_values))
 
-def calculate_mis_estimate(total_samples, a, b, m, n):
+def calculate_power_heuristic_weights(x, sample_counts, a, b, index, m, n, beta=2):
+    """Calculate weights using the power heuristic method."""
+    pdf_values = [
+        sample_count * calculate_pdf_i(x, a, b, m, n, i)
+        for i, sample_count in enumerate(sample_counts)
+    ]
+
+    numerator = pdf_values[index] ** beta
+    denominator = sum(pdf_val ** beta for pdf_val in pdf_values)
+
+    return numerator / denominator
+
+def calculate_cutoff_heuristic_weights(x, sample_counts, a, b, index, m, n, alpha=0.5):
+    """Calculate weights using the cutoff heuristic method."""
+    pdf_values = [
+        sample_count * calculate_pdf_i(x, a, b, m, n, i)
+        for i, sample_count in enumerate(sample_counts)
+    ]
+
+    q_max = max(pdf_values)
+    q_index = pdf_values[index]
+
+    if q_index < alpha * q_max:
+        return 0
+    else:
+        denominator = sum(q_k for q_k in pdf_values if q_k >= alpha * q_max)
+        return q_index / denominator
+
+def calculate_sbert_heuristic_weights(x, sample_counts, a, b, index, m, n):
+    """Calculate weights using the SBERT method."""
+    return (
+        calculate_pdf_i(x, a, b, m, n, index)
+        / sum([
+            calculate_pdf_i(x, a, b, m, n, i)
+            for i, sample_count in enumerate(sample_counts)
+        ])
+    )
+
+def calculate_mis_estimate(total_samples, a, b, m, n, heuristic='balance'):
     """Calculate the MIS estimate."""
     num_distributions = m
 
@@ -75,7 +112,7 @@ def calculate_mis_estimate(total_samples, a, b, m, n):
         for j in range(samples_per_distribution[i]):
             x_sample = np.array([np.random.normal(b[i][j_iterator], a[i][j_iterator]) for j_iterator in range(n)])
             y_sample = calculate_function_values(x_sample, a, b, m, n)
-            weight = calculate_balance_heuristic_weights(x_sample, samples_per_distribution, a, b, i, m, n)
+            weight = globals()[f"calculate_{heuristic}_heuristic_weights"](x_sample, samples_per_distribution, a, b, i, m, n)
 
             sampled_points_x.append(x_sample)
             sampled_points_y.append(y_sample)
@@ -116,15 +153,66 @@ def plotting(sampled_points_x, sampled_points_y, a, b, m, n):
     plt.title('MIS General 2')
     plt.show()
 
+def run_mis_analysis():
+    """Run the MIS analysis."""
+    NUM_SAMPLES = 50
+    NUM_RUNS_PER_HEURISTIC = 2000
+    heuristics=["balance", "power", "maximum", "cutoff", "sbert"]
+
+    results = {heuristic : [] for heuristic in heuristics}
+
+    for heuristic in heuristics:
+        for run in range(NUM_RUNS_PER_HEURISTIC):
+            m = np.random.randint(2, 4)
+            n = np.random.randint(2, 4)
+            a = np.array(np.random.uniform(0.1, 1, size=(m, n)))
+            b = np.array(np.random.uniform(-1, 1, size=(m, n)))
+
+            mis_estimate, _, _, variance, alternate_variance = calculate_mis_estimate(
+                NUM_SAMPLES, a, b, m, n
+            )
+            exact_integral = calculate_exact_integral(a, m, n)
+
+            if run == 0:
+                mis_estimates = [mis_estimate]
+                variances = [variance]
+                alternate_variances = [alternate_variance]
+                exact_integrals = [exact_integral]
+            else:
+                mis_estimates.append(mis_estimate)
+                variances.append(variance)
+                alternate_variances.append(alternate_variance)
+                exact_integrals.append(exact_integral)
+
+        print(f"Mean of the MIS estimates: {np.mean(mis_estimates)}")
+        print(f"Mean of the variances: {np.mean(variances)}")
+        print(f"Mean of the alternate variances: {np.mean(alternate_variances)}")
+        print(f"Mean of the exact integrals: {np.mean(exact_integrals)}")
+        print(f"Error of the MIS estimates: {np.mean(exact_integrals) - np.mean(mis_estimates)}")
+
+        # calculate errors
+        errors = []
+        for i in range(NUM_RUNS_PER_HEURISTIC):
+            errors.append(exact_integrals[i] - mis_estimates[i])
+
+        print(f"Mean of the errors: {np.mean(errors)}")
+        print(f"Standard deviation of the errors: {np.std(errors)}")
+
+        plt.hist(errors, bins=100)
+        plt.xlabel('Error')
+        plt.ylabel('Frequency')
+        plt.title('MIS General 2')
+        plt.show()
 
 def main():
     """Main function to compute MIS estimate and plot the results."""
     NUM_SAMPLES = 50
 
-    a = np.array([[1], [1], [1]])
-    b = np.array([[0], [0], [0]])
-    m = len(a)
-    n = len(a[0])
+    m = np.random.randint(2, 10)
+    n = 1
+    a = np.array(np.random.uniform(0.1, 1, size=(m, n)))
+    b = np.array(np.random.uniform(-1, 1, size=(m, n)))
+
     print(f"a: {a}")
     print(f"b: {b}")
 
@@ -136,7 +224,6 @@ def main():
     print(f"Variance of the integral with MIS: {variance}")
     print(f"Alternate variance of the integral with MIS: {alternate_variance}")
     print(f"Exact result of the integral: {calculate_exact_integral(a, m, n)}")
-    plotting(sampled_points_x, sampled_points_y, a, b, m, n)
 
 if __name__ == "__main__":
-    main()
+    run_mis_analysis()
