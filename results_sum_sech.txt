@@ -1,0 +1,172 @@
+{
+  "balance": {
+    "10": {
+      "mean of MIS estimates": 297.73466456303333,
+      "mean of variances": 289.6017061033967,
+      "mean of alternate variances": 289.6017061033966,
+      "mean of exact integrals": 733.4303442664534,
+      "mean of errors": 435.69567970342,
+      "standard deviation of errors": 929.542219799394
+    },
+    "25": {
+      "mean of MIS estimates": 296.96343727481207,
+      "mean of variances": 135.02721726625194,
+      "mean of alternate variances": 135.02721726625194,
+      "mean of exact integrals": 730.9478433892433,
+      "mean of errors": 433.9844061144312,
+      "standard deviation of errors": 927.2453376080865
+    },
+    "50": {
+      "mean of MIS estimates": 302.7854006648176,
+      "mean of variances": 70.30671785480291,
+      "mean of alternate variances": 70.30671785480291,
+      "mean of exact integrals": 726.1807237047615,
+      "mean of errors": 423.3953230399439,
+      "standard deviation of errors": 817.0883813867855
+    },
+    "100": {
+      "mean of MIS estimates": 301.76738977564827,
+      "mean of variances": 35.522240603675016,
+      "mean of alternate variances": 35.52224060367485,
+      "mean of exact integrals": 735.8833145902776,
+      "mean of errors": 434.1159248146292,
+      "standard deviation of errors": 934.2232044678888
+    }
+  },
+  "power": {
+    "10": {
+      "mean of MIS estimates": 306.4581182808781,
+      "mean of variances": 335.94659619805736,
+      "mean of alternate variances": 335.9465961980572,
+      "mean of exact integrals": 744.5339301678604,
+      "mean of errors": 438.07581188698225,
+      "standard deviation of errors": 918.2476387078684
+    },
+    "25": {
+      "mean of MIS estimates": 304.8161614786232,
+      "mean of variances": 117.15762904524722,
+      "mean of alternate variances": 117.15762904524723,
+      "mean of exact integrals": 746.1752927959136,
+      "mean of errors": 441.3591313172903,
+      "standard deviation of errors": 962.4151280802116
+    },
+    "50": {
+      "mean of MIS estimates": 294.89363793380244,
+      "mean of variances": 64.1744297520118,
+      "mean of alternate variances": 64.17442975201192,
+      "mean of exact integrals": 725.4822209722955,
+      "mean of errors": 430.5885830384931,
+      "standard deviation of errors": 865.4589810673323
+    },
+    "100": {
+      "mean of MIS estimates": 299.49337272290796,
+      "mean of variances": 36.24060994618827,
+      "mean of alternate variances": 36.24060994618836,
+      "mean of exact integrals": 717.2170628720697,
+      "mean of errors": 417.72369014916177,
+      "standard deviation of errors": 840.1606595094864
+    }
+  },
+  "maximum": {
+    "10": {
+      "mean of MIS estimates": 300.72715463006057,
+      "mean of variances": 291.544687670721,
+      "mean of alternate variances": 291.5446876707212,
+      "mean of exact integrals": 737.1265623579792,
+      "mean of errors": 436.3994077279185,
+      "standard deviation of errors": 892.8105557125281
+    },
+    "25": {
+      "mean of MIS estimates": 302.06931398628336,
+      "mean of variances": 123.62283861024743,
+      "mean of alternate variances": 123.6228386102475,
+      "mean of exact integrals": 731.1214319228603,
+      "mean of errors": 429.0521179365771,
+      "standard deviation of errors": 847.9496690928511
+    },
+    "50": {
+      "mean of MIS estimates": 298.7855212247737,
+      "mean of variances": 68.3228288741804,
+      "mean of alternate variances": 68.32282887418059,
+      "mean of exact integrals": 698.2588259655892,
+      "mean of errors": 399.4733047408154,
+      "standard deviation of errors": 708.3619116074291
+    },
+    "100": {
+      "mean of MIS estimates": 295.71823203438,
+      "mean of variances": 32.38199165213072,
+      "mean of alternate variances": 32.381991652130594,
+      "mean of exact integrals": 727.4317819633029,
+      "mean of errors": 431.71354992892293,
+      "standard deviation of errors": 822.521371807185
+    }
+  },
+  "cutoff": {
+    "10": {
+      "mean of MIS estimates": 306.63760324110194,
+      "mean of variances": 296.67533004886434,
+      "mean of alternate variances": 296.67533004886445,
+      "mean of exact integrals": 734.3536441117208,
+      "mean of errors": 427.7160408706188,
+      "standard deviation of errors": 882.6016366022088
+    },
+    "25": {
+      "mean of MIS estimates": 294.6587960050411,
+      "mean of variances": 115.2635958734155,
+      "mean of alternate variances": 115.26359587341565,
+      "mean of exact integrals": 712.3922449380358,
+      "mean of errors": 417.7334489329947,
+      "standard deviation of errors": 860.82553910306
+    },
+    "50": {
+      "mean of MIS estimates": 296.0401031172363,
+      "mean of variances": 60.80310942978341,
+      "mean of alternate variances": 60.80310942978349,
+      "mean of exact integrals": 717.7536908358969,
+      "mean of errors": 421.71358771866056,
+      "standard deviation of errors": 848.4868086126129
+    },
+    "100": {
+      "mean of MIS estimates": 298.6253465828442,
+      "mean of variances": 33.051282909117965,
+      "mean of alternate variances": 33.05128290911804,
+      "mean of exact integrals": 732.5471759244356,
+      "mean of errors": 433.9218293415913,
+      "standard deviation of errors": 876.3946603597064
+    }
+  },
+  "sbert": {
+    "10": {
+      "mean of MIS estimates": 298.3567749593084,
+      "mean of variances": 366.279740948106,
+      "mean of alternate variances": 366.2797409481063,
+      "mean of exact integrals": 721.6671623727593,
+      "mean of errors": 423.3103874134509,
+      "standard deviation of errors": 792.4356475258916
+    },
+    "25": {
+      "mean of MIS estimates": 291.08477811768734,
+      "mean of variances": 121.27631887900708,
+      "mean of alternate variances": 121.27631887900714,
+      "mean of exact integrals": 695.3355533720606,
+      "mean of errors": 404.25077525437337,
+      "standard deviation of errors": 793.0615183066187
+    },
+    "50": {
+      "mean of MIS estimates": 312.40305508275077,
+      "mean of variances": 66.54535290235326,
+      "mean of alternate variances": 66.54535290235346,
+      "mean of exact integrals": 752.2476819224821,
+      "mean of errors": 439.84462683973135,
+      "standard deviation of errors": 871.4228586063451
+    },
+    "100": {
+      "mean of MIS estimates": 301.56653796616007,
+      "mean of variances": 31.581406455132317,
+      "mean of alternate variances": 31.581406455132342,
+      "mean of exact integrals": 709.2379228511255,
+      "mean of errors": 407.67138488496545,
+      "standard deviation of errors": 751.8041991061343
+    }
+  }
+}

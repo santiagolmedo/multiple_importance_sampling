@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 
 def calculate_function_values(x, a, b, m, n):
     """Calculate the values of the function to be integrated."""
-    total_sum = 0
+    total_sum = 1
 
     for i in range(m):
         products = [mpmath.sech(a[i][j] * (x[j] - b[i][j])) for j in range(n)]
-        total_sum += np.prod(products)
+        total_sum *= np.prod(products)
 
     return float(total_sum)
 
@@ -27,11 +27,11 @@ def calculate_pdf_i(x, a, b, m, n, index):
 
 def calculate_exact_integral(a, m, n):
     """Calculate the exact integral of the function."""
-    total_sum = 0
+    total_sum = 1
 
     for i in range(m):
         products = [a[i][j] for j in range(n)]
-        total_sum += (np.pi ** n) / np.prod(products)
+        total_sum *= (np.pi ** n) / np.prod(products)
 
     return total_sum
 
@@ -155,60 +155,70 @@ def plotting(sampled_points_x, sampled_points_y, a, b, m, n):
 
 def run_mis_analysis():
     """Run the MIS analysis."""
-    NUM_SAMPLES = 50
-    NUM_RUNS_PER_HEURISTIC = 2000
+    NUM_SAMPLES = [10, 25, 50, 100]
+    NUM_RUNS_PER_HEURISTIC = 5000
     heuristics=["balance", "power", "maximum", "cutoff", "sbert"]
 
-    results = {heuristic : [] for heuristic in heuristics}
+    results = {heuristic : { num_samples : [] for num_samples in NUM_SAMPLES } for heuristic in heuristics}
+    errors = {heuristic : { num_samples : [] for num_samples in NUM_SAMPLES } for heuristic in heuristics}
 
     for heuristic in heuristics:
-        for run in range(NUM_RUNS_PER_HEURISTIC):
-            m = np.random.randint(2, 4)
-            n = np.random.randint(2, 4)
-            a = np.array(np.random.uniform(0.1, 1, size=(m, n)))
-            b = np.array(np.random.uniform(-1, 1, size=(m, n)))
+        for num_samples in NUM_SAMPLES:
+            for run in range(NUM_RUNS_PER_HEURISTIC):
+                m = np.random.randint(2, 4)
+                n = np.random.randint(2, 4)
+                a = np.array(np.random.uniform(0.1, 1, size=(m, n)))
+                b = np.array(np.random.uniform(-1, 1, size=(m, n)))
 
-            mis_estimate, _, _, variance, alternate_variance = calculate_mis_estimate(
-                NUM_SAMPLES, a, b, m, n
-            )
-            exact_integral = calculate_exact_integral(a, m, n)
+                mis_estimate, _, _, variance, alternate_variance = calculate_mis_estimate(
+                    num_samples, a, b, m, n
+                )
+                exact_integral = calculate_exact_integral(a, m, n)
 
-            if run == 0:
-                mis_estimates = [mis_estimate]
-                variances = [variance]
-                alternate_variances = [alternate_variance]
-                exact_integrals = [exact_integral]
-            else:
-                mis_estimates.append(mis_estimate)
-                variances.append(variance)
-                alternate_variances.append(alternate_variance)
-                exact_integrals.append(exact_integral)
+                if run == 0:
+                    mis_estimates = [mis_estimate]
+                    variances = [variance]
+                    alternate_variances = [alternate_variance]
+                    exact_integrals = [exact_integral]
+                else:
+                    mis_estimates.append(mis_estimate)
+                    variances.append(variance)
+                    alternate_variances.append(alternate_variance)
+                    exact_integrals.append(exact_integral)
 
-            print(f"Mean of the MIS estimates: {np.mean(mis_estimates)}")
-            print(f"Mean of the variances: {np.mean(variances)}")
-            print(f"Mean of the alternate variances: {np.mean(alternate_variances)}")
-            print(f"Mean of the exact integrals: {np.mean(exact_integrals)}")
-            print(f"Error of the MIS estimates: {np.mean(exact_integrals) - np.mean(mis_estimates)}")
+            errors_per_heuristic_and_num_samples = []
+            for i in range(NUM_RUNS_PER_HEURISTIC):
+                errors_per_heuristic_and_num_samples.append(exact_integrals[i] - mis_estimates[i])
 
-            results[heuristic].append((mis_estimate, variance, alternate_variance, exact_integral))
+            results[heuristic][num_samples] = { "mean of MIS estimates" : np.mean(mis_estimates),
+                                   "mean of variances" : np.mean(variances),
+                                   "mean of alternate variances" : np.mean(alternate_variances),
+                                   "mean of exact integrals" : np.mean(exact_integrals),
+                                   "mean of errors" : np.mean(errors_per_heuristic_and_num_samples),
+                                   "standard deviation of errors" : np.std(errors_per_heuristic_and_num_samples)
+                                }
 
-        # # calculate errors
-        # errors = []
-        # for i in range(NUM_RUNS_PER_HEURISTIC):
-        #     errors.append(exact_integrals[i] - mis_estimates[i])
+            errors[heuristic][num_samples] = errors_per_heuristic_and_num_samples
 
-        # print(f"Mean of the errors: {np.mean(errors)}")
-        # print(f"Standard deviation of the errors: {np.std(errors)}")
+    open('results_prod_sech.txt', 'w').close()
+    open('errors_prod_sech.txt', 'w').close()
 
-        # plt.hist(errors, bins=100)
-        # plt.xlabel('Error')
-        # plt.ylabel('Frequency')
-        # plt.title('MIS General 2')
-        # plt.show()
+    with open('results_prod_sech.txt', 'w') as f:
+        print(results, file=f)
 
-    print(results)
+    with open('errors_prod_sech.txt', 'w') as f:
+        print(errors, file=f)
 
-def main():
+    # for heuristic in heuristics:
+    #     for num_samples in NUM_SAMPLES:
+    #       plt.hist(errors[heuristic][num_samples], bins=100)
+    #       plt.xlabel('Error')
+    #       plt.ylabel('Frequency')
+    #       plt.title(f'Error Histogram ({heuristic}, {num_samples} samples)')
+    #       plt.show()
+
+
+def run_mis_estimate():
     """Main function to compute MIS estimate and plot the results."""
     NUM_SAMPLES = 50
 
@@ -230,4 +240,5 @@ def main():
     print(f"Exact result of the integral: {calculate_exact_integral(a, m, n)}")
 
 if __name__ == "__main__":
+    # run_mis_estimate()
     run_mis_analysis()
