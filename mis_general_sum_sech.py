@@ -1,6 +1,7 @@
 import numpy as np
 import mpmath
 import matplotlib.pyplot as plt
+import time
 
 def calculate_function_values(x, a, b, m, n):
     """Calculate the values of the function to be integrated."""
@@ -12,15 +13,14 @@ def calculate_function_values(x, a, b, m, n):
 
     return float(total_sum)
 
-def normal_pdf(x, mu=0, sigma=1):
-    return (1.0 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * ((x - mu) / sigma)**2)
-
 def calculate_sigma(a, index):
     sigma = np.log(2 + np.sqrt(3)) / (a[index] * np.sqrt(2 * np.log(2)))
     return sigma
 
-def calculate_pdf_i(x, a, b, m, n, index):
-    """Calculate the probability density function (PDF) using the normal distribution."""
+def normal_pdf(x, mu=0, sigma=1):
+    return (1.0 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * ((x - mu) / sigma)**2)
+
+def calculate_normal_pdf(x, a, b, m, n, index):
     sigma = calculate_sigma(a, index)
     products = [normal_pdf(x[j], mu=b[index][j], sigma=sigma[j]) for j in range(n)]
     return np.prod(products)
@@ -39,9 +39,9 @@ def calculate_balance_heuristic_weights(x, sample_counts, a, b, index, m, n):
     """Calculate weights using the balance heuristic method."""
     return (
         sample_counts[index]
-        * calculate_pdf_i(x, a, b, m, n, index)
+        * calculate_normal_pdf(x, a, b, m, n, index)
         / sum([
-            sample_count * calculate_pdf_i(x, a, b, m, n, i)
+            sample_count * calculate_normal_pdf(x, a, b, m, n, i)
             for i, sample_count in enumerate(sample_counts)
         ])
     )
@@ -49,7 +49,7 @@ def calculate_balance_heuristic_weights(x, sample_counts, a, b, index, m, n):
 def calculate_maximum_heuristic_weights(x, sample_counts, a, b, index, m, n):
     """Calculate weights using the maximum heuristic method."""
     pdf_values = [
-        sample_count * calculate_pdf_i(x, a, b, m, n, i)
+        sample_count * calculate_normal_pdf(x, a, b, m, n, i)
         for i, sample_count in enumerate(sample_counts)
     ]
 
@@ -58,7 +58,7 @@ def calculate_maximum_heuristic_weights(x, sample_counts, a, b, index, m, n):
 def calculate_power_heuristic_weights(x, sample_counts, a, b, index, m, n, beta=2):
     """Calculate weights using the power heuristic method."""
     pdf_values = [
-        sample_count * calculate_pdf_i(x, a, b, m, n, i)
+        sample_count * calculate_normal_pdf(x, a, b, m, n, i)
         for i, sample_count in enumerate(sample_counts)
     ]
 
@@ -70,7 +70,7 @@ def calculate_power_heuristic_weights(x, sample_counts, a, b, index, m, n, beta=
 def calculate_cutoff_heuristic_weights(x, sample_counts, a, b, index, m, n, alpha=0.5):
     """Calculate weights using the cutoff heuristic method."""
     pdf_values = [
-        sample_count * calculate_pdf_i(x, a, b, m, n, i)
+        sample_count * calculate_normal_pdf(x, a, b, m, n, i)
         for i, sample_count in enumerate(sample_counts)
     ]
 
@@ -86,9 +86,9 @@ def calculate_cutoff_heuristic_weights(x, sample_counts, a, b, index, m, n, alph
 def calculate_sbert_heuristic_weights(x, sample_counts, a, b, index, m, n):
     """Calculate weights using the SBERT method."""
     return (
-        calculate_pdf_i(x, a, b, m, n, index)
+        calculate_normal_pdf(x, a, b, m, n, index)
         / sum([
-            calculate_pdf_i(x, a, b, m, n, i)
+            calculate_normal_pdf(x, a, b, m, n, i)
             for i, sample_count in enumerate(sample_counts)
         ])
     )
@@ -103,21 +103,21 @@ def calculate_mis_estimate(total_samples, a, b, m, n, heuristic='balance'):
     total_samples = sum(samples_per_distribution)
 
     estimate = 0
-    sampled_points_x = []
-    sampled_points_y = []
     variance = 0
     iteration = 1
+    samples_x = []
+    values_y = []
     t = 0
     for i in range(num_distributions):
         for j in range(samples_per_distribution[i]):
-            x_sample = np.array([np.random.normal(b[i][j_iterator], a[i][j_iterator]) for j_iterator in range(n)])
+            x_sample = np.array([np.random.normal(b[i][j_iterator], calculate_sigma(a[i], j_iterator)) for j_iterator in range(n)])
             y_sample = calculate_function_values(x_sample, a, b, m, n)
-            weight = globals()[f"calculate_{heuristic}_heuristic_weights"](x_sample, samples_per_distribution, a, b, i, m, n)
+            weight = calculate_maximum_heuristic_weights(x_sample, samples_per_distribution, a, b, i, m, n)
 
-            sampled_points_x.append(x_sample)
-            sampled_points_y.append(y_sample)
+            samples_x.append(x_sample)
+            values_y.append(y_sample)
 
-            weighted_sample = (float(weight * (y_sample / calculate_pdf_i(x_sample, a, b, m, n, i))) / samples_per_distribution[i]) * total_samples
+            weighted_sample = (float(weight * (y_sample / calculate_normal_pdf(x_sample, a, b, m, n, i))) / samples_per_distribution[i]) * total_samples
             if iteration > 1:
                 t += (1 - (1 / iteration)) * ((weighted_sample - estimate / (iteration - 1)) ** 2)
 
@@ -130,12 +130,14 @@ def calculate_mis_estimate(total_samples, a, b, m, n, heuristic='balance'):
     sigma_variance = t / (total_samples - 1)
     alternate_variance = sigma_variance / total_samples
 
-    return estimate, sampled_points_x, sampled_points_y, variance, alternate_variance
+    return estimate, samples_x, values_y, variance, alternate_variance
 
 def plotting(sampled_points_x, sampled_points_y, a, b, m, n):
-    pdf_values_1 = [calculate_pdf_i(sampled_points_x[iterator], a, b, m, n, 0) for iterator in range(len(sampled_points_x))]
-    pdf_values_2 = [calculate_pdf_i(sampled_points_x[iterator], a, b, m, n, 1) for iterator in range(len(sampled_points_x))]
-    pdf_values_3 = [calculate_pdf_i(sampled_points_x[iterator], a, b, m, n, 2) for iterator in range(len(sampled_points_x))]
+    pdf_values_1 = [calculate_normal_pdf(sampled_points_x[iterator], a, b, m, n, 0) for iterator in range(len(sampled_points_x))]
+    pdf_values_2 = [calculate_normal_pdf(sampled_points_x[iterator], a, b, m, n, 1) for iterator in range(len(sampled_points_x))]
+    pdf_values_3 = [calculate_normal_pdf(sampled_points_x[iterator], a, b, m, n, 2) for iterator in range(len(sampled_points_x))]
+
+    pdf_values = [pdf_values_1[iterator] + pdf_values_2[iterator] + pdf_values_3[iterator] for iterator in range(len(sampled_points_x))]
 
     sampled_points_x = [float(sampled_points_x[iterator]) for iterator in range(len(sampled_points_x))]
 
@@ -146,11 +148,12 @@ def plotting(sampled_points_x, sampled_points_y, a, b, m, n):
     plt.scatter(sampled_points_x, pdf_values_1, s=5, c='r', marker='o', label='PDF 1')
     plt.scatter(sampled_points_x, pdf_values_2, s=5, c='g', marker='^', label='PDF 2')
     plt.scatter(sampled_points_x, pdf_values_3, s=5, c='b', marker='s', label='PDF 3')
+    # plt.scatter(sampled_points_x, pdf_values, s=5, c='r', marker='o', label='PDF')
 
     plt.legend(loc='upper right')
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.title('MIS General 2')
+    plt.title('MIS General Sum Sech')
     plt.show()
 
 def run_mis_analysis():
@@ -220,25 +223,33 @@ def run_mis_analysis():
 
 def run_mis_estimate():
     """Main function to compute MIS estimate and plot the results."""
-    NUM_SAMPLES = 50
+    NUM_SAMPLES = 10000
 
-    m = np.random.randint(2, 10)
+    m = 3
     n = 1
-    a = np.array(np.random.uniform(0.1, 1, size=(m, n)))
-    b = np.array(np.random.uniform(-1, 1, size=(m, n)))
+    a = np.array(np.random.uniform(1, 1.5, size=(m, n)))
+    b = np.array(np.random.uniform(-100, 100, size=(m, n)))
 
     print(f"a: {a}")
     print(f"b: {b}")
 
-    mis_estimate, sampled_points_x, sampled_points_y, variance, alternate_variance = calculate_mis_estimate(
+    start_time = time.time()
+    mis_estimate, sampled_points_x, values_y, variance, alternate_variance = calculate_mis_estimate(
         NUM_SAMPLES, a, b, m, n
     )
+    end_time = time.time()
 
     print(f"Result of the integral with MIS: {mis_estimate}")
     print(f"Variance of the integral with MIS: {variance}")
     print(f"Alternate variance of the integral with MIS: {alternate_variance}")
+    print(f"Standard deviation of the integral with MIS: {np.sqrt(variance)}")
+    print(f"Standard deviation of the integral with MIS: {np.sqrt(alternate_variance)}")
     print(f"Exact result of the integral: {calculate_exact_integral(a, m, n)}")
+    print(f"Error: {calculate_exact_integral(a, m, n) - mis_estimate}")
+    print(f"Time taken: {end_time - start_time} seconds")
+
+    plotting(sampled_points_x, values_y, a, b, m, n)
 
 if __name__ == "__main__":
-    # run_mis_estimate()
-    run_mis_analysis()
+    run_mis_estimate()
+    # run_mis_analysis()

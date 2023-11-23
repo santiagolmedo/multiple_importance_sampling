@@ -2,8 +2,11 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage[spanish]{babel}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{tabularx}
 \floatname{algorithm}{Algoritmo}
 
 
@@ -17,7 +20,12 @@
 
 \section{Introducción}
 
-En computación gráfica, los problemas de renderizado están llenos de problemas de integración. Comúnmente, estás integrales no tienen soluciones analíticas. Es por ello que se recurre a métodos de resolución numéricos. Los métodos comunes son efectivos para la resolución de problemas de baja dimensión. La integración por Monte Carlo es particularmente atractivo porque su convergencia es independiente de la dimensionalidad del problema.
+En computación gráfica, los problemas de renderizado están llenos de problemas de integración.
+Comúnmente, estás integrales son "difíciles", es decir, las funciones a integrar son discontinuas, multidimensionales o singulares y no tienen soluciones analíticas.
+Es por ello que se recurre a métodos de resolución numéricos que permiten aproximar el valor de la integral con baja varianza.
+Por la naturaleza de los problemas de renderizado, donde por ejemplo, se requiere renderizar cada pixel de una imagen en tiempo real, es necesario que los métodos de resolución sean eficientes en tiempo de ejecución y errores de estimación.
+Los métodos comunes, como la integración trapezoidal o cuadratura de Gauss son efectivos para la resolución de problemas de baja dimensión pero no son escalables a los problemas que aparecen en computación gráfica.
+La integración por Monte Carlo es particularmente atractivo porque su convergencia es independiente de la dimensionalidad del problema.
 
 Otro atractivo del método de Monte Carlo es su facilidad de implementación. A priori, dado
 
@@ -25,15 +33,244 @@ $$ \int f(x) \,d(x)$$
 
 solo se necesita la capacidad de evaluar $f(x)$ en un punto dado para poder estimar el valor de la integral.
 
-\subsection{Monte Carlo me base en el curso de Hector}
-Supongamos que se quiere evaluar el valor de la integral $I = \int_{a}^{b} f(x) \,dx$. Dado un conjunto de $n$ variables aleatorias $X_1, X_2, \dots, X_n$ independientes e identicamente distribuidas con distribución $p(x)$, se puede decir que el valor esperado del estimador
+Debido a los problemas de integración que aparecen en computación gráfica, es necesario recurrir a métodos de Monte Carlo que permitan reducir la varianza de la estimación.
+En este trabajo se presenta la técnica de Multiple Importance Sampling (MIS) que permite combinar múltiples distribuciones de muestreo para reducir la varianza de la estimación.
+
+El informe está organizado de la siguiente manera: en la sección 2 se presenta el método de Monte Carlo.
+En la sección 3 se presenta la técnica de Multiple Importance Sampling y un estudio del estado del arte.
+En la sección 4 se presentan los resultados de la implementación de MIS en un subconjunto de las heurísticas analizadas. Se comparan los resultados con una implementación básica de Monte Carlo.
+Esta comparación se basa en el tiempo de cálculo requerido para obtener una estimación precisa, el número de muestras requeridas y la variabilidad de las estimaciones (estimación de la varianza).
+
+
+\section{Monte Carlo}
+
+En general, los métodos numéricos que se fundamentan en la evaluación de \( n \) puntos dentro de un espacio de dimensión \( m \) para obtener una solución aproximada presentan un error que disminuye en el mejor de los casos en proporción a \( n^{-1/m} \).
+Esta característica los hace extremadamente ineficientes en situaciones donde \( m \) es grande.
+
+Por otro lado, los métodos de Monte Carlo generan estimaciones cuyo error absoluto es del orden de \( n^{-1/2} \), independientemente de la dimensión \( m \). Esta cualidad representa la ventaja principal del método y, en muchos casos, hace que sea la única opción viable.
+
+Supongamos que deseo calcular un cierto valor $\phi$, y conozco una variable aleatoria $X$ con distribución $F_X$ tal que $\phi = \mathbb{E}(X)$. El método de Monte Carlo en su versión más simple consiste en:
+
+\begin{algorithm}
+\caption{Esquema básico de un Método Monte Carlo}
+\begin{algorithmic}[1]
+
+\State \textbf{sortear} valores para un conjunto $X^{(1)}, X^{(2)}, \dots, X^{(n)}$, de variables aleatorias i.i.d. (independientes e idénticamente distribuidas) a $X$.
+
+\State Calcular $S_n = X^{(1)} + \dots + X^{(n)}$, la suma de los $n$ valores sorteados.
+
+\State Calcular $\hat{X} = \frac{S_n}{n}$.
+
+\State Calcular $\hat{V} = \left(\sum_{i=1}^{n} (X^{(i)})^2\right) / (n(n - 1)) - \hat{X}^2 / (n - 1)$.
+
+\end{algorithmic}
+\end{algorithm}
+
+Se dice que $\hat{X}$ es un estimador de $\phi$ y $\hat{V}$ es un estimador de la varianza de $\hat{X}$.
+
+Ahora, supongamos que se quiere evaluar el valor de la integral $I = \int_{a}^{b} f(x) \,dx$. Dado un conjunto de $n$ variables aleatorias $X_1, X_2, \dots, X_n$ independientes e idénticamente distribuidas con distribución $p(x)$, se puede decir que el valor esperado del estimador
 $$F = \frac{b-a}{n} \sum_{i=1}^{n} f(X_i)$$
 es igual a $I$. Esto se puede ver de la siguiente manera:
-$$E[F] = E\left[\frac{b-a}{n} \sum_{i=1}^{n} f(X_i)\right] = \frac{b-a}{n} \sum_{i=1}^{n} E[f(X_i)] = \frac{b-a}{n} \sum_{i=1}^{n} \int_{a}^{b} f(x) p(x) \,dx = \int_{a}^{b} f(x) \,dx$$.
-Dado que $X_i$ es muestreado de $[a,b]$, $p(x) = \frac{1}{b-a}$ para $x \in [a,b]$. Entonces, sustituyendo $p(x)$ por $\frac{1}{b-a}$, y haciendo $\frac{b-a}{n} * n = b-a$, se cancela con $\frac{1}{b-a}$, y se obtiene la ultima igualdad.
+$$E[F] = E\left[\frac{b-a}{n} \sum_{i=1}^{n} f(X_i)\right] = \frac{b-a}{n} \sum_{i=1}^{n} E[f(X_i)] = \frac{b-a}{n} \sum_{i=1}^{n} \int_{a}^{b} f(x) p(x) \,dx = \int_{a}^{b} f(x) \,dx.$$
+Dado que $X_i$ es muestreado de $[a,b]$, $p(x) = \frac{1}{b-a}$ para $x \in [a,b]$. Entonces, sustituyendo $p(x)$ por $\frac{1}{b-a}$, y haciendo $\frac{b-a}{n} * n = b-a$, se cancela con $\frac{1}{b-a}$, y se obtiene la última igualdad.
 
 Esto se puede extender a
 $$ F = \frac{1}{n} \sum_{i=1}^{n} \frac{f(X_i)}{p(X_i)}$$
-con la condición de que $p(x) > 0$. Esto se puede ver de la siguiente manera:
+es igual a I con la condición de que $p(x) > 0$. De manera parecida, se puede ver que el valor esperado del estimador:
 $$E[F] = E\left[\frac{1}{n} \sum_{i=1}^{n} \frac{f(X_i)}{p(X_i)}\right] = \frac{1}{n} \sum_{i=1}^{n} \int_{a}^{b} \frac{f(x)}{p(x)} p(x) \,dx = \frac{1}{n} \sum_{i=1}^{n} \int_{a}^{b} f(x) \,dx = \int_{a}^{b} f(x) \,dx$$
+
+Ahora, es importante mostrar el error de la estimación. Para esto, se puede usar el estimador del esquema básico de Monte Carlo para la varianza de $F$:
+
+$$V[\frac{1}{n}\sum_{i=1}^{n} X_{(i)}] = \frac{1}{n^{2}} \sum_{i=1}^{n} V[X_{(i)}]$$
+
+dado que las variables aleatorias $X_{i}$ son independientes. Teniendo en cuenta que $X_{i}$ tienen la misma distribución y por lo tanto la misma varianza, se puede escribir:
+
+$$V[F] = \frac{1}{n^{2}} \sum_{i=1}^{n} V[X_{(i)}] = \frac{1}{n^{2}} * n * \sigma^{2} = \frac{\sigma^{2}}{n}$$.
+
+Por lo tanto, el error de la estimación es $\frac{\sigma^{2}}{n}$, que es del orden de $n^{-1/2}$.
+
+El estimador que se obtinene es insesgado, es decir, $E[F] = I$. Cuando el estimador es sesgado, la diferencia:
+
+$$\beta = E[F] - I$$
+
+es el sesgo.
+
+\section{Multiple Importance Sampling}
+
+En esta sección se va a presentar la técnica de Multiple Importance Sampling (MIS) y un estudio del estado del arte.
+
+\subsection{Motivación}
+
+Tenemos una integral que puede ser de de la forma
+$$ \int f_{1}(x) * f_{2}(x) * f_{3}(x) * ... * f_{k}(x) \,d(x)$$
+
+y $ p_{1}, p_{2}, p_{3}, ..., p_{k}$ proporcionales a $f_{1}, f_{2}, f_{3}, ..., f_{k}$.
+La idea es usar las distintas distribuciones de muestreo y combinarlas para encontrar una estimación de la integral con menor varianza y en poco tiempo de cómputo.
+
+El problema también es que la inherencia de la computación gráfica hace que las funciones a integrar dependan de varios parámetros del modelo de la escena.
+Esto hace que sea difícil encontrar una distribución de muestreo que sea buena para todos los parámetros.
+Por lo tanto, se puede usar MIS para combinar varias distribuciones de muestreo y obtener una estimación con menor varianza para todo el espacio de parámetros.
+
+En las próximas subsecciones se van a presentar las técninas para combinas las distribuciones de muestreo.
+No se explica cómo conseguir las distribuciones de muestreo, sino que se asume que se tienen las distribuciones de muestreo y se trabaja sobre conseguir combinaciones que permitan construir un estimador con menor varianza.
+
+\subsection{Veach}
+
+Veach propone en su tesis técnicas para combinas las distribuciones y obtener un estimador con varianza baja y demostrablemente bueno.
+En su tesis presenta el modelo multi-sample y distintas heurísticas para combinar las distribuciones de muestreo.
+A su vez, presenta el modelo one-sample que consiste en elegir en cada corrida una distribución de muestreo y usarla para estimar la integral.
+
+\subsubsection{Modelo multi-sample}
+
+Queremos estimar:
+
+$$ \int f_(x) \,d\mu(x)$$
+
+donde el dominio de integración es $\Omega$ y $\mu$ es dado. Tenemos $n$ distribuciones de muestreo $p_{1}, p_{2}, ..., p_{n}$, en el dominio $\Omega$.
+Tenemos las siguientes operaciones:
+\begin{itemize}
+    \item dado $x \in \Omega$, podemos evaluar $f(x)$ y $p_{i}(x)$
+    \item la posibilidad de generar una muestra X con distribución $p_{i}$
+\end{itemize}
+
+Notación:
+\begin{itemize}
+    \item $n_{i}$: número de muestras generadas con $p_{i}$. Este numéro es conocido a priori.
+    \item $N = \sum_{i=1}^{n} n_{i}$: número total de muestras
+    \item Para $j \in \{1, 2, ..., N\}$, $X_{i,j}$ es la $j$-ésima muestra generada con $p_{i}$
+\end{itemize}
+
+\subsubsection{Estimador multi-sample}
+
+Objetivo: encontrar un estimador insesgado combinando las muestras generadas con las distintas distribuciones de muestreo.
+Para esto, consideramos estimadores que le dan pesos diferentes a cada muestra.
+El estimador multi-sample es de la forma:
+
+$$F = \sum_{i=1}^{n} \frac{1}{n_{i}} \sum_{j=1}^{n_{i}} w_{i}(X_{i,j}) \frac{f(X_{i,j})}{p_{i}(X_{i,j})}$$
+
+donde se tiene que cumplir que:
+
+\begin{itemize}
+    \item $\sum_{i=1}^{n} w_{i}(x) = 1$ si $f(x) \neq 0$
+    \item $w_{i}(x) = 0$ si $p_{i}(x) = 0$
+\end{itemize}
+
+Esto implica que en cada punto donde f(x) es distinto de 0, al menos una de $p_{i}(x)$ es positivo.
+
+Lema de que el estimador es insesgado:
+
+$$E[F] = \int f_(x) \,d\mu(x)$$
+
+Podemos demostrar que:
+\begin{align*}
+E[F] &= E\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} w_i(X_{i,j}) \frac{f(X_{i,j})}{p_i(X_{i,j})}\right] \\
+&= \sum_{i=1}^n \frac{1}{n_i} E\left[\sum_{j=1}^{n_i} w_i(X_{i,j}) \frac{f(X_{i,j})}{p_i(X_{i,j})}\right] \\
+&= \sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} \int_{\Omega} w_i(x) \frac{f(x)}{p_i(x)} p_i(x) d\mu(x) \\
+&= \int_{\Omega} \left(\sum_{i=1}^n w_i(x)\right) f(x) d\mu(x) \\
+&= \int_{\Omega} f(x) d\mu(x),
+\end{align*}
+dado que por la condición \( (W1) \), \( \sum_{i=1}^n w_i(x) = 1 \) siempre que \( f(x) \neq 0 \).
+
+Por lo tanto, el estimador \( F \) es imparcial. La última igualdad se debe a que \( \sum_{i=1}^n w_i(x) = 1 \) cuando \( f(x) \neq 0 \).
+
+\subsubsection{Balance Heuristic}
+
+$$ w_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
+
+Ver Teorema 9.2 de la tesis que muestra que no existe otra heurística que mejore significativamente el estimador.
+
+\textbf{Teorema 9.2} Dado $f$, $n_{i}$ y $p_{i}$ para $i \in \{1, 2, ..., n\}$. Sea F cualquier estimador insesgado de la forma del multi-sample estimator y \hat{F} el estimador balance heuristic. Entonces:
+
+$$V[\hat{F}] - V[F] \leq ( \frac{1}{min_{i} n_{i}} - \frac{1}{\sum_{i} n_{i}} ) * \mu^{2}$$
+
+donde $\mu = E[F] = E[\hat{F}]$.
+
+\textbf{Demostración}:
+
+Sean:
+
+$$ F_{i}{j} = \frac{w_{i}(X_{i,j}) f(X_{i,j})}{p_{i}(X_{i,j})}$$
+
+y
+
+$$ \mu_{i} = E[F_{i}{j}] =  \int_{\Omega} w_{i}(x) f(x) d\mu(x)$$.
+
+Entonces:
+
+\begin{align*}
+  V[F] &= V\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} F_{i,j}\right] \\
+  &= \sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} V[F_{i,j}] \\
+  &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}^2]\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}]^2\right) \\
+  &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} \int_{\Omega} \frac{w_i(x)^2 f(x)^2}{p_i(x)^2} p_{i}(x) d\mu(x)\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} n_i  \mu_i^2\right) \\
+  &= \int_{\Omega} \left(\sum_{i=1}^n \frac{w_i(x)^2 f(x)^2}{n_i p_i(x)} d\mu(x)\right) - \left(\sum_{i=1}^n \frac{\mu_i^2}{n_i}\right).
+\end{align*}
+
+... seguir viendo y entendiendo la demostración.
+
+\subsubsection{Otras Heurísticas}
+
+\section{Experimentación práctica}
+
+La función a ser integrada, \( f(x) \), y la función de densidad de probabilidad (PDF) de una distribución normal, \( g(x) \), son definidas como sigue:
+
+\[
+f(x) = \sum_{i} \max\left(0, -\frac{4}{(u_i - l_i)^2} \cdot (x - l_i) \cdot (x - u_i)\right)
+\]
+
+\[
+g(x | \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
+\]
+
+donde los límites \( l_i \) y \( u_i \) para cada intervalo \( i \) están dados por:
+
+\[
+l_i = \mu_i - 2\sigma_i, \quad u_i = \mu_i + 2\sigma_i
+\]
+
+En nuestro caso, los valores de \( \mu \) y \( \sigma \) para cada distribución normal utilizada son:
+
+\[
+\mu = \{2, 5, 7\}, \quad \sigma = \left\{\frac{0.8}{2}, \frac{0.8}{2}, \frac{0.4}{2}\right\}
+\]
+
+
+\begin{table}[h!]
+    \centering
+    \footnotesize
+    \caption{Análisis MIS para Diferentes Heurísticas y Tamaños de Muestra con 1000 corridas}
+    \label{tab:analisis}
+    \begin{tabular}{lcccccc}
+        \toprule
+        Heurística & Muestra & Est Mín & Est Máx & Est Media & Var 1 Media & Var 2 Media \\
+        \midrule
+        Balance & 10 & 1.495 & 3.116 & 2.676 & 0.126 & 0.126 \\
+        Balance & 25 & 1.994 & 3.031 & 2.658 & 0.047 & 0.047 \\
+        Balance & 50 & 2.353 & 2.939 & 2.669 & 0.022 & 0.022 \\
+        Balance & 100 & 2.356 & 2.861 & 2.667 & 0.011 & 0.011 \\
+        \addlinespace
+        Power & 10 & 1.718 & 3.126 & 2.670 & 0.127 & 0.127 \\
+        Power & 25 & 2.117 & 3.070 & 2.674 & 0.046 & 0.046 \\
+        Power & 50 & 2.212 & 2.915 & 2.668 & 0.022 & 0.022 \\
+        Power & 100 & 2.412 & 2.865 & 2.666 & 0.011 & 0.011 \\
+        \addlinespace
+        Maximum & 10 & 1.536 & 3.154 & 2.666 & 0.127 & 0.127 \\
+        Maximum & 25 & 2.008 & 3.038 & 2.671 & 0.046 & 0.046 \\
+        Maximum & 50 & 2.322 & 2.917 & 2.668 & 0.022 & 0.022 \\
+        Maximum & 100 & 2.423 & 2.865 & 2.666 & 0.011 & 0.011 \\
+        \addlinespace
+        Sbert & 10 & 1.746 & 3.125 & 2.660 & 0.130 & 0.130 \\
+        Sbert & 25 & 2.125 & 3.018 & 2.672 & 0.046 & 0.046 \\
+        Sbert & 50 & 2.152 & 2.918 & 2.664 & 0.022 & 0.022 \\
+        Sbert & 100 & 2.439 & 2.867 & 2.666 & 0.011 & 0.011 \\
+        \addlinespace
+        Cutoff & 10 & 1.581 & 3.187 & 2.676 & 0.125 & 0.125 \\
+        Cutoff & 25 & 2.090 & 3.028 & 2.668 & 0.046 & 0.046 \\
+        Cutoff & 50 & 2.284 & 2.899 & 2.666 & 0.022 & 0.022 \\
+        Cutoff & 100 & 2.369 & 2.862 & 2.667 & 0.011 & 0.011 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
 \end{document}
