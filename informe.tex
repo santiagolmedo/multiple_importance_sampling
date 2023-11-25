@@ -177,37 +177,45 @@ Por lo tanto, el estimador \( F \) es imparcial. La última igualdad se debe a q
 
 $$ w_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
 
-Ver Teorema 9.2 de la tesis que muestra que no existe otra heurística que mejore significativamente el estimador.
-
 \textbf{Teorema 9.2} Dado $f$, $n_{i}$ y $p_{i}$ para $i \in \{1, 2, ..., n\}$. Sea F cualquier estimador insesgado de la forma del multi-sample estimator y \hat{F} el estimador balance heuristic. Entonces:
 
 $$V[\hat{F}] - V[F] \leq ( \frac{1}{min_{i} n_{i}} - \frac{1}{\sum_{i} n_{i}} ) * \mu^{2}$$
 
 donde $\mu = E[F] = E[\hat{F}]$.
 
-\textbf{Demostración}:
+% \textbf{Demostración}:
 
-Sean:
+% Sean:
 
-$$ F_{i}{j} = \frac{w_{i}(X_{i,j}) f(X_{i,j})}{p_{i}(X_{i,j})}$$
+% $$ F_{i}{j} = \frac{w_{i}(X_{i,j}) f(X_{i,j})}{p_{i}(X_{i,j})}$$
 
-y
+% y
 
-$$ \mu_{i} = E[F_{i}{j}] =  \int_{\Omega} w_{i}(x) f(x) d\mu(x)$$.
+% $$ \mu_{i} = E[F_{i}{j}] =  \int_{\Omega} w_{i}(x) f(x) d\mu(x)$$.
 
-Entonces:
+% Entonces:
 
-\begin{align*}
-  V[F] &= V\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} F_{i,j}\right] \\
-  &= \sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} V[F_{i,j}] \\
-  &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}^2]\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}]^2\right) \\
-  &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} \int_{\Omega} \frac{w_i(x)^2 f(x)^2}{p_i(x)^2} p_{i}(x) d\mu(x)\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} n_i  \mu_i^2\right) \\
-  &= \int_{\Omega} \left(\sum_{i=1}^n \frac{w_i(x)^2 f(x)^2}{n_i p_i(x)} d\mu(x)\right) - \left(\sum_{i=1}^n \frac{\mu_i^2}{n_i}\right).
-\end{align*}
+% \begin{align*}
+%   V[F] &= V\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} F_{i,j}\right] \\
+%   &= \sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} V[F_{i,j}] \\
+%   &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}^2]\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}]^2\right) \\
+%   &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} \int_{\Omega} \frac{w_i(x)^2 f(x)^2}{p_i(x)^2} p_{i}(x) d\mu(x)\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} n_i  \mu_i^2\right) \\
+%   &= \int_{\Omega} \left(\sum_{i=1}^n \frac{w_i(x)^2 f(x)^2}{n_i p_i(x)} d\mu(x)\right) - \left(\sum_{i=1}^n \frac{\mu_i^2}{n_i}\right).
+% \end{align*}
 
-... seguir viendo y entendiendo la demostración.
+% ... seguir viendo y entendiendo la demostración.
 
 \subsubsection{Otras Heurísticas}
+
+Dentro de los límites presentados en el Teorema 9.2, Veach presenta más heurísticas que son demostrablemente mejores que balance heuristic en circinstancias particulares.
+Estas heurísticas son insesgadas al igual que balance heuristic.
+
+Se considera la situación donde una de las distribuciones de muestreo es un match perfecto para la función a integrar. En este caso, es deseable que la heurística le de un peso de 1 a esta distribución de muestreo y 0 a las demás. (hacer referencia a la imagen)
+La idea entonces es ir sampleando con las distintas distribuciones de muestreo y darle un peso de 1 en todo el dominio a la distribución de muestreo cercana a $f$ y 0 a las demás.
+Sería como tomar muestras solo de la distribución de muestreo cercana a $f$ pero de igual manera tomando muestras de todas porque no se sabe de antemano cuál es la distribución de muestreo cercana a $f$.
+
+Para encontrar la heurística se toma como ejemplo la función donde $p1$ es un match perfecto para $f$ y $p2$ es una constante.
+Se quiere encontrar una heurística que le de un peso de 1 a $p1$ y 0 a $p2$.
 
 \section{Experimentación práctica}
 
