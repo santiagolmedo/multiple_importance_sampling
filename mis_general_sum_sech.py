@@ -264,5 +264,5 @@ def run_mis_analysis():
 
 
 if __name__ == "__main__":
-    # run_mis_estimate()
-    run_mis_analysis()
+    run_mis_estimate()
+    # run_mis_analysis()
