@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import quad
+import json
+import time
+
 
 def calculate_function_values(x_values, lower_bounds, upper_bounds):
     """Calculate the values of the function to be integrated."""
@@ -103,9 +106,10 @@ def calculate_mis_estimate(
     std_devs,
     lower_bounds,
     upper_bounds,
-    heuristic="sbert",
+    heuristic="balance",
 ):
     """Calculate the MIS estimate."""
+    time_start = time.time()
     num_distributions = len(alpha_values)
 
     samples_per_distribution = np.round(alpha_values * total_samples).astype(int)
@@ -156,36 +160,15 @@ def calculate_mis_estimate(
     sigma_variance = t / (total_samples - 1)
     alternate_variance = sigma_variance / total_samples
 
-    return estimate, sampled_points_x, sampled_points_y, variance, alternate_variance
-
-
-def calculate_basic_monte_carlo_estimate(
-    total_samples,
-    lower_bounds,
-    upper_bounds,
-):
-    s = 0
-    t = 0
-
-    sampled_points_x = []
-    sampled_points_y = []
-    for iter in range(total_samples):
-        sample = np.random.uniform(np.min(lower_bounds), np.max(upper_bounds))
-        y = float(calculate_function_values(sample, lower_bounds, upper_bounds))
-
-        if iter > 1:
-            t += (1 - (1 / iter)) * (((y - s) / (iter - 1)) ** 2)
-        s += y
-
-        sampled_points_x.append(sample)
-        sampled_points_y.append(y)
-
-    estimate = s / total_samples
-    sigma_variance = t / (total_samples - 1)
-    variance = sigma_variance / total_samples
-
-    return estimate, variance, sampled_points_x, sampled_points_y
-
+    time_end = time.time()
+    return (
+        estimate,
+        sampled_points_x,
+        sampled_points_y,
+        variance,
+        alternate_variance,
+        time_end - time_start,
+    )
 
 
 def plot_results(
@@ -213,53 +196,112 @@ def plot_results(
     plt.show()
 
 
-def run_mis_analysis(
-    num_runs=1000,
-    heuristics=["balance", "power", "maximum", "cutoff", "sbert"],
-    num_samples_list=[10, 25, 50, 100],
-):
-    results = {
-        heuristic: {num_samples: [] for num_samples in num_samples_list}
-        for heuristic in heuristics
-    }
+def run_mis_analysis():
+    NUM_SAMPLES = [10, 25, 50, 100, 150]
+    NUM_TESTS = 10
+    NUM_RUNS = 1000
+    heuristics = ["balance", "power", "maximum", "cutoff", "sbert"]
+    general_results = []
 
-    alpha_values = np.array([0.3333, 0.3333, 0.3333])
-    means = np.array([2, 5, 7])
-    std_devs = np.array([0.8, 0.8, 0.4]) / 2
-    lower_bounds = means - 2 * std_devs
-    upper_bounds = means + 2 * std_devs
+    for test in range(NUM_TESTS):
+        results = {
+            heuristic: {num_samples: [] for num_samples in NUM_SAMPLES}
+            for heuristic in heuristics
+        }
 
-    for heuristic in heuristics:
-        for num_samples in num_samples_list:
-            for _ in range(num_runs):
-                estimate, _, _, variance, alt_variance = calculate_mis_estimate(
-                    num_samples,
-                    alpha_values,
-                    means,
-                    std_devs,
-                    lower_bounds,
-                    upper_bounds,
-                    heuristic=heuristic,
-                )
-                results[heuristic][num_samples].append(
-                    (estimate, variance, alt_variance)
-                )
+        alpha_values = np.array([0.3333, 0.3333, 0.3333])
+        means = np.sort(
+            np.array(
+                [
+                    np.random.uniform(2, 7),
+                    np.random.uniform(7, 12),
+                    np.random.uniform(12, 18),
+                ]
+            )
+        )
+        std_devs = np.array(np.random.uniform(0.01, 1, 3))
+        lower_bounds = means - 2 * std_devs
+        upper_bounds = means + 2 * std_devs
 
-    return results
+        quad_result, quad_error = quad(
+            lambda x: calculate_function_values(x, lower_bounds, upper_bounds),
+            np.min(lower_bounds),
+            np.max(upper_bounds),
+        )
+
+        for heuristic in heuristics:
+            for num_samples in NUM_SAMPLES:
+                for _ in range(NUM_RUNS):
+                    (
+                        estimate,
+                        _,
+                        _,
+                        variance,
+                        alt_variance,
+                        time_taken,
+                    ) = calculate_mis_estimate(
+                        num_samples,
+                        alpha_values,
+                        means,
+                        std_devs,
+                        lower_bounds,
+                        upper_bounds,
+                        heuristic=heuristic,
+                    )
+
+                    standard_deviation = np.sqrt(variance)
+                    error_compared_to_quad = np.abs(estimate - quad_result)
+
+                    results[heuristic][num_samples].append(
+                        (
+                            estimate,
+                            variance,
+                            alt_variance,
+                            standard_deviation,
+                            error_compared_to_quad,
+                            time_taken,
+                        )
+                    )
+
+        general_results.append(
+            [
+                results,
+                means,
+                std_devs,
+                lower_bounds,
+                upper_bounds,
+                quad_result,
+                quad_error,
+            ]
+        )
+
+    return general_results
 
 
 def analyze_results(results):
+    """Analyze the results of the MIS estimate."""
+
     analysis = {}
 
-    for heuristic, data in results.items():
-        estimates, variances, alt_variances = zip(*data)
-        analysis[heuristic] = {
-            "min_estimate": np.min(estimates),
-            "max_estimate": np.max(estimates),
-            "mean_estimate": np.mean(estimates),
-            "variance_of_estimates": np.var(estimates),
-            "mean_of_variances": np.mean(variances),
-            "mean_of_alternate_variances": np.mean(alt_variances),
+    for num_samples, data in results.items():
+        (
+            estimates,
+            variances,
+            alt_variances,
+            standard_deviations,
+            errors,
+            time_taken,
+        ) = zip(*data)
+        analysis[num_samples] = {
+            "min estimate": np.min(estimates),
+            "max estimate": np.max(estimates),
+            "mean of mis estimate": np.mean(estimates),
+            "variance of estimates": np.var(estimates),
+            "mean of variances": np.mean(variances),
+            "mean of alternate variances": np.mean(alt_variances),
+            "mean of standard deviations": np.mean(standard_deviations),
+            "mean of errors": np.mean(errors),
+            "mean time taken": "{:.4f}".format(np.mean(time_taken)) + " seconds",
         }
 
     return analysis
@@ -268,42 +310,57 @@ def analyze_results(results):
 def print_analysis():
     # Test the modified functions
     mis_results = run_mis_analysis()
-    analysis = {
-        heuristic: {
-            num_samples: analyze_results({heuristic: data})[heuristic]
-            for num_samples, data in sample_data.items()
+
+    analysis = {}
+
+    for iter, test_data in enumerate(mis_results):
+        analysis["Test " + str(iter)] = {
+            "test_values": "Means: "
+            + str(test_data[1])
+            + " Std Devs: "
+            + str(test_data[2])
+            + " Lower Bounds: "
+            + str(test_data[3])
+            + " Upper Bounds: "
+            + str(test_data[4])
+            + " Quad Result: "
+            + str(test_data[5])
         }
-        for heuristic, sample_data in mis_results.items()
-    }
-    print(analysis)
+        for heuristic, results in test_data[0].items():
+            analysis["Test " + str(iter)][heuristic] = analyze_results(results)
+
+    open("results_mis_1.txt", "w").close()
+
+    with open("results_mis_1.txt", "w") as f:
+        json.dump(analysis, f, indent=4)
 
 
 def run_mis_estimate():
     """Main function to compute MIS estimate and plot the results."""
-    NUM_SAMPLES = 50000
+    NUM_SAMPLES = 50
     alpha_values = np.array([0.3333, 0.3333, 0.3333])
-    means = np.array([2, 5, 7])
-    std_devs = np.array([0.8, 0.8, 0.4]) / 2
+    means = np.sort(
+        np.array(
+            [
+                np.random.uniform(2, 7),
+                np.random.uniform(7, 12),
+                np.random.uniform(12, 18),
+            ]
+        )
+    )
+    std_devs = np.array(np.random.uniform(0.01, 1, 3))
     lower_bounds = means - 2 * std_devs
     upper_bounds = means + 2 * std_devs
 
-    # (
-    #     mis_estimate,
-    #     sampled_points_x,
-    #     _,
-    #     variance,
-    #     alternate_variance,
-    # ) = calculate_mis_estimate(
-    #     NUM_SAMPLES, alpha_values, means, std_devs, lower_bounds, upper_bounds
-    # )
-
     (
-        basic_mc_estimate,
-        basic_mc_variance,
-        basic_mc_sampled_points_x,
-        basic_mc_sampled_points_y,
-    ) = calculate_basic_monte_carlo_estimate(
-        NUM_SAMPLES, lower_bounds, upper_bounds
+        mis_estimate,
+        sampled_points_x,
+        _,
+        variance,
+        alternate_variance,
+        time_taken,
+    ) = calculate_mis_estimate(
+        NUM_SAMPLES, alpha_values, means, std_devs, lower_bounds, upper_bounds
     )
 
     result, error = quad(
@@ -312,15 +369,14 @@ def run_mis_estimate():
         np.max(upper_bounds),
     )
 
-    # print(f"Result of the integral with MIS: {mis_estimate}")
-    print(f"Result of the integral with basic MC: {basic_mc_estimate}")
+    print(f"Result of the integral with MIS: {mis_estimate}")
     print(f"Result of the integral with quad: {result}")
-    # print(f"Variance of the integral with MIS: {variance}")
-    # print(f"Alternate variance of the integral with MIS: {alternate_variance}")
-    print(f"Variance of the integral with basic MC: {basic_mc_variance}")
+    print(f"Variance of the integral with MIS: {variance}")
+    print(f"Alternate variance of the integral with MIS: {alternate_variance}")
     print(f"Error of the integral with quad: {error}")
+    print(f"Time taken for MIS: {time_taken}")
 
-    x_values = np.linspace(0, 10, 1000)
+    x_values = np.linspace(0, 20, 1000)
     y_values = calculate_function_values(x_values, lower_bounds, upper_bounds)
     pdf_values = sum(
         [
@@ -330,16 +386,11 @@ def run_mis_estimate():
         ]
     )
 
-    # plot_results(
-    #     x_values, y_values, pdf_values, sampled_points_x, lower_bounds, upper_bounds
-    # )
-
-    plt.figure(figsize=(10, 6))
-    plt.plot(x_values, y_values, label="Function to be integrated", linewidth=2)
-    plt.scatter(basic_mc_sampled_points_x, basic_mc_sampled_points_y, color="red", marker="*", s=100, label="Sampled Points (Basic MC)")
-    plt.show()
+    plot_results(
+        x_values, y_values, pdf_values, sampled_points_x, lower_bounds, upper_bounds
+    )
 
 
 if __name__ == "__main__":
-    run_mis_estimate()
-    # print_analysis()
+    # run_mis_estimate()
+    print_analysis()

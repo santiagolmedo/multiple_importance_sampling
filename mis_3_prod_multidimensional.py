@@ -243,11 +243,11 @@ def run_mis_estimate():
     NUM_SAMPLES = 5000
 
     n = 2
-    a_f = np.array(np.random.uniform(-6, -6, n))
-    b_f = np.array(np.random.uniform(6, 6, n))
+    a_f = np.array(np.random.uniform(-10, 0, n))
+    b_f = np.array(np.random.uniform(0, 10, n))
     c_f = 0.5
-    a_g = np.array(np.random.uniform(-1/2, -1/2, n))
-    b_g = np.array(np.random.uniform(1/2, 1/2, n))
+    a_g = np.array(np.random.uniform(-1 / 2, 0, n))
+    b_g = np.array(np.random.uniform(0, 1 / 2, n))
     c_g = 5
 
     (
