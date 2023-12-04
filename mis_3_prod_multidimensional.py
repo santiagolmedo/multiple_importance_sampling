@@ -39,20 +39,8 @@ def calculate_mu(a, b):
     return [(a[i] + b[i]) / 2 for i in range(len(a))]
 
 
-# Adjusted function to calculate divisor with a scaling factor
-def calculate_divisor(a, b):
-    average_length = np.mean(np.abs(b - a))
-    scale_factor = 0.5  # Scaling factor to adjust the divisor based on hypercube size
-    divisor = 2 / (1 + np.exp(-scale_factor * average_length)) - 1
-    return divisor
-
-
-# Function to calculate sigma, with a limit to prevent overly large spread for small hypercubes
-def calculate_sigma(a, b):
-    k = calculate_divisor(a, b)
-    sigma_limit = 0.25 * np.abs(b - a)  # Limit sigma to 25% of hypercube size
-    sigma = np.minimum([(b[i] - a[i]) / k for i in range(len(a))], sigma_limit)
-    return sigma
+def calculate_sigma(a, b, k=5):
+    return ((b - a) / (2 * k)) ** 2
 
 
 def calculate_balance_heuristic_weights(x, sample_counts, mu, sigma, index):
@@ -255,11 +243,11 @@ def run_mis_estimate():
     NUM_SAMPLES = 5000
 
     n = 2
-    a_f = np.array(np.random.uniform(-10, 0, n))
-    b_f = np.array(np.random.uniform(0, 10, n))
+    a_f = np.array(np.random.uniform(-6, -6, n))
+    b_f = np.array(np.random.uniform(6, 6, n))
     c_f = 0.5
-    a_g = np.array(np.random.uniform(-1, 0, n))
-    b_g = np.array(np.random.uniform(0, 1, n))
+    a_g = np.array(np.random.uniform(-1/2, -1/2, n))
+    b_g = np.array(np.random.uniform(1/2, 1/2, n))
     c_g = 5
 
     (
