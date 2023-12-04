@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+from scipy.integrate import quad
 
 def calculate_function_values(x_values, lower_bounds, upper_bounds):
     """Calculate the values of the function to be integrated."""
@@ -161,16 +161,30 @@ def calculate_mis_estimate(
 
 def calculate_basic_monte_carlo_estimate(
     total_samples,
-    alpha_values,
-    means,
-    std_devs,
     lower_bounds,
     upper_bounds,
 ):
     s = 0
     t = 0
+
+    sampled_points_x = []
+    sampled_points_y = []
     for iter in range(total_samples):
-        sample = np.random.normal(means[0], std_devs[0])
+        sample = np.random.uniform(np.min(lower_bounds), np.max(upper_bounds))
+        y = float(calculate_function_values(sample, lower_bounds, upper_bounds))
+
+        if iter > 1:
+            t += (1 - (1 / iter)) * (((y - s) / (iter - 1)) ** 2)
+        s += y
+
+        sampled_points_x.append(sample)
+        sampled_points_y.append(y)
+
+    estimate = s / total_samples
+    sigma_variance = t / (total_samples - 1)
+    variance = sigma_variance / total_samples
+
+    return estimate, variance, sampled_points_x, sampled_points_y
 
 
 
@@ -266,26 +280,45 @@ def print_analysis():
 
 def run_mis_estimate():
     """Main function to compute MIS estimate and plot the results."""
-    NUM_SAMPLES = 50
+    NUM_SAMPLES = 50000
     alpha_values = np.array([0.3333, 0.3333, 0.3333])
     means = np.array([2, 5, 7])
     std_devs = np.array([0.8, 0.8, 0.4]) / 2
     lower_bounds = means - 2 * std_devs
     upper_bounds = means + 2 * std_devs
 
+    # (
+    #     mis_estimate,
+    #     sampled_points_x,
+    #     _,
+    #     variance,
+    #     alternate_variance,
+    # ) = calculate_mis_estimate(
+    #     NUM_SAMPLES, alpha_values, means, std_devs, lower_bounds, upper_bounds
+    # )
+
     (
-        mis_estimate,
-        sampled_points_x,
-        _,
-        variance,
-        alternate_variance,
-    ) = calculate_mis_estimate(
-        NUM_SAMPLES, alpha_values, means, std_devs, lower_bounds, upper_bounds
+        basic_mc_estimate,
+        basic_mc_variance,
+        basic_mc_sampled_points_x,
+        basic_mc_sampled_points_y,
+    ) = calculate_basic_monte_carlo_estimate(
+        NUM_SAMPLES, lower_bounds, upper_bounds
     )
 
-    print(f"Result of the integral with MIS: {mis_estimate}")
-    print(f"Variance of the integral with MIS: {variance}")
-    print(f"Alternate variance of the integral with MIS: {alternate_variance}")
+    result, error = quad(
+        lambda x: calculate_function_values(x, lower_bounds, upper_bounds),
+        np.min(lower_bounds),
+        np.max(upper_bounds),
+    )
+
+    # print(f"Result of the integral with MIS: {mis_estimate}")
+    print(f"Result of the integral with basic MC: {basic_mc_estimate}")
+    print(f"Result of the integral with quad: {result}")
+    # print(f"Variance of the integral with MIS: {variance}")
+    # print(f"Alternate variance of the integral with MIS: {alternate_variance}")
+    print(f"Variance of the integral with basic MC: {basic_mc_variance}")
+    print(f"Error of the integral with quad: {error}")
 
     x_values = np.linspace(0, 10, 1000)
     y_values = calculate_function_values(x_values, lower_bounds, upper_bounds)
@@ -297,9 +330,14 @@ def run_mis_estimate():
         ]
     )
 
-    plot_results(
-        x_values, y_values, pdf_values, sampled_points_x, lower_bounds, upper_bounds
-    )
+    # plot_results(
+    #     x_values, y_values, pdf_values, sampled_points_x, lower_bounds, upper_bounds
+    # )
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(x_values, y_values, label="Function to be integrated", linewidth=2)
+    plt.scatter(basic_mc_sampled_points_x, basic_mc_sampled_points_y, color="red", marker="*", s=100, label="Sampled Points (Basic MC)")
+    plt.show()
 
 
 if __name__ == "__main__":
