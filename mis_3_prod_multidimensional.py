@@ -240,7 +240,7 @@ def plot_functions_and_pdfs(sampled_points_x, a_f, b_f, c_f, a_g, b_g, c_g):
 
 def run_mis_estimate():
     """Main function to compute MIS estimate and plot the results."""
-    NUM_SAMPLES = 5000
+    NUM_SAMPLES = 50000
 
     n = 2
     a_f = np.array(np.random.uniform(-10, 0, n))
