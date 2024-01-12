@@ -314,20 +314,17 @@ def print_analysis():
     analysis = {}
 
     for iter, test_data in enumerate(mis_results):
-        analysis["Test " + str(iter)] = {
-            "test_values": "Means: "
-            + str(test_data[1])
-            + " Std Devs: "
-            + str(test_data[2])
-            + " Lower Bounds: "
-            + str(test_data[3])
-            + " Upper Bounds: "
-            + str(test_data[4])
-            + " Quad Result: "
-            + str(test_data[5])
+        analysis["Test " + str(iter + 1)] = {
+            "test_values": {
+                "means": test_data[1].tolist(),
+                "std_devs": test_data[2].tolist(),
+                "lower_bounds": test_data[3].tolist(),
+                "upper_bounds": test_data[4].tolist(),
+                "quad_result": test_data[5],
+            }
         }
         for heuristic, results in test_data[0].items():
-            analysis["Test " + str(iter)][heuristic] = analyze_results(results)
+            analysis["Test " + str(iter + 1)][heuristic] = analyze_results(results)
 
     open("results_mis_1.txt", "w").close()
 

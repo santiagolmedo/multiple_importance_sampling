@@ -289,7 +289,7 @@ def run_mis_analysis():
     NUM_RUNS = 100
     heuristics = ["balance", "power", "maximum", "cutoff", "sbert"]
 
-    general_results = []
+    general_results = { "Test {}".format(test + 1): {} for test in range(NUM_TESTS) }
 
     for test in range(NUM_TESTS):
         m = np.random.randint(2, 10)
@@ -302,8 +302,11 @@ def run_mis_analysis():
             for heuristic in heuristics
         }
 
+        exact_integral = calculate_exact_integral(a, m, n)
+
         for heuristic in heuristics:
             for num_samples in NUM_SAMPLES:
+                print(f"h: {heuristic}, s: {num_samples}")
                 for run in range(NUM_RUNS):
                     (
                         mis_estimate,
@@ -312,7 +315,6 @@ def run_mis_analysis():
                         advanced_variance,
                         end_time,
                     ) = calculate_mis_estimate(num_samples, a, b, m, n, heuristic)
-                    exact_integral = calculate_exact_integral(a, m, n)
 
                     if run == 0:
                         mis_estimates = [mis_estimate]
@@ -347,7 +349,13 @@ def run_mis_analysis():
                     "mean of times": np.mean(times),
                 }
 
-        general_results.append([results, a, b, m, n])
+        general_results["Test {}".format(test + 1)] = {
+            "results": results,
+            "a": a.tolist(),
+            "b": b.tolist(),
+            "m": m,
+            "n": n,
+        }
 
     open("results_mis_2_sech.txt", "w").close()
 
@@ -356,5 +364,5 @@ def run_mis_analysis():
 
 
 if __name__ == "__main__":
-    run_mis_estimate()
-    # run_mis_analysis()
+    # run_mis_estimate()
+    run_mis_analysis()
