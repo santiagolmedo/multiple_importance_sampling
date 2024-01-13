@@ -310,9 +310,9 @@ def plot_functions_and_pdfs(
 
 def run_mis_estimate():
     """Main function to compute MIS estimate and plot the results."""
-    NUM_SAMPLES = 5000
+    NUM_SAMPLES = 500
 
-    n = 10
+    n = 2
     a_f = np.array(np.random.uniform(-10, -10, n))
     b_f = np.array(np.random.uniform(10, 10, n))
     c_f = 0.5
@@ -368,11 +368,11 @@ def run_mis_analysis():
 
     for test in range(NUM_TESTS):
         n = NUM_DIMENSIONS[test]
-        a_f = np.array(np.random.uniform(-10, 0, n))
-        b_f = np.array(np.random.uniform(0, 10, n))
+        a_f = np.array(np.random.uniform(-10, -10, n))
+        b_f = np.array(np.random.uniform(10, 10, n))
         c_f = 0.5
-        a_g = np.array(np.random.uniform(-0.5, 0, n))
-        b_g = np.array(np.random.uniform(0, 0.5, n))
+        a_g = np.array(np.random.uniform(-0.5, -0.5, n))
+        b_g = np.array(np.random.uniform(0.5, 0.5, n))
         c_g = 5
 
         results = {
@@ -451,5 +451,5 @@ def run_mis_analysis():
 
 
 if __name__ == "__main__":
-    # run_mis_estimate()
-    run_mis_analysis()
+    run_mis_estimate()
+    # run_mis_analysis()s
