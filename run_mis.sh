@@ -1,8 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=mis
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=10
-#SBATCH --mem-per-cpu=2048
+#SBATCH --ntasks=1
+#SBATCH --mem=20480
 #SBATCH --time=4:00:00
 #SBATCH --tmp=2G
 #SBATCH --partition=normal
