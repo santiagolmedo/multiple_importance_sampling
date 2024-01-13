@@ -433,16 +433,16 @@ def run_mis_analysis():
                     "exact integral": exact_integral,
                 }
 
-    general_results["Test {}".format(test + 1)] = {
-        "n": n,
-        "a_f": a_f.tolist(),
-        "b_f": b_f.tolist(),
-        "c_f": c_f,
-        "a_g": a_g.tolist(),
-        "b_g": b_g.tolist(),
-        "c_g": c_g,
-        "results": results,
-    }
+        general_results["Test {}".format(test + 1)] = {
+            "n": n,
+            "a_f": a_f.tolist(),
+            "b_f": b_f.tolist(),
+            "c_f": c_f,
+            "a_g": a_g.tolist(),
+            "b_g": b_g.tolist(),
+            "c_g": c_g,
+            "results": results,
+        }
 
     open("results_mis_3_prod_multidimensional.txt", "w").close()
 
@@ -451,5 +451,5 @@ def run_mis_analysis():
 
 
 if __name__ == "__main__":
-    run_mis_estimate()
-    # run_mis_analysis()
+    # run_mis_estimate()
+    run_mis_analysis()

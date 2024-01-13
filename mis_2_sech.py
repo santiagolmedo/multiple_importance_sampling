@@ -289,7 +289,7 @@ def run_mis_analysis():
     NUM_RUNS = 100
     heuristics = ["balance", "power", "maximum", "cutoff", "sbert"]
 
-    general_results = { "Test {}".format(test + 1): {} for test in range(NUM_TESTS) }
+    general_results = {"Test {}".format(test + 1): {} for test in range(NUM_TESTS)}
 
     for test in range(NUM_TESTS):
         m = np.random.randint(2, 10)
