@@ -168,11 +168,11 @@ def calculate_mis_estimate(
 
 def run_single_test(test, NUM_DIMENSIONS, NUM_SAMPLES, NUM_RUNS, heuristics):
     n = NUM_DIMENSIONS[test]
-    a_f = np.array(np.random.uniform(-10, 0, n))
-    b_f = np.array(np.random.uniform(0, 10, n))
+    a_f = np.array(np.random.uniform(-10, -10, n))
+    b_f = np.array(np.random.uniform(10, 10, n))
     c_f = 0.5
-    a_g = np.array(np.random.uniform(-0.5, 0, n))
-    b_g = np.array(np.random.uniform(0, 0.5, n))
+    a_g = np.array(np.random.uniform(-0.5, -0.5, n))
+    b_g = np.array(np.random.uniform(0.5, 0.5, n))
     c_g = 5
 
     results = {
