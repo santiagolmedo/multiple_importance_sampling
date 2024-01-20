@@ -336,18 +336,24 @@ def run_mis_estimate():
     """Main function to compute MIS estimate and plot the results."""
     NUM_SAMPLES = 50
     alpha_values = np.array([0.3333, 0.3333, 0.3333])
-    means = np.sort(
-        np.array(
-            [
-                np.random.uniform(2, 7),
-                np.random.uniform(7, 12),
-                np.random.uniform(12, 18),
-            ]
-        )
-    )
-    std_devs = np.array(np.random.uniform(0.01, 1, 3))
+    # means = np.sort(
+    #     np.array(
+    #         [
+    #             np.random.uniform(2, 7),
+    #             np.random.uniform(7, 12),
+    #             np.random.uniform(12, 18),
+    #         ]
+    #     )
+    # )
+    means = np.array([5, 10, 15])
+    std_devs = np.array([1, 0.5, 0.75])
     lower_bounds = means - 2 * std_devs
     upper_bounds = means + 2 * std_devs
+
+    print(f"Means: {means}")
+    print(f"Standard Deviations: {std_devs}")
+    print(f"Lower Bounds: {lower_bounds}")
+    print(f"Upper Bounds: {upper_bounds}")
 
     (
         mis_estimate,
@@ -389,5 +395,5 @@ def run_mis_estimate():
 
 
 if __name__ == "__main__":
-    # run_mis_estimate()
-    print_analysis()
+    run_mis_estimate()
+    # print_analysis()
