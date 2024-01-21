@@ -249,12 +249,12 @@ def plotting(sampled_points_x, a, b, m, n):
 
 def run_mis_estimate():
     """Main function to compute MIS estimate and plot the results."""
-    NUM_SAMPLES = 50
+    NUM_SAMPLES = 5000
 
-    m = 10
-    n = 10
-    a = np.array(np.random.uniform(1.8, 2, size=(m, n)))
-    b = np.array(np.random.uniform(-100, 100, size=(m, n)))
+    m = 3
+    n = 2
+    a = np.array([[2, 2], [2, 2], [2, 2]])
+    b = np.array(np.random.randint(-100, 100, size=(m, n)))
 
     print(f"a: {a}")
     print(f"b: {b}")
@@ -364,5 +364,5 @@ def run_mis_analysis():
 
 
 if __name__ == "__main__":
-    # run_mis_estimate()
-    run_mis_analysis()
+    run_mis_estimate()
+    # run_mis_analysis()

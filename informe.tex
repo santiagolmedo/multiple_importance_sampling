@@ -7,6 +7,7 @@
 \usepackage{algpseudocode}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{xcolor}
 \floatname{algorithm}{Algoritmo}
 
 
@@ -222,18 +223,21 @@ Se quiere encontrar una heurística que le de un peso de 1 a $p1$ y 0 a $p2$.
 Dentro de esta sección se presenta la implementación de MIS en un conjunto de pruebas que permite analizar el comportamiento de MIS en distintos escenarios.
 
 \subsection{Prueba 1 - Análisis de un caso simple}
+\color{red}
+EN TODO ESTA PRUEBA SACAR TODO A LO QUE HAGA REFERENCIA EL MEAN OF ERRORS, ESTA MAL
+\color{black}
 
 La primera función se utlizó para familiarizarse con el algoritmo y verificar que el código implementado funcionaba correctamente.
 Se corroboró la correctitud del MIS implementado usando distintas heurísticas y se utilizó el código como base para las pruebas siguientes.
 
-\subsubsection*{Función}
+\subsubsection{Función}
 La función que examinamos se define para un conjunto de valores \( x \) y rangos específicos. Para cada rango \( [a, b] \), la función se expresa como:
 \begin{equation}
 f(x) = \sum \max\left(0, -\frac{4}{(b - a)^2} (x - a)(x - b)\right)
 \end{equation}
 Aquí, la suma se lleva a cabo sobre los diferentes rangos considerados.
 
-\subsubsection*{Distribuciones de Muestreo}
+\subsubsection{Distribuciones de Muestreo}
 La PDF utilizada corresponde a la de una distribución normal, caracterizada por una media \( \mu \) y una desviación estándar \( \sigma \). La fórmula es la siguiente:
 \begin{equation}
 p(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
@@ -245,13 +249,13 @@ f(x) = \sum \max\left(0, -\frac{4}{(b - a)^2} (x - a)(x - b)\right)
 \end{equation}
 Aquí, la suma se lleva a cabo sobre los diferentes rangos considerados.
 
-\subsection{Función de Densidad de Probabilidad (PDF)}
+\subsubsection{Función de Densidad de Probabilidad (PDF)}
 La PDF utilizada corresponde a la de una distribución normal, caracterizada por una media \( \mu \) y una desviación estándar \( \sigma \). La fórmula es la siguiente:
 \begin{equation}
 p(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
 \end{equation}
 
-\subsubsection*{Ejemplo}
+\subsubsection{Ejemplo}
 
 Para poder visualizar la función se considera el siguiente ejemplo donde:
 
@@ -266,7 +270,7 @@ En la figura se puede ver la función \( f(x) \) y las distribuciones de muestre
 A su vez, se hizo una corrida con balance heuristic y ver en rojo los puntos muestreados.
 %poner imagen
 
-\subsubsection*{Pruebas realizadas}
+\subsubsection{Pruebas realizadas}
 
 Sobre este caso de prueba se generó un análisis de las distintas heurísticas implementadas.
 Para el análisis se hizo lo siguiente:
@@ -293,7 +297,7 @@ Este análisis se hizo para:
     \item Cada heurística.
 \end{itemize}
 
-\subsubsection*{Resultados}
+\subsubsection{Resultados}
 
 \begin{table}[H]
 \centering
@@ -419,7 +423,6 @@ SBERT & 0.1473 & 0.1589 & 0.3102 & 0.0063 \\ \hline
 \end{table}
 
 
-% Diferencias entre Heurísticas
 \paragraph{Diferencias entre Heurísticas}
 Varianza de las Estimaciones: Las heurísticas 'Balance' y 'SBERT' muestran consistentemente las varianzas más bajas a través de todos los tamaños de muestra, lo que indica una mayor precisión en sus estimaciones.
 Por otro lado, 'Maximum' presenta la varianza más alta, especialmente con tamaños de muestra más pequeños, lo que sugiere una menor fiabilidad en comparación con otras heurísticas.
@@ -432,7 +435,8 @@ Desviaciones Estándar de las Estimaciones: Las heurísticas 'Balance', 'Power',
 Diferencias en las Estimaciones de MIS: 'Balance' y 'SBERT' muestran las menores diferencias en las estimaciones de MIS, lo que indica una mayor precisión en sus resultados.
 Las heurísticas 'Maximum' y 'Cutoff' presentan diferencias más significativas, lo que podría indicar una mayor variabilidad en sus estimaciones.
 
-Competitividad del MIS en Función del Tamaño de Muestra: Se observa que a medida que el tamaño de la muestra aumenta, todas las heurísticas mejoran en términos de varianza, error, y desviación estándar de las estimaciones. Esto es un indicativo de que el MIS se vuelve más competitivo y confiable con un mayor número de muestras.
+\paragraph{Competitividad del MIS en Función del Tamaño de Muestra}
+Se observa que a medida que el tamaño de la muestra aumenta, todas las heurísticas mejoran en términos de varianza, error, y desviación estándar de las estimaciones. Esto es un indicativo de que el MIS se vuelve más competitivo y confiable con un mayor número de muestras.
 Específicamente, con tamaños de muestra de 50 en adelante, se empieza a notar una mejora significativa en la precisión y consistencia de las estimaciones para todas las heurísticas.
 Las heurísticas 'Balance' y 'SBERT' demuestran ser competitivas incluso con tamaños de muestra más pequeños (25 muestras), mientras que otras heurísticas como 'Maximum' y 'Cutoff' requieren tamaños de muestra mayores para alcanzar niveles similares de precisión y confiabilidad.
 
@@ -442,19 +446,178 @@ En resumen, las heurísticas 'Balance' y 'SBERT' muestran un rendimiento superio
 
 En esta sección, nos centramos en el análisis de una función multidimensional basada en la función hiperbólica \textit{sech}, extendida a múltiples dimensiones. La función \textit{sech}, definida como \( \text{sech}(x) = \frac{2}{e^x + e^{-x}} = \frac{1}{\cosh(x)} \), es conocida por su similitud con la distribución gaussiana en una dimensión, especialmente cerca del origen.
 
-Al extender la función \textit{sech} a un espacio de \( n \) dimensiones y centrarla en un punto arbitrario \( \mathbf{b} = [b_1, b_2, \ldots, b_n] \), obtenemos la función multidimensional:
-\[ f(\mathbf{x}; \mathbf{b}, \mathbf{a}) = \prod_{i=1}^{n} \text{sech}(a_i(x_i - b_i)) \]
-donde \( \mathbf{x} = [x_1, x_2, \ldots, x_n] \) es un vector en el espacio \( n \)-dimensional y \( \mathbf{a} = [a_1, a_2, \ldots, a_n] \) son coeficientes que controlan la "anchura" de la función en cada dimensión.
+La función objetivo, \( h(\mathbf{x}) \), donde \( \mathbf{x} \) es un vector \( n \)-dimensional, es expresada como una suma de \( m \) funciones \( f_i(\mathbf{x}) \):
+\[ h(\mathbf{x}) = \sum_{i=1}^{m} f_i(\mathbf{x}) \]
+donde cada \( f_i(\mathbf{x}) \) es definida por:
+\[ f_i(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = \prod_{j=1}^{n} \text{sech}(a_{ij} (x_j - b_{ij})) \]
 
-La integral o volumen de esta función en todo el espacio \( n \)-dimensional, debido a su naturaleza separable, se puede calcular como el producto de las integrales individuales de cada componente \textit{sech}, cada una de las cuales es \( \frac{\pi}{a_i} \). Por lo tanto, el volumen total de la función se obtiene como \( V = \prod_{i=1}^{n} \frac{\pi}{a_i} = \frac{\pi^n}{\prod_{i=1}^{n} a_i} \).
+Aquí, \( a_{ij} \) y \( b_{ij} \) son constantes positivas que determinan la anchura y la posición de la función \( f_i \) en la dimensión \( j \), respectivamente.
 
-Para la aproximación gaussiana de la función \textit{sech}, consideramos una gaussiana estándar con media 0 y desviación estándar ajustada. En \( n \) dimensiones, centrada en el punto \( \mathbf{c} \), la función gaussiana se define como:
-\[ g(\mathbf{x}; \mathbf{c}, \boldsymbol{\sigma}) = \frac{1}{(2\pi)^{\frac{n}{2}} \prod_{i=1}^{n} \sigma_i} \exp \left( -\frac{1}{2} \sum_{i=1}^{n} \left( \frac{x_i - c_i}{\sigma_i} \right)^2 \right) \]
-donde \( \boldsymbol{\sigma} = [\sigma_1, \sigma_2, \ldots, \sigma_n] \) representa las desviaciones estándar en cada dimensión.
+Para calcular el volumen (integral) de esta función sobre el espacio \( n \)-dimensional, consideramos la integral de cada componente \textit{sech}, que se simplifica a \( \frac{\pi}{a_i} \) para cada dimensión. Por lo tanto, el volumen total se obtiene como:
+\[ V = \prod_{i=1}^{n} \frac{\pi}{a_i} = \frac{\pi^n}{\prod_{i=1}^{n} a_i} \]
 
-El objetivo principal de este análisis es aplicar el Método de Importancia Múltiple (MIS) para estimar la integral de una función compleja, que es una suma o producto de funciones \textit{sech} multidimensionales, a través de varias distribuciones propuestas. Este enfoque permite una integración eficiente de funciones complejas, aprovechando las fortalezas de diferentes distribuciones para muestrear varias regiones del dominio de la función.
+Para la aproximación gaussiana de la función \textit{sech} en múltiples dimensiones, consideramos gaussianas estándar con medias centradas y desviaciones estándar ajustadas.
+La correspondencia entre las "anchuras" de las funciones \textit{sech} y las desviaciones estándar de las gaussianas se establece mediante un mapeo aproximado, asegurando que ambas funciones tengan anchuras comparables en el punto donde caen a la mitad de su valor máximo.
+
+El objetivo principal de este análisis es aplicar el MIS para estimar la integral de una función compleja, que es una suma de funciones \textit{sech} multidimensionales, a través de varias distribuciones propuestas.
+Esta función nos va a permitir analizar el MIS en varias dimensiones y comparar las diferentes heurísticas implementadas.
 
 En las siguientes subsecciones, detallaremos la implementación y los resultados de aplicar MIS a esta función multidimensional, examinando la eficacia de diferentes estrategias de muestreo y distribuciones propuestas.
+
+\subsubsection{Ejemplo}
+
+Para poder visualizar la función se considera el siguiente ejemplo donde:
+
+\begin{itemize}
+    \item \textbf{\( a_{ij} \)}: [[2, 2], [2, 2], [2, 2]]
+    \item \textbf{\( b_{ij} \)}: [[91, 22], [-81, -90], [31, 29]]
+\end{itemize}
+
+En la figura se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
+A su vez, se hizo una corrida con balance heuristic y ver en rojo, verde y azul los puntos muestreados.
+%poner imagen
+
+\subsubsection{Pruebas realizadas}
+
+Sobre este caso de prueba se generó un análisis de las distintas heurísticas implementadas.
+Para el análisis se hizo lo siguiente:
+\begin{itemize}
+    \item Se hicieron 10 tests diferentes. Para cada test se generaron valores aleatiorios para \( a_{ij} \), \( b_{ij} \), \( m \) y \( n \).
+          En cada test se generó un número aleatiorio entre 2 y 10 para \( m \) y \( n \) se fijó en el número del test.
+          Es decir, para el primer test \( n = 1 \), para el segundo test \( n = 2 \), etc. La dimensión entonces es el número del test más 1.
+          Para cada test se generaron valores aleatiorios para \( a_{ij} \) entre 1.8 y 2.
+          Para cada test se generaron valores aleatiorios para \( b_{ij} \) entre -100 y 100.
+    \item Para cada test se corrió MIS con las siguientes heurísticas: balance, power, maximum, cutoff y sbert.
+    \item Para cada heurística se corrió MIS con 50, 100, 500, 1000 y 5000 muestras.
+    \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
+          el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
+          A su vez, se calculó el promedio de los errores comparados el valor exacto de la integral y el promedio del tiempo de cómputo.
+\end{itemize}
+
+De la misma manera que para la prueba pasada, se hizo un resumen de los resultados debido a la extensión de los mismos.
+Se hizo el siguiente análisis de la varianza de las estimaciones, las desviaciones estándar de las estimaciones, el error de las estimaciones.
+
+El análisis se hizo para los mismos casos que en la prueba anterior.
+
+\subsubsection{Resultados}
+
+\begin{table}[H]
+\centering
+\caption{Analysis of the results per heuristic and sample size}
+\label{table:heuristic_analysis}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Heuristic/Sample Size} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} \\ \hline
+\multicolumn{6}{|c|}{\textbf{Mean of Variances}} \\ \hline
+Balance & 28542.80 & 11755.25 & 32890.92 & 2082.61 & 1470.44 \\ \hline
+Power & 16022.84 & 136709.92 & 3707.40 & 75721.90 & 2557.03 \\ \hline
+Maximum & 16750.33 & 16552.90 & 111964.69 & 3072.33 & 7038.19 \\ \hline
+Cutoff & 23826.31 & 236449.12 & 74333.52 & 5878.86 & 1416.80 \\ \hline
+SBERT & 6603.14 & 59408.55 & 17053.03 & 1951.91 & 7476.45 \\ \hline
+\multicolumn{6}{|c|}{\textbf{Mean of Errors}} \\ \hline
+Balance & 3.63 & 8.93 & -1.65 & 6.80 & 6.29 \\ \hline
+Power & 10.67 & -6.78 & 5.86 & -1.69 & 2.84 \\ \hline
+Maximum & 8.21 & 5.28 & -6.80 & 5.43 & 1.24 \\ \hline
+Cutoff & 8.08 & -12.71 & 0.51 & 2.23 & 4.12 \\ \hline
+SBERT & 13.10 & -0.75 & 0.52 & 7.51 & 0.67 \\ \hline
+\multicolumn{6}{|c|}{\textbf{Mean of Standard Deviations}} \\ \hline
+Balance & 40.21 & 31.19 & 29.39 & 17.13 & 10.70 \\ \hline
+Power & 36.94 & 46.45 & 21.71 & 26.32 & 13.61 \\ \hline
+Maximum & 36.01 & 34.19 & 34.76 & 18.94 & 15.45 \\ \hline
+Cutoff & 37.73 & 46.92 & 28.03 & 21.41 & 12.85 \\ \hline
+SBERT & 32.84 & 39.51 & 27.41 & 16.83 & 15.55 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Analysis of the results per heuristic in each test}
+\label{table:heuristic_test_analysis}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Heuristic/Test} & \textbf{Mean of Variances} & \textbf{Mean of Errors} & \textbf{Mean of Std. Deviations} \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 1 (2 dimensions)}} \\ \hline
+Balance & 0.04 & 0.03 & 0.12 \\ \hline
+Power & 0.12 & 0.00 & 0.15 \\ \hline
+Maximum & 30.53 & -0.24 & 0.40 \\ \hline
+Cutoff & 0.07 & 0.01 & 0.14 \\ \hline
+SBERT & 0.06 & 0.02 & 0.13 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 2 (3 dimensions)}} \\ \hline
+Balance & 1.86 & 0.11 & 0.52 \\ \hline
+Power & 0.76 & 0.11 & 0.50 \\ \hline
+Maximum & 8.76 & 0.00 & 0.62 \\ \hline
+Cutoff & 1.07 & 0.12 & 0.51 \\ \hline
+SBERT & 2.64 & -0.02 & 0.64 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 3 (4 dimensions)}} \\ \hline
+Balance & 29.51 & 0.49 & 2.21 \\ \hline
+Power & 105.99 & -0.14 & 2.86 \\ \hline
+Maximum & 18.16 & 0.70 & 2.06 \\ \hline
+Cutoff & 23.96 & 0.28 & 2.43 \\ \hline
+SBERT & 278.20 & 0.10 & 2.65 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 4 (5 dimensions)}} \\ \hline
+Balance & 18.61 & 0.27 & 1.62 \\ \hline
+Power & 85.91 & -0.21 & 2.14 \\ \hline
+Maximum & 40.65 & -0.12 & 1.95 \\ \hline
+Cutoff & 9.87 & 0.46 & 1.47 \\ \hline
+SBERT & 9.34 & 0.37 & 1.54 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 5 (6 dimensions)}} \\ \hline
+Balance & 481.61 & 2.76 & 11.17 \\ \hline
+Power & 943.69 & 2.36 & 11.74 \\ \hline
+Maximum & 1771.43 & 0.04 & 14.19 \\ \hline
+Cutoff & 863.24 & 0.92 & 13.37 \\ \hline
+SBERT & 724.53 & 1.85 & 12.35 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 6 (7 dimensions)}} \\ \hline
+Balance & 1306.95 & 2.46 & 15.34 \\ \hline
+Power & 963.76 & 3.33 & 14.93 \\ \hline
+Maximum & 9279.05 & -0.52 & 18.93 \\ \hline
+Cutoff & 1088.97 & 3.46 & 15.06 \\ \hline
+SBERT & 1070.86 & 1.33 & 16.57 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 7 (8 dimensions)}} \\ \hline
+Balance & 25439.79 & 4.67 & 45.24 \\ \hline
+Power & 4664.42 & 15.44 & 36.94 \\ \hline
+Maximum & 10284.54 & 8.22 & 41.82 \\ \hline
+Cutoff & 7801.54 & 12.21 & 38.41 \\ \hline
+SBERT & 9223.81 & 10.39 & 38.39 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 8 (9 dimensions)}} \\ \hline
+Balance & 3084.19 & 7.14 & 25.95 \\ \hline
+Power & 2962.02 & 8.85 & 24.88 \\ \hline
+Maximum & 209686.80 & -16.35 & 49.79 \\ \hline
+Cutoff & 170432.00 & -18.71 & 52.89 \\ \hline
+SBERT & 2462.07 & 8.43 & 25.26 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 9 (10 dimensions)}} \\ \hline
+Balance & 54957.71 & 24.84 & 83.50 \\ \hline
+Power & 235542.00 & 2.03 & 107.36 \\ \hline
+Maximum & 39747.77 & 17.58 & 87.42 \\ \hline
+Cutoff & 33146.26 & 30.28 & 79.06 \\ \hline
+SBERT & 56862.70 & 17.78 & 90.10 \\ \hline
+\multicolumn{5}{|c|}{\textbf{Test 10 (11 dimensions)}} \\ \hline
+Balance & 68163.77 & 5.20 & 71.55 \\ \hline
+Power & 224169.45 & -9.98 & 88.55 \\ \hline
+Maximum & 39889.16 & 17.40 & 61.52 \\ \hline
+Cutoff & 470442.18 & -24.55 & 90.47 \\ \hline
+SBERT & 114351.93 & 1.82 & 76.61 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Analysis of the results per heuristic}
+\label{table:heuristic_analysis}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Heuristic} & \textbf{Mean of Variances} & \textbf{Mean of Errors} & \textbf{Mean of Std. Deviations} \\ \hline
+Balance & 15348.41 & 4.80 & 25.73 \\ \hline
+Power & 46943.82 & 2.18 & 29.01 \\ \hline
+Maximum & 31075.69 & 2.67 & 27.87 \\ \hline
+Cutoff & 68380.92 & 0.45 & 29.39 \\ \hline
+SBERT & 18498.62 & 4.21 & 26.43 \\ \hline
+\end{tabular}%
+}
 
 
 
