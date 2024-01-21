@@ -618,8 +618,44 @@ Cutoff & 68380.92 & 0.45 & 29.39 \\ \hline
 SBERT & 18498.62 & 4.21 & 26.43 \\ \hline
 \end{tabular}%
 }
+\end{table}
 
+\paragraph{Varianza de las Estimaciones}
+La heurística 'Balance' muestra una reducción sustancial en la varianza a medida que el tamaño de la muestra aumenta, lo que indica que es efectiva para estabilizar las estimaciones.
+'Power' presenta una varianza significativamente alta con 100 muestras, lo que sugiere una inestabilidad en ciertos casos, pero mejora con tamaños de muestra más grandes.
+'Maximum' muestra una variabilidad considerablemente alta con 500 muestras, lo que podría implicar que no es tan robusta frente a ciertas distribuciones de la función objetivo.
+'Cutoff' tiene la varianza más alta entre todas las heurísticas, especialmente con 100 y 500 muestras, lo que indica que podría no ser la heurística más confiable.
+'SBERT' presenta una varianza relativamente baja en comparación, lo que sugiere una buena consistencia en las estimaciones.
 
+\paragraph{Error de las Estimaciones}
+Los errores de 'Balance' son relativamente bajos y consistentes, lo que sugiere una buena precisión en general.
+'Power' y 'Maximum' muestran fluctuaciones en el error, algunas negativas, lo que podría indicar sobreestimación o subestimación en ciertos casos.
+'Cutoff' presenta errores que sugieren una subestimación significativa en varios tamaños de muestra.
+'SBERT' tiene errores variados, pero tienden a ser menores, especialmente con muestras más grandes.
+
+\paragraph{Desviaciones Estándar de las Estimaciones}
+'Balance' y 'SBERT' tienen desviaciones estándar que disminuyen con el tamaño de la muestra, indicando una mayor precisión a medida que se incrementa el número de muestras.
+'Power', 'Maximum' y 'Cutoff' muestran un comportamiento más errático en la desviación estándar, lo que podría reflejar una sensibilidad a la especificidad del problema o a la distribución de la función objetivo.
+
+\paragraph{Dimensionalidad}
+2-Dimensiones (Test 1): Todas las heurísticas funcionan bien, con varianzas y errores mínimos, lo que indica que el MIS es efectivo en espacios de baja dimensión para todas las heurísticas probadas.
+
+3-Dimensiones en Adelante: A medida que la dimensión aumenta, se observa un aumento general en la varianza y la desviación estándar para todas las heurísticas. Esto es esperado debido a la "maldición de la dimensionalidad", donde el espacio de búsqueda se vuelve exponencialmente más grande.
+La heurística 'SBERT' parece tener un rendimiento inconsistente en función de la dimensión, con una varianza particularmente alta en la dimensión 4, lo que sugiere que su eficacia puede depender de la especificidad del problema.
+'Balance' tiende a mantener un mejor control sobre la varianza y la desviación estándar, incluso a medida que la dimensión aumenta, lo que indica que puede ser una heurística más robusta en espacios de mayor dimensión.
+
+Dimensiones Altas (Test 7-10): En espacios de alta dimensión, todas las heurísticas luchan con un aumento significativo en la varianza y la desviación estándar, pero algunas como 'Balance' y 'SBERT' parecen controlar mejor la escalada de estos valores.
+La heurística 'Maximum' muestra la varianza más alta en la dimensión 9, lo que sugiere una gran inestabilidad en espacios de mayor dimensión.
+'Cutoff' también muestra una alta varianza en dimensiones más altas, especialmente en la dimensión 10, lo que puede indicar problemas de eficiencia o precisión en espacios complejos.
+
+\paragraph{Conclusiones}
+El MIS comienza a ser competitivo con tamaños de muestra a partir de 1000 en adelante, donde se observa una mejora notable en la varianza y los errores para la mayoría de las heurísticas. La heurística 'Balance' parece ser la más robusta y consistente, seguida por 'SBERT', que también muestra un buen rendimiento. 'Power', 'Maximum' y 'Cutoff' presentan desafíos en términos de consistencia y precisión, lo que podría requerir una investigación más detallada para entender sus condiciones óptimas de uso.
+
+En términos de dimensionalidad, MIS mantiene un rendimiento aceptable hasta aproximadamente 3 dimensiones sin mucha pérdida de precisión. Sin embargo, a medida que la dimensión aumenta, se necesita un tamaño de muestra más grande para mantener la precisión y la confiabilidad de las estimaciones. Esto destaca la importancia de una selección cuidadosa del tamaño de la muestra y la heurística en función de la complejidad del espacio de integración.
+
+\subsection{Prueba 3 - Producto de hipercubos}
+
+En esta sección, nos centramos en el análisis de una función multidimensional basada en el producto de hipercubos.
 
 \end{document}
 

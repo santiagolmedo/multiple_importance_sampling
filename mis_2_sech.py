@@ -284,16 +284,16 @@ def run_mis_estimate():
 
 def run_mis_analysis():
     """Run the MIS analysis."""
-    NUM_SAMPLES = [50, 100, 500, 1000, 5000]
-    NUM_TESTS = 10
-    NUM_RUNS = 100
+    NUM_SAMPLES = [500, 1000, 5000, 10000, 50000]
+    NUM_TESTS = 5
+    NUM_RUNS = 10
     heuristics = ["balance", "power", "maximum", "cutoff", "sbert"]
 
     general_results = {"Test {}".format(test + 1): {} for test in range(NUM_TESTS)}
 
     for test in range(NUM_TESTS):
-        m = np.random.randint(2, 10)
-        n = test + 1
+        m = np.random.randint(6, 8)
+        n = test + 5
         a = np.array(np.random.uniform(1.8, 2, size=(m, n)))
         b = np.array(np.random.uniform(-100, 100, size=(m, n)))
 
@@ -357,12 +357,10 @@ def run_mis_analysis():
             "n": n,
         }
 
-    open("results_mis_2_sech.txt", "w").close()
-
     with open("results_mis_2_sech.txt", "w") as f:
         json.dump(general_results, f, indent=4)
 
 
 if __name__ == "__main__":
-    run_mis_estimate()
-    # run_mis_analysis()
+    # run_mis_estimate()
+    run_mis_analysis()
