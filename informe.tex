@@ -7,6 +7,7 @@
 \usepackage{algpseudocode}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{longtable}
 \usepackage{xcolor}
 \floatname{algorithm}{Algoritmo}
 
@@ -174,7 +175,7 @@ dado que por la condición \( (W1) \), \( \sum_{i=1}^n w_i(x) = 1 \) siempre que
 
 Por lo tanto, el estimador \( F \) es imparcial. La última igualdad se debe a que \( \sum_{i=1}^n w_i(x) = 1 \) cuando \( f(x) \neq 0 \).
 
-\subsubsection{Balance Heuristic}
+\subsubsection{Balance Heurística}
 
 $$ w_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
 
@@ -300,136 +301,137 @@ Este análisis se hizo para:
 \centering
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf{Heuristic/Sample Size} & \textbf{10} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{150} \\ \hline
-\multicolumn{6}{|c|}{\textbf{Mean of Variances}} \\ \hline
+\textbf{Heurística / \# de muestras} & \textbf{10} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{150} \\ \hline
+\multicolumn{6}{|c|}{\textbf{Promedio de Var}} \\ \hline
 Balance & 0.4441 & 0.1579 & 0.0735 & 0.0376 & 0.0247 \\ \hline
 Power & 0.4505 & 0.1615 & 0.0749 & 0.0384 & 0.0253 \\ \hline
 Maximum & 0.4766 & 0.1719 & 0.0797 & 0.0408 & 0.0269 \\ \hline
 Cutoff & 0.4575 & 0.1642 & 0.0760 & 0.0389 & 0.0257 \\ \hline
-SBERT & 0.4423 & 0.1584 & 0.0734 & 0.0374 & 0.0247 \\ \hline
-\multicolumn{6}{|c|}{\textbf{Mean of Errors}} \\ \hline
+Sbert & 0.4423 & 0.1584 & 0.0734 & 0.0374 & 0.0247 \\ \hline
+\multicolumn{6}{|c|}{\textbf{Promedio de Err}} \\ \hline
 Balance & 0.0122 & 0.0062 & 0.0036 & 0.0028 & 0.0019 \\ \hline
 Power & 0.0078 & 0.0062 & 0.0051 & 0.0039 & 0.0024 \\ \hline
 Maximum & 0.0135 & 0.0066 & 0.0041 & 0.0015 & 0.0015 \\ \hline
 Cutoff & 0.0089 & 0.0068 & 0.0058 & 0.0045 & 0.0032 \\ \hline
-SBERT & 0.0148 & 0.0059 & 0.0031 & 0.0042 & 0.0033 \\ \hline
-\multicolumn{6}{|c|}{\textbf{Mean of Standard Deviations}} \\ \hline
+Sbert & 0.0148 & 0.0059 & 0.0031 & 0.0042 & 0.0033 \\ \hline
+\multicolumn{6}{|c|}{\textbf{Promedio de DE}} \\ \hline
 Balance & 0.6009 & 0.3674 & 0.2533 & 0.1818 & 0.1477 \\ \hline
 Power & 0.6059 & 0.3727 & 0.2563 & 0.1843 & 0.1496 \\ \hline
 Maximum & 0.6238 & 0.3848 & 0.2646 & 0.1900 & 0.1545 \\ \hline
 Cutoff & 0.6112 & 0.3762 & 0.2583 & 0.1856 & 0.1510 \\ \hline
-SBERT & 0.6003 & 0.3685 & 0.2533 & 0.1815 & 0.1475 \\ \hline
+Sbert & 0.6003 & 0.3685 & 0.2533 & 0.1815 & 0.1475 \\ \hline
 \end{tabular}
-\caption{Analysis of the results per heuristic and sample size}
+\caption{Análisis de los resultados por heurística y cantidad de muestras}
 \label{table:heuristic_analysis}
 \end{table}
 
+
 \begin{table}[H]
 \centering
-\caption{Analysis of the results per heuristic in each test}
 \label{table:heuristic_test_analysis}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|}
 \hline
-\textbf{Heuristic/Test} & \textbf{Mean of Variances} & \textbf{Mean of Errors} & \textbf{Mean of Std. Deviations} \\ \hline
+\textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 1}} \\ \hline
 Balance & 0.1039 & 0.0067 & 0.2665 \\ \hline
 Power & 0.1015 & 0.0103 & 0.2645 \\ \hline
 Maximum & 0.1023 & 0.0024 & 0.2657 \\ \hline
 Cutoff & 0.1026 & 0.0091 & 0.2646 \\ \hline
-SBERT & 0.1035 & 0.0050 & 0.2662 \\ \hline
+Sbert & 0.1035 & 0.0050 & 0.2662 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 2}} \\ \hline
 Balance & 0.1625 & 0.0055 & 0.3500 \\ \hline
 Power & 0.1640 & 0.0081 & 0.3512 \\ \hline
 Maximum & 0.1641 & 0.0065 & 0.3518 \\ \hline
 Cutoff & 0.1628 & 0.0075 & 0.3507 \\ \hline
-SBERT & 0.1630 & 0.0060 & 0.3501 \\ \hline
+Sbert & 0.1630 & 0.0060 & 0.3501 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 3}} \\ \hline
 Balance & 0.0907 & 0.0047 & 0.2497 \\ \hline
 Power & 0.0912 & 0.0040 & 0.2503 \\ \hline
 Maximum & 0.0890 & 0.0082 & 0.2480 \\ \hline
 Cutoff & 0.0936 & 0.0076 & 0.2531 \\ \hline
-SBERT & 0.0950 & 0.0139 & 0.2543 \\ \hline
+Sbert & 0.0950 & 0.0139 & 0.2543 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 4}} \\ \hline
 Balance & 0.3690 & 0.0088 & 0.5303 \\ \hline
 Power & 0.3670 & 0.0045 & 0.5295 \\ \hline
 Maximum & 0.3659 & 0.0054 & 0.5288 \\ \hline
 Cutoff & 0.3675 & 0.0038 & 0.5296 \\ \hline
-SBERT & 0.3644 & 0.0032 & 0.5278 \\ \hline
+Sbert & 0.3644 & 0.0032 & 0.5278 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 5}} \\ \hline
 Balance & 0.0929 & 0.0062 & 0.2582 \\ \hline
 Power & 0.1225 & 0.0084 & 0.2969 \\ \hline
 Maximum & 0.2178 & 0.0118 & 0.3975 \\ \hline
 Cutoff & 0.1440 & 0.0082 & 0.3215 \\ \hline
-SBERT & 0.0920 & 0.0083 & 0.2575 \\ \hline
+Sbert & 0.0920 & 0.0083 & 0.2575 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6}} \\ \hline
 Balance & 0.2760 & 0.0057 & 0.4588 \\ \hline
 Power & 0.2763 & 0.0032 & 0.4590 \\ \hline
 Maximum & 0.2750 & 0.0045 & 0.4584 \\ \hline
 Cutoff & 0.2748 & 0.0062 & 0.4581 \\ \hline
-SBERT & 0.2740 & 0.0086 & 0.4578 \\ \hline
+Sbert & 0.2740 & 0.0086 & 0.4578 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 7}} \\ \hline
 Balance & 0.0882 & 0.0029 & 0.2594 \\ \hline
 Power & 0.0878 & 0.0029 & 0.2590 \\ \hline
 Maximum & 0.0874 & 0.0023 & 0.2585 \\ \hline
 Cutoff & 0.0877 & 0.0037 & 0.2589 \\ \hline
-SBERT & 0.0879 & 0.0029 & 0.2590 \\ \hline
+Sbert & 0.0879 & 0.0029 & 0.2590 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 8}} \\ \hline
 Balance & 0.0354 & 0.0023 & 0.1630 \\ \hline
 Power & 0.0352 & 0.0015 & 0.1628 \\ \hline
 Maximum & 0.0353 & 0.0030 & 0.1628 \\ \hline
 Cutoff & 0.0347 & 0.0047 & 0.1620 \\ \hline
-SBERT & 0.0357 & 0.0020 & 0.1636 \\ \hline
+Sbert & 0.0357 & 0.0020 & 0.1636 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 9}} \\ \hline
 Balance & 0.2219 & 0.0026 & 0.4122 \\ \hline
 Power & 0.2221 & 0.0049 & 0.4124 \\ \hline
 Maximum & 0.2220 & 0.0052 & 0.4124 \\ \hline
 Cutoff & 0.2224 & 0.0025 & 0.4126 \\ \hline
-SBERT & 0.2230 & 0.0098 & 0.4128 \\ \hline
+Sbert & 0.2230 & 0.0098 & 0.4128 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 10}} \\ \hline
 Balance & 0.0351 & 0.0081 & 0.1543 \\ \hline
 Power & 0.0337 & 0.0031 & 0.1521 \\ \hline
 Maximum & 0.0332 & 0.0054 & 0.1515 \\ \hline
 Cutoff & 0.0348 & 0.0049 & 0.1538 \\ \hline
-SBERT & 0.0340 & 0.0029 & 0.1529 \\ \hline
+Sbert & 0.0340 & 0.0029 & 0.1529 \\ \hline
 \end{tabular}%
 }
+\caption{Análisis de los resultados por heurística en cada test}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{Analysis of the results per heuristic}
 \label{table:heuristic_analysis}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|}
 \hline
-\textbf{Heuristic} & \textbf{Mean of Variances} & \textbf{Mean of Errors} & \textbf{Mean of Std. Deviations} \\ \hline
+\textbf{Heurística} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 Balance & 0.1476 & 0.0054 & 0.3102 \\ \hline
 Power & 0.1501 & 0.0051 & 0.3138 \\ \hline
 Maximum & 0.1592 & 0.0055 & 0.3235 \\ \hline
 Cutoff & 0.1525 & 0.0058 & 0.3165 \\ \hline
-SBERT & 0.1473 & 0.0063 & 0.3102 \\ \hline
+Sbert & 0.1473 & 0.0063 & 0.3102 \\ \hline
 \end{tabular}%
 }
+\caption{Análisis de los resultados por heurística}
 \end{table}
 
 
 \paragraph{Diferencias entre Heurísticas}
-Varianza de las Estimaciones: Las heurísticas 'Balance' y 'SBERT' muestran consistentemente las varianzas más bajas a través de todos los tamaños de muestra, lo que indica una mayor precisión en sus estimaciones.
+Varianza de las Estimaciones: Las heurísticas 'Balance' y 'Sbert' muestran consistentemente las varianzas más bajas a través de todos los tamaños de muestra, lo que indica una mayor precisión en sus estimaciones.
 Por otro lado, 'Maximum' presenta la varianza más alta, especialmente con tamaños de muestra más pequeños, lo que sugiere una menor fiabilidad en comparación con otras heurísticas.
 
-Error de las Estimaciones: 'Balance' y 'SBERT' muestran los números más bajos para los errores, lo que indica una mayor precisión en sus resultados.
+Error de las Estimaciones: 'Balance' y 'Sbert' muestran los números más bajos para los errores, lo que indica una mayor precisión en sus resultados.
 Las heurísticas 'Maximum' y 'Cutoff' presentan errores más significativos.
 
-Desviaciones Estándar de las Estimaciones: Las heurísticas 'Balance', 'Power', y 'SBERT' mantienen desviaciones estándar más bajas, lo que sugiere estimaciones más consistentes.
+Desviaciones Estándar de las Estimaciones: Las heurísticas 'Balance', 'Power', y 'Sbert' mantienen desviaciones estándar más bajas, lo que sugiere estimaciones más consistentes.
 'Maximum' presenta la mayor desviación estándar, reafirmando su menor consistencia en las estimaciones.
 
 \paragraph{Competitividad del MIS en Función del Tamaño de Muestra}
 Se observa que a medida que el tamaño de la muestra aumenta, todas las heurísticas mejoran en términos de varianza, error, y desviación estándar de las estimaciones. Esto es un indicativo de que el MIS se vuelve más competitivo y confiable con un mayor número de muestras.
 Específicamente, con tamaños de muestra de 50 en adelante, se empieza a notar una mejora significativa en la precisión y consistencia de las estimaciones para todas las heurísticas.
-Las heurísticas 'Balance' y 'SBERT' demuestran ser competitivas incluso con tamaños de muestra más pequeños (25 muestras), mientras que otras heurísticas como 'Maximum' y 'Cutoff' requieren tamaños de muestra mayores para alcanzar niveles similares de precisión y confiabilidad.
+Las heurísticas 'Balance' y 'Sbert' demuestran ser competitivas incluso con tamaños de muestra más pequeños (25 muestras), mientras que otras heurísticas como 'Maximum' y 'Cutoff' requieren tamaños de muestra mayores para alcanzar niveles similares de precisión y confiabilidad.
 
-En resumen, las heurísticas 'Balance' y 'SBERT' muestran un rendimiento superior en términos de varianza, error y consistencia de las estimaciones a través de todos los tamaños de muestra. El MIS se vuelve notablemente más competitivo y preciso con tamaños de muestra de 50 o más, aunque algunas heurísticas como 'Balance' y 'SBERT' ya muestran resultados prometedores con tamaños de muestra de 25. En contraste, heurísticas como 'Maximum' y 'Cutoff' requieren tamaños de muestra más grandes para ofrecer un nivel de precisión y consistencia comparable.
+En resumen, las heurísticas 'Balance' y 'Sbert' muestran un rendimiento superior en términos de varianza, error y consistencia de las estimaciones a través de todos los tamaños de muestra. El MIS se vuelve notablemente más competitivo y preciso con tamaños de muestra de 50 o más, aunque algunas heurísticas como 'Balance' y 'Sbert' ya muestran resultados prometedores con tamaños de muestra de 25. En contraste, heurísticas como 'Maximum' y 'Cutoff' requieren tamaños de muestra más grandes para ofrecer un nivel de precisión y consistencia comparable.
 
 \subsection{Prueba 2 - Análisis Multidimensional}
 
@@ -492,121 +494,121 @@ El análisis se hizo para los mismos casos que en la prueba anterior.
 
 \begin{table}[H]
 \centering
-\caption{Analysis of the results per heuristic and sample size}
 \label{table:heuristic_analysis}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf{Heuristic/Sample Size} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} \\ \hline
-\multicolumn{6}{|c|}{\textbf{Mean of Variances}} \\ \hline
+\textbf{Heurística / \# de muestras} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} \\ \hline
+\multicolumn{6}{|c|}{\textbf{Promedio de Var}} \\ \hline
 Balance & 28542.80 & 11755.25 & 32890.92 & 2082.61 & 1470.44 \\ \hline
 Power & 16022.84 & 136709.92 & 3707.40 & 75721.90 & 2557.03 \\ \hline
 Maximum & 16750.33 & 16552.90 & 111964.69 & 3072.33 & 7038.19 \\ \hline
 Cutoff & 23826.31 & 236449.12 & 74333.52 & 5878.86 & 1416.80 \\ \hline
-SBERT & 6603.14 & 59408.55 & 17053.03 & 1951.91 & 7476.45 \\ \hline
-\multicolumn{6}{|c|}{\textbf{Mean of Errors}} \\ \hline
+Sbert & 6603.14 & 59408.55 & 17053.03 & 1951.91 & 7476.45 \\ \hline
+\multicolumn{6}{|c|}{\textbf{Promedio de Err}} \\ \hline
 Balance & 3.63 & 8.93 & -1.65 & 6.80 & 6.29 \\ \hline
 Power & 10.67 & -6.78 & 5.86 & -1.69 & 2.84 \\ \hline
 Maximum & 8.21 & 5.28 & -6.80 & 5.43 & 1.24 \\ \hline
 Cutoff & 8.08 & -12.71 & 0.51 & 2.23 & 4.12 \\ \hline
-SBERT & 13.10 & -0.75 & 0.52 & 7.51 & 0.67 \\ \hline
-\multicolumn{6}{|c|}{\textbf{Mean of Standard Deviations}} \\ \hline
+Sbert & 13.10 & -0.75 & 0.52 & 7.51 & 0.67 \\ \hline
+\multicolumn{6}{|c|}{\textbf{Promedio de DE}} \\ \hline
 Balance & 40.21 & 31.19 & 29.39 & 17.13 & 10.70 \\ \hline
 Power & 36.94 & 46.45 & 21.71 & 26.32 & 13.61 \\ \hline
 Maximum & 36.01 & 34.19 & 34.76 & 18.94 & 15.45 \\ \hline
 Cutoff & 37.73 & 46.92 & 28.03 & 21.41 & 12.85 \\ \hline
-SBERT & 32.84 & 39.51 & 27.41 & 16.83 & 15.55 \\ \hline
+Sbert & 32.84 & 39.51 & 27.41 & 16.83 & 15.55 \\ \hline
 \end{tabular}%
 }
+\caption{Análisis de los resultados por heurística y cantidad de muestras}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{Analysis of the results per heuristic in each test}
 \label{table:heuristic_test_analysis}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|}
 \hline
-\textbf{Heuristic/Test} & \textbf{Mean of Variances} & \textbf{Mean of Errors} & \textbf{Mean of Std. Deviations} \\ \hline
+\textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 1 (2 dimensiones)}} \\ \hline
 Balance & 0.04 & 0.03 & 0.12 \\ \hline
 Power & 0.12 & 0.00 & 0.15 \\ \hline
 Maximum & 30.53 & -0.24 & 0.40 \\ \hline
 Cutoff & 0.07 & 0.01 & 0.14 \\ \hline
-SBERT & 0.06 & 0.02 & 0.13 \\ \hline
+Sbert & 0.06 & 0.02 & 0.13 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 2 (3 dimensiones)}} \\ \hline
 Balance & 1.86 & 0.11 & 0.52 \\ \hline
 Power & 0.76 & 0.11 & 0.50 \\ \hline
 Maximum & 8.76 & 0.00 & 0.62 \\ \hline
 Cutoff & 1.07 & 0.12 & 0.51 \\ \hline
-SBERT & 2.64 & -0.02 & 0.64 \\ \hline
+Sbert & 2.64 & -0.02 & 0.64 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 3 (4 dimensiones)}} \\ \hline
 Balance & 29.51 & 0.49 & 2.21 \\ \hline
 Power & 105.99 & -0.14 & 2.86 \\ \hline
 Maximum & 18.16 & 0.70 & 2.06 \\ \hline
 Cutoff & 23.96 & 0.28 & 2.43 \\ \hline
-SBERT & 278.20 & 0.10 & 2.65 \\ \hline
+Sbert & 278.20 & 0.10 & 2.65 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 4 (5 dimensiones)}} \\ \hline
 Balance & 18.61 & 0.27 & 1.62 \\ \hline
 Power & 85.91 & -0.21 & 2.14 \\ \hline
 Maximum & 40.65 & -0.12 & 1.95 \\ \hline
 Cutoff & 9.87 & 0.46 & 1.47 \\ \hline
-SBERT & 9.34 & 0.37 & 1.54 \\ \hline
+Sbert & 9.34 & 0.37 & 1.54 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 5 (6 dimensiones)}} \\ \hline
 Balance & 481.61 & 2.76 & 11.17 \\ \hline
 Power & 943.69 & 2.36 & 11.74 \\ \hline
 Maximum & 1771.43 & 0.04 & 14.19 \\ \hline
 Cutoff & 863.24 & 0.92 & 13.37 \\ \hline
-SBERT & 724.53 & 1.85 & 12.35 \\ \hline
+Sbert & 724.53 & 1.85 & 12.35 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6 (7 dimensiones)}} \\ \hline
 Balance & 1306.95 & 2.46 & 15.34 \\ \hline
 Power & 963.76 & 3.33 & 14.93 \\ \hline
 Maximum & 9279.05 & -0.52 & 18.93 \\ \hline
 Cutoff & 1088.97 & 3.46 & 15.06 \\ \hline
-SBERT & 1070.86 & 1.33 & 16.57 \\ \hline
+Sbert & 1070.86 & 1.33 & 16.57 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 7 (8 dimensiones)}} \\ \hline
 Balance & 25439.79 & 4.67 & 45.24 \\ \hline
 Power & 4664.42 & 15.44 & 36.94 \\ \hline
 Maximum & 10284.54 & 8.22 & 41.82 \\ \hline
 Cutoff & 7801.54 & 12.21 & 38.41 \\ \hline
-SBERT & 9223.81 & 10.39 & 38.39 \\ \hline
+Sbert & 9223.81 & 10.39 & 38.39 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 8 (9 dimensiones)}} \\ \hline
 Balance & 3084.19 & 7.14 & 25.95 \\ \hline
 Power & 2962.02 & 8.85 & 24.88 \\ \hline
 Maximum & 209686.80 & -16.35 & 49.79 \\ \hline
 Cutoff & 170432.00 & -18.71 & 52.89 \\ \hline
-SBERT & 2462.07 & 8.43 & 25.26 \\ \hline
+Sbert & 2462.07 & 8.43 & 25.26 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 9 (10 dimensiones)}} \\ \hline
 Balance & 54957.71 & 24.84 & 83.50 \\ \hline
 Power & 235542.00 & 2.03 & 107.36 \\ \hline
 Maximum & 39747.77 & 17.58 & 87.42 \\ \hline
 Cutoff & 33146.26 & 30.28 & 79.06 \\ \hline
-SBERT & 56862.70 & 17.78 & 90.10 \\ \hline
+Sbert & 56862.70 & 17.78 & 90.10 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 10 (11 dimensiones)}} \\ \hline
 Balance & 68163.77 & 5.20 & 71.55 \\ \hline
 Power & 224169.45 & -9.98 & 88.55 \\ \hline
 Maximum & 39889.16 & 17.40 & 61.52 \\ \hline
 Cutoff & 470442.18 & -24.55 & 90.47 \\ \hline
-SBERT & 114351.93 & 1.82 & 76.61 \\ \hline
+Sbert & 114351.93 & 1.82 & 76.61 \\ \hline
 \end{tabular}%
 }
+\caption{Análisis de los resultados por heurística en cada test}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{Analysis of the results per heuristic}
 \label{table:heuristic_analysis}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|}
 \hline
-\textbf{Heuristic} & \textbf{Mean of Variances} & \textbf{Mean of Errors} & \textbf{Mean of Std. Deviations} \\ \hline
+\textbf{Heurística} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 Balance & 15348.41 & 4.80 & 25.73 \\ \hline
 Power & 46943.82 & 2.18 & 29.01 \\ \hline
 Maximum & 31075.69 & 2.67 & 27.87 \\ \hline
 Cutoff & 68380.92 & 0.45 & 29.39 \\ \hline
-SBERT & 18498.62 & 4.21 & 26.43 \\ \hline
+Sbert & 18498.62 & 4.21 & 26.43 \\ \hline
 \end{tabular}%
 }
+\caption{Análisis de los resultados por heurística}
 \end{table}
 
 \paragraph{Varianza de las Estimaciones}
@@ -614,31 +616,31 @@ La heurística 'Balance' muestra una reducción sustancial en la varianza a medi
 'Power' presenta una varianza significativamente alta con 100 muestras, lo que sugiere una inestabilidad en ciertos casos, pero mejora con tamaños de muestra más grandes.
 'Maximum' muestra una variabilidad considerablemente alta con 500 muestras, lo que podría implicar que no es tan robusta frente a ciertas distribuciones de la función objetivo.
 'Cutoff' tiene la varianza más alta entre todas las heurísticas, especialmente con 100 y 500 muestras, lo que indica que podría no ser la heurística más confiable.
-'SBERT' presenta una varianza relativamente baja en comparación, lo que sugiere una buena consistencia en las estimaciones.
+'Sbert' presenta una varianza relativamente baja en comparación, lo que sugiere una buena consistencia en las estimaciones.
 
 \paragraph{Error de las Estimaciones}
 Los errores de 'Balance' son relativamente bajos y consistentes, lo que sugiere una buena precisión en general.
 'Power' y 'Maximum' muestran fluctuaciones en el error, algunas negativas, lo que podría indicar sobreestimación o subestimación en ciertos casos.
 'Cutoff' presenta errores que sugieren una subestimación significativa en varios tamaños de muestra.
-'SBERT' tiene errores variados, pero tienden a ser menores, especialmente con muestras más grandes.
+'Sbert' tiene errores variados, pero tienden a ser menores, especialmente con muestras más grandes.
 
 \paragraph{Desviaciones Estándar de las Estimaciones}
-'Balance' y 'SBERT' tienen desviaciones estándar que disminuyen con el tamaño de la muestra, indicando una mayor precisión a medida que se incrementa el número de muestras.
+'Balance' y 'Sbert' tienen desviaciones estándar que disminuyen con el tamaño de la muestra, indicando una mayor precisión a medida que se incrementa el número de muestras.
 'Power', 'Maximum' y 'Cutoff' muestran un comportamiento más errático en la desviación estándar, lo que podría reflejar una sensibilidad a la especificidad del problema o a la distribución de la función objetivo.
 
 \paragraph{Dimensionalidad}
 2-Dimensiones (Test 1): Todas las heurísticas funcionan bien, con varianzas y errores mínimos, lo que indica que el MIS es efectivo en espacios de baja dimensión para todas las heurísticas probadas.
 
 3-Dimensiones en Adelante: A medida que la dimensión aumenta, se observa un aumento general en la varianza y la desviación estándar para todas las heurísticas. Esto es esperado debido a la "maldición de la dimensionalidad", donde el espacio de búsqueda se vuelve exponencialmente más grande.
-La heurística 'SBERT' parece tener un rendimiento inconsistente en función de la dimensión, con una varianza particularmente alta en la dimensión 4, lo que sugiere que su eficacia puede depender de la especificidad del problema.
+La heurística 'Sbert' parece tener un rendimiento inconsistente en función de la dimensión, con una varianza particularmente alta en la dimensión 4, lo que sugiere que su eficacia puede depender de la especificidad del problema.
 'Balance' tiende a mantener un mejor control sobre la varianza y la desviación estándar, incluso a medida que la dimensión aumenta, lo que indica que puede ser una heurística más robusta en espacios de mayor dimensión.
 
-Dimensiones Altas (Test 7-10): En espacios de alta dimensión, todas las heurísticas luchan con un aumento significativo en la varianza y la desviación estándar, pero algunas como 'Balance' y 'SBERT' parecen controlar mejor la escalada de estos valores.
+Dimensiones Altas (Test 7-10): En espacios de alta dimensión, todas las heurísticas luchan con un aumento significativo en la varianza y la desviación estándar, pero algunas como 'Balance' y 'Sbert' parecen controlar mejor la escalada de estos valores.
 La heurística 'Maximum' muestra la varianza más alta en la dimensión 9, lo que sugiere una gran inestabilidad en espacios de mayor dimensión.
 'Cutoff' también muestra una alta varianza en dimensiones más altas, especialmente en la dimensión 10, lo que puede indicar problemas de eficiencia o precisión en espacios complejos.
 
 \paragraph{Conclusiones}
-El MIS comienza a ser competitivo con tamaños de muestra a partir de 1000 en adelante, donde se observa una mejora notable en la varianza y los errores para la mayoría de las heurísticas. La heurística 'Balance' parece ser la más robusta y consistente, seguida por 'SBERT', que también muestra un buen rendimiento. 'Power', 'Maximum' y 'Cutoff' presentan desafíos en términos de consistencia y precisión, lo que podría requerir una investigación más detallada para entender sus condiciones óptimas de uso.
+El MIS comienza a ser competitivo con tamaños de muestra a partir de 1000 en adelante, donde se observa una mejora notable en la varianza y los errores para la mayoría de las heurísticas. La heurística 'Balance' parece ser la más robusta y consistente, seguida por 'Sbert', que también muestra un buen rendimiento. 'Power', 'Maximum' y 'Cutoff' presentan desafíos en términos de consistencia y precisión, lo que podría requerir una investigación más detallada para entender sus condiciones óptimas de uso.
 
 En términos de dimensionalidad, MIS mantiene un rendimiento aceptable hasta aproximadamente 3 dimensiones sin mucha pérdida de precisión. Sin embargo, a medida que la dimensión aumenta, se necesita un tamaño de muestra más grande para mantener la precisión y la confiabilidad de las estimaciones. Esto destaca la importancia de una selección cuidadosa del tamaño de la muestra y la heurística en función de la complejidad del espacio de integración.
 
@@ -749,122 +751,138 @@ Luego, el análisis se hizo de la misma manera que en las pruebas anteriores.
 
 \begin{table}[H]
 \centering
-\caption{Analysis of the results per heuristic and sample size}
 \label{table:heuristic_sample_analysis}
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
-\textbf{Heuristic/Sample Size} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} & \textbf{50000} \\ \hline
-\multicolumn{8}{|c|}{\textbf{Mean of Variances}} \\ \hline
+\textbf{Heurística / \# de muestras} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} & \textbf{50000} \\ \hline
+\multicolumn{8}{|c|}{\textbf{Promedio de Var}} \\ \hline
 Balance & 83.88 & 5.48 & 10.06 & 16.93 & 4.61 & 25.98 & 78.95 \\ \hline
 Power & 8.37 & 14.03 & 19.82 & 1.74 & 12.64 & 25.50 & 78.43 \\ \hline
 Maximum & 159.54 & 60.44 & 41.34 & 11.77 & 18.73 & 5.72 & 4.50 \\ \hline
 Cutoff & 42.11 & 43.85 & 8.61 & 16.80 & 4.83 & 25.96 & 3.60 \\ \hline
-SBERT & 41.98 & 25.07 & 11.88 & 2.49 & 5.01 & 25.56 & 2.11 \\ \hline
-\multicolumn{8}{|c|}{\textbf{Mean of Errors}} \\ \hline
+Sbert & 41.98 & 25.07 & 11.88 & 2.49 & 5.01 & 25.56 & 2.11 \\ \hline
+\multicolumn{8}{|c|}{\textbf{Promedio de Err}} \\ \hline
 Balance & 0.76 & 1.11 & 0.94 & 0.93 & 0.96 & 0.73 & 0.34 \\ \hline
 Power & 1.02 & 1.00 & 0.78 & 1.04 & 0.77 & 0.76 & 0.37 \\ \hline
 Maximum & -0.41 & -0.31 & -0.60 & -0.46 & -0.50 & -0.67 & -0.83 \\ \hline
 Cutoff & 1.04 & 0.66 & 1.05 & 0.94 & 0.92 & 0.75 & 0.63 \\ \hline
-SBERT & 0.93 & 0.93 & 0.94 & 0.97 & 0.90 & 0.74 & 0.76 \\ \hline
-\multicolumn{8}{|c|}{\textbf{Mean of Standard Deviations}} \\ \hline
+Sbert & 0.93 & 0.93 & 0.94 & 0.97 & 0.90 & 0.74 & 0.76 \\ \hline
+\multicolumn{8}{|c|}{\textbf{Promedio de DE}} \\ \hline
 Balance & 1.24 & 0.78 & 0.81 & 0.59 & 0.47 & 0.54 & 0.72 \\ \hline
 Power & 0.97 & 0.88 & 0.99 & 0.50 & 0.66 & 0.51 & 0.71 \\ \hline
 Maximum & 1.89 & 1.57 & 1.64 & 1.02 & 0.88 & 0.71 & 0.50 \\ \hline
 Cutoff & 0.97 & 1.19 & 0.72 & 0.59 & 0.51 & 0.52 & 0.42 \\ \hline
-SBERT & 1.06 & 0.93 & 0.82 & 0.56 & 0.52 & 0.52 & 0.31 \\ \hline
+Sbert & 1.06 & 0.93 & 0.82 & 0.56 & 0.52 & 0.52 & 0.31 \\ \hline
 \end{tabular}
+\caption{Análisis de los resultados por heurística y cantidad de muestras}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{Analysis of the results per heuristic in each test}
 \label{table:heuristic_test_analysis}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|}
 \hline
-\textbf{Heuristic/Test} & \textbf{Mean of Variances} & \textbf{Mean of Errors} & \textbf{Mean of Std. Deviations} \\ \hline
+\textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 1 (3 dimensiones)}} \\ \hline
 Balance & 4.99 & -0.038 & 0.92 \\ \hline
 Power & 7.62 & -0.215 & 1.11 \\ \hline
 Maximum & 17.32 & -2.37 & 1.67 \\ \hline
 Cutoff & 4.45 & 0.016 & 0.86 \\ \hline
-SBERT & 6.67 & -0.106 & 0.96 \\ \hline
+Sbert & 6.67 & -0.106 & 0.96 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 2 (4 dimensiones)}} \\ \hline
 Balance & 112.57 & -0.084 & 1.32 \\ \hline
 Power & 41.46 & -0.107 & 1.35 \\ \hline
 Maximum & 312.36 & -2.44 & 2.43 \\ \hline
 Cutoff & 121.58 & -0.488 & 1.73 \\ \hline
-SBERT & 96.73 & -0.375 & 1.59 \\ \hline
+Sbert & 96.73 & -0.375 & 1.59 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 3 (5 dimensiones)}} \\ \hline
 Balance & 30.21 & 0.636 & 0.80 \\ \hline
 Power & 18.34 & 0.700 & 0.74 \\ \hline
 Maximum & 30.56 & -0.766 & 1.14 \\ \hline
 Cutoff & 29.77 & 0.609 & 0.80 \\ \hline
-SBERT & 7.62 & 0.833 & 0.60 \\ \hline
+Sbert & 7.62 & 0.833 & 0.60 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 4 (6 dimensiones)}} \\ \hline
 Balance & 38.13 & 0.814 & 0.68 \\ \hline
 Power & 37.52 & 0.820 & 0.68 \\ \hline
 Maximum & 6.52 & -0.206 & 0.72 \\ \hline
 Cutoff & 40.02 & 0.735 & 0.76 \\ \hline
-SBERT & 37.37 & 0.852 & 0.64 \\ \hline
+Sbert & 37.37 & 0.852 & 0.64 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 5 (7 dimensiones)}} \\ \hline
 Balance & 109.74 & 0.655 & 0.87 \\ \hline
 Power & 109.28 & 0.686 & 0.85 \\ \hline
 Maximum & 2.66 & -0.104 & 0.66 \\ \hline
 Cutoff & 0.38 & 1.217 & 0.32 \\ \hline
-SBERT & 0.57 & 1.226 & 0.31 \\ \hline
+Sbert & 0.57 & 1.226 & 0.31 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6 (11 dimensiones)}} \\ \hline
 Balance & 1.68 & 1.265 & 0.41 \\ \hline
 Power & 2.27 & 1.190 & 0.46 \\ \hline
 Maximum & 2.10 & 0.095 & 0.77 \\ \hline
 Cutoff & 1.19 & 1.234 & 0.43 \\ \hline
-SBERT & 0.68 & 1.306 & 0.38 \\ \hline
+Sbert & 0.68 & 1.306 & 0.38 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 7 (13 dimensiones)}} \\ \hline
 Balance & 0.88 & 1.294 & 0.44 \\ \hline
 Power & 2.60 & 1.243 & 0.48 \\ \hline
 Maximum & 3.59 & 0.072 & 0.86 \\ \hline
 Cutoff & 1.18 & 1.256 & 0.48 \\ \hline
-SBERT & 0.73 & 1.292 & 0.43 \\ \hline
+Sbert & 0.73 & 1.292 & 0.43 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 8 (16 dimensiones)}} \\ \hline
 Balance & 2.77 & 1.259 & 0.54 \\ \hline
 Power & 2.11 & 1.265 & 0.55 \\ \hline
 Maximum & 11.72 & -0.016 & 1.13 \\ \hline
 Cutoff & 5.39 & 1.199 & 0.61 \\ \hline
-SBERT & 3.23 & 1.256 & 0.57 \\ \hline
+Sbert & 3.23 & 1.256 & 0.57 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 9 (19 dimensiones)}} \\ \hline
 Balance & 4.73 & 1.264 & 0.63 \\ \hline
 Power & 2.87 & 1.302 & 0.60 \\ \hline
 Maximum & 5.19 & 0.405 & 0.88 \\ \hline
 Cutoff & 0.72 & 1.414 & 0.47 \\ \hline
-SBERT & 5.63 & 1.278 & 0.60 \\ \hline
+Sbert & 5.63 & 1.278 & 0.60 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 10 (21 dimensiones)}} \\ \hline
 Balance & 17.01 & 1.180 & 0.75 \\ \hline
 Power & 5.24 & 1.314 & 0.64 \\ \hline
 Maximum & 39.47 & -0.077 & 1.45 \\ \hline
 Cutoff & 3.54 & 1.375 & 0.56 \\ \hline
-SBERT & 3.79 & 1.265 & 0.67 \\ \hline
+Sbert & 3.79 & 1.265 & 0.67 \\ \hline
 \end{tabular}%
 }
+\caption{Análisis de los resultados por heurística en cada test}
 \end{table}
+
+\begin{table}[H]
+\centering
+\label{table:heuristic_analysis}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Heurística} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
+Balance & 32.27 & 0.825 & 0.736 \\ \hline
+Power & 22.93 & 0.820 & 0.746 \\ \hline
+Maximum & 43.15 & -0.541 & 1.172 \\ \hline
+Cutoff & 20.82 & 0.857 & 0.704 \\ \hline
+Sbert & 16.30 & 0.883 & 0.675 \\ \hline
+\end{tabular}
+\caption{Análisis de los resultados por heurística}
+\end{table}
+
 
 \subsubsection{Análisis}
 
 \paragraph{Varianza de las Estimaciones}
-En términos de varianza, la heurística 'Balance' muestra un rendimiento consistentemente bueno, con una disminución notable en la varianza al aumentar el tamaño de la muestra. 'SBERT' también se destaca por tener varianzas bajas, lo que indica una mayor estabilidad en sus estimaciones. Por el contrario, 'Maximum' muestra la mayor variabilidad, lo que sugiere una menor fiabilidad y estabilidad en sus resultados.
+En términos de varianza, la heurística 'Balance' muestra un rendimiento consistentemente bueno, con una disminución notable en la varianza al aumentar el tamaño de la muestra. 'Sbert' también se destaca por tener varianzas bajas, lo que indica una mayor estabilidad en sus estimaciones. Por el contrario, 'Maximum' muestra la mayor variabilidad, lo que sugiere una menor fiabilidad y estabilidad en sus resultados.
 
 
 \paragraph{Error de las Estimaciones}
-Respecto a los errores, 'Balance' y 'SBERT' mantienen errores bajos y consistentes a través de los diferentes tamaños de muestra, lo que implica una mayor precisión en sus estimaciones. En cambio, 'Maximum' se inclina hacia errores negativos, indicando una tendencia a la subestimación. 'Cutoff' y 'Power' muestran más variabilidad en sus errores, lo que sugiere una precisión menos consistente.
+Respecto a los errores, 'Balance' y 'Sbert' mantienen errores bajos y consistentes a través de los diferentes tamaños de muestra, lo que implica una mayor precisión en sus estimaciones. En cambio, 'Maximum' se inclina hacia errores negativos, indicando una tendencia a la subestimación. 'Cutoff' y 'Power' muestran más variabilidad en sus errores, lo que sugiere una precisión menos consistente.
 
 \paragraph{Desviaciones Estándar de las Estimaciones}
-Las desviaciones estándar más bajas se observan en las heurísticas 'Balance' y 'SBERT', lo que señala una mayor precisión y fiabilidad en sus estimaciones. 'Power', 'Maximum' y 'Cutoff' exhiben desviaciones estándar más altas y variables, lo que refleja una consistencia y precisión menos fiables.
+Las desviaciones estándar más bajas se observan en las heurísticas 'Balance' y 'Sbert', lo que señala una mayor precisión y fiabilidad en sus estimaciones. 'Power', 'Maximum' y 'Cutoff' exhiben desviaciones estándar más altas y variables, lo que refleja una consistencia y precisión menos fiables.
 
 
 \paragraph{Dimensionalidad}
-La dimensionalidad afecta significativamente el rendimiento de las heurísticas. En dimensiones más bajas, todas las heurísticas muestran un buen rendimiento. Sin embargo, en dimensiones más altas, 'Balance' y 'SBERT' logran mantener un control más efectivo sobre la varianza y el error, mientras que 'Maximum' y 'Cutoff' experimentan un aumento significativo en la varianza y el error.
+La dimensionalidad afecta significativamente el rendimiento de las heurísticas. En dimensiones más bajas, todas las heurísticas muestran un buen rendimiento. Sin embargo, en dimensiones más altas, 'Balance' y 'Sbert' logran mantener un control más efectivo sobre la varianza y el error, mientras que 'Maximum' y 'Cutoff' experimentan un aumento significativo en la varianza y el error.
 
 \paragraph{Conclusiones}
-En resumen, 'Balance' y 'SBERT' emergen como las heurísticas más robustas y consistentes en la Prueba 3, demostrando una buena precisión y estabilidad a lo largo de diferentes tamaños de muestra y en varias dimensiones. En contraste, 'Maximum' muestra una tendencia a la subestimación y es menos confiable, especialmente en dimensiones más altas. 'Power' y 'Cutoff' ofrecen un rendimiento intermedio, pero su precisión y consistencia son menos predecibles en comparación con 'Balance' y 'SBERT'.
+En resumen, 'Balance' y 'Sbert' emergen como las heurísticas más robustas y consistentes en la Prueba 3, demostrando una buena precisión y estabilidad a lo largo de diferentes tamaños de muestra y en varias dimensiones. En contraste, 'Maximum' muestra una tendencia a la subestimación y es menos confiable, especialmente en dimensiones más altas. 'Power' y 'Cutoff' ofrecen un rendimiento intermedio, pero su precisión y consistencia son menos predecibles en comparación con 'Balance' y 'Sbert'.
 
 \end{document}
 
