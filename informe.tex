@@ -7,8 +7,10 @@
 \usepackage{algpseudocode}
 \usepackage{booktabs}
 \usepackage{tabularx}
-\usepackage{longtable}
+\usepackage{float}
+\usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{makecell}
 \floatname{algorithm}{Algoritmo}
 
 
@@ -299,9 +301,13 @@ Este análisis se hizo para:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|}
+\label{table:heuristic_sample_analysis}
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|r|r|r|r|r|}
 \hline
-\textbf{Heurística / \# de muestras} & \textbf{10} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{150} \\ \hline
+\textbf{\makecell{Heurística / \\ \# de muestras}} & \textbf{10} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{150} \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Var}} \\ \hline
 Balance & 0.4441 & 0.1579 & 0.0735 & 0.0376 & 0.0247 \\ \hline
 Power & 0.4505 & 0.1615 & 0.0749 & 0.0384 & 0.0253 \\ \hline
@@ -363,6 +369,18 @@ Power & 0.1225 & 0.0084 & 0.2969 \\ \hline
 Maximum & 0.2178 & 0.0118 & 0.3975 \\ \hline
 Cutoff & 0.1440 & 0.0082 & 0.3215 \\ \hline
 Sbert & 0.0920 & 0.0083 & 0.2575 \\ \hline
+\end{tabular}%
+}
+\caption{Análisis de los resultados por heurística en los tests 1-5}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table:heuristic_test_analysis}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6}} \\ \hline
 Balance & 0.2760 & 0.0057 & 0.4588 \\ \hline
 Power & 0.2763 & 0.0032 & 0.4590 \\ \hline
@@ -395,7 +413,7 @@ Cutoff & 0.0348 & 0.0049 & 0.1538 \\ \hline
 Sbert & 0.0340 & 0.0029 & 0.1529 \\ \hline
 \end{tabular}%
 }
-\caption{Análisis de los resultados por heurística en cada test}
+\caption{Análisis de los resultados por heurística en los tests 6-10}
 \end{table}
 
 \begin{table}[H]
@@ -494,11 +512,13 @@ El análisis se hizo para los mismos casos que en la prueba anterior.
 
 \begin{table}[H]
 \centering
-\label{table:heuristic_analysis}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{|c|c|c|c|c|c|}
+\label{table:heuristic_sample_analysis}
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|r|r|r|r|r|}
 \hline
-\textbf{Heurística / \# de muestras} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} \\ \hline
+\textbf{\makecell{Heurística / \\ \# de muestras}} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Var}} \\ \hline
 Balance & 28542.80 & 11755.25 & 32890.92 & 2082.61 & 1470.44 \\ \hline
 Power & 16022.84 & 136709.92 & 3707.40 & 75721.90 & 2557.03 \\ \hline
@@ -559,6 +579,18 @@ Power & 943.69 & 2.36 & 11.74 \\ \hline
 Maximum & 1771.43 & 0.04 & 14.19 \\ \hline
 Cutoff & 863.24 & 0.92 & 13.37 \\ \hline
 Sbert & 724.53 & 1.85 & 12.35 \\ \hline
+\end{tabular}%
+}
+\caption{Análisis de los resultados por heurística en los tests 1-5}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table:heuristic_test_analysis}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6 (7 dimensiones)}} \\ \hline
 Balance & 1306.95 & 2.46 & 15.34 \\ \hline
 Power & 963.76 & 3.33 & 14.93 \\ \hline
@@ -591,7 +623,7 @@ Cutoff & 470442.18 & -24.55 & 90.47 \\ \hline
 Sbert & 114351.93 & 1.82 & 76.61 \\ \hline
 \end{tabular}%
 }
-\caption{Análisis de los resultados por heurística en cada test}
+\caption{Análisis de los resultados por heurística en los tests 6-10}
 \end{table}
 
 \begin{table}[H]
@@ -752,9 +784,12 @@ Luego, el análisis se hizo de la misma manera que en las pruebas anteriores.
 \begin{table}[H]
 \centering
 \label{table:heuristic_sample_analysis}
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|r|r|r|r|r|r|r|}
 \hline
-\textbf{Heurística / \# de muestras} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} & \textbf{50000} \\ \hline
+\textbf{\makecell{Heurística / \\ \# de muestras}} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} & \textbf{50000} \\ \hline
 \multicolumn{8}{|c|}{\textbf{Promedio de Var}} \\ \hline
 Balance & 83.88 & 5.48 & 10.06 & 16.93 & 4.61 & 25.98 & 78.95 \\ \hline
 Power & 8.37 & 14.03 & 19.82 & 1.74 & 12.64 & 25.50 & 78.43 \\ \hline
@@ -814,6 +849,18 @@ Power & 109.28 & 0.686 & 0.85 \\ \hline
 Maximum & 2.66 & -0.104 & 0.66 \\ \hline
 Cutoff & 0.38 & 1.217 & 0.32 \\ \hline
 Sbert & 0.57 & 1.226 & 0.31 \\ \hline
+\end{tabular}%
+}
+\caption{Análisis de los resultados por heurística en los tests 1-5}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table:heuristic_test_analysis}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6 (11 dimensiones)}} \\ \hline
 Balance & 1.68 & 1.265 & 0.41 \\ \hline
 Power & 2.27 & 1.190 & 0.46 \\ \hline
@@ -846,7 +893,7 @@ Cutoff & 3.54 & 1.375 & 0.56 \\ \hline
 Sbert & 3.79 & 1.265 & 0.67 \\ \hline
 \end{tabular}%
 }
-\caption{Análisis de los resultados por heurística en cada test}
+\caption{Análisis de los resultados por heurística en los tests 6-10}
 \end{table}
 
 \begin{table}[H]
