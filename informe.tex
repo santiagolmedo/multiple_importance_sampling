@@ -223,37 +223,30 @@ Se quiere encontrar una heurística que le de un peso de 1 a $p1$ y 0 a $p2$.
 
 \section{Experimentación práctica}
 
-Dentro de esta sección se presenta la implementación de MIS en un conjunto de pruebas que permite analizar el comportamiento de MIS en distintos escenarios.
+Dentro de esta sección se presenta la implementación del MIS en un conjunto de pruebas que va a permitir analizar el comportamiento de MIS en distintos escenarios.
 
 \subsection{Prueba 1 - Análisis de un caso simple}
 
-La primera función se utlizó para familiarizarse con el algoritmo y verificar que el código implementado funcionaba correctamente.
+La primera función se utilizó para familiarizarse con el algoritmo y verificar que el código implementado funcionaba correctamente.
 Se corroboró la correctitud del MIS implementado usando distintas heurísticas y se utilizó el código como base para las pruebas siguientes.
 
 \subsubsection{Función}
-La función que examinamos se define para un conjunto de valores \( x \) y rangos específicos. Para cada rango \( [a, b] \), la función se expresa como:
-\begin{equation}
-f(x) = \sum \max\left(0, -\frac{4}{(b - a)^2} (x - a)(x - b)\right)
-\end{equation}
+La función que examinamos se define para un conjunto de valores \( x \) y rangos específicos. Para cada rango \( [a_{i}, b_{i}] \), la función se expresa como:
+$$
+f(x) = \sum_{i} \max\left(0, -\frac{4}{(b_{i} - a_{i})^2} (x - a_{i})(x - b_{i})\right)
+$$
 Aquí, la suma se lleva a cabo sobre los diferentes rangos considerados.
 
 \subsubsection{Distribuciones de Muestreo}
-La PDF utilizada corresponde a la de una distribución normal, caracterizada por una media \( \mu \) y una desviación estándar \( \sigma \). La fórmula es la siguiente:
-\begin{equation}
-p(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
-\end{equation}
 
-La función que examinamos se define para un conjunto de valores \( x \) y rangos específicos. Para cada rango \( [a, b] \), la función se expresa como:
-\begin{equation}
-f(x) = \sum \max\left(0, -\frac{4}{(b - a)^2} (x - a)(x - b)\right)
-\end{equation}
-Aquí, la suma se lleva a cabo sobre los diferentes rangos considerados.
+Para tomar las muestras, se consideraron 3 distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
+La distribución de muestreo \( p_{i}(x) \) se definió como una distribución normal con media \( \mu_{i} \) y desviación estándar \( \sigma_{i} \).
 
-\subsubsection{Función de Densidad de Probabilidad (PDF)}
-La PDF utilizada corresponde a la de una distribución normal, caracterizada por una media \( \mu \) y una desviación estándar \( \sigma \). La fórmula es la siguiente:
-\begin{equation}
+Luego, la PDF utilizada corresponde a la de una distribución normal, caracterizada por una media \( \mu \) y una desviación estándar \( \sigma \). La fórmula es la siguiente:
+$$
 p(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
-\end{equation}
+$$
+
 
 \subsubsection{Ejemplo}
 
@@ -266,9 +259,14 @@ Para poder visualizar la función se considera el siguiente ejemplo donde:
     \item \textbf{\( b_{i} \)}: [7.0, 11.0, 16.5]
 \end{itemize}
 
-En la figura se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
-A su vez, se hizo una corrida con balance heuristic y ver en rojo los puntos muestreados.
-%poner imagen
+En la figura \ref{fig:mis1} se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
+A su vez, se hizo una corrida con balance heuristic y se puede ver en rojo los puntos muestreados.
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{Figure_1_mis.png}
+\caption{Función \( f(x) \) y distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).}
+\label{fig:mis1}
+\end{figure}
 
 \subsubsection{Pruebas realizadas}
 
@@ -288,7 +286,8 @@ Para el análisis se hizo lo siguiente:
           A su vez, se calculó el promedio de los errores comparados con una estimación hecha con quad y el promedio del tiempo de cómputo.
 \end{itemize}
 
-Una, vez hecho esto, debido a la extensión de los resultados, se decidió hacer el siguiente análisis de la varianza de las estimaciones, las desviaciones estándar de las estimaciones, el error de las estimaciones y el promedio del error de las desviaciones en comparación con quad.
+Una, vez hecho esto, debido a la extensión de los resultados, se decidió hacer el siguiente análisis de la varianza de las estimaciones, las desviaciones estándar de las estimaciones, el error de las estimaciones y el promedio del error de las desviaciones en comparación con el método de cuadratura.
+Esto último se decidió ya que no se cuenta con un cálculo exacto de la integral y se decidió usar el método de cuadratura como referencia.
 Este análisis se hizo para:
 
 \begin{itemize}
@@ -463,10 +462,14 @@ donde cada \( f_i(\mathbf{x}) \) es definida por:
 Aquí, \( a_{ij} \) y \( b_{ij} \) son constantes positivas que determinan la anchura y la posición de la función \( f_i \) en la dimensión \( j \), respectivamente.
 
 Para calcular el volumen (integral) de esta función sobre el espacio \( n \)-dimensional, consideramos la integral de cada componente \textit{sech}, que se simplifica a \( \frac{\pi}{a_i} \) para cada dimensión. Por lo tanto, el volumen total se obtiene como:
-\[ V = \prod_{i=1}^{n} \frac{\pi}{a_i} = \frac{\pi^n}{\prod_{i=1}^{n} a_i} \]
+\[ V = \sum_{i=1}^{m} \prod_{i=1}^{n} \frac{\pi}{a_i} = \sum_{i=1}^{m} \frac{\pi^n}{\prod_{i=1}^{n} a_i} \]
 
 Para la aproximación gaussiana de la función \textit{sech} en múltiples dimensiones, consideramos gaussianas estándar con medias centradas y desviaciones estándar ajustadas.
-La correspondencia entre las "anchuras" de las funciones \textit{sech} y las desviaciones estándar de las gaussianas se establece mediante un mapeo aproximado, asegurando que ambas funciones tengan anchuras comparables en el punto donde caen a la mitad de su valor máximo.
+La correspondencia entre las \"anchuras\" de las funciones \textit{sech} y las desviaciones estándar de las gaussianas se establece mediante un mapeo aproximado, asegurando que ambas funciones tengan anchuras comparables en el punto donde caen a la mitad de su valor máximo.
+
+\color{red}
+aca se podria explicar mas lo que se hizo con el sigma
+\color{black}
 
 El objetivo principal de este análisis es aplicar el MIS para estimar la integral de una función compleja, que es una suma de funciones \textit{sech} multidimensionales, a través de varias distribuciones propuestas.
 Esta función nos va a permitir analizar el MIS en varias dimensiones y comparar las diferentes heurísticas implementadas.
@@ -479,12 +482,17 @@ Para poder visualizar la función se considera el siguiente ejemplo donde:
 
 \begin{itemize}
     \item \textbf{\( a_{ij} \)}: [[2, 2], [2, 2], [2, 2]]
-    \item \textbf{\( b_{ij} \)}: [[91, 22], [-81, -90], [31, 29]]
+    \item \textbf{\( b_{ij} \)}: [[39, -7], [45, -37], [-36, -3]]
 \end{itemize}
 
-En la figura se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
+En la figura \ref{fig:mis2} se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
 A su vez, se hizo una corrida con balance heuristic y ver en rojo, verde y azul los puntos muestreados.
-%poner imagen
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{Figure_2_mis.png}
+\caption{Función \( f(x) \) y distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).}
+\label{fig:mis2}
+\end{figure}
 
 \subsubsection{Pruebas realizadas}
 
@@ -652,19 +660,18 @@ La heurística 'Balance' muestra una reducción sustancial en la varianza a medi
 
 \paragraph{Error de las Estimaciones}
 Los errores de 'Balance' son relativamente bajos y consistentes, lo que sugiere una buena precisión en general.
-'Power' y 'Maximum' muestran fluctuaciones en el error, algunas negativas, lo que podría indicar sobreestimación o subestimación en ciertos casos.
+'Power' y 'Maximum' muestran fluctuaciones en el error, algunas negativas, lo que indica sobreestimación o subestimación en ciertos casos.
 'Cutoff' presenta errores que sugieren una subestimación significativa en varios tamaños de muestra.
 'Sbert' tiene errores variados, pero tienden a ser menores, especialmente con muestras más grandes.
 
 \paragraph{Desviaciones Estándar de las Estimaciones}
 'Balance' y 'Sbert' tienen desviaciones estándar que disminuyen con el tamaño de la muestra, indicando una mayor precisión a medida que se incrementa el número de muestras.
-'Power', 'Maximum' y 'Cutoff' muestran un comportamiento más errático en la desviación estándar, lo que podría reflejar una sensibilidad a la especificidad del problema o a la distribución de la función objetivo.
+'Power', 'Maximum' y 'Cutoff' muestran un comportamiento más errático en la desviación estándar, lo que refleja que la función a estimar no son las condiciones donde estas heurísticas se destacan.
 
 \paragraph{Dimensionalidad}
 2-Dimensiones (Test 1): Todas las heurísticas funcionan bien, con varianzas y errores mínimos, lo que indica que el MIS es efectivo en espacios de baja dimensión para todas las heurísticas probadas.
 
-3-Dimensiones en Adelante: A medida que la dimensión aumenta, se observa un aumento general en la varianza y la desviación estándar para todas las heurísticas. Esto es esperado debido a la "maldición de la dimensionalidad", donde el espacio de búsqueda se vuelve exponencialmente más grande.
-La heurística 'Sbert' parece tener un rendimiento inconsistente en función de la dimensión, con una varianza particularmente alta en la dimensión 4, lo que sugiere que su eficacia puede depender de la especificidad del problema.
+3-Dimensiones en Adelante: A medida que la dimensión aumenta, se observa un aumento general en la varianza y la desviación estándar para todas las heurísticas. La heurística 'Sbert' parece tener un rendimiento inconsistente en función de la dimensión, con una varianza particularmente alta en la dimensión 4, lo que sugiere que su eficacia puede depender de la especificidad del problema.
 'Balance' tiende a mantener un mejor control sobre la varianza y la desviación estándar, incluso a medida que la dimensión aumenta, lo que indica que puede ser una heurística más robusta en espacios de mayor dimensión.
 
 Dimensiones Altas (Test 7-10): En espacios de alta dimensión, todas las heurísticas luchan con un aumento significativo en la varianza y la desviación estándar, pero algunas como 'Balance' y 'Sbert' parecen controlar mejor la escalada de estos valores.
@@ -672,7 +679,7 @@ La heurística 'Maximum' muestra la varianza más alta en la dimensión 9, lo qu
 'Cutoff' también muestra una alta varianza en dimensiones más altas, especialmente en la dimensión 10, lo que puede indicar problemas de eficiencia o precisión en espacios complejos.
 
 \paragraph{Conclusiones}
-El MIS comienza a ser competitivo con tamaños de muestra a partir de 1000 en adelante, donde se observa una mejora notable en la varianza y los errores para la mayoría de las heurísticas. La heurística 'Balance' parece ser la más robusta y consistente, seguida por 'Sbert', que también muestra un buen rendimiento. 'Power', 'Maximum' y 'Cutoff' presentan desafíos en términos de consistencia y precisión, lo que podría requerir una investigación más detallada para entender sus condiciones óptimas de uso.
+El MIS comienza a ser competitivo con tamaños de muestra a partir de 1000 en adelante, donde se observa una mejora notable en la varianza y los errores para la mayoría de las heurísticas. La heurística 'Balance' parece ser la más robusta y consistente, seguida por 'Sbert', que también muestra un buen rendimiento. 'Power', 'Maximum' y 'Cutoff' presentan desafíos en términos de consistencia y precisión, lo que sugiere, como se mencionó antes, que estas no son sus condiciones óptimas de uso.
 
 En términos de dimensionalidad, MIS mantiene un rendimiento aceptable hasta aproximadamente 3 dimensiones sin mucha pérdida de precisión. Sin embargo, a medida que la dimensión aumenta, se necesita un tamaño de muestra más grande para mantener la precisión y la confiabilidad de las estimaciones. Esto destaca la importancia de una selección cuidadosa del tamaño de la muestra y la heurística en función de la complejidad del espacio de integración.
 
@@ -680,7 +687,9 @@ En términos de dimensionalidad, MIS mantiene un rendimiento aceptable hasta apr
 
 En esta sección, nos centramos en el análisis de una función multidimensional que emerge del producto de hipercubos en un espacio de \( n + 1 \) dimensiones.
 La razón de implementar este ejemplo es hacer una prueba de la implementación del MIS en un caso donde haya una función de mayor extensión con una integral de bajo valor y una función más acotada con una integral de alto valor.
+\color{red}
 En cierto sentido este caso es similar a escenarios que se pueden dar en computación gráfica porque...
+\color{black}
 
 \subsubsection{Construcción y Caracterización de las Funciones}
 Las funciones multidimensionales \( f \) y \( g \), definidas hipercubos, pueden representar una amplia gama de fenómenos en el contexto de problemas físicos, distribuciones de probabilidad o modelos matemáticos en espacios de alta dimensión. Se caracterizan por:
@@ -722,23 +731,23 @@ En la aproximación de las funciones definidas en los hipercubos \( H_f \) y \( 
 
 \paragraph{Cálculo de las Medias (\( \mu \))}
 Las medias de las Gaussianas se calculan como el punto medio de cada hipercubo, asegurando que las Gaussianas estén centradas en la región más relevante de cada función. Para un hipercubo definido por los límites \( a \) y \( b \) en cada dimensión, la media \( \mu \) se calcula como:
-\begin{equation}
+$$
     \mu = \frac{a + b}{2}
-\end{equation}
+$$
 Esta elección de media centra la Gaussiana en el hipercubo, capturando de manera efectiva su contribución más significativa.
 
 \paragraph{Cálculo de las Varianzas (\( \sigma^2 \))}
 Las varianzas de las Gaussianas se definen de tal manera que las colas de las Gaussianas cubran eficientemente la extensión de los hipercubos. La varianza en cada dimensión se calcula como un cuarto de la longitud del lado del hipercubo en esa dimensión:
-\begin{equation}
+$$
     \sigma = \frac{b - a}{4}
-\end{equation}
+$$
 Esta metodología asegura una cobertura adecuada del hipercubo y evita una dispersión excesiva que podría llevar a un muestreo ineficiente.
 
 \paragraph{Cobertura de las Muestras y Elección de \( \sigma \)}
-La elección de \( \sigma \) como un cuarto de la longitud del lado del hipercubo implica que aproximadamente el 68\% de las muestras generadas por la Gaussiana caerán dentro del hipercubo, dado que una desviación estándar (\( \sigma \)) a cada lado de la media cubre aproximadamente el 68\% de la distribución en una Gaussiana. Esta proporción es un balance entre la cobertura eficiente del espacio del hipercubo y la inclusión de una región suficiente fuera de este para un muestreo representativo, crucial para la precisión y eficiencia del MIS en escenarios de alta complejidad.
+La elección de \( \sigma \) como un cuarto de la longitud del lado del hipercubo implica que aproximadamente el 68\% de las muestras generadas por la Gaussiana caerán dentro del hipercubo, dado que una desviación estándar (\( \sigma \)) a cada lado de la media cubre aproximadamente el 68\% de la distribución en una Gaussiana. Esta proporción es un balance entre la cobertura eficiente del espacio del hipercubo y la inclusión de una región suficiente fuera de este para un muestreo representativo.
 
 \subsubsection{Ejemplo}
-Para ilustrar de manera más concreta el concepto y las metodologías discutidas, consideremos un ejemplo específico en un espacio bidimensional. En este ejemplo, las funciones \( f \) y \( g \) están definidas dentro de sus respectivos hipercubos en un espacio de dos dimensiones, y sus constantes asociadas son \( c_f = 0.5 \) y \( c_g = 5 \), respectivamente.
+Consideremos un ejemplo específico en un espacio bidimensional. En este ejemplo, las funciones \( f \) y \( g \) están definidas dentro de sus respectivos hipercubos en un espacio de dos dimensiones, y sus constantes asociadas son \( c_f = 0.5 \) y \( c_g = 5 \), respectivamente.
 
 \paragraph{Configuración del Hipercubo para \( f \)}
 El hipercubo para la función \( f \), denotado como \( H_f \), está definido en el rango de \(-10\) a \(10\) en ambas dimensiones. Matemáticamente, esto se expresa como:
@@ -757,8 +766,14 @@ De manera similar, el hipercubo para la función \( g \), denotado como \( H_g \
 Aquí, la constante \( c_g \) de \( g(x) \) es \( 5 \), indicando que \( g(x) = 5 \) dentro de \( H_g \) y es \( 0 \) fuera de este.
 
 \paragraph{Implicaciones y Visualización}
-Este ejemplo se puede ver en la siguiente imagen donde se generaron 500 muestras y se corrió el mis con balance heuristic.
-% poner imagen
+Este ejemplo se puede ver en la figura \ref{fig:mis3} donde se generaron 5000 muestras y se corrió el MIS con balance heuristic.
+La figura muestra las funciones \( f(x) \) y \( g(x) \) en sus respectivos hipercubos, la función \( f(x) \cdot g(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada función.
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{balance_heuristic.png}
+\caption{Funciones \( f(x) \) y \( g(x) \) en sus respectivos hipercubos, función \( f(x) \cdot g(x) \) y distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).}
+\label{fig:mis3}
+\end{figure}
 
 \subsubsection{Pruebas realizadas}
 
@@ -922,14 +937,15 @@ En términos de varianza, la heurística 'Balance' muestra un rendimiento consis
 Respecto a los errores, 'Balance' y 'Sbert' mantienen errores bajos y consistentes a través de los diferentes tamaños de muestra, lo que implica una mayor precisión en sus estimaciones. En cambio, 'Maximum' se inclina hacia errores negativos, indicando una tendencia a la subestimación. 'Cutoff' y 'Power' muestran más variabilidad en sus errores, lo que sugiere una precisión menos consistente.
 
 \paragraph{Desviaciones Estándar de las Estimaciones}
-Las desviaciones estándar más bajas se observan en las heurísticas 'Balance' y 'Sbert', lo que señala una mayor precisión y fiabilidad en sus estimaciones. 'Power', 'Maximum' y 'Cutoff' exhiben desviaciones estándar más altas y variables, lo que refleja una consistencia y precisión menos fiables.
-
+Las desviaciones estándar más bajas se observan en las heurísticas 'Balance' y 'Sbert', lo que señala una mayor precisión y fiabilidad en sus estimaciones. 'Power', 'Maximum' y 'Cutoff' muestran desviaciones estándar más altas y variables, lo que refleja una consistencia y precisión menos fiables.
 
 \paragraph{Dimensionalidad}
 La dimensionalidad afecta significativamente el rendimiento de las heurísticas. En dimensiones más bajas, todas las heurísticas muestran un buen rendimiento. Sin embargo, en dimensiones más altas, 'Balance' y 'Sbert' logran mantener un control más efectivo sobre la varianza y el error, mientras que 'Maximum' y 'Cutoff' experimentan un aumento significativo en la varianza y el error.
 
 \paragraph{Conclusiones}
 En resumen, 'Balance' y 'Sbert' emergen como las heurísticas más robustas y consistentes en la Prueba 3, demostrando una buena precisión y estabilidad a lo largo de diferentes tamaños de muestra y en varias dimensiones. En contraste, 'Maximum' muestra una tendencia a la subestimación y es menos confiable, especialmente en dimensiones más altas. 'Power' y 'Cutoff' ofrecen un rendimiento intermedio, pero su precisión y consistencia son menos predecibles en comparación con 'Balance' y 'Sbert'.
+
+\section{Conclusiones}
 
 \end{document}
 
