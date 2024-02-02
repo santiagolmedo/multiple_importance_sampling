@@ -1,0 +1,3102 @@
+{
+    "Test 0": {
+        "test_values": {
+            "means": [
+                6.4700167922409895,
+                11.465983943255356,
+                16.76485888801662
+            ],
+            "std_devs": [
+                0.7178286623185792,
+                0.716695854698145,
+                0.8396415484186154
+            ],
+            "lower_bounds": [
+                5.0343594676038315,
+                10.032592233859067,
+                15.085575791179387
+            ],
+            "upper_bounds": [
+                7.9056741168781475,
+                12.899375652651646,
+                18.44414198485385
+            ],
+            "quad_result": 6.0644428529004255
+        },
+        "balance": {
+            "10": {
+                "min estimate": 3.6609904082052083,
+                "max estimate": 7.168049050208484,
+                "mean of mis estimate": 6.052156065812338,
+                "variance of estimates": 0.29435162284047706,
+                "mean of variances": 0.30810019338279965,
+                "mean of alternate variances": 0.3081001933827996,
+                "mean of standard deviations": 0.48961584570304795,
+                "mean of errors": 0.4335294017463832,
+                "mean time taken": "0.0002 seconds"
+            },
+            "25": {
+                "min estimate": 4.621623067451082,
+                "max estimate": 6.883981234947469,
+                "mean of mis estimate": 6.0732773220620935,
+                "variance of estimates": 0.10106178790795703,
+                "mean of variances": 0.11178836087208897,
+                "mean of alternate variances": 0.11178836087208897,
+                "mean of standard deviations": 0.31766321809531384,
+                "mean of errors": 0.2574118226630029,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.049505229561734,
+                "max estimate": 6.6151285992990525,
+                "mean of mis estimate": 6.057655135734109,
+                "variance of estimates": 0.049795230779616166,
+                "mean of variances": 0.05389402725495198,
+                "mean of alternate variances": 0.053894027254951994,
+                "mean of standard deviations": 0.2270259083067536,
+                "mean of errors": 0.17651798937410643,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.5264316796048325,
+                "max estimate": 6.527357649462212,
+                "mean of mis estimate": 6.069685156890438,
+                "variance of estimates": 0.02568360155574375,
+                "mean of variances": 0.027693413751368075,
+                "mean of alternate variances": 0.02769341375136807,
+                "mean of standard deviations": 0.16448664404338587,
+                "mean of errors": 0.12746708471267845,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 5.416872741385559,
+                "max estimate": 6.415633632058444,
+                "mean of mis estimate": 6.0646400479511335,
+                "variance of estimates": 0.01763392949914583,
+                "mean of variances": 0.01813123694884396,
+                "mean of alternate variances": 0.018131236948843957,
+                "mean of standard deviations": 0.13361067638184737,
+                "mean of errors": 0.10450492208963898,
+                "mean time taken": "0.0025 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 4.216014003527329,
+                "max estimate": 7.091134183268703,
+                "mean of mis estimate": 6.080877385095386,
+                "variance of estimates": 0.2732092630616304,
+                "mean of variances": 0.29429302066961543,
+                "mean of alternate variances": 0.29429302066961543,
+                "mean of standard deviations": 0.478610261170937,
+                "mean of errors": 0.42281357686451543,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.79373577170526,
+                "max estimate": 6.8462220047549245,
+                "mean of mis estimate": 6.056220009393749,
+                "variance of estimates": 0.10528729344943888,
+                "mean of variances": 0.11567731815868615,
+                "mean of alternate variances": 0.11567731815868618,
+                "mean of standard deviations": 0.32382839814420156,
+                "mean of errors": 0.25905885732203604,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.264655716296457,
+                "max estimate": 6.65665506813891,
+                "mean of mis estimate": 6.078248454608655,
+                "variance of estimates": 0.04868804371739498,
+                "mean of variances": 0.052582730644296805,
+                "mean of alternate variances": 0.052582730644296805,
+                "mean of standard deviations": 0.2243468247524881,
+                "mean of errors": 0.17752518724873295,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.468127308793096,
+                "max estimate": 6.534837478271008,
+                "mean of mis estimate": 6.071431203504263,
+                "variance of estimates": 0.02520451980415261,
+                "mean of variances": 0.02702420241213219,
+                "mean of alternate variances": 0.02702420241213219,
+                "mean of standard deviations": 0.16254533712029012,
+                "mean of errors": 0.1270376657370273,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.581996870485978,
+                "max estimate": 6.433378374490547,
+                "mean of mis estimate": 6.070256756705938,
+                "variance of estimates": 0.016619048074530483,
+                "mean of variances": 0.018047343253612395,
+                "mean of alternate variances": 0.01804734325361238,
+                "mean of standard deviations": 0.13336675318052968,
+                "mean of errors": 0.10383387699363127,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 4.036589591049485,
+                "max estimate": 7.208822555004728,
+                "mean of mis estimate": 6.061305737510218,
+                "variance of estimates": 0.2758162279034957,
+                "mean of variances": 0.2994915899177827,
+                "mean of alternate variances": 0.29949158991778274,
+                "mean of standard deviations": 0.482987058331903,
+                "mean of errors": 0.4261978884724699,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.819774749026387,
+                "max estimate": 6.815448631010518,
+                "mean of mis estimate": 6.065541255988441,
+                "variance of estimates": 0.09286727907731941,
+                "mean of variances": 0.11215572441407841,
+                "mean of alternate variances": 0.11215572441407841,
+                "mean of standard deviations": 0.31940389815640935,
+                "mean of errors": 0.24240858912748936,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.201563694075959,
+                "max estimate": 6.602076486234983,
+                "mean of mis estimate": 6.059855724282939,
+                "variance of estimates": 0.04940908814541471,
+                "mean of variances": 0.054276996134703964,
+                "mean of alternate variances": 0.054276996134703964,
+                "mean of standard deviations": 0.22825730131647012,
+                "mean of errors": 0.17801550032004407,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.384294984565023,
+                "max estimate": 6.506946161029496,
+                "mean of mis estimate": 6.063503480732004,
+                "variance of estimates": 0.027453157817530233,
+                "mean of variances": 0.027619754762719224,
+                "mean of alternate variances": 0.027619754762719235,
+                "mean of standard deviations": 0.16428820583104783,
+                "mean of errors": 0.12874274539253774,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.622823818506927,
+                "max estimate": 6.465445921792916,
+                "mean of mis estimate": 6.062372079276208,
+                "variance of estimates": 0.016605249420167483,
+                "mean of variances": 0.01805531458695859,
+                "mean of alternate variances": 0.018055314586958585,
+                "mean of standard deviations": 0.13340962703176262,
+                "mean of errors": 0.10211387824559634,
+                "mean time taken": "0.0022 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 3.5787906518330224,
+                "max estimate": 7.199152098375107,
+                "mean of mis estimate": 6.061179596842028,
+                "variance of estimates": 0.293953627822062,
+                "mean of variances": 0.30222818769318077,
+                "mean of alternate variances": 0.3022281876931807,
+                "mean of standard deviations": 0.48250486010849103,
+                "mean of errors": 0.43015527815841303,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.86992795118703,
+                "max estimate": 6.807263732606966,
+                "mean of mis estimate": 6.074939112933534,
+                "variance of estimates": 0.10278743089889153,
+                "mean of variances": 0.11330725358284266,
+                "mean of alternate variances": 0.11330725358284266,
+                "mean of standard deviations": 0.32073795167701474,
+                "mean of errors": 0.2536549993367939,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.274411585420669,
+                "max estimate": 6.6205917079834915,
+                "mean of mis estimate": 6.079061601536922,
+                "variance of estimates": 0.0444492169960723,
+                "mean of variances": 0.05227986234255558,
+                "mean of alternate variances": 0.05227986234255558,
+                "mean of standard deviations": 0.22374456224493186,
+                "mean of errors": 0.17065333882239908,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.4866907708490915,
+                "max estimate": 6.495358878930428,
+                "mean of mis estimate": 6.077803825708647,
+                "variance of estimates": 0.02542285101064534,
+                "mean of variances": 0.026938257687218845,
+                "mean of alternate variances": 0.026938257687218845,
+                "mean of standard deviations": 0.1622362131268744,
+                "mean of errors": 0.12773645734497868,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.510398286368137,
+                "max estimate": 6.462045521523405,
+                "mean of mis estimate": 6.068008716450513,
+                "variance of estimates": 0.01710883343983598,
+                "mean of variances": 0.018103660132957337,
+                "mean of alternate variances": 0.018103660132957337,
+                "mean of standard deviations": 0.13363903542245475,
+                "mean of errors": 0.10383972973126535,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 3.5307326200282843,
+                "max estimate": 7.112433329846772,
+                "mean of mis estimate": 6.0725227664583,
+                "variance of estimates": 0.25345763340697275,
+                "mean of variances": 0.30502341530102034,
+                "mean of alternate variances": 0.3050234153010203,
+                "mean of standard deviations": 0.4877782490298496,
+                "mean of errors": 0.40439709291549003,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.710234675489431,
+                "max estimate": 6.841824673808245,
+                "mean of mis estimate": 6.067167188307812,
+                "variance of estimates": 0.10813864881355909,
+                "mean of variances": 0.11335370802757182,
+                "mean of alternate variances": 0.11335370802757183,
+                "mean of standard deviations": 0.3198945652039614,
+                "mean of errors": 0.26594285403002216,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.325024514003884,
+                "max estimate": 6.635200086471982,
+                "mean of mis estimate": 6.059659401671895,
+                "variance of estimates": 0.046012700693325866,
+                "mean of variances": 0.05378898378812393,
+                "mean of alternate variances": 0.05378898378812394,
+                "mean of standard deviations": 0.2272632924003959,
+                "mean of errors": 0.17351494271594556,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.510761833593789,
+                "max estimate": 6.474272572745725,
+                "mean of mis estimate": 6.072407299741957,
+                "variance of estimates": 0.02558680761367245,
+                "mean of variances": 0.02713036916208985,
+                "mean of alternate variances": 0.027130369162089853,
+                "mean of standard deviations": 0.16291061734393397,
+                "mean of errors": 0.12829308856579963,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.636396356886021,
+                "max estimate": 6.425308524208283,
+                "mean of mis estimate": 6.063122547878673,
+                "variance of estimates": 0.016166728258161286,
+                "mean of variances": 0.018033237900489964,
+                "mean of alternate variances": 0.018033237900489964,
+                "mean of standard deviations": 0.13332492366173052,
+                "mean of errors": 0.10322780648758385,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    },
+    "Test 1": {
+        "test_values": {
+            "means": [
+                4.8303054453432175,
+                9.392304446739075,
+                12.796547527409157
+            ],
+            "std_devs": [
+                0.5129003418150831,
+                0.9080791126131208,
+                0.5175296342514026
+            ],
+            "lower_bounds": [
+                3.8045047617130514,
+                7.5761462215128335,
+                11.76148825890635
+            ],
+            "upper_bounds": [
+                5.856106128973384,
+                11.208462671965316,
+                13.831606795911963
+            ],
+            "quad_result": 5.169357573134684
+        },
+        "balance": {
+            "10": {
+                "min estimate": 3.1321908088801766,
+                "max estimate": 6.223903733297612,
+                "mean of mis estimate": 5.185468625119796,
+                "variance of estimates": 0.20962070002020772,
+                "mean of variances": 0.48473586983579114,
+                "mean of alternate variances": 0.48473586983579114,
+                "mean of standard deviations": 0.6796865435456388,
+                "mean of errors": 0.36348551796987966,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.083686363184462,
+                "max estimate": 5.810532918756933,
+                "mean of mis estimate": 5.1671224834504335,
+                "variance of estimates": 0.08051241318789443,
+                "mean of variances": 0.17629492790219425,
+                "mean of alternate variances": 0.17629492790219428,
+                "mean of standard deviations": 0.4156472576332678,
+                "mean of errors": 0.22508844560199298,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.460462582096582,
+                "max estimate": 5.667222316287393,
+                "mean of mis estimate": 5.169361127736185,
+                "variance of estimates": 0.03573501079152601,
+                "mean of variances": 0.08197821871309639,
+                "mean of alternate variances": 0.08197821871309637,
+                "mean of standard deviations": 0.28500944404169487,
+                "mean of errors": 0.15034553770853198,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 4.616567357132661,
+                "max estimate": 5.511026392950549,
+                "mean of mis estimate": 5.163044842649111,
+                "variance of estimates": 0.020714918864861296,
+                "mean of variances": 0.04187383394633585,
+                "mean of alternate variances": 0.04187383394633585,
+                "mean of standard deviations": 0.20412594745940055,
+                "mean of errors": 0.11479306698775313,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 4.761343995744019,
+                "max estimate": 5.4993918113934095,
+                "mean of mis estimate": 5.166362752047824,
+                "variance of estimates": 0.0121871280129854,
+                "mean of variances": 0.027530573579565384,
+                "mean of alternate variances": 0.027530573579565384,
+                "mean of standard deviations": 0.16564327837496653,
+                "mean of errors": 0.08784268293153892,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 3.254478006212821,
+                "max estimate": 6.150880217135393,
+                "mean of mis estimate": 5.151361743332853,
+                "variance of estimates": 0.2252068176319404,
+                "mean of variances": 0.4934485446987549,
+                "mean of alternate variances": 0.49344854469875493,
+                "mean of standard deviations": 0.685506234218824,
+                "mean of errors": 0.37752091389422776,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.076359489183377,
+                "max estimate": 5.784484455386285,
+                "mean of mis estimate": 5.178511305740156,
+                "variance of estimates": 0.08744908008393748,
+                "mean of variances": 0.17500743243174657,
+                "mean of alternate variances": 0.1750074324317466,
+                "mean of standard deviations": 0.4144139128028905,
+                "mean of errors": 0.23556429235955806,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.354673491314714,
+                "max estimate": 5.648112713259151,
+                "mean of mis estimate": 5.180791190493487,
+                "variance of estimates": 0.03859036369888954,
+                "mean of variances": 0.0818801766931187,
+                "mean of alternate variances": 0.0818801766931187,
+                "mean of standard deviations": 0.2847583306288542,
+                "mean of errors": 0.15916080112386718,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 4.605818016764014,
+                "max estimate": 5.671575245252579,
+                "mean of mis estimate": 5.169448229883617,
+                "variance of estimates": 0.01876165449128686,
+                "mean of variances": 0.04209565348103938,
+                "mean of alternate variances": 0.04209565348103937,
+                "mean of standard deviations": 0.2046823853853035,
+                "mean of errors": 0.10915125780785817,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 4.669396521997868,
+                "max estimate": 5.445759621647851,
+                "mean of mis estimate": 5.167759007374532,
+                "variance of estimates": 0.012919342635718244,
+                "mean of variances": 0.027796172438876297,
+                "mean of alternate variances": 0.027796172438876297,
+                "mean of standard deviations": 0.1664359314291769,
+                "mean of errors": 0.09076826582234203,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 2.9740547199814653,
+                "max estimate": 6.160272379637964,
+                "mean of mis estimate": 5.1868914288414105,
+                "variance of estimates": 0.20240741698469758,
+                "mean of variances": 0.4894071751864957,
+                "mean of alternate variances": 0.48940717518649574,
+                "mean of standard deviations": 0.6831167534090319,
+                "mean of errors": 0.35392863277400677,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 3.996150461105086,
+                "max estimate": 5.812890958688879,
+                "mean of mis estimate": 5.161718088484092,
+                "variance of estimates": 0.08236458383945237,
+                "mean of variances": 0.1780718287790281,
+                "mean of alternate variances": 0.17807182877902814,
+                "mean of standard deviations": 0.41773513882628516,
+                "mean of errors": 0.2247475345122299,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.4262976277274095,
+                "max estimate": 5.685396338743597,
+                "mean of mis estimate": 5.165948499695931,
+                "variance of estimates": 0.03889906299790476,
+                "mean of variances": 0.08289197453641782,
+                "mean of alternate variances": 0.08289197453641785,
+                "mean of standard deviations": 0.28645311573281207,
+                "mean of errors": 0.15571733085621883,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 4.667648765420176,
+                "max estimate": 5.511816133885682,
+                "mean of mis estimate": 5.169603638246128,
+                "variance of estimates": 0.018858631615406445,
+                "mean of variances": 0.042349633905073875,
+                "mean of alternate variances": 0.042349633905073875,
+                "mean of standard deviations": 0.2052703343451061,
+                "mean of errors": 0.11071794145712377,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 4.767863516928717,
+                "max estimate": 5.471979880240899,
+                "mean of mis estimate": 5.172987181940872,
+                "variance of estimates": 0.012750798430479915,
+                "mean of variances": 0.027799936195257734,
+                "mean of alternate variances": 0.02779993619525773,
+                "mean of standard deviations": 0.16645195118545889,
+                "mean of errors": 0.0907497603709813,
+                "mean time taken": "0.0022 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 2.259283087795591,
+                "max estimate": 6.111802037678709,
+                "mean of mis estimate": 5.185055383538836,
+                "variance of estimates": 0.2134407899482767,
+                "mean of variances": 0.4827057721261469,
+                "mean of alternate variances": 0.48270577212614685,
+                "mean of standard deviations": 0.6776343564275953,
+                "mean of errors": 0.3670480499832489,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 3.955690720298874,
+                "max estimate": 5.841358728948735,
+                "mean of mis estimate": 5.16949389376882,
+                "variance of estimates": 0.08469200543808729,
+                "mean of variances": 0.17772567286739133,
+                "mean of alternate variances": 0.17772567286739133,
+                "mean of standard deviations": 0.41724306898001995,
+                "mean of errors": 0.23194670456938474,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.449599580153882,
+                "max estimate": 5.608033605210961,
+                "mean of mis estimate": 5.156501565261476,
+                "variance of estimates": 0.040332010810815035,
+                "mean of variances": 0.08350992177466461,
+                "mean of alternate variances": 0.0835099217746646,
+                "mean of standard deviations": 0.28755561536151664,
+                "mean of errors": 0.15924360556785438,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 4.705852778978475,
+                "max estimate": 5.572741254730142,
+                "mean of mis estimate": 5.176012314812163,
+                "variance of estimates": 0.02022807542890889,
+                "mean of variances": 0.04208479865736875,
+                "mean of alternate variances": 0.04208479865736875,
+                "mean of standard deviations": 0.20464576498374407,
+                "mean of errors": 0.1134592161548309,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 4.710310269342231,
+                "max estimate": 5.480352122261377,
+                "mean of mis estimate": 5.171647374544842,
+                "variance of estimates": 0.013087545779350201,
+                "mean of variances": 0.027795128355798022,
+                "mean of alternate variances": 0.027795128355798025,
+                "mean of standard deviations": 0.1664426210273907,
+                "mean of errors": 0.09070061697791348,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 2.767649126002544,
+                "max estimate": 6.144616860433288,
+                "mean of mis estimate": 5.187010576512097,
+                "variance of estimates": 0.20985904153354823,
+                "mean of variances": 0.4879586299937334,
+                "mean of alternate variances": 0.4879586299937334,
+                "mean of standard deviations": 0.6810788401763236,
+                "mean of errors": 0.3599755056493651,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.154234192695195,
+                "max estimate": 5.864533637263005,
+                "mean of mis estimate": 5.173966818914615,
+                "variance of estimates": 0.07728022506632277,
+                "mean of variances": 0.17634718328830193,
+                "mean of alternate variances": 0.17634718328830196,
+                "mean of standard deviations": 0.4157739004304707,
+                "mean of errors": 0.22222239268318908,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.38499591765456,
+                "max estimate": 5.659861660317065,
+                "mean of mis estimate": 5.170169919044214,
+                "variance of estimates": 0.037033833817239355,
+                "mean of variances": 0.08145819427972138,
+                "mean of alternate variances": 0.08145819427972137,
+                "mean of standard deviations": 0.28411932267194534,
+                "mean of errors": 0.1527005953207456,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 4.632667549126731,
+                "max estimate": 5.597789701537198,
+                "mean of mis estimate": 5.172190946425091,
+                "variance of estimates": 0.019274820138948434,
+                "mean of variances": 0.041690651122658,
+                "mean of alternate variances": 0.041690651122658,
+                "mean of standard deviations": 0.20367973872068534,
+                "mean of errors": 0.1104280678629118,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 4.664095138899462,
+                "max estimate": 5.440580412998147,
+                "mean of mis estimate": 5.165395825359971,
+                "variance of estimates": 0.01280224848869099,
+                "mean of variances": 0.027631474661011738,
+                "mean of alternate variances": 0.027631474661011728,
+                "mean of standard deviations": 0.16593729954950445,
+                "mean of errors": 0.08914198372090093,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    },
+    "Test 2": {
+        "test_values": {
+            "means": [
+                2.7487921854540494,
+                8.58052994753325,
+                17.546141552653218
+            ],
+            "std_devs": [
+                0.728118639697737,
+                0.7649169972821493,
+                0.6325895840751468
+            ],
+            "lower_bounds": [
+                1.2925549060585753,
+                7.050695952968952,
+                16.280962384502924
+            ],
+            "upper_bounds": [
+                4.205029464849524,
+                10.11036394209755,
+                18.81132072080351
+            ],
+            "quad_result": 5.668333922697842
+        },
+        "balance": {
+            "10": {
+                "min estimate": 3.9808742900791074,
+                "max estimate": 6.619854828652589,
+                "mean of mis estimate": 5.674287407711096,
+                "variance of estimates": 0.21768651298235261,
+                "mean of variances": 0.26753715746409074,
+                "mean of alternate variances": 0.2675371574640907,
+                "mean of standard deviations": 0.4575156633905399,
+                "mean of errors": 0.37194469895149124,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.525146077532977,
+                "max estimate": 6.377872331274549,
+                "mean of mis estimate": 5.6655186958644155,
+                "variance of estimates": 0.0869525666058575,
+                "mean of variances": 0.09792907019881344,
+                "mean of alternate variances": 0.09792907019881343,
+                "mean of standard deviations": 0.29757689882226623,
+                "mean of errors": 0.23678143403213744,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.909268175001486,
+                "max estimate": 6.1894614164261625,
+                "mean of mis estimate": 5.661340229215635,
+                "variance of estimates": 0.042805863634441235,
+                "mean of variances": 0.04786202380112526,
+                "mean of alternate variances": 0.04786202380112526,
+                "mean of standard deviations": 0.21408177361124783,
+                "mean of errors": 0.1645517282872611,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.049702815666892,
+                "max estimate": 6.079837944102624,
+                "mean of mis estimate": 5.665564560876487,
+                "variance of estimates": 0.022415731433379955,
+                "mean of variances": 0.024255476538083666,
+                "mean of alternate variances": 0.024255476538083656,
+                "mean of standard deviations": 0.1540023728266582,
+                "mean of errors": 0.1201748158340114,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 5.156997189171186,
+                "max estimate": 6.008485063596419,
+                "mean of mis estimate": 5.663262742194474,
+                "variance of estimates": 0.01562226774325816,
+                "mean of variances": 0.015980806917784092,
+                "mean of alternate variances": 0.015980806917784095,
+                "mean of standard deviations": 0.12545394923226347,
+                "mean of errors": 0.09950555301477108,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 3.7612609528980565,
+                "max estimate": 6.914206717836702,
+                "mean of mis estimate": 5.673819942848681,
+                "variance of estimates": 0.2219921242253089,
+                "mean of variances": 0.26998492849658967,
+                "mean of alternate variances": 0.2699849284965897,
+                "mean of standard deviations": 0.46108484060466204,
+                "mean of errors": 0.3788716637300751,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.341145905313485,
+                "max estimate": 6.342501304928185,
+                "mean of mis estimate": 5.663452164375037,
+                "variance of estimates": 0.08773813374169077,
+                "mean of variances": 0.09903550565432946,
+                "mean of alternate variances": 0.09903550565432946,
+                "mean of standard deviations": 0.29952995573857527,
+                "mean of errors": 0.23696912992879385,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.722739324158992,
+                "max estimate": 6.252776300506441,
+                "mean of mis estimate": 5.672151522335027,
+                "variance of estimates": 0.04597519366955767,
+                "mean of variances": 0.04680909221219417,
+                "mean of alternate variances": 0.04680909221219418,
+                "mean of standard deviations": 0.21152820395693397,
+                "mean of errors": 0.1706654365543193,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.053452088838623,
+                "max estimate": 6.059910958095327,
+                "mean of mis estimate": 5.666491916197276,
+                "variance of estimates": 0.022067612621384704,
+                "mean of variances": 0.024200309804846377,
+                "mean of alternate variances": 0.024200309804846387,
+                "mean of standard deviations": 0.1540146202514183,
+                "mean of errors": 0.11814616652470761,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.227034589483546,
+                "max estimate": 6.002517501594287,
+                "mean of mis estimate": 5.66458873214087,
+                "variance of estimates": 0.014224006449179073,
+                "mean of variances": 0.01599257535969366,
+                "mean of alternate variances": 0.015992575359693655,
+                "mean of standard deviations": 0.12556628014521012,
+                "mean of errors": 0.0949144764936489,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 3.4135663730956702,
+                "max estimate": 6.567693201744341,
+                "mean of mis estimate": 5.696496081808276,
+                "variance of estimates": 0.2191381434976861,
+                "mean of variances": 0.2586612497586772,
+                "mean of alternate variances": 0.25866124975867727,
+                "mean of standard deviations": 0.4485075309265311,
+                "mean of errors": 0.3783423193847354,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.394481905597274,
+                "max estimate": 6.391101630156896,
+                "mean of mis estimate": 5.6755262559246225,
+                "variance of estimates": 0.0903177324118497,
+                "mean of variances": 0.0988433892618274,
+                "mean of alternate variances": 0.09884338926182741,
+                "mean of standard deviations": 0.29947667334678635,
+                "mean of errors": 0.24013225927528586,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.928602207881642,
+                "max estimate": 6.172392671927048,
+                "mean of mis estimate": 5.663629457790211,
+                "variance of estimates": 0.04432519448100338,
+                "mean of variances": 0.04714151433243558,
+                "mean of alternate variances": 0.047141514332435575,
+                "mean of standard deviations": 0.21246578863645257,
+                "mean of errors": 0.16795843452007125,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.127918180471582,
+                "max estimate": 6.059173331302363,
+                "mean of mis estimate": 5.668150568820999,
+                "variance of estimates": 0.021528533279609807,
+                "mean of variances": 0.024288239612850822,
+                "mean of alternate variances": 0.024288239612850822,
+                "mean of standard deviations": 0.15420740853001372,
+                "mean of errors": 0.11688892979335606,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.288535809466648,
+                "max estimate": 6.004985294659198,
+                "mean of mis estimate": 5.668869422547749,
+                "variance of estimates": 0.014876496523806704,
+                "mean of variances": 0.015886913434706232,
+                "mean of alternate variances": 0.01588691343470623,
+                "mean of standard deviations": 0.12517466916044523,
+                "mean of errors": 0.09703061665285252,
+                "mean time taken": "0.0022 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 3.0029672958074167,
+                "max estimate": 6.678140971113523,
+                "mean of mis estimate": 5.646209765728647,
+                "variance of estimates": 0.23169492493752492,
+                "mean of variances": 0.28057360888938626,
+                "mean of alternate variances": 0.28057360888938626,
+                "mean of standard deviations": 0.4723940360590294,
+                "mean of errors": 0.39048353030488875,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.558881982429067,
+                "max estimate": 6.418662424071574,
+                "mean of mis estimate": 5.669891477443609,
+                "variance of estimates": 0.09068506159446708,
+                "mean of variances": 0.10078691635864263,
+                "mean of alternate variances": 0.10078691635864263,
+                "mean of standard deviations": 0.3026314246187469,
+                "mean of errors": 0.2383758578972126,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.836451198056174,
+                "max estimate": 6.136281465807158,
+                "mean of mis estimate": 5.673215639560725,
+                "variance of estimates": 0.040518519895287895,
+                "mean of variances": 0.04643920159838331,
+                "mean of alternate variances": 0.0464392015983833,
+                "mean of standard deviations": 0.2112805795141395,
+                "mean of errors": 0.15845898822179946,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.060570504125644,
+                "max estimate": 6.12193071033282,
+                "mean of mis estimate": 5.666118424487389,
+                "variance of estimates": 0.022914929977777207,
+                "mean of variances": 0.024007312999843038,
+                "mean of alternate variances": 0.024007312999843045,
+                "mean of standard deviations": 0.1531676627244416,
+                "mean of errors": 0.1209580354886743,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.235073682549761,
+                "max estimate": 6.030260803418348,
+                "mean of mis estimate": 5.6611638870855865,
+                "variance of estimates": 0.015299172018405152,
+                "mean of variances": 0.016110023207248737,
+                "mean of alternate variances": 0.016110023207248744,
+                "mean of standard deviations": 0.12600254735631197,
+                "mean of errors": 0.09791042274106251,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 3.705866666696978,
+                "max estimate": 6.612646859437976,
+                "mean of mis estimate": 5.625639816554052,
+                "variance of estimates": 0.25603911196869245,
+                "mean of variances": 0.28551620938457756,
+                "mean of alternate variances": 0.2855162093845776,
+                "mean of standard deviations": 0.4753101084750618,
+                "mean of errors": 0.4060061474492246,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.511648914657747,
+                "max estimate": 6.465145701795805,
+                "mean of mis estimate": 5.65528329901536,
+                "variance of estimates": 0.08773379490590548,
+                "mean of variances": 0.10251946151987505,
+                "mean of alternate variances": 0.10251946151987502,
+                "mean of standard deviations": 0.3052405714020201,
+                "mean of errors": 0.2355644417828878,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.814889947362661,
+                "max estimate": 6.184345749220611,
+                "mean of mis estimate": 5.665973661377804,
+                "variance of estimates": 0.04321401631182849,
+                "mean of variances": 0.04729066907683089,
+                "mean of alternate variances": 0.047290669076830896,
+                "mean of standard deviations": 0.21277187838217715,
+                "mean of errors": 0.16843332475407607,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.1979267561126,
+                "max estimate": 6.07595663269277,
+                "mean of mis estimate": 5.672687539337255,
+                "variance of estimates": 0.023933005569074194,
+                "mean of variances": 0.024034487499167652,
+                "mean of alternate variances": 0.024034487499167645,
+                "mean of standard deviations": 0.15330226379651163,
+                "mean of errors": 0.12380139073908393,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.276672945002685,
+                "max estimate": 5.978626836766464,
+                "mean of mis estimate": 5.6754688367845505,
+                "variance of estimates": 0.014097522825720753,
+                "mean of variances": 0.015809557319055874,
+                "mean of alternate variances": 0.015809557319055863,
+                "mean of standard deviations": 0.12491037283806632,
+                "mean of errors": 0.09498644159384981,
+                "mean time taken": "0.0023 seconds"
+            }
+        }
+    },
+    "Test 3": {
+        "test_values": {
+            "means": [
+                3.602211475191888,
+                9.44993378236935,
+                12.857730939400161
+            ],
+            "std_devs": [
+                0.9361975804636401,
+                0.304134698327829,
+                0.1359063981919714
+            ],
+            "lower_bounds": [
+                1.729816314264608,
+                8.841664385713692,
+                12.585918143016219
+            ],
+            "upper_bounds": [
+                5.4746066361191685,
+                10.058203179025007,
+                13.129543735784104
+            ],
+            "quad_result": 3.669969805499536
+        },
+        "balance": {
+            "10": {
+                "min estimate": 1.078216792313586,
+                "max estimate": 4.4659091940835385,
+                "mean of mis estimate": 3.7019732467486675,
+                "variance of estimates": 0.14115206658816742,
+                "mean of variances": 1.1220416412886767,
+                "mean of alternate variances": 1.1220416412886767,
+                "mean of standard deviations": 1.054477198460989,
+                "mean of errors": 0.285725602601165,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.412871772199494,
+                "max estimate": 4.149984816589395,
+                "mean of mis estimate": 3.677212534538742,
+                "variance of estimates": 0.056923873370443745,
+                "mean of variances": 0.39068964187481636,
+                "mean of alternate variances": 0.3906896418748163,
+                "mean of standard deviations": 0.6241198744225522,
+                "mean of errors": 0.18993289743629221,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.052600830716398,
+                "max estimate": 4.061097419340398,
+                "mean of mis estimate": 3.666067629875787,
+                "variance of estimates": 0.02893103493568706,
+                "mean of variances": 0.1798301120414477,
+                "mean of alternate variances": 0.1798301120414477,
+                "mean of standard deviations": 0.42376901879266754,
+                "mean of errors": 0.1357945508293982,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.2292354854540317,
+                "max estimate": 3.970600826537654,
+                "mean of mis estimate": 3.6700563082126823,
+                "variance of estimates": 0.013929785505337302,
+                "mean of variances": 0.09200774950199349,
+                "mean of alternate variances": 0.09200774950199349,
+                "mean of standard deviations": 0.303219789444753,
+                "mean of errors": 0.09403170152036613,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 3.3173114764858993,
+                "max estimate": 3.9104466259095747,
+                "mean of mis estimate": 3.670888207477599,
+                "variance of estimates": 0.00983053851155737,
+                "mean of variances": 0.06049646246151104,
+                "mean of alternate variances": 0.060496462461511046,
+                "mean of standard deviations": 0.24590378402858948,
+                "mean of errors": 0.07921720778286795,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 1.8554750295441589,
+                "max estimate": 4.428623641202791,
+                "mean of mis estimate": 3.6686690448407226,
+                "variance of estimates": 0.16206570022764213,
+                "mean of variances": 1.1098064046658638,
+                "mean of alternate variances": 1.1098064046658638,
+                "mean of standard deviations": 1.0487823598288994,
+                "mean of errors": 0.2988036160656819,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.710662133665642,
+                "max estimate": 4.157511536302604,
+                "mean of mis estimate": 3.682636079170111,
+                "variance of estimates": 0.061441505530389615,
+                "mean of variances": 0.3921518102465685,
+                "mean of alternate variances": 0.39215181024656853,
+                "mean of standard deviations": 0.6251922985051924,
+                "mean of errors": 0.20047947265979887,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.933829369054795,
+                "max estimate": 4.062890277844645,
+                "mean of mis estimate": 3.674261202693258,
+                "variance of estimates": 0.02798097894424257,
+                "mean of variances": 0.1802865846835868,
+                "mean of alternate variances": 0.18028658468358683,
+                "mean of standard deviations": 0.42427667595923557,
+                "mean of errors": 0.13258703338028638,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.2290770096462977,
+                "max estimate": 3.963177240992679,
+                "mean of mis estimate": 3.665925241507986,
+                "variance of estimates": 0.015085491440308761,
+                "mean of variances": 0.09202284053667839,
+                "mean of alternate variances": 0.09202284053667838,
+                "mean of standard deviations": 0.30322705613002565,
+                "mean of errors": 0.09791538054466839,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.297519319718777,
+                "max estimate": 3.948608597963714,
+                "mean of mis estimate": 3.6702414154253207,
+                "variance of estimates": 0.009898971870985866,
+                "mean of variances": 0.06047844414887026,
+                "mean of alternate variances": 0.06047844414887027,
+                "mean of standard deviations": 0.24586254518413397,
+                "mean of errors": 0.07926564833818066,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 1.6730355194148405,
+                "max estimate": 4.355518964028309,
+                "mean of mis estimate": 3.676960214985272,
+                "variance of estimates": 0.16359196584280775,
+                "mean of variances": 1.1057081237764592,
+                "mean of alternate variances": 1.1057081237764592,
+                "mean of standard deviations": 1.046629915520793,
+                "mean of errors": 0.2959828888733793,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.775708306785702,
+                "max estimate": 4.2461534726811685,
+                "mean of mis estimate": 3.6687636153276717,
+                "variance of estimates": 0.06351892631013442,
+                "mean of variances": 0.39109287994139913,
+                "mean of alternate variances": 0.39109287994139913,
+                "mean of standard deviations": 0.6243645860992797,
+                "mean of errors": 0.2003527547105433,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.966942158152125,
+                "max estimate": 4.101785817304844,
+                "mean of mis estimate": 3.6798531517374307,
+                "variance of estimates": 0.02739704629104543,
+                "mean of variances": 0.1801515389994903,
+                "mean of alternate variances": 0.1801515389994903,
+                "mean of standard deviations": 0.4241583062255819,
+                "mean of errors": 0.13079677642612383,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.1901657686370255,
+                "max estimate": 3.981110532006614,
+                "mean of mis estimate": 3.6639139420777296,
+                "variance of estimates": 0.013357034794726597,
+                "mean of variances": 0.09190122179261885,
+                "mean of alternate variances": 0.09190122179261884,
+                "mean of standard deviations": 0.30304036975206816,
+                "mean of errors": 0.09216937789937757,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.2921586803981455,
+                "max estimate": 3.9376339170743715,
+                "mean of mis estimate": 3.667288137346862,
+                "variance of estimates": 0.009247040543504881,
+                "mean of variances": 0.060489550567048224,
+                "mean of alternate variances": 0.060489550567048224,
+                "mean of standard deviations": 0.24588911831042054,
+                "mean of errors": 0.07669895338572646,
+                "mean time taken": "0.0022 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 1.7310122511028156,
+                "max estimate": 4.465828335158907,
+                "mean of mis estimate": 3.672368534696678,
+                "variance of estimates": 0.15510948746288097,
+                "mean of variances": 1.1151347465844006,
+                "mean of alternate variances": 1.1151347465844006,
+                "mean of standard deviations": 1.0516728448846298,
+                "mean of errors": 0.29455756263036287,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.580223370010707,
+                "max estimate": 4.164645551000042,
+                "mean of mis estimate": 3.674621591069102,
+                "variance of estimates": 0.06006513520551337,
+                "mean of variances": 0.389981155283459,
+                "mean of alternate variances": 0.389981155283459,
+                "mean of standard deviations": 0.6234743937137919,
+                "mean of errors": 0.19570403698293473,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.055863347462038,
+                "max estimate": 4.059240679947829,
+                "mean of mis estimate": 3.6729978289448746,
+                "variance of estimates": 0.028799422780622336,
+                "mean of variances": 0.17954140865291496,
+                "mean of alternate variances": 0.17954140865291499,
+                "mean of standard deviations": 0.4234229318574972,
+                "mean of errors": 0.13602586118264445,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.1944362361991567,
+                "max estimate": 3.962117563425903,
+                "mean of mis estimate": 3.67658802515791,
+                "variance of estimates": 0.014518989784493914,
+                "mean of variances": 0.09213531593575362,
+                "mean of alternate variances": 0.09213531593575362,
+                "mean of standard deviations": 0.3034312159399569,
+                "mean of errors": 0.09633279719845467,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.3082879979508646,
+                "max estimate": 3.944410373353986,
+                "mean of mis estimate": 3.6674943878832202,
+                "variance of estimates": 0.00908406138188254,
+                "mean of variances": 0.060538719744075604,
+                "mean of alternate variances": 0.060538719744075604,
+                "mean of standard deviations": 0.24598553097383968,
+                "mean of errors": 0.0762944039111276,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 1.9933995996681597,
+                "max estimate": 4.431807830074707,
+                "mean of mis estimate": 3.6697438928758817,
+                "variance of estimates": 0.15202150523000937,
+                "mean of variances": 1.1018658546847857,
+                "mean of alternate variances": 1.1018658546847857,
+                "mean of standard deviations": 1.0449290544009195,
+                "mean of errors": 0.29299157340785154,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.6364822044858855,
+                "max estimate": 4.170122420521968,
+                "mean of mis estimate": 3.6706736126416835,
+                "variance of estimates": 0.05987586318809341,
+                "mean of variances": 0.3883545042256367,
+                "mean of alternate variances": 0.3883545042256368,
+                "mean of standard deviations": 0.6222103054704955,
+                "mean of errors": 0.19654479812275139,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.16299966391582,
+                "max estimate": 4.11480061872499,
+                "mean of mis estimate": 3.672982080944219,
+                "variance of estimates": 0.027439256629732428,
+                "mean of variances": 0.17983704744804,
+                "mean of alternate variances": 0.17983704744804,
+                "mean of standard deviations": 0.42375745325490005,
+                "mean of errors": 0.13255983030190083,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.200511453472767,
+                "max estimate": 3.949917237930414,
+                "mean of mis estimate": 3.666822382853701,
+                "variance of estimates": 0.015033959200296444,
+                "mean of variances": 0.09180467941801365,
+                "mean of alternate variances": 0.09180467941801362,
+                "mean of standard deviations": 0.30288359607250404,
+                "mean of errors": 0.09584293143152385,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 3.29414856017606,
+                "max estimate": 3.950814373751868,
+                "mean of mis estimate": 3.6612559672031875,
+                "variance of estimates": 0.009632148445046184,
+                "mean of variances": 0.060261328339707466,
+                "mean of alternate variances": 0.06026132833970746,
+                "mean of standard deviations": 0.24541894657752195,
+                "mean of errors": 0.07836229185064929,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    },
+    "Test 4": {
+        "test_values": {
+            "means": [
+                5.98587056726222,
+                7.863130531912866,
+                14.110620575829667
+            ],
+            "std_devs": [
+                0.7591684293962317,
+                0.6261805126063524,
+                0.8499111452723035
+            ],
+            "lower_bounds": [
+                4.467533708469756,
+                6.61076950670016,
+                12.410798285285061
+            ],
+            "upper_bounds": [
+                7.504207426054683,
+                9.115491557125571,
+                15.810442866374274
+            ],
+            "quad_result": 5.960693567044461
+        },
+        "balance": {
+            "10": {
+                "min estimate": 4.023184267764555,
+                "max estimate": 6.946025044783402,
+                "mean of mis estimate": 5.953969513953833,
+                "variance of estimates": 0.21574914886090157,
+                "mean of variances": 0.27387673141906366,
+                "mean of alternate variances": 0.2738767314190637,
+                "mean of standard deviations": 0.48446822785530047,
+                "mean of errors": 0.36490578989177175,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.8982213272918855,
+                "max estimate": 6.72876417031912,
+                "mean of mis estimate": 5.948736803462041,
+                "variance of estimates": 0.08220085116063691,
+                "mean of variances": 0.10156204151384593,
+                "mean of alternate variances": 0.10156204151384594,
+                "mean of standard deviations": 0.3077797615433559,
+                "mean of errors": 0.22458654690188906,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.28014886125101,
+                "max estimate": 6.43580409761402,
+                "mean of mis estimate": 5.953265434527033,
+                "variance of estimates": 0.0372561596721436,
+                "mean of variances": 0.04834389236479946,
+                "mean of alternate variances": 0.048343892364799475,
+                "mean of standard deviations": 0.21641116718708528,
+                "mean of errors": 0.15324421340074712,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.4612408665975565,
+                "max estimate": 6.380529097145644,
+                "mean of mis estimate": 5.9589706411365535,
+                "variance of estimates": 0.019591347866835328,
+                "mean of variances": 0.02460966462848809,
+                "mean of alternate variances": 0.024609664628488095,
+                "mean of standard deviations": 0.15556950770730543,
+                "mean of errors": 0.11064042905151257,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 5.6135832363436835,
+                "max estimate": 6.355385471815088,
+                "mean of mis estimate": 5.963718449157877,
+                "variance of estimates": 0.01315813567320637,
+                "mean of variances": 0.016184710816739237,
+                "mean of alternate variances": 0.016184710816739233,
+                "mean of standard deviations": 0.12653080789214224,
+                "mean of errors": 0.09081054492807658,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 3.2551910030372504,
+                "max estimate": 7.2751555805093675,
+                "mean of mis estimate": 5.970671895194737,
+                "variance of estimates": 0.32995346107157325,
+                "mean of variances": 0.36097968894536636,
+                "mean of alternate variances": 0.3609796889453663,
+                "mean of standard deviations": 0.5549606851308897,
+                "mean of errors": 0.4535818591186871,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.574597159966163,
+                "max estimate": 6.811016887987033,
+                "mean of mis estimate": 5.978308441097931,
+                "variance of estimates": 0.11383481093993626,
+                "mean of variances": 0.1335222298956414,
+                "mean of alternate variances": 0.1335222298956414,
+                "mean of standard deviations": 0.3547012744737297,
+                "mean of errors": 0.2698000092673765,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.10401860107221,
+                "max estimate": 6.594738783910526,
+                "mean of mis estimate": 5.956970672892983,
+                "variance of estimates": 0.05250890970895978,
+                "mean of variances": 0.06394413153526596,
+                "mean of alternate variances": 0.06394413153526599,
+                "mean of standard deviations": 0.24958613838529067,
+                "mean of errors": 0.18122582355330144,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.340871009566396,
+                "max estimate": 6.386929862572548,
+                "mean of mis estimate": 5.951187084430557,
+                "variance of estimates": 0.028544096570480574,
+                "mean of variances": 0.03283063084136612,
+                "mean of alternate variances": 0.03283063084136613,
+                "mean of standard deviations": 0.17993505778947633,
+                "mean of errors": 0.13532910513458746,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.51337205605445,
+                "max estimate": 6.326098791519575,
+                "mean of mis estimate": 5.961782961802699,
+                "variance of estimates": 0.018395029992847076,
+                "mean of variances": 0.021320624470317538,
+                "mean of alternate variances": 0.021320624470317538,
+                "mean of standard deviations": 0.1453585781099585,
+                "mean of errors": 0.1072056878739582,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 2.843420776764843,
+                "max estimate": 8.971502673519188,
+                "mean of mis estimate": 5.922287606375461,
+                "variance of estimates": 0.6196295676836757,
+                "mean of variances": 0.6478174075671446,
+                "mean of alternate variances": 0.6478174075671446,
+                "mean of standard deviations": 0.7535842386864472,
+                "mean of errors": 0.6143369962911741,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.59969368460946,
+                "max estimate": 7.7291224981572135,
+                "mean of mis estimate": 5.976099789649014,
+                "variance of estimates": 0.22355957064054216,
+                "mean of variances": 0.23684324578696958,
+                "mean of alternate variances": 0.2368432457869696,
+                "mean of standard deviations": 0.4751020432952746,
+                "mean of errors": 0.3746579854631459,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 4.886869699090202,
+                "max estimate": 6.876596242231982,
+                "mean of mis estimate": 5.963547242444778,
+                "variance of estimates": 0.10681208338808117,
+                "mean of variances": 0.10965040950684447,
+                "mean of alternate variances": 0.10965040950684447,
+                "mean of standard deviations": 0.3276382915238141,
+                "mean of errors": 0.2601875245305569,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.2030557433316345,
+                "max estimate": 6.699189828523263,
+                "mean of mis estimate": 5.963083737160066,
+                "variance of estimates": 0.050191076442744134,
+                "mean of variances": 0.056805668222559474,
+                "mean of alternate variances": 0.05680566822255946,
+                "mean of standard deviations": 0.23701533479475484,
+                "mean of errors": 0.1780828856945428,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.349392114801476,
+                "max estimate": 6.426667540293239,
+                "mean of mis estimate": 5.9606134973576275,
+                "variance of estimates": 0.03344018594032646,
+                "mean of variances": 0.038022866114010664,
+                "mean of alternate variances": 0.03802286611401067,
+                "mean of standard deviations": 0.19432894359764036,
+                "mean of errors": 0.1461073246348871,
+                "mean time taken": "0.0022 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 3.1016845359844627,
+                "max estimate": 7.4976742418048365,
+                "mean of mis estimate": 5.965555250264748,
+                "variance of estimates": 0.3720296908625402,
+                "mean of variances": 0.4203490242101816,
+                "mean of alternate variances": 0.4203490242101816,
+                "mean of standard deviations": 0.5952922686480561,
+                "mean of errors": 0.4898093894340728,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.456817003008325,
+                "max estimate": 6.83394742075951,
+                "mean of mis estimate": 5.9407899837626,
+                "variance of estimates": 0.15730009714482993,
+                "mean of variances": 0.1611438428896965,
+                "mean of alternate variances": 0.1611438428896965,
+                "mean of standard deviations": 0.3890393242550397,
+                "mean of errors": 0.31492373958234565,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.030501444108894,
+                "max estimate": 6.7919062130654,
+                "mean of mis estimate": 5.967632715518809,
+                "variance of estimates": 0.06981321162160492,
+                "mean of variances": 0.07414545969240766,
+                "mean of alternate variances": 0.07414545969240763,
+                "mean of standard deviations": 0.2682929786731538,
+                "mean of errors": 0.20944819436310122,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.173543472705026,
+                "max estimate": 6.480396076517129,
+                "mean of mis estimate": 5.9562451751888,
+                "variance of estimates": 0.03327190541922628,
+                "mean of variances": 0.03891860113012469,
+                "mean of alternate variances": 0.0389186011301247,
+                "mean of standard deviations": 0.19587873718672402,
+                "mean of errors": 0.14579560908775085,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 5.434156374411527,
+                "max estimate": 6.372064487787539,
+                "mean of mis estimate": 5.965781582325776,
+                "variance of estimates": 0.021953211657432106,
+                "mean of variances": 0.02543995201497897,
+                "mean of alternate variances": 0.02543995201497897,
+                "mean of standard deviations": 0.15874960011562603,
+                "mean of errors": 0.11741107185974979,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 3.5771644214763763,
+                "max estimate": 6.921726725228396,
+                "mean of mis estimate": 5.977848079136087,
+                "variance of estimates": 0.22410976158703833,
+                "mean of variances": 0.2677496030759797,
+                "mean of alternate variances": 0.2677496030759798,
+                "mean of standard deviations": 0.47909076213626767,
+                "mean of errors": 0.3743903452075187,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 4.911376999582074,
+                "max estimate": 6.709513304870412,
+                "mean of mis estimate": 5.946313816588602,
+                "variance of estimates": 0.08075623738207538,
+                "mean of variances": 0.10350809655521212,
+                "mean of alternate variances": 0.1035080965552121,
+                "mean of standard deviations": 0.31112818100323536,
+                "mean of errors": 0.2209437734508393,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 5.3099735466913645,
+                "max estimate": 6.521731989719793,
+                "mean of mis estimate": 5.958102498231042,
+                "variance of estimates": 0.03975553399548336,
+                "mean of variances": 0.04831087331812287,
+                "mean of alternate variances": 0.04831087331812286,
+                "mean of standard deviations": 0.21625274467509797,
+                "mean of errors": 0.16150333102836545,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 5.498553379629353,
+                "max estimate": 6.363496060414844,
+                "mean of mis estimate": 5.9650961581787465,
+                "variance of estimates": 0.018944594656852158,
+                "mean of variances": 0.024459579021847228,
+                "mean of alternate variances": 0.024459579021847224,
+                "mean of standard deviations": 0.15509417829394329,
+                "mean of errors": 0.11069784060514082,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 5.521183093212313,
+                "max estimate": 6.3206444455020225,
+                "mean of mis estimate": 5.963557065214653,
+                "variance of estimates": 0.012783617174603646,
+                "mean of variances": 0.016054050087867876,
+                "mean of alternate variances": 0.016054050087867883,
+                "mean of standard deviations": 0.12604178897300386,
+                "mean of errors": 0.08959955539630297,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    },
+    "Test 5": {
+        "test_values": {
+            "means": [
+                3.905276397398861,
+                7.206624218052587,
+                13.830418154685418
+            ],
+            "std_devs": [
+                0.8800482123645601,
+                0.34205298921620597,
+                0.2029119273385882
+            ],
+            "lower_bounds": [
+                2.145179972669741,
+                6.522518239620175,
+                13.424594300008241
+            ],
+            "upper_bounds": [
+                5.665372822127981,
+                7.890730196484999,
+                14.236242009362595
+            ],
+            "quad_result": 3.800035017945715
+        },
+        "balance": {
+            "10": {
+                "min estimate": 1.907753993911673,
+                "max estimate": 4.548974703093162,
+                "mean of mis estimate": 3.7901805359482306,
+                "variance of estimates": 0.14486745008787802,
+                "mean of variances": 0.8355075214162002,
+                "mean of alternate variances": 0.8355075214162002,
+                "mean of standard deviations": 0.9084287151888679,
+                "mean of errors": 0.28516906455253604,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.9715879699229077,
+                "max estimate": 4.289492766703718,
+                "mean of mis estimate": 3.8152957950013304,
+                "variance of estimates": 0.05121059463156194,
+                "mean of variances": 0.29414155581618434,
+                "mean of alternate variances": 0.2941415558161843,
+                "mean of standard deviations": 0.5412495861149472,
+                "mean of errors": 0.18461913664898708,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.106895172195085,
+                "max estimate": 4.153614542173541,
+                "mean of mis estimate": 3.7994493373605156,
+                "variance of estimates": 0.0267562259517616,
+                "mean of variances": 0.13566858829505946,
+                "mean of alternate variances": 0.13566858829505946,
+                "mean of standard deviations": 0.3679781116778407,
+                "mean of errors": 0.13145597820108365,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.302001098097929,
+                "max estimate": 4.138623699343351,
+                "mean of mis estimate": 3.8029507921976307,
+                "variance of estimates": 0.01373772259586687,
+                "mean of variances": 0.06922601029863742,
+                "mean of alternate variances": 0.06922601029863742,
+                "mean of standard deviations": 0.2629796453190896,
+                "mean of errors": 0.09188546957950482,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 3.466815901502187,
+                "max estimate": 4.07144304734282,
+                "mean of mis estimate": 3.800021459337483,
+                "variance of estimates": 0.009227298995531822,
+                "mean of variances": 0.04563775998180532,
+                "mean of alternate variances": 0.045637759981805325,
+                "mean of standard deviations": 0.21355335147104978,
+                "mean of errors": 0.07696728001834376,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 2.3516843734141486,
+                "max estimate": 4.588888967302326,
+                "mean of mis estimate": 3.8051039224080068,
+                "variance of estimates": 0.1432653830199368,
+                "mean of variances": 0.8375292458205965,
+                "mean of alternate variances": 0.8375292458205964,
+                "mean of standard deviations": 0.910066091330982,
+                "mean of errors": 0.29030452046161337,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.8022373275189882,
+                "max estimate": 4.351432170809379,
+                "mean of mis estimate": 3.7986208725933075,
+                "variance of estimates": 0.05907302009050559,
+                "mean of variances": 0.29305654618809546,
+                "mean of alternate variances": 0.29305654618809546,
+                "mean of standard deviations": 0.5402217979999617,
+                "mean of errors": 0.19328933850008548,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.2380302454429826,
+                "max estimate": 4.194499210927211,
+                "mean of mis estimate": 3.8011024596948673,
+                "variance of estimates": 0.02609750265961823,
+                "mean of variances": 0.13572128705286654,
+                "mean of alternate variances": 0.13572128705286654,
+                "mean of standard deviations": 0.36805197919840466,
+                "mean of errors": 0.12899286169518398,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.3745429248529235,
+                "max estimate": 4.1117071175993205,
+                "mean of mis estimate": 3.8042018293943674,
+                "variance of estimates": 0.01309813931402395,
+                "mean of variances": 0.06945024635393177,
+                "mean of alternate variances": 0.06945024635393175,
+                "mean of standard deviations": 0.263414514349944,
+                "mean of errors": 0.09202133829661804,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.426634357079529,
+                "max estimate": 4.09555567811776,
+                "mean of mis estimate": 3.7956869927947308,
+                "variance of estimates": 0.008447598872727932,
+                "mean of variances": 0.04558776759067817,
+                "mean of alternate variances": 0.045587767590678174,
+                "mean of standard deviations": 0.21344411979501732,
+                "mean of errors": 0.07332579524647326,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 1.9564909222453595,
+                "max estimate": 4.455076167795712,
+                "mean of mis estimate": 3.786002323253877,
+                "variance of estimates": 0.15353199681448523,
+                "mean of variances": 0.8297857518239935,
+                "mean of alternate variances": 0.8297857518239935,
+                "mean of standard deviations": 0.905952462171563,
+                "mean of errors": 0.29243865326365276,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.9846596664403227,
+                "max estimate": 4.355786175563822,
+                "mean of mis estimate": 3.8045534692434284,
+                "variance of estimates": 0.053058719297496115,
+                "mean of variances": 0.2943636690515475,
+                "mean of alternate variances": 0.2943636690515475,
+                "mean of standard deviations": 0.5414146062108344,
+                "mean of errors": 0.1854736502411502,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.9205029908973437,
+                "max estimate": 4.233909617743938,
+                "mean of mis estimate": 3.797191482148197,
+                "variance of estimates": 0.0272305963187556,
+                "mean of variances": 0.13567060861145294,
+                "mean of alternate variances": 0.13567060861145297,
+                "mean of standard deviations": 0.36796317870053225,
+                "mean of errors": 0.12728806925086394,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.379285440989776,
+                "max estimate": 4.09254490497812,
+                "mean of mis estimate": 3.800247695199027,
+                "variance of estimates": 0.013115137752124124,
+                "mean of variances": 0.0691979458889008,
+                "mean of alternate variances": 0.06919794588890081,
+                "mean of standard deviations": 0.2629246124529018,
+                "mean of errors": 0.09182118872056816,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.3798113515549164,
+                "max estimate": 4.09839549755134,
+                "mean of mis estimate": 3.801076233549261,
+                "variance of estimates": 0.009123384354897474,
+                "mean of variances": 0.04573650352521573,
+                "mean of alternate variances": 0.04573650352521574,
+                "mean of standard deviations": 0.2137909058923226,
+                "mean of errors": 0.07606973617632411,
+                "mean time taken": "0.0022 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 1.7729323729450448,
+                "max estimate": 4.564426216508428,
+                "mean of mis estimate": 3.79866419158987,
+                "variance of estimates": 0.16289486598937275,
+                "mean of variances": 0.8302881279225373,
+                "mean of alternate variances": 0.8302881279225373,
+                "mean of standard deviations": 0.9060062296165818,
+                "mean of errors": 0.29548066436040266,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.981149167068819,
+                "max estimate": 4.309641252024822,
+                "mean of mis estimate": 3.8117321096601056,
+                "variance of estimates": 0.05588500144271102,
+                "mean of variances": 0.29356715599876665,
+                "mean of alternate variances": 0.29356715599876665,
+                "mean of standard deviations": 0.5407622270400296,
+                "mean of errors": 0.19325306546707405,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.1157184340506103,
+                "max estimate": 4.161670828758483,
+                "mean of mis estimate": 3.8047001460817147,
+                "variance of estimates": 0.025733951829496185,
+                "mean of variances": 0.13529203150454616,
+                "mean of alternate variances": 0.13529203150454616,
+                "mean of standard deviations": 0.36745942635627443,
+                "mean of errors": 0.12713808784461586,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.359224484168576,
+                "max estimate": 4.10319560642396,
+                "mean of mis estimate": 3.7921833255669752,
+                "variance of estimates": 0.013400068518064622,
+                "mean of variances": 0.06903191248328296,
+                "mean of alternate variances": 0.06903191248328296,
+                "mean of standard deviations": 0.26260946728319895,
+                "mean of errors": 0.09126163293920544,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.432751374640999,
+                "max estimate": 4.03968340560982,
+                "mean of mis estimate": 3.7945168524023654,
+                "variance of estimates": 0.009102592098336306,
+                "mean of variances": 0.04560638082192624,
+                "mean of alternate variances": 0.04560638082192624,
+                "mean of standard deviations": 0.21348739220611898,
+                "mean of errors": 0.0768646058151839,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 1.8847208093673673,
+                "max estimate": 4.53255622566464,
+                "mean of mis estimate": 3.7836232642681717,
+                "variance of estimates": 0.1372327728371692,
+                "mean of variances": 0.8260211486468948,
+                "mean of alternate variances": 0.8260211486468948,
+                "mean of standard deviations": 0.9039123791451903,
+                "mean of errors": 0.279247192548814,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.989908196262219,
+                "max estimate": 4.379727695339243,
+                "mean of mis estimate": 3.7909749183952073,
+                "variance of estimates": 0.05157521491156045,
+                "mean of variances": 0.2931020499600636,
+                "mean of alternate variances": 0.2931020499600636,
+                "mean of standard deviations": 0.5402436682580335,
+                "mean of errors": 0.18291155634233397,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.1868095648833985,
+                "max estimate": 4.251963332555231,
+                "mean of mis estimate": 3.8075322914872074,
+                "variance of estimates": 0.026379924465630724,
+                "mean of variances": 0.13581423710366147,
+                "mean of alternate variances": 0.13581423710366147,
+                "mean of standard deviations": 0.36820510611927815,
+                "mean of errors": 0.1296397355571615,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.369699455504898,
+                "max estimate": 4.068880894203635,
+                "mean of mis estimate": 3.7913285927670284,
+                "variance of estimates": 0.013956567475138513,
+                "mean of variances": 0.06921916409514617,
+                "mean of alternate variances": 0.06921916409514617,
+                "mean of standard deviations": 0.26296137707628087,
+                "mean of errors": 0.09541956161824357,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 3.4813826580832967,
+                "max estimate": 4.051235471963163,
+                "mean of mis estimate": 3.7987187838940653,
+                "variance of estimates": 0.008395589815749789,
+                "mean of variances": 0.04565424602689955,
+                "mean of alternate variances": 0.04565424602689955,
+                "mean of standard deviations": 0.21360215923225748,
+                "mean of errors": 0.07217625283717459,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    },
+    "Test 6": {
+        "test_values": {
+            "means": [
+                4.386303269865205,
+                9.81219571068265,
+                12.563240036161764
+            ],
+            "std_devs": [
+                0.1482474128028035,
+                0.5263977577203498,
+                0.3752987762146439
+            ],
+            "lower_bounds": [
+                4.089808444259598,
+                8.75940019524195,
+                11.812642483732477
+            ],
+            "upper_bounds": [
+                4.682798095470812,
+                10.86499122612335,
+                13.313837588591051
+            ],
+            "quad_result": 2.799850523226627
+        },
+        "balance": {
+            "10": {
+                "min estimate": 1.7922805855061097,
+                "max estimate": 3.275712478132751,
+                "mean of mis estimate": 2.798686784067564,
+                "variance of estimates": 0.06547076583949267,
+                "mean of variances": 0.2671213001591708,
+                "mean of alternate variances": 0.2671213001591708,
+                "mean of standard deviations": 0.5133932357097383,
+                "mean of errors": 0.2027011857502262,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.2123986711954435,
+                "max estimate": 3.196743166238274,
+                "mean of mis estimate": 2.806779665666498,
+                "variance of estimates": 0.02722660142595042,
+                "mean of variances": 0.09365076063576569,
+                "mean of alternate variances": 0.09365076063576569,
+                "mean of standard deviations": 0.3052297067230942,
+                "mean of errors": 0.13208077752525157,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.3761095964318395,
+                "max estimate": 3.073266816287208,
+                "mean of mis estimate": 2.7980286033087785,
+                "variance of estimates": 0.011848229229874064,
+                "mean of variances": 0.04339189645119607,
+                "mean of alternate variances": 0.04339189645119607,
+                "mean of standard deviations": 0.20803691963662282,
+                "mean of errors": 0.08733650322870429,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.512686079112652,
+                "max estimate": 3.00462104477095,
+                "mean of mis estimate": 2.795419154490815,
+                "variance of estimates": 0.005689022302414905,
+                "mean of variances": 0.02227042765400986,
+                "mean of alternate variances": 0.02227042765400986,
+                "mean of standard deviations": 0.14912074246900556,
+                "mean of errors": 0.060533875030176876,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 2.5700736539012494,
+                "max estimate": 2.966601621764544,
+                "mean of mis estimate": 2.799897931746408,
+                "variance of estimates": 0.004311331586541527,
+                "mean of variances": 0.014649409409677593,
+                "mean of alternate variances": 0.014649409409677589,
+                "mean of standard deviations": 0.12097701732074334,
+                "mean of errors": 0.051771944558714186,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 1.3060880134633843,
+                "max estimate": 3.2991648911355806,
+                "mean of mis estimate": 2.8010229598945653,
+                "variance of estimates": 0.07256833615278432,
+                "mean of variances": 0.264245095850222,
+                "mean of alternate variances": 0.26424509585022204,
+                "mean of standard deviations": 0.5104839491324191,
+                "mean of errors": 0.21194334552235308,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.1803838421478288,
+                "max estimate": 3.125578219680822,
+                "mean of mis estimate": 2.8016314715303405,
+                "variance of estimates": 0.025423388264720445,
+                "mean of variances": 0.09409586992269921,
+                "mean of alternate variances": 0.09409586992269921,
+                "mean of standard deviations": 0.30580689227016417,
+                "mean of errors": 0.12682777639726248,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.3038581812085064,
+                "max estimate": 3.054772880148646,
+                "mean of mis estimate": 2.7928740631867477,
+                "variance of estimates": 0.012434335398693163,
+                "mean of variances": 0.04364639604212587,
+                "mean of alternate variances": 0.04364639604212587,
+                "mean of standard deviations": 0.20861978594454317,
+                "mean of errors": 0.08727916749578687,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.4507737633407074,
+                "max estimate": 2.987964830469472,
+                "mean of mis estimate": 2.7953525354504936,
+                "variance of estimates": 0.006461121102847234,
+                "mean of variances": 0.022273100043751215,
+                "mean of alternate variances": 0.022273100043751215,
+                "mean of standard deviations": 0.14913328332319098,
+                "mean of errors": 0.06426860929899521,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 2.608499766038215,
+                "max estimate": 2.98563663963778,
+                "mean of mis estimate": 2.799564537660176,
+                "variance of estimates": 0.004292583207941728,
+                "mean of variances": 0.014607116345039048,
+                "mean of alternate variances": 0.014607116345039046,
+                "mean of standard deviations": 0.12080294966540595,
+                "mean of errors": 0.052649378577969905,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 1.8636652087394614,
+                "max estimate": 3.2985870355344544,
+                "mean of mis estimate": 2.802621887790624,
+                "variance of estimates": 0.06684885953773724,
+                "mean of variances": 0.2633653418204763,
+                "mean of alternate variances": 0.2633653418204764,
+                "mean of standard deviations": 0.5099368193643985,
+                "mean of errors": 0.20745496972283933,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.294300256117823,
+                "max estimate": 3.2298593987271325,
+                "mean of mis estimate": 2.8054912867024284,
+                "variance of estimates": 0.02327944300147363,
+                "mean of variances": 0.09362399682650152,
+                "mean of alternate variances": 0.09362399682650152,
+                "mean of standard deviations": 0.30515727855612707,
+                "mean of errors": 0.12379504556043183,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.3809677081574203,
+                "max estimate": 3.0697318350738936,
+                "mean of mis estimate": 2.7997827893247558,
+                "variance of estimates": 0.01263281329338271,
+                "mean of variances": 0.0434427993176503,
+                "mean of alternate variances": 0.0434427993176503,
+                "mean of standard deviations": 0.20813868289180806,
+                "mean of errors": 0.08942500155546873,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.5206918091663937,
+                "max estimate": 3.0332780533215558,
+                "mean of mis estimate": 2.8022139593527124,
+                "variance of estimates": 0.006524356227339624,
+                "mean of variances": 0.022120963942485694,
+                "mean of alternate variances": 0.022120963942485698,
+                "mean of standard deviations": 0.14862156648890404,
+                "mean of errors": 0.06518420549875499,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 2.5545929403761884,
+                "max estimate": 2.9788363166329273,
+                "mean of mis estimate": 2.8004197104220028,
+                "variance of estimates": 0.004602681506809531,
+                "mean of variances": 0.014596583580117064,
+                "mean of alternate variances": 0.014596583580117058,
+                "mean of standard deviations": 0.12075638966855715,
+                "mean of errors": 0.05374391958444784,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 1.2986713558862046,
+                "max estimate": 3.3778614474634634,
+                "mean of mis estimate": 2.7897673022017884,
+                "variance of estimates": 0.07652211580720854,
+                "mean of variances": 0.264646269236051,
+                "mean of alternate variances": 0.264646269236051,
+                "mean of standard deviations": 0.511068691492996,
+                "mean of errors": 0.2171287483014464,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.082572839728642,
+                "max estimate": 3.1783731018147345,
+                "mean of mis estimate": 2.7962545358772033,
+                "variance of estimates": 0.028176485985368874,
+                "mean of variances": 0.09364565616086798,
+                "mean of alternate variances": 0.09364565616086798,
+                "mean of standard deviations": 0.30512172852676167,
+                "mean of errors": 0.13141008562665665,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.4435240707322587,
+                "max estimate": 3.056672329968865,
+                "mean of mis estimate": 2.7971831280854813,
+                "variance of estimates": 0.012069239841000218,
+                "mean of variances": 0.04341900228371785,
+                "mean of alternate variances": 0.04341900228371785,
+                "mean of standard deviations": 0.20809762490167402,
+                "mean of errors": 0.0865037667061313,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.491047259446958,
+                "max estimate": 2.994534550028804,
+                "mean of mis estimate": 2.7996341629751935,
+                "variance of estimates": 0.006610212095172777,
+                "mean of variances": 0.02226145802608131,
+                "mean of alternate variances": 0.02226145802608131,
+                "mean of standard deviations": 0.14909686756909749,
+                "mean of errors": 0.06598709647152051,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 2.5279549365235985,
+                "max estimate": 3.001205302348221,
+                "mean of mis estimate": 2.797939539646322,
+                "variance of estimates": 0.004300928506841111,
+                "mean of variances": 0.01462503175073064,
+                "mean of alternate variances": 0.01462503175073064,
+                "mean of standard deviations": 0.12087045361551389,
+                "mean of errors": 0.052404840983423656,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 1.6716370291095568,
+                "max estimate": 3.300662341957618,
+                "mean of mis estimate": 2.7947191046387934,
+                "variance of estimates": 0.07221383547737542,
+                "mean of variances": 0.26608615402521,
+                "mean of alternate variances": 0.26608615402520996,
+                "mean of standard deviations": 0.5123760455129662,
+                "mean of errors": 0.21288216890055248,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.15253874136638,
+                "max estimate": 3.1661547028987154,
+                "mean of mis estimate": 2.797517604477038,
+                "variance of estimates": 0.026435100813431683,
+                "mean of variances": 0.09337492008006584,
+                "mean of alternate variances": 0.09337492008006584,
+                "mean of standard deviations": 0.3047471971792917,
+                "mean of errors": 0.128985312996794,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.2599433511421667,
+                "max estimate": 3.097321257686944,
+                "mean of mis estimate": 2.7967461656035923,
+                "variance of estimates": 0.013012785668462224,
+                "mean of variances": 0.04344437719479602,
+                "mean of alternate variances": 0.04344437719479602,
+                "mean of standard deviations": 0.20814542638816455,
+                "mean of errors": 0.09107389758450188,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.5226757477297066,
+                "max estimate": 3.0143662918585292,
+                "mean of mis estimate": 2.798808884613195,
+                "variance of estimates": 0.006391067246350822,
+                "mean of variances": 0.022229616779934902,
+                "mean of alternate variances": 0.0222296167799349,
+                "mean of standard deviations": 0.14899073174358451,
+                "mean of errors": 0.06461204957904394,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 2.5603787191489094,
+                "max estimate": 2.9887664996158008,
+                "mean of mis estimate": 2.796748682324924,
+                "variance of estimates": 0.004102674546080885,
+                "mean of variances": 0.014604982569335088,
+                "mean of alternate variances": 0.014604982569335088,
+                "mean of standard deviations": 0.12079402340060905,
+                "mean of errors": 0.051127751795414594,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    },
+    "Test 7": {
+        "test_values": {
+            "means": [
+                2.08944086838307,
+                10.004187197065043,
+                17.026825038567047
+            ],
+            "std_devs": [
+                0.2829585199619874,
+                0.4207375428287708,
+                0.21851094327929177
+            ],
+            "lower_bounds": [
+                1.5235238284590953,
+                9.162712111407501,
+                16.589803152008464
+            ],
+            "upper_bounds": [
+                2.655357908307045,
+                10.845662282722586,
+                17.46384692512563
+            ],
+            "quad_result": 2.4592186872977764
+        },
+        "balance": {
+            "10": {
+                "min estimate": 1.409768733217914,
+                "max estimate": 2.914744677444771,
+                "mean of mis estimate": 2.4544436858548964,
+                "variance of estimates": 0.049296715681443594,
+                "mean of variances": 0.10610503366925107,
+                "mean of alternate variances": 0.10610503366925109,
+                "mean of standard deviations": 0.3172381990275163,
+                "mean of errors": 0.17785287331744312,
+                "mean time taken": "0.0002 seconds"
+            },
+            "25": {
+                "min estimate": 1.9376244661062574,
+                "max estimate": 2.7958855051675804,
+                "mean of mis estimate": 2.4595379469200136,
+                "variance of estimates": 0.018264936721349722,
+                "mean of variances": 0.03805869758275342,
+                "mean of alternate variances": 0.03805869758275342,
+                "mean of standard deviations": 0.1930642317616108,
+                "mean of errors": 0.10661403891735431,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.1137198578702776,
+                "max estimate": 2.7137825091987664,
+                "mean of mis estimate": 2.4602349008187767,
+                "variance of estimates": 0.0085186780399899,
+                "mean of variances": 0.01775142526989139,
+                "mean of alternate variances": 0.01775142526989139,
+                "mean of standard deviations": 0.13251421064220842,
+                "mean of errors": 0.07344136611565799,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.189875433487957,
+                "max estimate": 2.641668411070086,
+                "mean of mis estimate": 2.457148385756289,
+                "variance of estimates": 0.004834397045605496,
+                "mean of variances": 0.009090687206273075,
+                "mean of alternate variances": 0.009090687206273075,
+                "mean of standard deviations": 0.09506933559820346,
+                "mean of errors": 0.055724296237437417,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 2.260558347550578,
+                "max estimate": 2.6123605921857207,
+                "mean of mis estimate": 2.4625092554574057,
+                "variance of estimates": 0.003128844478053763,
+                "mean of variances": 0.005934159676777638,
+                "mean of alternate variances": 0.005934159676777638,
+                "mean of standard deviations": 0.07689179487380522,
+                "mean of errors": 0.045038923011349416,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 1.4864370173797092,
+                "max estimate": 2.9177395546601685,
+                "mean of mis estimate": 2.457665023242369,
+                "variance of estimates": 0.05334283488396009,
+                "mean of variances": 0.10526561171946108,
+                "mean of alternate variances": 0.10526561171946108,
+                "mean of standard deviations": 0.316280150054994,
+                "mean of errors": 0.18321622248968963,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 1.845485676706006,
+                "max estimate": 2.8226464163800675,
+                "mean of mis estimate": 2.4592928513186645,
+                "variance of estimates": 0.019012539981321,
+                "mean of variances": 0.03806509974424824,
+                "mean of alternate variances": 0.03806509974424824,
+                "mean of standard deviations": 0.1928141314049208,
+                "mean of errors": 0.1088798246212186,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.1444128586902917,
+                "max estimate": 2.6729690035546736,
+                "mean of mis estimate": 2.4553976365392547,
+                "variance of estimates": 0.00796440204203977,
+                "mean of variances": 0.01781863825175577,
+                "mean of alternate variances": 0.01781863825175577,
+                "mean of standard deviations": 0.13282362511365192,
+                "mean of errors": 0.07104386048824023,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.178521117253208,
+                "max estimate": 2.63460173603496,
+                "mean of mis estimate": 2.4595184150209497,
+                "variance of estimates": 0.004565876900569137,
+                "mean of variances": 0.00908865045982387,
+                "mean of alternate variances": 0.009088650459823872,
+                "mean of standard deviations": 0.09506594587574113,
+                "mean of errors": 0.054673791948330656,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 2.2143086468931243,
+                "max estimate": 2.601793099112193,
+                "mean of mis estimate": 2.461057674102807,
+                "variance of estimates": 0.0028153199534419146,
+                "mean of variances": 0.005987211854304654,
+                "mean of alternate variances": 0.005987211854304654,
+                "mean of standard deviations": 0.07724312752713071,
+                "mean of errors": 0.04256862435547268,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 1.5662069133466145,
+                "max estimate": 2.9021919247752215,
+                "mean of mis estimate": 2.4549149796449448,
+                "variance of estimates": 0.046112045259655315,
+                "mean of variances": 0.10597310189481948,
+                "mean of alternate variances": 0.10597310189481948,
+                "mean of standard deviations": 0.31709622145104677,
+                "mean of errors": 0.16641934512104414,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 1.9604978735305163,
+                "max estimate": 2.802196155525856,
+                "mean of mis estimate": 2.464749778501872,
+                "variance of estimates": 0.01717722814721825,
+                "mean of variances": 0.03790208017299074,
+                "mean of alternate variances": 0.03790208017299074,
+                "mean of standard deviations": 0.1926680049584314,
+                "mean of errors": 0.1038849475173818,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 1.950872569549335,
+                "max estimate": 2.718137697726888,
+                "mean of mis estimate": 2.4609933928180237,
+                "variance of estimates": 0.009123197220849633,
+                "mean of variances": 0.017705402500283587,
+                "mean of alternate variances": 0.01770540250028359,
+                "mean of standard deviations": 0.1323638248389006,
+                "mean of errors": 0.07646067580215263,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.1735394966103345,
+                "max estimate": 2.6366850668867627,
+                "mean of mis estimate": 2.4611751700267237,
+                "variance of estimates": 0.004180734162306265,
+                "mean of variances": 0.009039927329465961,
+                "mean of alternate variances": 0.009039927329465961,
+                "mean of standard deviations": 0.0948283561026172,
+                "mean of errors": 0.05129451261110097,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 2.2602781886976127,
+                "max estimate": 2.6242550999832006,
+                "mean of mis estimate": 2.4606401081481137,
+                "variance of estimates": 0.0029738748518186985,
+                "mean of variances": 0.005993160090507793,
+                "mean of alternate variances": 0.005993160090507794,
+                "mean of standard deviations": 0.07727896239503564,
+                "mean of errors": 0.044152222804768444,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 1.4908738016205565,
+                "max estimate": 3.0200162179217025,
+                "mean of mis estimate": 2.4715661494665073,
+                "variance of estimates": 0.04878803301208113,
+                "mean of variances": 0.10222017521844948,
+                "mean of alternate variances": 0.10222017521844949,
+                "mean of standard deviations": 0.31131288717308075,
+                "mean of errors": 0.1766007498368141,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 1.8520861393691472,
+                "max estimate": 2.822891316907965,
+                "mean of mis estimate": 2.452221018206309,
+                "variance of estimates": 0.018665559868337157,
+                "mean of variances": 0.03856782535476343,
+                "mean of alternate variances": 0.03856782535476343,
+                "mean of standard deviations": 0.1943258561096143,
+                "mean of errors": 0.10933872170560892,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.073494098944624,
+                "max estimate": 2.6933788793338085,
+                "mean of mis estimate": 2.4590331495052067,
+                "variance of estimates": 0.008496216615099144,
+                "mean of variances": 0.017679788004658255,
+                "mean of alternate variances": 0.017679788004658258,
+                "mean of standard deviations": 0.13229529330344847,
+                "mean of errors": 0.07197260236426996,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.1512534833578365,
+                "max estimate": 2.6587809088811305,
+                "mean of mis estimate": 2.457443817524058,
+                "variance of estimates": 0.00463844008627069,
+                "mean of variances": 0.009079171517824142,
+                "mean of alternate variances": 0.009079171517824142,
+                "mean of standard deviations": 0.09502436859563762,
+                "mean of errors": 0.05297999617481895,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 2.285714308506597,
+                "max estimate": 2.5995942174821707,
+                "mean of mis estimate": 2.461632555896121,
+                "variance of estimates": 0.0028454150914644814,
+                "mean of variances": 0.005959794142414648,
+                "mean of alternate variances": 0.005959794142414646,
+                "mean of standard deviations": 0.07706409810581151,
+                "mean of errors": 0.04276351780587149,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 1.4106553459271691,
+                "max estimate": 2.9102723065707945,
+                "mean of mis estimate": 2.458329424695284,
+                "variance of estimates": 0.05168878103853866,
+                "mean of variances": 0.10750424335106203,
+                "mean of alternate variances": 0.107504243351062,
+                "mean of standard deviations": 0.3193880635008742,
+                "mean of errors": 0.18078648666588412,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 1.9129110805215477,
+                "max estimate": 2.8063200952756175,
+                "mean of mis estimate": 2.4583691811271433,
+                "variance of estimates": 0.018655347056125864,
+                "mean of variances": 0.03832654477064425,
+                "mean of alternate variances": 0.038326544770644254,
+                "mean of standard deviations": 0.19373270966322867,
+                "mean of errors": 0.10693672060383319,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.126273871038384,
+                "max estimate": 2.679802777072415,
+                "mean of mis estimate": 2.4572906749493577,
+                "variance of estimates": 0.008337662815817989,
+                "mean of variances": 0.01771099653978964,
+                "mean of alternate variances": 0.017710996539789647,
+                "mean of standard deviations": 0.13235946610904603,
+                "mean of errors": 0.07248728077932401,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 2.220307859180251,
+                "max estimate": 2.6194922809562127,
+                "mean of mis estimate": 2.45582977032715,
+                "variance of estimates": 0.004254821877421648,
+                "mean of variances": 0.009135039543668953,
+                "mean of alternate variances": 0.009135039543668953,
+                "mean of standard deviations": 0.09533337066703769,
+                "mean of errors": 0.05216828222076789,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 2.2656304429988445,
+                "max estimate": 2.6041375896077543,
+                "mean of mis estimate": 2.4563806103049735,
+                "variance of estimates": 0.0029343847185724294,
+                "mean of variances": 0.0060168558340043055,
+                "mean of alternate variances": 0.0060168558340043055,
+                "mean of standard deviations": 0.07743514642987907,
+                "mean of errors": 0.04348682891853478,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    },
+    "Test 8": {
+        "test_values": {
+            "means": [
+                2.5233888373956255,
+                10.403931660692496,
+                16.2462112152609
+            ],
+            "std_devs": [
+                0.1127001165883866,
+                0.5655716619345633,
+                0.7215330977143612
+            ],
+            "lower_bounds": [
+                2.2979886042188524,
+                9.27278833682337,
+                14.803145019832177
+            ],
+            "upper_bounds": [
+                2.7487890705723985,
+                11.535074984561623,
+                17.689277410689623
+            ],
+            "quad_result": 3.7328129538450434
+        },
+        "balance": {
+            "10": {
+                "min estimate": 2.1550177705972424,
+                "max estimate": 4.508924805349058,
+                "mean of mis estimate": 3.738242870917349,
+                "variance of estimates": 0.1338017328824032,
+                "mean of variances": 0.6705629545327738,
+                "mean of alternate variances": 0.6705629545327737,
+                "mean of standard deviations": 0.8162756105680669,
+                "mean of errors": 0.28974731433448236,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.840137748813269,
+                "max estimate": 4.229770890516385,
+                "mean of mis estimate": 3.7337552784282018,
+                "variance of estimates": 0.04913569170325812,
+                "mean of variances": 0.23685973472985858,
+                "mean of alternate variances": 0.23685973472985858,
+                "mean of standard deviations": 0.4860024444739627,
+                "mean of errors": 0.1785974731574042,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.1317221245535363,
+                "max estimate": 4.1722623698943755,
+                "mean of mis estimate": 3.7366438360000633,
+                "variance of estimates": 0.023248914308798812,
+                "mean of variances": 0.10928324541628302,
+                "mean of alternate variances": 0.10928324541628302,
+                "mean of standard deviations": 0.33035198648248526,
+                "mean of errors": 0.12050149231387795,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.3477018892204526,
+                "max estimate": 4.0137727241421866,
+                "mean of mis estimate": 3.7323097758988895,
+                "variance of estimates": 0.012576169284480758,
+                "mean of variances": 0.055952391213575946,
+                "mean of alternate variances": 0.055952391213575946,
+                "mean of standard deviations": 0.23646324217324127,
+                "mean of errors": 0.0905852343003807,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 3.4048456281922186,
+                "max estimate": 3.9745638759431974,
+                "mean of mis estimate": 3.735301794830014,
+                "variance of estimates": 0.007642142561586547,
+                "mean of variances": 0.036820137770819696,
+                "mean of alternate variances": 0.036820137770819696,
+                "mean of standard deviations": 0.1918439168758649,
+                "mean of errors": 0.06976248595162292,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 1.9457707457050621,
+                "max estimate": 4.398925011815836,
+                "mean of mis estimate": 3.7495866115467296,
+                "variance of estimates": 0.13095343530758996,
+                "mean of variances": 0.670956811660244,
+                "mean of alternate variances": 0.6709568116602439,
+                "mean of standard deviations": 0.816483081604306,
+                "mean of errors": 0.288150322204428,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.908500171915547,
+                "max estimate": 4.242400051292875,
+                "mean of mis estimate": 3.7358641265319803,
+                "variance of estimates": 0.05241490283714872,
+                "mean of variances": 0.23678063030031812,
+                "mean of alternate variances": 0.23678063030031812,
+                "mean of standard deviations": 0.48588707346781307,
+                "mean of errors": 0.1842054976431918,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.122467168559682,
+                "max estimate": 4.071671556184239,
+                "mean of mis estimate": 3.732795672048326,
+                "variance of estimates": 0.02604694557713468,
+                "mean of variances": 0.10954699165931717,
+                "mean of alternate variances": 0.10954699165931717,
+                "mean of standard deviations": 0.33076305539611567,
+                "mean of errors": 0.1284367677105902,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.3013076972688085,
+                "max estimate": 4.013868534695052,
+                "mean of mis estimate": 3.7363555274470923,
+                "variance of estimates": 0.012847627708641193,
+                "mean of variances": 0.05605212938714848,
+                "mean of alternate variances": 0.056052129387148486,
+                "mean of standard deviations": 0.23667247062186392,
+                "mean of errors": 0.08945710059642302,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.4217803231724337,
+                "max estimate": 3.9958010466820384,
+                "mean of mis estimate": 3.731761699777546,
+                "variance of estimates": 0.00810532182160378,
+                "mean of variances": 0.03691963483087996,
+                "mean of alternate variances": 0.03691963483087997,
+                "mean of standard deviations": 0.19209931974037664,
+                "mean of errors": 0.07119796722345186,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 2.297438391645187,
+                "max estimate": 4.538514793000339,
+                "mean of mis estimate": 3.7263238911482324,
+                "variance of estimates": 0.13728907580040983,
+                "mean of variances": 0.6695651707359314,
+                "mean of alternate variances": 0.6695651707359314,
+                "mean of standard deviations": 0.8155257165516575,
+                "mean of errors": 0.29055361672591573,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.5578875096317364,
+                "max estimate": 4.197943541577238,
+                "mean of mis estimate": 3.720613212315197,
+                "variance of estimates": 0.05591389001872705,
+                "mean of variances": 0.23800524102158277,
+                "mean of alternate variances": 0.23800524102158277,
+                "mean of standard deviations": 0.48722172722116125,
+                "mean of errors": 0.1856634306697157,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.1102659368953676,
+                "max estimate": 4.157210349092333,
+                "mean of mis estimate": 3.7384900166032957,
+                "variance of estimates": 0.024889771109128923,
+                "mean of variances": 0.10949196112992075,
+                "mean of alternate variances": 0.10949196112992075,
+                "mean of standard deviations": 0.3306701880068173,
+                "mean of errors": 0.12528163661157096,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.339426345709706,
+                "max estimate": 3.9982557101285408,
+                "mean of mis estimate": 3.732646194850778,
+                "variance of estimates": 0.01166425157896687,
+                "mean of variances": 0.05588561728593269,
+                "mean of alternate variances": 0.05588561728593269,
+                "mean of standard deviations": 0.23632265621241777,
+                "mean of errors": 0.08595692359809298,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.3757050476053765,
+                "max estimate": 3.972950650558383,
+                "mean of mis estimate": 3.734206151435351,
+                "variance of estimates": 0.008491950983677419,
+                "mean of variances": 0.036922991712734,
+                "mean of alternate variances": 0.036922991712734,
+                "mean of standard deviations": 0.19210979490231608,
+                "mean of errors": 0.07410257348953132,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 2.2327439108800373,
+                "max estimate": 4.497776914963371,
+                "mean of mis estimate": 3.7324016919436565,
+                "variance of estimates": 0.13409412731323125,
+                "mean of variances": 0.6725026940835955,
+                "mean of alternate variances": 0.6725026940835956,
+                "mean of standard deviations": 0.8172919964472732,
+                "mean of errors": 0.2894988732390007,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.8258446308855896,
+                "max estimate": 4.26171595507509,
+                "mean of mis estimate": 3.7411488234904393,
+                "variance of estimates": 0.04769532559730166,
+                "mean of variances": 0.23684416784846854,
+                "mean of alternate variances": 0.23684416784846854,
+                "mean of standard deviations": 0.4860083582857244,
+                "mean of errors": 0.1765105723874354,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.1377784208192874,
+                "max estimate": 4.134081154702474,
+                "mean of mis estimate": 3.733616358068669,
+                "variance of estimates": 0.022692317563651018,
+                "mean of variances": 0.10979358729320775,
+                "mean of alternate variances": 0.10979358729320775,
+                "mean of standard deviations": 0.33112951389629863,
+                "mean of errors": 0.11891856916959713,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.3535190414209746,
+                "max estimate": 4.0443938489244795,
+                "mean of mis estimate": 3.7311721618402136,
+                "variance of estimates": 0.012711889869718435,
+                "mean of variances": 0.05595831781345451,
+                "mean of alternate variances": 0.05595831781345451,
+                "mean of standard deviations": 0.23647513384592275,
+                "mean of errors": 0.09043146131488108,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.4502328054093034,
+                "max estimate": 4.006064510742442,
+                "mean of mis estimate": 3.7340633092773996,
+                "variance of estimates": 0.008463011274717417,
+                "mean of variances": 0.03688969010830584,
+                "mean of alternate variances": 0.03688969010830583,
+                "mean of standard deviations": 0.1920226325180497,
+                "mean of errors": 0.07340872770354726,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 1.8315042611201544,
+                "max estimate": 4.489688147690682,
+                "mean of mis estimate": 3.70095182580113,
+                "variance of estimates": 0.16162625930427615,
+                "mean of variances": 0.6754451949993643,
+                "mean of alternate variances": 0.6754451949993643,
+                "mean of standard deviations": 0.8191294908187858,
+                "mean of errors": 0.30775952232901416,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.6672358600201425,
+                "max estimate": 4.255002830706849,
+                "mean of mis estimate": 3.7271312465213366,
+                "variance of estimates": 0.05057972495421935,
+                "mean of variances": 0.2372555027232545,
+                "mean of alternate variances": 0.2372555027232545,
+                "mean of standard deviations": 0.4864146580691322,
+                "mean of errors": 0.17716827867040996,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.1128601416299673,
+                "max estimate": 4.155101138899577,
+                "mean of mis estimate": 3.737429056189818,
+                "variance of estimates": 0.023100678865768772,
+                "mean of variances": 0.10944441618897366,
+                "mean of alternate variances": 0.10944441618897364,
+                "mean of standard deviations": 0.3306127581129965,
+                "mean of errors": 0.12176885842512367,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.3642923898782553,
+                "max estimate": 4.004947841680526,
+                "mean of mis estimate": 3.7382735720600584,
+                "variance of estimates": 0.01184565830435578,
+                "mean of variances": 0.05577349793157082,
+                "mean of alternate variances": 0.05577349793157082,
+                "mean of standard deviations": 0.23608946004072573,
+                "mean of errors": 0.08753808232112709,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 3.4908943814622173,
+                "max estimate": 3.971009928818103,
+                "mean of mis estimate": 3.734211986765377,
+                "variance of estimates": 0.007550857680138611,
+                "mean of variances": 0.036857837953425135,
+                "mean of alternate variances": 0.036857837953425135,
+                "mean of standard deviations": 0.19193888740731524,
+                "mean of errors": 0.06987889726094736,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    },
+    "Test 9": {
+        "test_values": {
+            "means": [
+                2.3829025327888145,
+                8.035600412260266,
+                14.877229595201012
+            ],
+            "std_devs": [
+                0.4640445759521249,
+                0.44408363172728155,
+                0.38439076762780955
+            ],
+            "lower_bounds": [
+                1.4548133808845647,
+                7.147433148805702,
+                14.108448059945392
+            ],
+            "upper_bounds": [
+                3.3109916846930645,
+                8.923767675714828,
+                15.646011130456632
+            ],
+            "quad_result": 3.4467172573793774
+        },
+        "balance": {
+            "10": {
+                "min estimate": 2.3645341663903197,
+                "max estimate": 4.066578014624158,
+                "mean of mis estimate": 3.4187841078647296,
+                "variance of estimates": 0.09283997533194548,
+                "mean of variances": 0.10571189020337378,
+                "mean of alternate variances": 0.10571189020337377,
+                "mean of standard deviations": 0.2881748896368516,
+                "mean of errors": 0.24591876072921376,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.783721796949053,
+                "max estimate": 3.8303980854450956,
+                "mean of mis estimate": 3.4410367018595327,
+                "variance of estimates": 0.0332121764733703,
+                "mean of variances": 0.03772104575505267,
+                "mean of alternate variances": 0.03772104575505267,
+                "mean of standard deviations": 0.1852372926100206,
+                "mean of errors": 0.14630337532339613,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 2.998843023410954,
+                "max estimate": 3.8016626087660477,
+                "mean of mis estimate": 3.4503013770265714,
+                "variance of estimates": 0.015162061400821375,
+                "mean of variances": 0.01719734486396148,
+                "mean of alternate variances": 0.017197344863961482,
+                "mean of standard deviations": 0.12824761454107172,
+                "mean of errors": 0.09871753459507004,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.047680838636831,
+                "max estimate": 3.731192919085502,
+                "mean of mis estimate": 3.4488723956993597,
+                "variance of estimates": 0.008611518132199094,
+                "mean of variances": 0.008915519963077592,
+                "mean of alternate variances": 0.008915519963077592,
+                "mean of standard deviations": 0.09335315272265637,
+                "mean of errors": 0.07459280361562455,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 3.2248029982014583,
+                "max estimate": 3.640846509893306,
+                "mean of mis estimate": 3.4456298267752676,
+                "variance of estimates": 0.005221426730141028,
+                "mean of variances": 0.005921202994699016,
+                "mean of alternate variances": 0.005921202994699017,
+                "mean of standard deviations": 0.07645935423064636,
+                "mean of errors": 0.05821497835169457,
+                "mean time taken": "0.0024 seconds"
+            }
+        },
+        "power": {
+            "10": {
+                "min estimate": 2.242047442929465,
+                "max estimate": 4.113387497174242,
+                "mean of mis estimate": 3.444112225953655,
+                "variance of estimates": 0.08544329719576553,
+                "mean of variances": 0.09864110532060141,
+                "mean of alternate variances": 0.09864110532060141,
+                "mean of standard deviations": 0.277222010167424,
+                "mean of errors": 0.23581297968219236,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.6941030173912828,
+                "max estimate": 3.8616451332325763,
+                "mean of mis estimate": 3.443141339921792,
+                "variance of estimates": 0.036657562517969824,
+                "mean of variances": 0.0376226277285348,
+                "mean of alternate variances": 0.03762262772853481,
+                "mean of standard deviations": 0.1850456171095231,
+                "mean of errors": 0.15246798064132605,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.0078264936667725,
+                "max estimate": 3.7450525611311165,
+                "mean of mis estimate": 3.4447488355913762,
+                "variance of estimates": 0.01592499756807387,
+                "mean of variances": 0.017238308467781908,
+                "mean of alternate variances": 0.017238308467781904,
+                "mean of standard deviations": 0.12842519169411606,
+                "mean of errors": 0.10150750147247055,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.115682323037335,
+                "max estimate": 3.674000291873766,
+                "mean of mis estimate": 3.4428491452334096,
+                "variance of estimates": 0.008474923544916066,
+                "mean of variances": 0.009029906271411176,
+                "mean of alternate variances": 0.009029906271411179,
+                "mean of standard deviations": 0.09399132699859572,
+                "mean of errors": 0.0734603182744143,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.2005537579747525,
+                "max estimate": 3.6965578603007825,
+                "mean of mis estimate": 3.450358479776817,
+                "variance of estimates": 0.005558990076895931,
+                "mean of variances": 0.005836039120597148,
+                "mean of alternate variances": 0.0058360391205971454,
+                "mean of standard deviations": 0.07584845764731536,
+                "mean of errors": 0.059452166010437506,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "maximum": {
+            "10": {
+                "min estimate": 2.199021839224642,
+                "max estimate": 4.048031873115839,
+                "mean of mis estimate": 3.460134586366141,
+                "variance of estimates": 0.08155498493178528,
+                "mean of variances": 0.09601017625811127,
+                "mean of alternate variances": 0.09601017625811128,
+                "mean of standard deviations": 0.2745595626352089,
+                "mean of errors": 0.232156980983393,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.7462986760693346,
+                "max estimate": 3.8484616994155627,
+                "mean of mis estimate": 3.441224673914574,
+                "variance of estimates": 0.03191237370806037,
+                "mean of variances": 0.03794979759457801,
+                "mean of alternate variances": 0.037949797594578005,
+                "mean of standard deviations": 0.18570946370991856,
+                "mean of errors": 0.144035418258785,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.03360768269893,
+                "max estimate": 3.784246623367013,
+                "mean of mis estimate": 3.4521147883019667,
+                "variance of estimates": 0.015357982823012718,
+                "mean of variances": 0.017033566119688953,
+                "mean of alternate variances": 0.017033566119688946,
+                "mean of standard deviations": 0.12771249333505516,
+                "mean of errors": 0.09981706875141902,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.0381665753449725,
+                "max estimate": 3.7085525937255577,
+                "mean of mis estimate": 3.446007413655511,
+                "variance of estimates": 0.008289721880618163,
+                "mean of variances": 0.008896902757029666,
+                "mean of alternate variances": 0.008896902757029665,
+                "mean of standard deviations": 0.09326171397415745,
+                "mean of errors": 0.07092505185267944,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.1669510463894124,
+                "max estimate": 3.6308619577747474,
+                "mean of mis estimate": 3.4485788073277073,
+                "variance of estimates": 0.004575889038257946,
+                "mean of variances": 0.005874512854518795,
+                "mean of alternate variances": 0.005874512854518796,
+                "mean of standard deviations": 0.07616899737370902,
+                "mean of errors": 0.054130795174024623,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "cutoff": {
+            "10": {
+                "min estimate": 1.7611005195948135,
+                "max estimate": 4.026127200022147,
+                "mean of mis estimate": 3.4298569714131726,
+                "variance of estimates": 0.09544548741395269,
+                "mean of variances": 0.10465950874602638,
+                "mean of alternate variances": 0.10465950874602638,
+                "mean of standard deviations": 0.2869785824074347,
+                "mean of errors": 0.24678065472781283,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.550491839854316,
+                "max estimate": 3.861373019492154,
+                "mean of mis estimate": 3.4472100540394326,
+                "variance of estimates": 0.03268334341218721,
+                "mean of variances": 0.036845250778468785,
+                "mean of alternate variances": 0.036845250778468785,
+                "mean of standard deviations": 0.18240834815127357,
+                "mean of errors": 0.1452941770946451,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.03786823908608,
+                "max estimate": 3.7727076775430297,
+                "mean of mis estimate": 3.4394513351103178,
+                "variance of estimates": 0.015115799713466672,
+                "mean of variances": 0.017668285209539884,
+                "mean of alternate variances": 0.01766828520953988,
+                "mean of standard deviations": 0.13007496114544756,
+                "mean of errors": 0.09905353576432575,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.16694609697343,
+                "max estimate": 3.6927894660551437,
+                "mean of mis estimate": 3.446703918781589,
+                "variance of estimates": 0.008052611733889065,
+                "mean of variances": 0.008937456219034356,
+                "mean of alternate variances": 0.008937456219034355,
+                "mean of standard deviations": 0.0936052644222082,
+                "mean of errors": 0.07113544293517174,
+                "mean time taken": "0.0015 seconds"
+            },
+            "150": {
+                "min estimate": 3.2024262319548153,
+                "max estimate": 3.646747432374201,
+                "mean of mis estimate": 3.4467833233355454,
+                "variance of estimates": 0.005395705527954888,
+                "mean of variances": 0.005878724178758864,
+                "mean of alternate variances": 0.0058787241787588655,
+                "mean of standard deviations": 0.07613605444090021,
+                "mean of errors": 0.0587287960509084,
+                "mean time taken": "0.0023 seconds"
+            }
+        },
+        "sbert": {
+            "10": {
+                "min estimate": 1.9445031427428054,
+                "max estimate": 4.059837068426662,
+                "mean of mis estimate": 3.438359587762058,
+                "variance of estimates": 0.09432543056498935,
+                "mean of variances": 0.10007379165806937,
+                "mean of alternate variances": 0.1000737916580694,
+                "mean of standard deviations": 0.2799812602736401,
+                "mean of errors": 0.24666511340868483,
+                "mean time taken": "0.0001 seconds"
+            },
+            "25": {
+                "min estimate": 2.703934164122208,
+                "max estimate": 3.8514636470689307,
+                "mean of mis estimate": 3.441096585384617,
+                "variance of estimates": 0.034443511442574834,
+                "mean of variances": 0.037986086061824305,
+                "mean of alternate variances": 0.03798608606182431,
+                "mean of standard deviations": 0.18593236202751096,
+                "mean of errors": 0.14845066479113125,
+                "mean time taken": "0.0004 seconds"
+            },
+            "50": {
+                "min estimate": 3.046728173813679,
+                "max estimate": 3.789464984732704,
+                "mean of mis estimate": 3.4466639749197463,
+                "variance of estimates": 0.01543072648028377,
+                "mean of variances": 0.017381842502733537,
+                "mean of alternate variances": 0.017381842502733533,
+                "mean of standard deviations": 0.12902422320316118,
+                "mean of errors": 0.09971985423537086,
+                "mean time taken": "0.0008 seconds"
+            },
+            "100": {
+                "min estimate": 3.0715132678369224,
+                "max estimate": 3.694338220628251,
+                "mean of mis estimate": 3.4461064037194675,
+                "variance of estimates": 0.008512016259451216,
+                "mean of variances": 0.00896225670658966,
+                "mean of alternate variances": 0.008962256706589664,
+                "mean of standard deviations": 0.09366810979577522,
+                "mean of errors": 0.07265854699264224,
+                "mean time taken": "0.0016 seconds"
+            },
+            "150": {
+                "min estimate": 3.1919012819185566,
+                "max estimate": 3.6603875283548915,
+                "mean of mis estimate": 3.446653853204236,
+                "variance of estimates": 0.005247158050152301,
+                "mean of variances": 0.00582495594215265,
+                "mean of alternate variances": 0.005824955942152649,
+                "mean of standard deviations": 0.07578149310146574,
+                "mean of errors": 0.056635451054135616,
+                "mean time taken": "0.0024 seconds"
+            }
+        }
+    }
+}

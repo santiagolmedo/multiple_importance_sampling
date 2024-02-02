@@ -1,0 +1,3376 @@
+{
+    "Test 1": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 3.3654350137672275,
+                    "mean of variances": 0.10441414751066633,
+                    "mean of advanced variances": 0.10441414751066638,
+                    "mean of standard deviations": 0.20094777019890775,
+                    "mean of advanced standard deviations": 0.2009477701989079,
+                    "mean of errors": 0.05267026467233902,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.001099846363067627
+                },
+                "100": {
+                    "mean of mis estimates": 3.3854726716192327,
+                    "mean of variances": 0.059416191071356234,
+                    "mean of advanced variances": 0.05941619107135621,
+                    "mean of standard deviations": 0.17682900179273242,
+                    "mean of advanced standard deviations": 0.17682900179273242,
+                    "mean of errors": 0.03263260682033387,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.00211536169052124
+                },
+                "500": {
+                    "mean of mis estimates": 3.373953381471465,
+                    "mean of variances": 0.02508329904739791,
+                    "mean of advanced variances": 0.025083299047397874,
+                    "mean of standard deviations": 0.10346629095652418,
+                    "mean of advanced standard deviations": 0.10346629095652414,
+                    "mean of errors": 0.04415189696810173,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.010798561573028564
+                },
+                "1000": {
+                    "mean of mis estimates": 3.3936263450726325,
+                    "mean of variances": 0.014313414378214727,
+                    "mean of advanced variances": 0.014313414378214729,
+                    "mean of standard deviations": 0.09053122485959474,
+                    "mean of advanced standard deviations": 0.09053122485959478,
+                    "mean of errors": 0.024478933366933856,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.021273343563079833
+                },
+                "5000": {
+                    "mean of mis estimates": 3.408782873910636,
+                    "mean of variances": 0.014733285900849897,
+                    "mean of advanced variances": 0.014733285900849857,
+                    "mean of standard deviations": 0.06424719498900534,
+                    "mean of advanced standard deviations": 0.06424719498900532,
+                    "mean of errors": 0.009322404528931573,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.1055678939819336
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 3.3952140058358595,
+                    "mean of variances": 0.23936005970115123,
+                    "mean of advanced variances": 0.23936005970115126,
+                    "mean of standard deviations": 0.2210153503193813,
+                    "mean of advanced standard deviations": 0.22101535031938124,
+                    "mean of errors": 0.022891272603707446,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.0009120512008666992
+                },
+                "100": {
+                    "mean of mis estimates": 3.4246292138708996,
+                    "mean of variances": 0.23936844610833327,
+                    "mean of advanced variances": 0.23936844610833327,
+                    "mean of standard deviations": 0.21438519165309203,
+                    "mean of advanced standard deviations": 0.21438519165309203,
+                    "mean of errors": -0.006523935431332392,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.0018030762672424316
+                },
+                "500": {
+                    "mean of mis estimates": 3.4319454655487034,
+                    "mean of variances": 0.05599659328820034,
+                    "mean of advanced variances": 0.05599659328820031,
+                    "mean of standard deviations": 0.14335665402295317,
+                    "mean of advanced standard deviations": 0.14335665402295317,
+                    "mean of errors": -0.013840187109137082,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.00889178991317749
+                },
+                "1000": {
+                    "mean of mis estimates": 3.394901595758951,
+                    "mean of variances": 0.030376504100940435,
+                    "mean of advanced variances": 0.030376504100940463,
+                    "mean of standard deviations": 0.09544001235748206,
+                    "mean of advanced standard deviations": 0.09544001235748206,
+                    "mean of errors": 0.02320368268061497,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.017771520614624024
+                },
+                "5000": {
+                    "mean of mis estimates": 3.4295665290924893,
+                    "mean of variances": 0.06423839800352965,
+                    "mean of advanced variances": 0.06423839800352936,
+                    "mean of standard deviations": 0.08717589271853006,
+                    "mean of advanced standard deviations": 0.08717589271853,
+                    "mean of errors": -0.011461250652922356,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.09254085540771484
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 3.3798686544818644,
+                    "mean of variances": 0.08531429826367116,
+                    "mean of advanced variances": 0.08531429826367118,
+                    "mean of standard deviations": 0.2002009333355316,
+                    "mean of advanced standard deviations": 0.20020093333553163,
+                    "mean of errors": 0.038236623957701436,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.0008889079093933105
+                },
+                "100": {
+                    "mean of mis estimates": 3.395161095392093,
+                    "mean of variances": 0.12802094314917645,
+                    "mean of advanced variances": 0.12802094314917642,
+                    "mean of standard deviations": 0.20252776462411567,
+                    "mean of advanced standard deviations": 0.20252776462411565,
+                    "mean of errors": 0.022944183047472796,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.0017776894569396973
+                },
+                "500": {
+                    "mean of mis estimates": 4.5979012985430305,
+                    "mean of variances": 151.40667443559704,
+                    "mean of advanced variances": 151.40667443559698,
+                    "mean of standard deviations": 1.3368842527125295,
+                    "mean of advanced standard deviations": 1.3368842527125293,
+                    "mean of errors": -1.1797960201034643,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.009019732475280762
+                },
+                "1000": {
+                    "mean of mis estimates": 3.5098853047255445,
+                    "mean of variances": 1.034399511361825,
+                    "mean of advanced variances": 1.0343995113618278,
+                    "mean of standard deviations": 0.20803147058183707,
+                    "mean of advanced standard deviations": 0.20803147058183719,
+                    "mean of errors": -0.09178002628597716,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.01760357141494751
+                },
+                "5000": {
+                    "mean of mis estimates": 3.4170222491717577,
+                    "mean of variances": 0.014652977637569025,
+                    "mean of advanced variances": 0.014652977637569044,
+                    "mean of standard deviations": 0.06815691301341109,
+                    "mean of advanced standard deviations": 0.06815691301341109,
+                    "mean of errors": 0.0010830292678088904,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.08829856872558593
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 3.4429460993631924,
+                    "mean of variances": 0.2525804399266067,
+                    "mean of advanced variances": 0.25258043992660667,
+                    "mean of standard deviations": 0.26401466927356454,
+                    "mean of advanced standard deviations": 0.26401466927356465,
+                    "mean of errors": -0.02484082092362569,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.0009284496307373046
+                },
+                "100": {
+                    "mean of mis estimates": 3.4114459161152966,
+                    "mean of variances": 0.10272637081698104,
+                    "mean of advanced variances": 0.10272637081698104,
+                    "mean of standard deviations": 0.201818608206314,
+                    "mean of advanced standard deviations": 0.20181860820631395,
+                    "mean of errors": 0.006659362324269602,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.0018284392356872558
+                },
+                "500": {
+                    "mean of mis estimates": 3.358543207871669,
+                    "mean of variances": 0.012594440796177227,
+                    "mean of advanced variances": 0.012594440796177225,
+                    "mean of standard deviations": 0.08947728284531369,
+                    "mean of advanced standard deviations": 0.08947728284531369,
+                    "mean of errors": 0.05956207056789777,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.00910238265991211
+                },
+                "1000": {
+                    "mean of mis estimates": 3.3966844913259946,
+                    "mean of variances": 0.016814302836963956,
+                    "mean of advanced variances": 0.016814302836963956,
+                    "mean of standard deviations": 0.09068518065850512,
+                    "mean of advanced standard deviations": 0.0906851806585051,
+                    "mean of errors": 0.02142078711357238,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.017897946834564207
+                },
+                "5000": {
+                    "mean of mis estimates": 3.4055642933297223,
+                    "mean of variances": 0.00580290437144203,
+                    "mean of advanced variances": 0.005802904371442021,
+                    "mean of standard deviations": 0.05546523943026812,
+                    "mean of advanced standard deviations": 0.05546523943026807,
+                    "mean of errors": 0.012540985109844053,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.08942999362945557
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 3.3318818210955436,
+                    "mean of variances": 0.051194695844312584,
+                    "mean of advanced variances": 0.051194695844312584,
+                    "mean of standard deviations": 0.1778857547613604,
+                    "mean of advanced standard deviations": 0.17788575476136054,
+                    "mean of errors": 0.08622345734402315,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.0010703539848327637
+                },
+                "100": {
+                    "mean of mis estimates": 3.3499909899110993,
+                    "mean of variances": 0.06067004886220574,
+                    "mean of advanced variances": 0.06067004886220574,
+                    "mean of standard deviations": 0.15795655739393374,
+                    "mean of advanced standard deviations": 0.15795655739393372,
+                    "mean of errors": 0.0681142885284674,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.002086303234100342
+                },
+                "500": {
+                    "mean of mis estimates": 3.410494034641189,
+                    "mean of variances": 0.05271001668073035,
+                    "mean of advanced variances": 0.052710016680730394,
+                    "mean of standard deviations": 0.11982698513225351,
+                    "mean of advanced standard deviations": 0.11982698513225351,
+                    "mean of errors": 0.007611243798377481,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.010587666034698486
+                },
+                "1000": {
+                    "mean of mis estimates": 3.4197106381864946,
+                    "mean of variances": 0.12213170784793156,
+                    "mean of advanced variances": 0.1221317078479317,
+                    "mean of standard deviations": 0.12195860681982905,
+                    "mean of advanced standard deviations": 0.12195860681982909,
+                    "mean of errors": -0.0016053597469271885,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.020854032039642333
+                },
+                "5000": {
+                    "mean of mis estimates": 3.4313014388539202,
+                    "mean of variances": 0.054950741734364976,
+                    "mean of advanced variances": 0.054950741734365136,
+                    "mean of standard deviations": 0.08591907759870318,
+                    "mean of advanced standard deviations": 0.08591907759870328,
+                    "mean of errors": -0.013196160414353852,
+                    "exact integral": 3.4181052784395667,
+                    "mean of times": 0.10405095577239991
+                }
+            }
+        },
+        "a": [
+            [
+                1.8347982700520296
+            ],
+            [
+                1.841628570451507
+            ]
+        ],
+        "b": [
+            [
+                93.39835577180611
+            ],
+            [
+                99.84583774486123
+            ]
+        ],
+        "m": 2,
+        "n": 1
+    },
+    "Test 2": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 7.86086936899801,
+                    "mean of variances": 2.0178580474856695,
+                    "mean of advanced variances": 2.0178580474856695,
+                    "mean of standard deviations": 0.7524006607520066,
+                    "mean of advanced standard deviations": 0.7524006607520066,
+                    "mean of errors": 0.26722483618365056,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.0016634273529052735
+                },
+                "100": {
+                    "mean of mis estimates": 8.185491868453289,
+                    "mean of variances": 6.734197340814895,
+                    "mean of advanced variances": 6.734197340814895,
+                    "mean of standard deviations": 0.9472819023953547,
+                    "mean of advanced standard deviations": 0.9472819023953545,
+                    "mean of errors": -0.0573976632716291,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.0032923293113708498
+                },
+                "500": {
+                    "mean of mis estimates": 7.928174382248702,
+                    "mean of variances": 0.20333546837974004,
+                    "mean of advanced variances": 0.20333546837974,
+                    "mean of standard deviations": 0.36684194275402815,
+                    "mean of advanced standard deviations": 0.36684194275402826,
+                    "mean of errors": 0.19991982293295826,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.016040520668029787
+                },
+                "1000": {
+                    "mean of mis estimates": 8.064284111639832,
+                    "mean of variances": 0.3326277107598758,
+                    "mean of advanced variances": 0.3326277107598758,
+                    "mean of standard deviations": 0.3685487495142948,
+                    "mean of advanced standard deviations": 0.3685487495142947,
+                    "mean of errors": 0.06381009354182803,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.032149672508239746
+                },
+                "5000": {
+                    "mean of mis estimates": 8.007213762530736,
+                    "mean of variances": 0.049195894202312095,
+                    "mean of advanced variances": 0.04919589420231204,
+                    "mean of standard deviations": 0.185117068528077,
+                    "mean of advanced standard deviations": 0.18511706852807694,
+                    "mean of errors": 0.12088044265092536,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.16139909982681275
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 7.82054826994211,
+                    "mean of variances": 0.7917426477149777,
+                    "mean of advanced variances": 0.791742647714978,
+                    "mean of standard deviations": 0.683628237902405,
+                    "mean of advanced standard deviations": 0.683628237902405,
+                    "mean of errors": 0.3075459352395503,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.0014636850357055665
+                },
+                "100": {
+                    "mean of mis estimates": 8.031814448864901,
+                    "mean of variances": 1.2467710107057965,
+                    "mean of advanced variances": 1.2467710107057965,
+                    "mean of standard deviations": 0.7057714875173812,
+                    "mean of advanced standard deviations": 0.7057714875173811,
+                    "mean of errors": 0.09627975631675824,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.002901582717895508
+                },
+                "500": {
+                    "mean of mis estimates": 7.97490609089222,
+                    "mean of variances": 0.3472473254187917,
+                    "mean of advanced variances": 0.3472473254187918,
+                    "mean of standard deviations": 0.40174097608627707,
+                    "mean of advanced standard deviations": 0.40174097608627707,
+                    "mean of errors": 0.15318811428944115,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.01379786729812622
+                },
+                "1000": {
+                    "mean of mis estimates": 7.971160876322182,
+                    "mean of variances": 0.1361223800037188,
+                    "mean of advanced variances": 0.1361223800037188,
+                    "mean of standard deviations": 0.30198289261548966,
+                    "mean of advanced standard deviations": 0.30198289261548966,
+                    "mean of errors": 0.1569333288594793,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.02750373601913452
+                },
+                "5000": {
+                    "mean of mis estimates": 8.259250859130217,
+                    "mean of variances": 1.305558481264483,
+                    "mean of advanced variances": 1.3055584812644812,
+                    "mean of standard deviations": 0.41122826141504765,
+                    "mean of advanced standard deviations": 0.41122826141504754,
+                    "mean of errors": -0.13115665394855575,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.13812371492385864
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 7.828208242459347,
+                    "mean of variances": 1.0073775267124778,
+                    "mean of advanced variances": 1.0073775267124774,
+                    "mean of standard deviations": 0.7038686966838253,
+                    "mean of advanced standard deviations": 0.7038686966838251,
+                    "mean of errors": 0.29988596272231366,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.0014291071891784667
+                },
+                "100": {
+                    "mean of mis estimates": 8.321313311860404,
+                    "mean of variances": 30.01491244412674,
+                    "mean of advanced variances": 30.01491244412675,
+                    "mean of standard deviations": 1.064734037039238,
+                    "mean of advanced standard deviations": 1.064734037039238,
+                    "mean of errors": -0.19321910667874115,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.0028862380981445313
+                },
+                "500": {
+                    "mean of mis estimates": 8.254917427451169,
+                    "mean of variances": 12.069705843757447,
+                    "mean of advanced variances": 12.069705843757442,
+                    "mean of standard deviations": 0.7058039454356401,
+                    "mean of advanced standard deviations": 0.7058039454356401,
+                    "mean of errors": -0.1268232222695063,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.013904712200164794
+                },
+                "1000": {
+                    "mean of mis estimates": 8.06503279451368,
+                    "mean of variances": 0.2918240058023339,
+                    "mean of advanced variances": 0.2918240058023342,
+                    "mean of standard deviations": 0.36304726065273163,
+                    "mean of advanced standard deviations": 0.36304726065273174,
+                    "mean of errors": 0.06306141066797989,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.027447633743286133
+                },
+                "5000": {
+                    "mean of mis estimates": 8.128546909461999,
+                    "mean of variances": 0.44868938634411715,
+                    "mean of advanced variances": 0.44868938634411726,
+                    "mean of standard deviations": 0.29512929396173865,
+                    "mean of advanced standard deviations": 0.2951292939617387,
+                    "mean of errors": -0.0004527042803402992,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.1385349988937378
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 7.796237805574903,
+                    "mean of variances": 1.2436948327818755,
+                    "mean of advanced variances": 1.2436948327818755,
+                    "mean of standard deviations": 0.7151616440446515,
+                    "mean of advanced standard deviations": 0.7151616440446518,
+                    "mean of errors": 0.3318563996067574,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.001504836082458496
+                },
+                "100": {
+                    "mean of mis estimates": 7.952472318064598,
+                    "mean of variances": 0.7747911490256514,
+                    "mean of advanced variances": 0.7747911490256513,
+                    "mean of standard deviations": 0.6648802429319152,
+                    "mean of advanced standard deviations": 0.6648802429319152,
+                    "mean of errors": 0.17562188711706356,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.002955470085144043
+                },
+                "500": {
+                    "mean of mis estimates": 8.156374408550056,
+                    "mean of variances": 2.7328763631052606,
+                    "mean of advanced variances": 2.732876363105254,
+                    "mean of standard deviations": 0.5785672893353402,
+                    "mean of advanced standard deviations": 0.57856728933534,
+                    "mean of errors": -0.02828020336839234,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.013955509662628174
+                },
+                "1000": {
+                    "mean of mis estimates": 8.098458243236044,
+                    "mean of variances": 0.5498978126759869,
+                    "mean of advanced variances": 0.5498978126759873,
+                    "mean of standard deviations": 0.43253117165171795,
+                    "mean of advanced standard deviations": 0.43253117165171795,
+                    "mean of errors": 0.029635961945615918,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.028156256675720213
+                },
+                "5000": {
+                    "mean of mis estimates": 8.014091208336946,
+                    "mean of variances": 0.061544046674386815,
+                    "mean of advanced variances": 0.061544046674386774,
+                    "mean of standard deviations": 0.19560320265694867,
+                    "mean of advanced standard deviations": 0.19560320265694864,
+                    "mean of errors": 0.11400299684471384,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.13936419010162354
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 8.12289956100997,
+                    "mean of variances": 4.339141705770332,
+                    "mean of advanced variances": 4.339141705770332,
+                    "mean of standard deviations": 0.9963589936784727,
+                    "mean of advanced standard deviations": 0.9963589936784727,
+                    "mean of errors": 0.005194644171691563,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.0016607403755187987
+                },
+                "100": {
+                    "mean of mis estimates": 8.300381119509733,
+                    "mean of variances": 4.437329574804269,
+                    "mean of advanced variances": 4.437329574804269,
+                    "mean of standard deviations": 0.9830660458868704,
+                    "mean of advanced standard deviations": 0.9830660458868704,
+                    "mean of errors": -0.172286914328072,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.0032944989204406736
+                },
+                "500": {
+                    "mean of mis estimates": 8.25943940240663,
+                    "mean of variances": 4.005516222456181,
+                    "mean of advanced variances": 4.005516222456179,
+                    "mean of standard deviations": 0.6676119750045973,
+                    "mean of advanced standard deviations": 0.6676119750045973,
+                    "mean of errors": -0.13134519722496873,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.016139564514160157
+                },
+                "1000": {
+                    "mean of mis estimates": 8.067071653511832,
+                    "mean of variances": 0.34459621801607887,
+                    "mean of advanced variances": 0.34459621801607887,
+                    "mean of standard deviations": 0.3916491544062688,
+                    "mean of advanced standard deviations": 0.3916491544062688,
+                    "mean of errors": 0.0610225516698291,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.03222269058227539
+                },
+                "5000": {
+                    "mean of mis estimates": 8.035482508426195,
+                    "mean of variances": 0.0757567534373465,
+                    "mean of advanced variances": 0.07575675343734639,
+                    "mean of standard deviations": 0.20294701897946502,
+                    "mean of advanced standard deviations": 0.20294701897946496,
+                    "mean of errors": 0.09261169675546661,
+                    "exact integral": 8.128094205181661,
+                    "mean of times": 0.16016796112060547
+                }
+            }
+        },
+        "a": [
+            [
+                1.8290645431464918,
+                1.9615053020862292
+            ],
+            [
+                1.8663358882209589,
+                1.9852305503948773
+            ],
+            [
+                1.9735964280485316,
+                1.8430301379628313
+            ]
+        ],
+        "b": [
+            [
+                8.639579264178693,
+                10.954912726037506
+            ],
+            [
+                -24.705734782067296,
+                26.633505703113244
+            ],
+            [
+                35.55645983492241,
+                -99.85080440926599
+            ]
+        ],
+        "m": 3,
+        "n": 2
+    },
+    "Test 3": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 26.349860198241334,
+                    "mean of variances": 111.32369006320967,
+                    "mean of advanced variances": 111.32369006320967,
+                    "mean of standard deviations": 4.042142458639429,
+                    "mean of advanced standard deviations": 4.042142458639427,
+                    "mean of errors": -0.00422006024164304,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.003210306167602539
+                },
+                "100": {
+                    "mean of mis estimates": 25.35369144127659,
+                    "mean of variances": 11.366585285838374,
+                    "mean of advanced variances": 11.366585285838369,
+                    "mean of standard deviations": 2.559109192480768,
+                    "mean of advanced standard deviations": 2.559109192480768,
+                    "mean of errors": 0.9919486967231086,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.0059950947761535645
+                },
+                "500": {
+                    "mean of mis estimates": 25.816374069656657,
+                    "mean of variances": 11.95541055469832,
+                    "mean of advanced variances": 11.9554105546983,
+                    "mean of standard deviations": 1.8867071029071676,
+                    "mean of advanced standard deviations": 1.886707102907167,
+                    "mean of errors": 0.5292660683430404,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.02922210454940796
+                },
+                "1000": {
+                    "mean of mis estimates": 25.78149518375514,
+                    "mean of variances": 10.739297593258357,
+                    "mean of advanced variances": 10.739297593258332,
+                    "mean of standard deviations": 1.6217845284380266,
+                    "mean of advanced standard deviations": 1.6217845284380261,
+                    "mean of errors": 0.56414495424456,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.058461995124816896
+                },
+                "5000": {
+                    "mean of mis estimates": 25.976279541091706,
+                    "mean of variances": 2.169827656958789,
+                    "mean of advanced variances": 2.169827656958792,
+                    "mean of standard deviations": 0.9689444703036536,
+                    "mean of advanced standard deviations": 0.9689444703036537,
+                    "mean of errors": 0.3693605969079901,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.29566857814788816
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 25.74752960894374,
+                    "mean of variances": 92.16331477625796,
+                    "mean of advanced variances": 92.16331477625798,
+                    "mean of standard deviations": 3.7183206495483643,
+                    "mean of advanced standard deviations": 3.7183206495483643,
+                    "mean of errors": 0.598110529055957,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.0028822660446166993
+                },
+                "100": {
+                    "mean of mis estimates": 26.74268620443122,
+                    "mean of variances": 191.61275746540454,
+                    "mean of advanced variances": 191.6127574654046,
+                    "mean of standard deviations": 4.146995303630224,
+                    "mean of advanced standard deviations": 4.146995303630225,
+                    "mean of errors": -0.39704606643151846,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.0054994702339172365
+                },
+                "500": {
+                    "mean of mis estimates": 27.42632765580587,
+                    "mean of variances": 205.65653528738915,
+                    "mean of advanced variances": 205.65653528738932,
+                    "mean of standard deviations": 3.3492504811722488,
+                    "mean of advanced standard deviations": 3.34925048117225,
+                    "mean of errors": -1.0806875178061677,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.02680648326873779
+                },
+                "1000": {
+                    "mean of mis estimates": 25.93264632663991,
+                    "mean of variances": 4.588648555181258,
+                    "mean of advanced variances": 4.588648555181257,
+                    "mean of standard deviations": 1.5243384151276538,
+                    "mean of advanced standard deviations": 1.5243384151276538,
+                    "mean of errors": 0.4129938113597876,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.05311674356460571
+                },
+                "5000": {
+                    "mean of mis estimates": 26.59230649029935,
+                    "mean of variances": 35.967327637895835,
+                    "mean of advanced variances": 35.967327637895856,
+                    "mean of standard deviations": 1.567101221080825,
+                    "mean of advanced standard deviations": 1.567101221080825,
+                    "mean of errors": -0.24666635229965295,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.26874915599822996
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 25.360133317442873,
+                    "mean of variances": 28.04722518074431,
+                    "mean of advanced variances": 28.04722518074431,
+                    "mean of standard deviations": 3.2377493905553827,
+                    "mean of advanced standard deviations": 3.237749390555383,
+                    "mean of errors": 0.9855068205568255,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.002874441146850586
+                },
+                "100": {
+                    "mean of mis estimates": 26.223725659971027,
+                    "mean of variances": 54.026848564624444,
+                    "mean of advanced variances": 54.026848564624444,
+                    "mean of standard deviations": 3.4576135127708763,
+                    "mean of advanced standard deviations": 3.4576135127708754,
+                    "mean of errors": 0.12191447802866871,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.0053923892974853515
+                },
+                "500": {
+                    "mean of mis estimates": 25.23251769704167,
+                    "mean of variances": 2.9128935870730306,
+                    "mean of advanced variances": 2.91289358707303,
+                    "mean of standard deviations": 1.4339553812748704,
+                    "mean of advanced standard deviations": 1.4339553812748702,
+                    "mean of errors": 1.1131224409580371,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.02680543899536133
+                },
+                "1000": {
+                    "mean of mis estimates": 25.322084043846104,
+                    "mean of variances": 1.708332689105917,
+                    "mean of advanced variances": 1.7083326891059167,
+                    "mean of standard deviations": 1.1137674308862529,
+                    "mean of advanced standard deviations": 1.1137674308862526,
+                    "mean of errors": 1.0235560941536024,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.05226813793182373
+                },
+                "5000": {
+                    "mean of mis estimates": 26.074582622708384,
+                    "mean of variances": 4.143553910905241,
+                    "mean of advanced variances": 4.143553910905239,
+                    "mean of standard deviations": 1.08507490580553,
+                    "mean of advanced standard deviations": 1.08507490580553,
+                    "mean of errors": 0.27105751529131206,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.26289373874664307
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 25.763443005798727,
+                    "mean of variances": 34.76947607842745,
+                    "mean of advanced variances": 34.769476078427466,
+                    "mean of standard deviations": 3.5736266171375366,
+                    "mean of advanced standard deviations": 3.5736266171375375,
+                    "mean of errors": 0.5821971322009669,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.002887289524078369
+                },
+                "100": {
+                    "mean of mis estimates": 26.254923940495456,
+                    "mean of variances": 39.364744048072865,
+                    "mean of advanced variances": 39.36474404807286,
+                    "mean of standard deviations": 3.452632486530283,
+                    "mean of advanced standard deviations": 3.452632486530283,
+                    "mean of errors": 0.09071619750423827,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.005423033237457275
+                },
+                "500": {
+                    "mean of mis estimates": 26.394865394473232,
+                    "mean of variances": 30.811940269515677,
+                    "mean of advanced variances": 30.811940269515677,
+                    "mean of standard deviations": 2.4906054930372172,
+                    "mean of advanced standard deviations": 2.4906054930372172,
+                    "mean of errors": -0.049225256473534776,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.026919989585876464
+                },
+                "1000": {
+                    "mean of mis estimates": 25.69476928242016,
+                    "mean of variances": 5.80391639278016,
+                    "mean of advanced variances": 5.803916392780151,
+                    "mean of standard deviations": 1.453131183165962,
+                    "mean of advanced standard deviations": 1.4531311831659617,
+                    "mean of errors": 0.6508708555795399,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.05299356460571289
+                },
+                "5000": {
+                    "mean of mis estimates": 26.19700824370163,
+                    "mean of variances": 9.092123151445428,
+                    "mean of advanced variances": 9.092123151445417,
+                    "mean of standard deviations": 1.1947883574753861,
+                    "mean of advanced standard deviations": 1.1947883574753861,
+                    "mean of errors": 0.14863189429806803,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.26519267320632933
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 25.470723952846946,
+                    "mean of variances": 28.823303786912973,
+                    "mean of advanced variances": 28.823303786912973,
+                    "mean of standard deviations": 3.441526886902344,
+                    "mean of advanced standard deviations": 3.4415268869023437,
+                    "mean of errors": 0.874916185152751,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.0031788992881774903
+                },
+                "100": {
+                    "mean of mis estimates": 28.442138077278642,
+                    "mean of variances": 1349.0444175099267,
+                    "mean of advanced variances": 1349.0444175099267,
+                    "mean of standard deviations": 5.907332402954776,
+                    "mean of advanced standard deviations": 5.907332402954775,
+                    "mean of errors": -2.096497939278948,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.005964281558990478
+                },
+                "500": {
+                    "mean of mis estimates": 26.049594310453646,
+                    "mean of variances": 10.54742633080432,
+                    "mean of advanced variances": 10.547426330804333,
+                    "mean of standard deviations": 1.9887367756770338,
+                    "mean of advanced standard deviations": 1.9887367756770338,
+                    "mean of errors": 0.29604582754605385,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.02918184518814087
+                },
+                "1000": {
+                    "mean of mis estimates": 25.49129496581867,
+                    "mean of variances": 1.761839369349018,
+                    "mean of advanced variances": 1.7618393693490182,
+                    "mean of standard deviations": 1.173434530562218,
+                    "mean of advanced standard deviations": 1.1734345305622182,
+                    "mean of errors": 0.8543451721810313,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.05776851415634155
+                },
+                "5000": {
+                    "mean of mis estimates": 25.747641954674112,
+                    "mean of variances": 0.8310388404094817,
+                    "mean of advanced variances": 0.8310388404094821,
+                    "mean of standard deviations": 0.7729339412635268,
+                    "mean of advanced standard deviations": 0.7729339412635268,
+                    "mean of errors": 0.5979981833255842,
+                    "exact integral": 26.3456401379997,
+                    "mean of times": 0.29985239028930666
+                }
+            }
+        },
+        "a": [
+            [
+                1.8510433410134766,
+                1.981196876157153,
+                1.9626851803105745
+            ],
+            [
+                1.8931099154366489,
+                1.9779775728626763,
+                1.9965548006616218
+            ],
+            [
+                1.8927477001014579,
+                1.8546000698149454,
+                1.8669773754722656
+            ],
+            [
+                1.8908951545489883,
+                1.930798708951655,
+                1.982445409363477
+            ],
+            [
+                1.8363155314156943,
+                1.958933871170061,
+                1.8530234037294957
+            ],
+            [
+                1.9083008516787978,
+                1.9596977116102765,
+                1.962956748448002
+            ]
+        ],
+        "b": [
+            [
+                -64.11688957952246,
+                59.76001023559877,
+                -76.88707716450315
+            ],
+            [
+                12.66499615717396,
+                15.00491955482562,
+                -49.524613213959825
+            ],
+            [
+                -7.300183299848911,
+                -6.543778266567756,
+                84.52164663533773
+            ],
+            [
+                -70.05146071442172,
+                45.80046598473882,
+                -28.16425267214919
+            ],
+            [
+                51.764015068869554,
+                96.52002820749198,
+                -76.27959370334658
+            ],
+            [
+                50.165298154615726,
+                75.78850765394176,
+                -35.96997935070489
+            ]
+        ],
+        "m": 6,
+        "n": 3
+    },
+    "Test 4": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 14.454605518972858,
+                    "mean of variances": 16.88457960673646,
+                    "mean of advanced variances": 16.884579606736455,
+                    "mean of standard deviations": 2.2796957466270102,
+                    "mean of advanced standard deviations": 2.2796957466270102,
+                    "mean of errors": 0.6879119206752426,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.002043907642364502
+                },
+                "100": {
+                    "mean of mis estimates": 14.850478633516662,
+                    "mean of variances": 59.14843322830545,
+                    "mean of advanced variances": 59.148433228305436,
+                    "mean of standard deviations": 2.3351688785771425,
+                    "mean of advanced standard deviations": 2.3351688785771425,
+                    "mean of errors": 0.29203880613143396,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.004045095443725586
+                },
+                "500": {
+                    "mean of mis estimates": 14.996084969333259,
+                    "mean of variances": 5.927154731021224,
+                    "mean of advanced variances": 5.927154731021222,
+                    "mean of standard deviations": 1.4514523673320954,
+                    "mean of advanced standard deviations": 1.4514523673320952,
+                    "mean of errors": 0.14643247031484305,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.02006197929382324
+                },
+                "1000": {
+                    "mean of mis estimates": 14.979849511102223,
+                    "mean of variances": 3.264135859317555,
+                    "mean of advanced variances": 3.2641358593175585,
+                    "mean of standard deviations": 1.1882466117729542,
+                    "mean of advanced standard deviations": 1.1882466117729542,
+                    "mean of errors": 0.162667928545877,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.040601277351379396
+                },
+                "5000": {
+                    "mean of mis estimates": 15.051917268534899,
+                    "mean of variances": 7.872985556588697,
+                    "mean of advanced variances": 7.872985556588662,
+                    "mean of standard deviations": 0.8876081442733357,
+                    "mean of advanced standard deviations": 0.887608144273335,
+                    "mean of errors": 0.09060017111319864,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.19652803897857665
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 15.060170515208405,
+                    "mean of variances": 84.94369310888077,
+                    "mean of advanced variances": 84.94369310888074,
+                    "mean of standard deviations": 2.9690356639189095,
+                    "mean of advanced standard deviations": 2.9690356639189095,
+                    "mean of errors": 0.0823469244396949,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.0016781735420227052
+                },
+                "100": {
+                    "mean of mis estimates": 16.261220015667355,
+                    "mean of variances": 268.05300760731507,
+                    "mean of advanced variances": 268.05300760731507,
+                    "mean of standard deviations": 3.650134238346575,
+                    "mean of advanced standard deviations": 3.6501342383465754,
+                    "mean of errors": -1.1187025760192575,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.003292245864868164
+                },
+                "500": {
+                    "mean of mis estimates": 14.918619907876566,
+                    "mean of variances": 9.678456945501797,
+                    "mean of advanced variances": 9.678456945501805,
+                    "mean of standard deviations": 1.5652933109118106,
+                    "mean of advanced standard deviations": 1.5652933109118112,
+                    "mean of errors": 0.22389753177153401,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.01629647970199585
+                },
+                "1000": {
+                    "mean of mis estimates": 14.73966568875715,
+                    "mean of variances": 1.63404937676664,
+                    "mean of advanced variances": 1.6340493767666404,
+                    "mean of standard deviations": 1.0076601986105238,
+                    "mean of advanced standard deviations": 1.0076601986105238,
+                    "mean of errors": 0.4028517508909506,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.0324094820022583
+                },
+                "5000": {
+                    "mean of mis estimates": 15.788713970275937,
+                    "mean of variances": 65.2699250538177,
+                    "mean of advanced variances": 65.26992505381779,
+                    "mean of standard deviations": 1.5461429442572294,
+                    "mean of advanced standard deviations": 1.5461429442572299,
+                    "mean of errors": -0.6461965306278364,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.16313805103302
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 15.050438331389982,
+                    "mean of variances": 43.351800262179715,
+                    "mean of advanced variances": 43.35180026217973,
+                    "mean of standard deviations": 2.7179630581341208,
+                    "mean of advanced standard deviations": 2.7179630581341208,
+                    "mean of errors": 0.09207910825811638,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.0017764234542846679
+                },
+                "100": {
+                    "mean of mis estimates": 16.665503406777283,
+                    "mean of variances": 149.24470205752536,
+                    "mean of advanced variances": 149.24470205752533,
+                    "mean of standard deviations": 3.7486118794250602,
+                    "mean of advanced standard deviations": 3.74861187942506,
+                    "mean of errors": -1.5229859671291843,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.003299961090087891
+                },
+                "500": {
+                    "mean of mis estimates": 14.966053508816556,
+                    "mean of variances": 6.493958890976883,
+                    "mean of advanced variances": 6.4939588909768835,
+                    "mean of standard deviations": 1.4842103248745853,
+                    "mean of advanced standard deviations": 1.4842103248745857,
+                    "mean of errors": 0.1764639308315448,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.016487152576446534
+                },
+                "1000": {
+                    "mean of mis estimates": 14.771003474446134,
+                    "mean of variances": 2.7166713522115784,
+                    "mean of advanced variances": 2.716671352211577,
+                    "mean of standard deviations": 1.0774882715982863,
+                    "mean of advanced standard deviations": 1.0774882715982863,
+                    "mean of errors": 0.37151396520196556,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.032884061336517334
+                },
+                "5000": {
+                    "mean of mis estimates": 14.868430928458904,
+                    "mean of variances": 1.4858898858389593,
+                    "mean of advanced variances": 1.4858898858389602,
+                    "mean of standard deviations": 0.7303582205397605,
+                    "mean of advanced standard deviations": 0.7303582205397603,
+                    "mean of errors": 0.27408651118919325,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.16204151391983032
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 13.899250363189001,
+                    "mean of variances": 7.574708020809528,
+                    "mean of advanced variances": 7.57470802080953,
+                    "mean of standard deviations": 1.8893778732597086,
+                    "mean of advanced standard deviations": 1.8893778732597086,
+                    "mean of errors": 1.2432670764590974,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.0016871976852416992
+                },
+                "100": {
+                    "mean of mis estimates": 14.428245146800645,
+                    "mean of variances": 7.180789843125283,
+                    "mean of advanced variances": 7.180789843125283,
+                    "mean of standard deviations": 1.8304055171203024,
+                    "mean of advanced standard deviations": 1.8304055171203026,
+                    "mean of errors": 0.7142722928474531,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.003370499610900879
+                },
+                "500": {
+                    "mean of mis estimates": 15.216158358016271,
+                    "mean of variances": 27.717985047837388,
+                    "mean of advanced variances": 27.717985047837406,
+                    "mean of standard deviations": 1.6893912822305313,
+                    "mean of advanced standard deviations": 1.6893912822305313,
+                    "mean of errors": -0.0736409183681684,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.01672067165374756
+                },
+                "1000": {
+                    "mean of mis estimates": 14.504913444964535,
+                    "mean of variances": 1.1302205293611818,
+                    "mean of advanced variances": 1.1302205293611811,
+                    "mean of standard deviations": 0.8548339487124766,
+                    "mean of advanced standard deviations": 0.8548339487124766,
+                    "mean of errors": 0.6376039946835644,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.033155524730682374
+                },
+                "5000": {
+                    "mean of mis estimates": 15.352973800434944,
+                    "mean of variances": 5.763358590516752,
+                    "mean of advanced variances": 5.763358590516747,
+                    "mean of standard deviations": 1.0970321522123314,
+                    "mean of advanced standard deviations": 1.0970321522123316,
+                    "mean of errors": -0.21045636078684296,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.16469837665557863
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 14.644168401259664,
+                    "mean of variances": 16.18037178905267,
+                    "mean of advanced variances": 16.18037178905267,
+                    "mean of standard deviations": 2.460593593959342,
+                    "mean of advanced standard deviations": 2.4605935939593415,
+                    "mean of errors": 0.4983490383884322,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.0020444440841674806
+                },
+                "100": {
+                    "mean of mis estimates": 14.45297362853775,
+                    "mean of variances": 5.972798655981024,
+                    "mean of advanced variances": 5.972798655981024,
+                    "mean of standard deviations": 1.8295459591970908,
+                    "mean of advanced standard deviations": 1.8295459591970904,
+                    "mean of errors": 0.6895438111103505,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.004037191867828369
+                },
+                "500": {
+                    "mean of mis estimates": 14.611990963810864,
+                    "mean of variances": 2.656902928200675,
+                    "mean of advanced variances": 2.656902928200676,
+                    "mean of standard deviations": 1.229018658096508,
+                    "mean of advanced standard deviations": 1.2290186580965081,
+                    "mean of errors": 0.5305264758372349,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.020171165466308594
+                },
+                "1000": {
+                    "mean of mis estimates": 15.344370299271493,
+                    "mean of variances": 21.375106571792735,
+                    "mean of advanced variances": 21.375106571792752,
+                    "mean of standard deviations": 1.6237943582922703,
+                    "mean of advanced standard deviations": 1.6237943582922707,
+                    "mean of errors": -0.2018528596233952,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.04024401426315308
+                },
+                "5000": {
+                    "mean of mis estimates": 14.795535962054723,
+                    "mean of variances": 0.5149012271881959,
+                    "mean of advanced variances": 0.5149012271881961,
+                    "mean of standard deviations": 0.5901661640637925,
+                    "mean of advanced standard deviations": 0.5901661640637926,
+                    "mean of errors": 0.34698147759337494,
+                    "exact integral": 15.142517439648099,
+                    "mean of times": 0.20011279582977295
+                }
+            }
+        },
+        "a": [
+            [
+                1.8819168383560985,
+                1.8608583215547176,
+                1.9551481491438412,
+                1.8796615899877913
+            ],
+            [
+                1.957589330675006,
+                1.8084428376112358,
+                1.86792823526404,
+                1.9449266038758684
+            ]
+        ],
+        "b": [
+            [
+                -31.18978386942362,
+                -5.9284135441869665,
+                -88.43635048991948,
+                57.04897571175843
+            ],
+            [
+                -0.6196699886485106,
+                -40.1728920238813,
+                -43.11775803376627,
+                70.17009836973384
+            ]
+        ],
+        "m": 2,
+        "n": 4
+    },
+    "Test 5": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 95.3923225147246,
+                    "mean of variances": 1356.3800981758031,
+                    "mean of advanced variances": 1356.3800981758031,
+                    "mean of standard deviations": 17.110298957480133,
+                    "mean of advanced standard deviations": 17.110298957480133,
+                    "mean of errors": 2.5182671205537663,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.0058462429046630855
+                },
+                "100": {
+                    "mean of mis estimates": 94.37957573163646,
+                    "mean of variances": 471.15251270196705,
+                    "mean of advanced variances": 471.15251270196705,
+                    "mean of standard deviations": 14.41680482359212,
+                    "mean of advanced standard deviations": 14.416804823592118,
+                    "mean of errors": 3.531013903641893,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.010781311988830566
+                },
+                "500": {
+                    "mean of mis estimates": 94.88448913745259,
+                    "mean of variances": 301.81904276002757,
+                    "mean of advanced variances": 301.81904276002757,
+                    "mean of standard deviations": 10.354522266937,
+                    "mean of advanced standard deviations": 10.354522266937,
+                    "mean of errors": 3.0261004978257957,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.05198721170425415
+                },
+                "1000": {
+                    "mean of mis estimates": 95.41650677629903,
+                    "mean of variances": 183.5086642387745,
+                    "mean of advanced variances": 183.50866423877437,
+                    "mean of standard deviations": 8.547121987390373,
+                    "mean of advanced standard deviations": 8.547121987390371,
+                    "mean of errors": 2.4940828589793615,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.10402527093887329
+                },
+                "5000": {
+                    "mean of mis estimates": 95.67391889493116,
+                    "mean of variances": 95.19634597037506,
+                    "mean of advanced variances": 95.19634597037476,
+                    "mean of standard deviations": 5.425996567317773,
+                    "mean of advanced standard deviations": 5.42599656731777,
+                    "mean of errors": 2.2366707403472135,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.5148995327949524
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 92.04518557130072,
+                    "mean of variances": 335.77918705423923,
+                    "mean of advanced variances": 335.77918705423923,
+                    "mean of standard deviations": 14.609906781903954,
+                    "mean of advanced standard deviations": 14.609906781903954,
+                    "mean of errors": 5.865404063977639,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.0054697847366333005
+                },
+                "100": {
+                    "mean of mis estimates": 93.56123953096774,
+                    "mean of variances": 517.7902462473546,
+                    "mean of advanced variances": 517.7902462473546,
+                    "mean of standard deviations": 14.437975387036747,
+                    "mean of advanced standard deviations": 14.437975387036749,
+                    "mean of errors": 4.349350104310619,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.009949760437011719
+                },
+                "500": {
+                    "mean of mis estimates": 101.81951880778217,
+                    "mean of variances": 3586.5452040147984,
+                    "mean of advanced variances": 3586.5452040148007,
+                    "mean of standard deviations": 16.245186936332093,
+                    "mean of advanced standard deviations": 16.245186936332097,
+                    "mean of errors": -3.908929172503785,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.04786781787872314
+                },
+                "1000": {
+                    "mean of mis estimates": 93.98210573702251,
+                    "mean of variances": 188.8683306231112,
+                    "mean of advanced variances": 188.86833062311132,
+                    "mean of standard deviations": 7.667581261439453,
+                    "mean of advanced standard deviations": 7.667581261439453,
+                    "mean of errors": 3.9284838982558723,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.09558349132537841
+                },
+                "5000": {
+                    "mean of mis estimates": 96.31175284782923,
+                    "mean of variances": 89.47934878598484,
+                    "mean of advanced variances": 89.479348785985,
+                    "mean of standard deviations": 5.740353102890607,
+                    "mean of advanced standard deviations": 5.740353102890608,
+                    "mean of errors": 1.5988367874491696,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.4754540967941284
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 97.06949507789865,
+                    "mean of variances": 1274.2124631083434,
+                    "mean of advanced variances": 1274.2124631083436,
+                    "mean of standard deviations": 19.89481090611724,
+                    "mean of advanced standard deviations": 19.89481090611724,
+                    "mean of errors": 0.8410945573797156,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.005412611961364746
+                },
+                "100": {
+                    "mean of mis estimates": 98.59134675202098,
+                    "mean of variances": 5787.646068265326,
+                    "mean of advanced variances": 5787.646068265326,
+                    "mean of standard deviations": 19.912491081838162,
+                    "mean of advanced standard deviations": 19.912491081838162,
+                    "mean of errors": -0.6807571167426039,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.009901769161224365
+                },
+                "500": {
+                    "mean of mis estimates": 100.61413705113546,
+                    "mean of variances": 780.0032042471338,
+                    "mean of advanced variances": 780.0032042471341,
+                    "mean of standard deviations": 15.072805925551288,
+                    "mean of advanced standard deviations": 15.07280592555129,
+                    "mean of errors": -2.703547415857072,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.04739227294921875
+                },
+                "1000": {
+                    "mean of mis estimates": 96.3855047103653,
+                    "mean of variances": 861.6196248988027,
+                    "mean of advanced variances": 861.6196248988,
+                    "mean of standard deviations": 9.853713313377792,
+                    "mean of advanced standard deviations": 9.853713313377787,
+                    "mean of errors": 1.5250849249130778,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.09454525947570801
+                },
+                "5000": {
+                    "mean of mis estimates": 96.68932423243224,
+                    "mean of variances": 153.69212653480784,
+                    "mean of advanced variances": 153.69212653480773,
+                    "mean of standard deviations": 6.232574524543684,
+                    "mean of advanced standard deviations": 6.232574524543682,
+                    "mean of errors": 1.2212654028461092,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.4685742473602295
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 93.85912292650833,
+                    "mean of variances": 1011.8265113872883,
+                    "mean of advanced variances": 1011.8265113872882,
+                    "mean of standard deviations": 18.42540376263888,
+                    "mean of advanced standard deviations": 18.42540376263888,
+                    "mean of errors": 4.051466708770053,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.005394225120544434
+                },
+                "100": {
+                    "mean of mis estimates": 94.7532764520196,
+                    "mean of variances": 728.0185646775934,
+                    "mean of advanced variances": 728.0185646775935,
+                    "mean of standard deviations": 15.274219699979813,
+                    "mean of advanced standard deviations": 15.274219699979813,
+                    "mean of errors": 3.1573131832587813,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.009942247867584228
+                },
+                "500": {
+                    "mean of mis estimates": 94.3053759540091,
+                    "mean of variances": 241.7831413880381,
+                    "mean of advanced variances": 241.78314138803788,
+                    "mean of standard deviations": 9.803577529149079,
+                    "mean of advanced standard deviations": 9.803577529149077,
+                    "mean of errors": 3.605213681269282,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.04792853355407715
+                },
+                "1000": {
+                    "mean of mis estimates": 99.0817620459395,
+                    "mean of variances": 1008.1002840162945,
+                    "mean of advanced variances": 1008.1002840162955,
+                    "mean of standard deviations": 11.402415724391194,
+                    "mean of advanced standard deviations": 11.402415724391194,
+                    "mean of errors": -1.1711724106611452,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.09434292554855346
+                },
+                "5000": {
+                    "mean of mis estimates": 102.95124482427735,
+                    "mean of variances": 1326.4788782260239,
+                    "mean of advanced variances": 1326.4788782260314,
+                    "mean of standard deviations": 11.9825858817396,
+                    "mean of advanced standard deviations": 11.982585881739615,
+                    "mean of errors": -5.040655188998966,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.4741066861152649
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 94.10789933671177,
+                    "mean of variances": 1442.6635767213584,
+                    "mean of advanced variances": 1442.6635767213586,
+                    "mean of standard deviations": 18.038895846921122,
+                    "mean of advanced standard deviations": 18.03889584692113,
+                    "mean of errors": 3.802690298566599,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.0059002828598022465
+                },
+                "100": {
+                    "mean of mis estimates": 93.59818986559986,
+                    "mean of variances": 442.4558439505846,
+                    "mean of advanced variances": 442.4558439505846,
+                    "mean of standard deviations": 14.287549248994473,
+                    "mean of advanced standard deviations": 14.287549248994472,
+                    "mean of errors": 4.31239976967848,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.010887281894683838
+                },
+                "500": {
+                    "mean of mis estimates": 96.72512876463324,
+                    "mean of variances": 536.225429021928,
+                    "mean of advanced variances": 536.2254290219281,
+                    "mean of standard deviations": 11.816014564737245,
+                    "mean of advanced standard deviations": 11.816014564737243,
+                    "mean of errors": 1.185460870645129,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.05207529067993164
+                },
+                "1000": {
+                    "mean of mis estimates": 101.8490828641334,
+                    "mean of variances": 1180.7442115449821,
+                    "mean of advanced variances": 1180.7442115449824,
+                    "mean of standard deviations": 13.752262222016723,
+                    "mean of advanced standard deviations": 13.752262222016725,
+                    "mean of errors": -3.938493228855046,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.10300545215606689
+                },
+                "5000": {
+                    "mean of mis estimates": 94.0130359493302,
+                    "mean of variances": 20.583645894490314,
+                    "mean of advanced variances": 20.583645894490314,
+                    "mean of standard deviations": 3.8803458380279006,
+                    "mean of advanced standard deviations": 3.8803458380279006,
+                    "mean of errors": 3.8975536859481474,
+                    "exact integral": 97.91058963527837,
+                    "mean of times": 0.5158480477333068
+                }
+            }
+        },
+        "a": [
+            [
+                1.927227928224341,
+                1.810563162201788,
+                1.9053356673351938,
+                1.9437892897804239,
+                1.9751822556738152
+            ],
+            [
+                1.939355055714491,
+                1.8599749668477106,
+                1.8468419325835015,
+                1.9461757315742187,
+                1.9943482875564704
+            ],
+            [
+                1.9484077510253248,
+                1.8761009158263156,
+                1.8845477693910102,
+                1.9306639464695303,
+                1.9578227044898742
+            ],
+            [
+                1.8820252979301177,
+                1.8931611839976994,
+                1.8117852574020232,
+                1.8831966167370806,
+                1.853172538681692
+            ],
+            [
+                1.9758414551023047,
+                1.9322290168048748,
+                1.8359105277718475,
+                1.8314855063629154,
+                1.9541495486275726
+            ],
+            [
+                1.9347288275727585,
+                1.9827267929159331,
+                1.9721783209115387,
+                1.9382322348223444,
+                1.843665845734424
+            ],
+            [
+                1.881819160757178,
+                1.9808325407701477,
+                1.833538450440145,
+                1.8715215159513707,
+                1.83227145794723
+            ],
+            [
+                1.992796816310374,
+                1.8739259173069125,
+                1.807369486611035,
+                1.9255544335364947,
+                1.9340608411204272
+            ]
+        ],
+        "b": [
+            [
+                28.65723228583255,
+                18.20155616316839,
+                85.0488913072555,
+                89.52173813105736,
+                -5.485022299660997
+            ],
+            [
+                89.85701750679033,
+                91.53288517072244,
+                92.08257181645232,
+                45.72893688654261,
+                41.16139306003075
+            ],
+            [
+                -38.93633823744433,
+                -57.36078670119993,
+                -63.0271965395159,
+                -61.080625825314904,
+                83.76356774201449
+            ],
+            [
+                -83.94366923393426,
+                -70.03535997099925,
+                83.88985500612529,
+                -4.726331514687203,
+                -29.909947055955882
+            ],
+            [
+                -48.78597063751562,
+                63.01226075966096,
+                75.65362495150015,
+                45.53702438401268,
+                -1.6721443917633252
+            ],
+            [
+                57.80705586948844,
+                20.265354526293194,
+                90.33800243990618,
+                -94.12267752048538,
+                -7.308998797263726
+            ],
+            [
+                -51.51763083006979,
+                54.67508677123766,
+                86.12669284570677,
+                -31.929661633266733,
+                -85.84195098046392
+            ],
+            [
+                -44.41378283271615,
+                86.03610156853051,
+                68.24317049687969,
+                -43.48750260910557,
+                -21.84102472255269
+            ]
+        ],
+        "m": 8,
+        "n": 5
+    },
+    "Test 6": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 100.99807464106004,
+                    "mean of variances": 966.9115736215122,
+                    "mean of advanced variances": 966.9115736215124,
+                    "mean of standard deviations": 20.365900048330325,
+                    "mean of advanced standard deviations": 20.365900048330325,
+                    "mean of errors": 6.495073842514382,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.0043326449394226075
+                },
+                "100": {
+                    "mean of mis estimates": 105.38936932769664,
+                    "mean of variances": 2149.09398668295,
+                    "mean of advanced variances": 2149.093986682949,
+                    "mean of standard deviations": 21.648704138203875,
+                    "mean of advanced standard deviations": 21.64870413820388,
+                    "mean of errors": 2.1037791558778003,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.00857694387435913
+                },
+                "500": {
+                    "mean of mis estimates": 102.19730639814725,
+                    "mean of variances": 351.6920531697717,
+                    "mean of advanced variances": 351.6920531697717,
+                    "mean of standard deviations": 11.41696503528585,
+                    "mean of advanced standard deviations": 11.41696503528585,
+                    "mean of errors": 5.295842085427219,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.04254712104797363
+                },
+                "1000": {
+                    "mean of mis estimates": 110.44253344589067,
+                    "mean of variances": 2947.6313751664666,
+                    "mean of advanced variances": 2947.6313751664684,
+                    "mean of standard deviations": 16.006202162810695,
+                    "mean of advanced standard deviations": 16.0062021628107,
+                    "mean of errors": -2.949384962316218,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.08513966083526611
+                },
+                "5000": {
+                    "mean of mis estimates": 106.1378369614181,
+                    "mean of variances": 119.43270694514273,
+                    "mean of advanced variances": 119.4327069451426,
+                    "mean of standard deviations": 7.268428427924714,
+                    "mean of advanced standard deviations": 7.268428427924712,
+                    "mean of errors": 1.3553115221563579,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.42609682559967044
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 98.25186672812335,
+                    "mean of variances": 1114.683591737139,
+                    "mean of advanced variances": 1114.6835917371393,
+                    "mean of standard deviations": 19.847426869826755,
+                    "mean of advanced standard deviations": 19.847426869826755,
+                    "mean of errors": 9.2412817554511,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.0037980437278747558
+                },
+                "100": {
+                    "mean of mis estimates": 103.57589718141064,
+                    "mean of variances": 1197.9605202991395,
+                    "mean of advanced variances": 1197.9605202991386,
+                    "mean of standard deviations": 19.300278040051115,
+                    "mean of advanced standard deviations": 19.300278040051115,
+                    "mean of errors": 3.917251302163815,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.007550787925720215
+                },
+                "500": {
+                    "mean of mis estimates": 105.32941516374271,
+                    "mean of variances": 530.4981784383282,
+                    "mean of advanced variances": 530.4981784383282,
+                    "mean of standard deviations": 13.480620083158742,
+                    "mean of advanced standard deviations": 13.480620083158744,
+                    "mean of errors": 2.1637333198317714,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.037899730205535886
+                },
+                "1000": {
+                    "mean of mis estimates": 105.53510602515736,
+                    "mean of variances": 1036.3070635167094,
+                    "mean of advanced variances": 1036.3070635167105,
+                    "mean of standard deviations": 12.771831177851647,
+                    "mean of advanced standard deviations": 12.77183117785165,
+                    "mean of errors": 1.9580424584171106,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.0755157470703125
+                },
+                "5000": {
+                    "mean of mis estimates": 108.07610577566138,
+                    "mean of variances": 939.3955603478229,
+                    "mean of advanced variances": 939.3955603478247,
+                    "mean of standard deviations": 9.266309577221193,
+                    "mean of advanced standard deviations": 9.266309577221195,
+                    "mean of errors": -0.5829572920869197,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.37604310989379885
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 104.16400628056525,
+                    "mean of variances": 1594.3491071192736,
+                    "mean of advanced variances": 1594.3491071192739,
+                    "mean of standard deviations": 23.572200332409775,
+                    "mean of advanced standard deviations": 23.57220033240978,
+                    "mean of errors": 3.3291422030092033,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.0038201546669006346
+                },
+                "100": {
+                    "mean of mis estimates": 105.68460522614181,
+                    "mean of variances": 5719.989537438362,
+                    "mean of advanced variances": 5719.989537438356,
+                    "mean of standard deviations": 22.84285871943151,
+                    "mean of advanced standard deviations": 22.84285871943151,
+                    "mean of errors": 1.8085432574326505,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.0075612473487854
+                },
+                "500": {
+                    "mean of mis estimates": 125.81476720439801,
+                    "mean of variances": 38833.95597517718,
+                    "mean of advanced variances": 38833.95597517718,
+                    "mean of standard deviations": 33.93249796210106,
+                    "mean of advanced standard deviations": 33.93249796210106,
+                    "mean of errors": -18.321618720823565,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.03751252174377442
+                },
+                "1000": {
+                    "mean of mis estimates": 100.4957271173918,
+                    "mean of variances": 138.44684248373372,
+                    "mean of advanced variances": 138.44684248373383,
+                    "mean of standard deviations": 7.845619704264506,
+                    "mean of advanced standard deviations": 7.845619704264506,
+                    "mean of errors": 6.997421366182663,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.07513144254684448
+                },
+                "5000": {
+                    "mean of mis estimates": 103.9413117451655,
+                    "mean of variances": 108.52915015805587,
+                    "mean of advanced variances": 108.52915015805588,
+                    "mean of standard deviations": 6.479116224674067,
+                    "mean of advanced standard deviations": 6.479116224674068,
+                    "mean of errors": 3.5518367384089724,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.37432833909988406
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 100.80564083694239,
+                    "mean of variances": 802.2085815217198,
+                    "mean of advanced variances": 802.2085815217198,
+                    "mean of standard deviations": 21.32137694072408,
+                    "mean of advanced standard deviations": 21.321376940724086,
+                    "mean of errors": 6.687507646632098,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.003856818675994873
+                },
+                "100": {
+                    "mean of mis estimates": 106.91681562431872,
+                    "mean of variances": 3882.2108766772053,
+                    "mean of advanced variances": 3882.2108766772058,
+                    "mean of standard deviations": 24.307021727217588,
+                    "mean of advanced standard deviations": 24.307021727217588,
+                    "mean of errors": 0.5763328592557653,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.007646653652191162
+                },
+                "500": {
+                    "mean of mis estimates": 102.54229241357703,
+                    "mean of variances": 240.37018938729565,
+                    "mean of advanced variances": 240.37018938729557,
+                    "mean of standard deviations": 11.38532242095599,
+                    "mean of advanced standard deviations": 11.38532242095599,
+                    "mean of errors": 4.95085606999744,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.03790135383605957
+                },
+                "1000": {
+                    "mean of mis estimates": 103.59532325010065,
+                    "mean of variances": 295.8707173273789,
+                    "mean of advanced variances": 295.8707173273788,
+                    "mean of standard deviations": 10.075849964775209,
+                    "mean of advanced standard deviations": 10.075849964775205,
+                    "mean of errors": 3.8978252334738137,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.07565869092941284
+                },
+                "5000": {
+                    "mean of mis estimates": 106.3009771154183,
+                    "mean of variances": 224.19559879258352,
+                    "mean of advanced variances": 224.19559879258372,
+                    "mean of standard deviations": 8.249574011028454,
+                    "mean of advanced standard deviations": 8.249574011028455,
+                    "mean of errors": 1.1921713681561705,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.3787819290161133
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 107.02301877194012,
+                    "mean of variances": 2667.072428018844,
+                    "mean of advanced variances": 2667.0724280188438,
+                    "mean of standard deviations": 26.475377346379435,
+                    "mean of advanced standard deviations": 26.47537734637943,
+                    "mean of errors": 0.47012971163436346,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.004377856254577637
+                },
+                "100": {
+                    "mean of mis estimates": 104.87434495781827,
+                    "mean of variances": 1083.826801640867,
+                    "mean of advanced variances": 1083.826801640867,
+                    "mean of standard deviations": 21.27568755949738,
+                    "mean of advanced standard deviations": 21.27568755949738,
+                    "mean of errors": 2.618803525756199,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.008593292236328124
+                },
+                "500": {
+                    "mean of mis estimates": 104.19118967991112,
+                    "mean of variances": 446.0599927310233,
+                    "mean of advanced variances": 446.05999273102344,
+                    "mean of standard deviations": 13.145468504560984,
+                    "mean of advanced standard deviations": 13.145468504560984,
+                    "mean of errors": 3.301958803663359,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.04255601167678833
+                },
+                "1000": {
+                    "mean of mis estimates": 106.17368371608805,
+                    "mean of variances": 421.42783091026314,
+                    "mean of advanced variances": 421.4278309102634,
+                    "mean of standard deviations": 12.04727754222194,
+                    "mean of advanced standard deviations": 12.047277542221941,
+                    "mean of errors": 1.3194647674864075,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.08504535436630249
+                },
+                "5000": {
+                    "mean of mis estimates": 108.5286476063104,
+                    "mean of variances": 735.9278385302288,
+                    "mean of advanced variances": 735.9278385302302,
+                    "mean of standard deviations": 9.917738014858552,
+                    "mean of advanced standard deviations": 9.917738014858555,
+                    "mean of errors": -1.035499122735934,
+                    "exact integral": 107.49314848357446,
+                    "mean of times": 0.42516340970993044
+                }
+            }
+        },
+        "a": [
+            [
+                1.9554467271566793,
+                1.81316349607013,
+                1.831769912547326,
+                1.914524023613744,
+                1.830908137924041,
+                1.8751408076984983
+            ],
+            [
+                1.934124011451579,
+                1.9022815034080829,
+                1.8591457396593516,
+                1.9866340907311324,
+                1.81357946574998,
+                1.8188716678418722
+            ],
+            [
+                1.8155037372374005,
+                1.9906908140118202,
+                1.9921495083837122,
+                1.9863546820952183,
+                1.8434191609411603,
+                1.8966153555311869
+            ],
+            [
+                1.8329135396275338,
+                1.9513192584433277,
+                1.884824624194669,
+                1.8446398607209176,
+                1.8419341370203481,
+                1.8856338077754704
+            ],
+            [
+                1.9386357879919769,
+                1.894935378314708,
+                1.8418610258334982,
+                1.8210206040500965,
+                1.9484983419709334,
+                1.8170017852026839
+            ]
+        ],
+        "b": [
+            [
+                -89.73714734898638,
+                -82.6797429534553,
+                62.45046862254034,
+                84.53271106475339,
+                66.02672561128023,
+                92.60337086716669
+            ],
+            [
+                -51.321294401853734,
+                33.515583910671126,
+                69.98034863756737,
+                -39.96929632315573,
+                -66.63546594653955,
+                66.40224702622163
+            ],
+            [
+                12.919407613522083,
+                36.71658468589902,
+                -88.42228132441481,
+                -24.054861370517784,
+                -51.8361784747871,
+                7.569672723455099
+            ],
+            [
+                -51.807432727176874,
+                -86.83784776917216,
+                95.33771171229947,
+                12.01109688622897,
+                54.9657759825254,
+                53.52152619013074
+            ],
+            [
+                -63.51475742924117,
+                91.21170258604789,
+                -49.300324682682906,
+                -9.182108558266648,
+                -4.2432540191829275,
+                17.543486179466527
+            ]
+        ],
+        "m": 5,
+        "n": 6
+    },
+    "Test 7": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 274.59437092814665,
+                    "mean of variances": 100780.09308106963,
+                    "mean of advanced variances": 100780.09308106963,
+                    "mean of standard deviations": 82.6299854654873,
+                    "mean of advanced standard deviations": 82.6299854654873,
+                    "mean of errors": -7.80553237443578,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.007496132850646973
+                },
+                "100": {
+                    "mean of mis estimates": 247.79311760765472,
+                    "mean of variances": 5311.256185782911,
+                    "mean of advanced variances": 5311.256185782914,
+                    "mean of standard deviations": 47.43862689913938,
+                    "mean of advanced standard deviations": 47.43862689913938,
+                    "mean of errors": 18.995720946056096,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.013862731456756592
+                },
+                "500": {
+                    "mean of mis estimates": 271.8328369560286,
+                    "mean of variances": 9163.774797023501,
+                    "mean of advanced variances": 9163.774797023498,
+                    "mean of standard deviations": 46.42751517964599,
+                    "mean of advanced standard deviations": 46.42751517964599,
+                    "mean of errors": -5.043998402317705,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.06695013523101806
+                },
+                "1000": {
+                    "mean of mis estimates": 248.7390775460522,
+                    "mean of variances": 753.0394042920489,
+                    "mean of advanced variances": 753.039404292049,
+                    "mean of standard deviations": 22.70763108928329,
+                    "mean of advanced standard deviations": 22.70763108928329,
+                    "mean of errors": 18.049761007658656,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.13238991260528565
+                },
+                "5000": {
+                    "mean of mis estimates": 267.5979757008455,
+                    "mean of variances": 11190.827350075378,
+                    "mean of advanced variances": 11190.827350075388,
+                    "mean of standard deviations": 27.02166152284825,
+                    "mean of advanced standard deviations": 27.02166152284825,
+                    "mean of errors": -0.8091371471346014,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.6643112015724182
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 244.37525551834125,
+                    "mean of variances": 11667.545205181952,
+                    "mean of advanced variances": 11667.545205181961,
+                    "mean of standard deviations": 54.56471785105067,
+                    "mean of advanced standard deviations": 54.56471785105067,
+                    "mean of errors": 22.413583035369612,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.006948368549346924
+                },
+                "100": {
+                    "mean of mis estimates": 246.4067481621999,
+                    "mean of variances": 5061.723717620491,
+                    "mean of advanced variances": 5061.72371762049,
+                    "mean of standard deviations": 48.88783493122848,
+                    "mean of advanced standard deviations": 48.88783493122848,
+                    "mean of errors": 20.382090391510914,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.012788510322570801
+                },
+                "500": {
+                    "mean of mis estimates": 258.3141710883591,
+                    "mean of variances": 4437.733555231115,
+                    "mean of advanced variances": 4437.733555231115,
+                    "mean of standard deviations": 37.986075644751985,
+                    "mean of advanced standard deviations": 37.986075644751985,
+                    "mean of errors": 8.47466746535169,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.06096295833587646
+                },
+                "1000": {
+                    "mean of mis estimates": 250.27554211402432,
+                    "mean of variances": 1397.063830229165,
+                    "mean of advanced variances": 1397.0638302291645,
+                    "mean of standard deviations": 25.148154536829434,
+                    "mean of advanced standard deviations": 25.14815453682943,
+                    "mean of errors": 16.513296439686496,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.12168753147125244
+                },
+                "5000": {
+                    "mean of mis estimates": 257.36099854046756,
+                    "mean of variances": 758.0828152028588,
+                    "mean of advanced variances": 758.0828152028596,
+                    "mean of standard deviations": 18.154684657956796,
+                    "mean of advanced standard deviations": 18.154684657956796,
+                    "mean of errors": 9.42784001324327,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.6095186805725098
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 247.761059633614,
+                    "mean of variances": 6968.941816218987,
+                    "mean of advanced variances": 6968.941816218987,
+                    "mean of standard deviations": 55.423707187673315,
+                    "mean of advanced standard deviations": 55.423707187673315,
+                    "mean of errors": 19.027778920096875,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.006867363452911377
+                },
+                "100": {
+                    "mean of mis estimates": 252.30791843547047,
+                    "mean of variances": 10827.295185918927,
+                    "mean of advanced variances": 10827.295185918925,
+                    "mean of standard deviations": 49.639028959185545,
+                    "mean of advanced standard deviations": 49.63902895918555,
+                    "mean of errors": 14.480920118240338,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.012658979892730713
+                },
+                "500": {
+                    "mean of mis estimates": 273.16218039071015,
+                    "mean of variances": 30684.55095376136,
+                    "mean of advanced variances": 30684.55095376136,
+                    "mean of standard deviations": 54.00259895840889,
+                    "mean of advanced standard deviations": 54.002598958408896,
+                    "mean of errors": -6.37334183699932,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.06074652194976807
+                },
+                "1000": {
+                    "mean of mis estimates": 256.3802905838269,
+                    "mean of variances": 1789.8517655382477,
+                    "mean of advanced variances": 1789.8517655382475,
+                    "mean of standard deviations": 27.843295743589525,
+                    "mean of advanced standard deviations": 27.843295743589525,
+                    "mean of errors": 10.408547969883985,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.12074803352355958
+                },
+                "5000": {
+                    "mean of mis estimates": 263.23104971181465,
+                    "mean of variances": 1152.1032611854118,
+                    "mean of advanced variances": 1152.1032611854127,
+                    "mean of standard deviations": 22.218241623782024,
+                    "mean of advanced standard deviations": 22.218241623782024,
+                    "mean of errors": 3.557788841896193,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.601842098236084
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 245.8419307823682,
+                    "mean of variances": 5273.413106366518,
+                    "mean of advanced variances": 5273.413106366518,
+                    "mean of standard deviations": 49.49104087824252,
+                    "mean of advanced standard deviations": 49.49104087824252,
+                    "mean of errors": 20.94690777134268,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.006932122707366943
+                },
+                "100": {
+                    "mean of mis estimates": 254.15693989069584,
+                    "mean of variances": 24269.913371489547,
+                    "mean of advanced variances": 24269.913371489536,
+                    "mean of standard deviations": 56.560730359975885,
+                    "mean of advanced standard deviations": 56.560730359975885,
+                    "mean of errors": 12.631898663014958,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.012738516330718994
+                },
+                "500": {
+                    "mean of mis estimates": 248.74548981178768,
+                    "mean of variances": 1845.2616054065566,
+                    "mean of advanced variances": 1845.2616054065566,
+                    "mean of standard deviations": 29.896849734994376,
+                    "mean of advanced standard deviations": 29.896849734994383,
+                    "mean of errors": 18.04334874192321,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.061149072647094724
+                },
+                "1000": {
+                    "mean of mis estimates": 258.5909715577022,
+                    "mean of variances": 5163.424538919752,
+                    "mean of advanced variances": 5163.424538919754,
+                    "mean of standard deviations": 31.944427947164662,
+                    "mean of advanced standard deviations": 31.944427947164662,
+                    "mean of errors": 8.197866996008704,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.12150142669677734
+                },
+                "5000": {
+                    "mean of mis estimates": 265.5483656949709,
+                    "mean of variances": 2455.7010140537445,
+                    "mean of advanced variances": 2455.7010140537463,
+                    "mean of standard deviations": 24.186987667659796,
+                    "mean of advanced standard deviations": 24.1869876676598,
+                    "mean of errors": 1.240472858739871,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.6036765885353088
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 235.6476127310847,
+                    "mean of variances": 3336.0533168229285,
+                    "mean of advanced variances": 3336.053316822928,
+                    "mean of standard deviations": 44.05898380722911,
+                    "mean of advanced standard deviations": 44.05898380722911,
+                    "mean of errors": 31.14122582262613,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.007607684135437011
+                },
+                "100": {
+                    "mean of mis estimates": 263.21349387513226,
+                    "mean of variances": 32442.601665245646,
+                    "mean of advanced variances": 32442.60166524562,
+                    "mean of standard deviations": 59.671003426025315,
+                    "mean of advanced standard deviations": 59.671003426025315,
+                    "mean of errors": 3.5753446785786043,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.013940210342407227
+                },
+                "500": {
+                    "mean of mis estimates": 256.6105684522356,
+                    "mean of variances": 2367.210159240387,
+                    "mean of advanced variances": 2367.2101592403865,
+                    "mean of standard deviations": 33.43140249183282,
+                    "mean of advanced standard deviations": 33.43140249183282,
+                    "mean of errors": 10.178270101475198,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.06686355829238892
+                },
+                "1000": {
+                    "mean of mis estimates": 264.62112028868046,
+                    "mean of variances": 6081.486282306653,
+                    "mean of advanced variances": 6081.486282306654,
+                    "mean of standard deviations": 33.23444631438359,
+                    "mean of advanced standard deviations": 33.23444631438358,
+                    "mean of errors": 2.1677182650303517,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.13357686042785644
+                },
+                "5000": {
+                    "mean of mis estimates": 261.8749582673804,
+                    "mean of variances": 1891.7307223398557,
+                    "mean of advanced variances": 1891.7307223398575,
+                    "mean of standard deviations": 21.55750801085064,
+                    "mean of advanced standard deviations": 21.557508010850647,
+                    "mean of errors": 4.913880286330489,
+                    "exact integral": 266.78883855371083,
+                    "mean of times": 0.6588327383995056
+                }
+            }
+        },
+        "a": [
+            [
+                1.8629258773584585,
+                1.8067126119000367,
+                1.9926273143337065,
+                1.92342532028537,
+                1.9155513304560114,
+                1.9452234553611305,
+                1.913385424779601
+            ],
+            [
+                1.9101955699013098,
+                1.8790119329805823,
+                1.8664326927002186,
+                1.923410591364627,
+                1.9833777646234458,
+                1.8911083387131935,
+                1.9524068307571318
+            ],
+            [
+                1.9388325912161095,
+                1.9249086930672612,
+                1.9308487791063902,
+                1.9548944639275894,
+                1.9104163999129808,
+                1.8961112809707332,
+                1.8697078612693723
+            ],
+            [
+                1.8189883075664286,
+                1.9059585495440774,
+                1.9065812792920545,
+                1.8866781014204044,
+                1.8203322600666458,
+                1.9280582251532465,
+                1.8163669461896084
+            ],
+            [
+                1.9867891666919126,
+                1.8892160469116805,
+                1.8637577689095517,
+                1.8495419951812702,
+                1.9115225302157324,
+                1.8404595459803363,
+                1.9805856885856246
+            ],
+            [
+                1.9568318637466964,
+                1.9938671692080525,
+                1.955838849731657,
+                1.8215900335267103,
+                1.944364304555911,
+                1.8031604229777416,
+                1.946207367598692
+            ],
+            [
+                1.9278565469662605,
+                1.8599750224498268,
+                1.9351922141642737,
+                1.8654395888987345,
+                1.9310618734022873,
+                1.9953180575027059,
+                1.8245506925761907
+            ],
+            [
+                1.8727817791056387,
+                1.8179827657889618,
+                1.8502149411059172,
+                1.8566881686298558,
+                1.9928592036984816,
+                1.9832691298590839,
+                1.9353137509656664
+            ]
+        ],
+        "b": [
+            [
+                62.75180214106487,
+                47.48834930513607,
+                -82.86877228047938,
+                -54.12545929042925,
+                -12.050223539529753,
+                -4.184784919707312,
+                -45.72433849030742
+            ],
+            [
+                34.47796067720657,
+                -91.47448486054816,
+                71.2555453734332,
+                -98.52305948160414,
+                -23.521894595127264,
+                95.19529571560028,
+                -51.836291853868175
+            ],
+            [
+                -21.34396455497705,
+                1.5103133116930252,
+                -75.01090990659628,
+                -42.93414678637297,
+                75.58426785065492,
+                89.35257610041052,
+                73.28315472137686
+            ],
+            [
+                93.90949094221617,
+                -55.62125743489419,
+                -40.47661405298633,
+                -72.70577293249936,
+                -20.722043955414307,
+                -45.033386227804215,
+                -73.02018995258229
+            ],
+            [
+                -34.34229865835867,
+                -93.4191693910998,
+                65.38700048810355,
+                86.87001265962209,
+                -42.05592397203392,
+                -73.40892698607028,
+                -78.34692754438035
+            ],
+            [
+                20.467352362729656,
+                71.99562680252697,
+                51.943399348989715,
+                -32.779035163436674,
+                65.90587449561579,
+                -91.92089746722618,
+                92.72159139614928
+            ],
+            [
+                96.38599255378043,
+                -32.00643831813758,
+                43.53077841108396,
+                -35.37091336402139,
+                -2.401366557585007,
+                40.716702533188425,
+                5.2143893140200674
+            ],
+            [
+                58.08156727572296,
+                86.59387012340824,
+                57.417133549844834,
+                -96.35818127541775,
+                -27.040624695313227,
+                79.22441631824583,
+                -32.17954424515497
+            ]
+        ],
+        "m": 8,
+        "n": 7
+    },
+    "Test 8": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 150.4009913278092,
+                    "mean of variances": 3408.6744285795507,
+                    "mean of advanced variances": 3408.6744285795507,
+                    "mean of standard deviations": 38.38901299938417,
+                    "mean of advanced standard deviations": 38.38901299938418,
+                    "mean of errors": 10.62605144824597,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.004081981182098389
+                },
+                "100": {
+                    "mean of mis estimates": 162.90075986241928,
+                    "mean of variances": 10567.550594457738,
+                    "mean of advanced variances": 10567.550594457734,
+                    "mean of standard deviations": 44.674138850041764,
+                    "mean of advanced standard deviations": 44.67413885004176,
+                    "mean of errors": -1.8737170863640826,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.008104660511016847
+                },
+                "500": {
+                    "mean of mis estimates": 146.24634468712367,
+                    "mean of variances": 419.3897534020755,
+                    "mean of advanced variances": 419.3897534020754,
+                    "mean of standard deviations": 16.73891309924163,
+                    "mean of advanced standard deviations": 16.73891309924163,
+                    "mean of errors": 14.78069808893152,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.039382684230804446
+                },
+                "1000": {
+                    "mean of mis estimates": 154.06835764566003,
+                    "mean of variances": 571.8524020924265,
+                    "mean of advanced variances": 571.8524020924261,
+                    "mean of standard deviations": 17.547860263408573,
+                    "mean of advanced standard deviations": 17.54786026340857,
+                    "mean of errors": 6.958685130395138,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.07904267072677612
+                },
+                "5000": {
+                    "mean of mis estimates": 155.77344140300144,
+                    "mean of variances": 453.4970079983414,
+                    "mean of advanced variances": 453.49700799834136,
+                    "mean of standard deviations": 12.441600824507205,
+                    "mean of advanced standard deviations": 12.441600824507205,
+                    "mean of errors": 5.253601373053732,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.39381792306900026
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 147.49886574853107,
+                    "mean of variances": 5901.719202335569,
+                    "mean of advanced variances": 5901.719202335569,
+                    "mean of standard deviations": 37.18008447338394,
+                    "mean of advanced standard deviations": 37.18008447338394,
+                    "mean of errors": 13.528177027524066,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.0034092140197753908
+                },
+                "100": {
+                    "mean of mis estimates": 149.83064951188868,
+                    "mean of variances": 2921.05041801878,
+                    "mean of advanced variances": 2921.05041801878,
+                    "mean of standard deviations": 32.61742890712295,
+                    "mean of advanced standard deviations": 32.61742890712295,
+                    "mean of errors": 11.196393264166483,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.0067712140083312986
+                },
+                "500": {
+                    "mean of mis estimates": 150.9905448813551,
+                    "mean of variances": 964.3755536058219,
+                    "mean of advanced variances": 964.3755536058219,
+                    "mean of standard deviations": 19.605112101499966,
+                    "mean of advanced standard deviations": 19.60511210149997,
+                    "mean of errors": 10.036497894700059,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.03325507879257202
+                },
+                "1000": {
+                    "mean of mis estimates": 155.522843889171,
+                    "mean of variances": 4542.969926756733,
+                    "mean of advanced variances": 4542.969926756727,
+                    "mean of standard deviations": 21.710400608506024,
+                    "mean of advanced standard deviations": 21.710400608506017,
+                    "mean of errors": 5.50419888688416,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.06612339496612549
+                },
+                "5000": {
+                    "mean of mis estimates": 157.00295913816905,
+                    "mean of variances": 480.0341409156631,
+                    "mean of advanced variances": 480.03414091566316,
+                    "mean of standard deviations": 13.319268410925618,
+                    "mean of advanced standard deviations": 13.319268410925618,
+                    "mean of errors": 4.024083637886121,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.32857378482818606
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 146.95119397105108,
+                    "mean of variances": 7947.317986001043,
+                    "mean of advanced variances": 7947.317986001045,
+                    "mean of standard deviations": 38.07549237529841,
+                    "mean of advanced standard deviations": 38.07549237529841,
+                    "mean of errors": 14.07584880500409,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.00336575984954834
+                },
+                "100": {
+                    "mean of mis estimates": 154.34407683361218,
+                    "mean of variances": 5053.396550871139,
+                    "mean of advanced variances": 5053.39655087114,
+                    "mean of standard deviations": 34.78187953132157,
+                    "mean of advanced standard deviations": 34.78187953132157,
+                    "mean of errors": 6.682965942442987,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.006667647361755371
+                },
+                "500": {
+                    "mean of mis estimates": 266.5594891236973,
+                    "mean of variances": 1030958.5266181227,
+                    "mean of advanced variances": 1030958.5266181226,
+                    "mean of standard deviations": 135.10973357258186,
+                    "mean of advanced standard deviations": 135.10973357258186,
+                    "mean of errors": -105.53244634764212,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.03273530006408691
+                },
+                "1000": {
+                    "mean of mis estimates": 162.4062522103476,
+                    "mean of variances": 3716.731949009074,
+                    "mean of advanced variances": 3716.7319490090777,
+                    "mean of standard deviations": 27.357594596009886,
+                    "mean of advanced standard deviations": 27.35759459600989,
+                    "mean of errors": -1.379209434292406,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.06542817831039428
+                },
+                "5000": {
+                    "mean of mis estimates": 156.66248641902592,
+                    "mean of variances": 758.0596514557873,
+                    "mean of advanced variances": 758.0596514557869,
+                    "mean of standard deviations": 13.67437384076739,
+                    "mean of advanced standard deviations": 13.674373840767387,
+                    "mean of errors": 4.364556357029237,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.32467533826828004
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 173.91087826555005,
+                    "mean of variances": 120541.11891074054,
+                    "mean of advanced variances": 120541.1189107406,
+                    "mean of standard deviations": 67.21554753581316,
+                    "mean of advanced standard deviations": 67.21554753581317,
+                    "mean of errors": -12.883835489494867,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.003435723781585693
+                },
+                "100": {
+                    "mean of mis estimates": 153.417369856961,
+                    "mean of variances": 6891.885642518199,
+                    "mean of advanced variances": 6891.8856425181975,
+                    "mean of standard deviations": 36.64009514821457,
+                    "mean of advanced standard deviations": 36.640095148214556,
+                    "mean of errors": 7.609672919094179,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.006769554615020752
+                },
+                "500": {
+                    "mean of mis estimates": 234.23340785003663,
+                    "mean of variances": 711995.2303831831,
+                    "mean of advanced variances": 711995.2303831824,
+                    "mean of standard deviations": 103.83549454206624,
+                    "mean of advanced standard deviations": 103.83549454206621,
+                    "mean of errors": -73.20636507398147,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.03306148529052735
+                },
+                "1000": {
+                    "mean of mis estimates": 177.24795298408307,
+                    "mean of variances": 11773.175015427183,
+                    "mean of advanced variances": 11773.175015427194,
+                    "mean of standard deviations": 40.514735265641406,
+                    "mean of advanced standard deviations": 40.514735265641406,
+                    "mean of errors": -16.22091020802786,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.06611342906951904
+                },
+                "5000": {
+                    "mean of mis estimates": 159.89465146722355,
+                    "mean of variances": 958.6233656473779,
+                    "mean of advanced variances": 958.6233656473785,
+                    "mean of standard deviations": 16.290368015414273,
+                    "mean of advanced standard deviations": 16.29036801541427,
+                    "mean of errors": 1.1323913088315987,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.3272707724571228
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 144.67813248067068,
+                    "mean of variances": 3117.7064635915526,
+                    "mean of advanced variances": 3117.7064635915535,
+                    "mean of standard deviations": 36.00962081314513,
+                    "mean of advanced standard deviations": 36.00962081314513,
+                    "mean of errors": 16.34891029538449,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.0040299391746521
+                },
+                "100": {
+                    "mean of mis estimates": 152.91436046705016,
+                    "mean of variances": 2595.54275922664,
+                    "mean of advanced variances": 2595.5427592266406,
+                    "mean of standard deviations": 32.92814050001377,
+                    "mean of advanced standard deviations": 32.92814050001377,
+                    "mean of errors": 8.112682309004988,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.00799084186553955
+                },
+                "500": {
+                    "mean of mis estimates": 157.27719337728223,
+                    "mean of variances": 5513.513187295475,
+                    "mean of advanced variances": 5513.513187295482,
+                    "mean of standard deviations": 27.628859316267928,
+                    "mean of advanced standard deviations": 27.62885931626793,
+                    "mean of errors": 3.7498493987729513,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.03921119213104248
+                },
+                "1000": {
+                    "mean of mis estimates": 153.61351448770313,
+                    "mean of variances": 779.4946003501576,
+                    "mean of advanced variances": 779.4946003501576,
+                    "mean of standard deviations": 18.08274276274268,
+                    "mean of advanced standard deviations": 18.082742762742683,
+                    "mean of errors": 7.413528288352024,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.07856104373931885
+                },
+                "5000": {
+                    "mean of mis estimates": 154.46751119004537,
+                    "mean of variances": 304.0984141381623,
+                    "mean of advanced variances": 304.09841413816235,
+                    "mean of standard deviations": 11.685630000012866,
+                    "mean of advanced standard deviations": 11.685630000012868,
+                    "mean of errors": 6.559531586009779,
+                    "exact integral": 161.02704277605517,
+                    "mean of times": 0.3866246509552002
+                }
+            }
+        },
+        "a": [
+            [
+                1.883057231107562,
+                1.9317682233325897,
+                1.9486187229283292,
+                1.9326814700426513,
+                1.8757853849981327,
+                1.8335508807297296,
+                1.8458108740335768,
+                1.9665865309751203
+            ],
+            [
+                1.9559898949326822,
+                1.899898365135397,
+                1.9472019781705263,
+                1.9203364884779237,
+                1.9936712121337863,
+                1.8725276871096475,
+                1.9689647219861492,
+                1.927211552939252
+            ],
+            [
+                1.9942297766008918,
+                1.9161458129019044,
+                1.8737874567794666,
+                1.845039124269585,
+                1.8938738153687398,
+                1.8040306365887822,
+                1.8915611082049792,
+                1.9379331754404845
+            ]
+        ],
+        "b": [
+            [
+                92.43494808872924,
+                95.27282281868455,
+                -44.493409259843354,
+                -59.32407388061043,
+                10.68407537764871,
+                -67.72320438640149,
+                -61.25355311972464,
+                -48.472335339454254
+            ],
+            [
+                32.238705865362135,
+                57.244279454009785,
+                96.97294692335822,
+                49.196599160388274,
+                52.21718247937554,
+                73.02392518479604,
+                -90.32723907327811,
+                27.999522885491828
+            ],
+            [
+                -17.139897363533493,
+                82.13263275665196,
+                -89.06262167508645,
+                80.37843442457932,
+                98.80489387312704,
+                -67.36784428967506,
+                43.57833400206573,
+                -74.31620133636514
+            ]
+        ],
+        "m": 3,
+        "n": 8
+    },
+    "Test 9": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 443.66339924340457,
+                    "mean of variances": 38586.191343485254,
+                    "mean of advanced variances": 38586.19134348525,
+                    "mean of standard deviations": 119.99393499994046,
+                    "mean of advanced standard deviations": 119.99393499994046,
+                    "mean of errors": 31.281352839841794,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.005771622657775879
+                },
+                "100": {
+                    "mean of mis estimates": 451.2205119463951,
+                    "mean of variances": 93615.69525367714,
+                    "mean of advanced variances": 93615.6952536772,
+                    "mean of standard deviations": 121.58521602854496,
+                    "mean of advanced standard deviations": 121.585216028545,
+                    "mean of errors": 23.724240136851318,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.011419167518615722
+                },
+                "500": {
+                    "mean of mis estimates": 471.73868345443356,
+                    "mean of variances": 132600.87884816626,
+                    "mean of advanced variances": 132600.8788481663,
+                    "mean of standard deviations": 95.04673814430993,
+                    "mean of advanced standard deviations": 95.04673814430997,
+                    "mean of errors": 3.2060686288127895,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.05659394264221192
+                },
+                "1000": {
+                    "mean of mis estimates": 442.99224630414943,
+                    "mean of variances": 8568.507931447746,
+                    "mean of advanced variances": 8568.507931447744,
+                    "mean of standard deviations": 53.35476020592569,
+                    "mean of advanced standard deviations": 53.35476020592568,
+                    "mean of errors": 31.952505779096942,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.11568008661270142
+                },
+                "5000": {
+                    "mean of mis estimates": 440.9080281067813,
+                    "mean of variances": 1417.2888970804133,
+                    "mean of advanced variances": 1417.2888970804133,
+                    "mean of standard deviations": 27.5237149535346,
+                    "mean of advanced standard deviations": 27.523714953534594,
+                    "mean of errors": 34.03672397646517,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.5720699501037597
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 437.5466284441334,
+                    "mean of variances": 82591.5475431621,
+                    "mean of advanced variances": 82591.5475431621,
+                    "mean of standard deviations": 133.53511731647407,
+                    "mean of advanced standard deviations": 133.53511731647407,
+                    "mean of errors": 37.398123639113116,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.0052402567863464354
+                },
+                "100": {
+                    "mean of mis estimates": 548.8615679362599,
+                    "mean of variances": 1028981.9157364357,
+                    "mean of advanced variances": 1028981.9157364358,
+                    "mean of standard deviations": 211.8615490548999,
+                    "mean of advanced standard deviations": 211.86154905489994,
+                    "mean of errors": -73.9168158530136,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.010273146629333495
+                },
+                "500": {
+                    "mean of mis estimates": 455.43093774060173,
+                    "mean of variances": 18196.899224943387,
+                    "mean of advanced variances": 18196.899224943383,
+                    "mean of standard deviations": 75.03910796721293,
+                    "mean of advanced standard deviations": 75.03910796721293,
+                    "mean of errors": 19.513814342644704,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.050452051162719724
+                },
+                "1000": {
+                    "mean of mis estimates": 456.29385652765,
+                    "mean of variances": 33043.291168335716,
+                    "mean of advanced variances": 33043.29116833568,
+                    "mean of standard deviations": 67.95382709630098,
+                    "mean of advanced standard deviations": 67.95382709630097,
+                    "mean of errors": 18.650895555596424,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.10081724882125855
+                },
+                "5000": {
+                    "mean of mis estimates": 466.4201237204108,
+                    "mean of variances": 14896.377241026403,
+                    "mean of advanced variances": 14896.3772410264,
+                    "mean of standard deviations": 48.420313622516936,
+                    "mean of advanced standard deviations": 48.420313622516915,
+                    "mean of errors": 8.524628362835667,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.49756131410598753
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 427.59936995856947,
+                    "mean of variances": 31240.470574581963,
+                    "mean of advanced variances": 31240.47057458198,
+                    "mean of standard deviations": 105.817309527574,
+                    "mean of advanced standard deviations": 105.817309527574,
+                    "mean of errors": 47.34538212467681,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.004936861991882324
+                },
+                "100": {
+                    "mean of mis estimates": 486.83846267702955,
+                    "mean of variances": 129301.74288036142,
+                    "mean of advanced variances": 129301.7428803614,
+                    "mean of standard deviations": 145.3411787268963,
+                    "mean of advanced standard deviations": 145.34117872689632,
+                    "mean of errors": -11.893710593783167,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.009857780933380127
+                },
+                "500": {
+                    "mean of mis estimates": 431.96626663294825,
+                    "mean of variances": 4929.545576930912,
+                    "mean of advanced variances": 4929.545576930915,
+                    "mean of standard deviations": 54.51395122186152,
+                    "mean of advanced standard deviations": 54.51395122186152,
+                    "mean of errors": 42.97848545029809,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.0484835934638977
+                },
+                "1000": {
+                    "mean of mis estimates": 471.4276874097044,
+                    "mean of variances": 21461.955411211024,
+                    "mean of advanced variances": 21461.95541121102,
+                    "mean of standard deviations": 79.78008772183045,
+                    "mean of advanced standard deviations": 79.78008772183045,
+                    "mean of errors": 3.517064673542028,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.0966647982597351
+                },
+                "5000": {
+                    "mean of mis estimates": 468.98066449531433,
+                    "mean of variances": 11805.139062035156,
+                    "mean of advanced variances": 11805.139062035152,
+                    "mean of standard deviations": 51.65175460205991,
+                    "mean of advanced standard deviations": 51.65175460205991,
+                    "mean of errors": 5.964087587932084,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.4807792377471924
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 438.2072142420182,
+                    "mean of variances": 86864.5287420205,
+                    "mean of advanced variances": 86864.52874202053,
+                    "mean of standard deviations": 123.51104341837474,
+                    "mean of advanced standard deviations": 123.51104341837474,
+                    "mean of errors": 36.737537841228175,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.004907345771789551
+                },
+                "100": {
+                    "mean of mis estimates": 432.44200997481107,
+                    "mean of variances": 23440.71154557193,
+                    "mean of advanced variances": 23440.711545571936,
+                    "mean of standard deviations": 95.13633863668773,
+                    "mean of advanced standard deviations": 95.13633863668775,
+                    "mean of errors": 42.50274210843526,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.009761435985565186
+                },
+                "500": {
+                    "mean of mis estimates": 431.5406090001483,
+                    "mean of variances": 10270.653890479487,
+                    "mean of advanced variances": 10270.653890479492,
+                    "mean of standard deviations": 59.87012565179817,
+                    "mean of advanced standard deviations": 59.87012565179818,
+                    "mean of errors": 43.40414308309807,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.04809042453765869
+                },
+                "1000": {
+                    "mean of mis estimates": 468.1546277620823,
+                    "mean of variances": 37278.66498434848,
+                    "mean of advanced variances": 37278.66498434846,
+                    "mean of standard deviations": 76.3007375363208,
+                    "mean of advanced standard deviations": 76.3007375363208,
+                    "mean of errors": 6.7901243211640345,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.09604608297348022
+                },
+                "5000": {
+                    "mean of mis estimates": 452.9507268011846,
+                    "mean of variances": 7876.768387903606,
+                    "mean of advanced variances": 7876.768387903613,
+                    "mean of standard deviations": 40.50898962295317,
+                    "mean of advanced standard deviations": 40.50898962295319,
+                    "mean of errors": 21.99402528206191,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.4786412215232849
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 406.73456197793564,
+                    "mean of variances": 18235.07075280461,
+                    "mean of advanced variances": 18235.07075280461,
+                    "mean of standard deviations": 95.89335090769245,
+                    "mean of advanced standard deviations": 95.89335090769245,
+                    "mean of errors": 68.21019010531073,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.005496652126312256
+                },
+                "100": {
+                    "mean of mis estimates": 456.134465252129,
+                    "mean of variances": 78224.05377309465,
+                    "mean of advanced variances": 78224.05377309462,
+                    "mean of standard deviations": 112.7084933320652,
+                    "mean of advanced standard deviations": 112.70849333206519,
+                    "mean of errors": 18.810286831117313,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.01090815782546997
+                },
+                "500": {
+                    "mean of mis estimates": 485.36917247870076,
+                    "mean of variances": 111058.07502611472,
+                    "mean of advanced variances": 111058.07502611462,
+                    "mean of standard deviations": 110.98087222486129,
+                    "mean of advanced standard deviations": 110.98087222486124,
+                    "mean of errors": -10.424420395454367,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.05397719383239746
+                },
+                "1000": {
+                    "mean of mis estimates": 443.66716135431597,
+                    "mean of variances": 9256.353139919576,
+                    "mean of advanced variances": 9256.35313991956,
+                    "mean of standard deviations": 56.6262622372479,
+                    "mean of advanced standard deviations": 56.626262237247886,
+                    "mean of errors": 31.27759072893041,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.10777498245239257
+                },
+                "5000": {
+                    "mean of mis estimates": 493.89571516989554,
+                    "mean of variances": 67539.96185862205,
+                    "mean of advanced variances": 67539.96185862177,
+                    "mean of standard deviations": 74.31559481432494,
+                    "mean of advanced standard deviations": 74.31559481432488,
+                    "mean of errors": -18.950963086649267,
+                    "exact integral": 474.9447520832464,
+                    "mean of times": 0.5382390022277832
+                }
+            }
+        },
+        "a": [
+            [
+                1.8518632955283112,
+                1.8230593871528071,
+                1.8202592520079037,
+                1.9222614966164688,
+                1.8695891199865202,
+                1.9643850533459064,
+                1.9136241503937408,
+                1.8393903752553196,
+                1.9064088736330078
+            ],
+            [
+                1.930585529630227,
+                1.90047162148708,
+                1.8335398562628307,
+                1.9242608640924324,
+                1.837330914384719,
+                1.8339824414337125,
+                1.8279462551689032,
+                1.945198867161103,
+                1.8660418842725857
+            ],
+            [
+                1.8770912386978331,
+                1.8390262736881402,
+                1.986205714939226,
+                1.974202637072121,
+                1.8643746873167555,
+                1.9169842630335063,
+                1.8284006362293188,
+                1.9969546677802776,
+                1.9526265440931179
+            ],
+            [
+                1.8171963669784585,
+                1.8764080045604572,
+                1.8821261982345685,
+                1.9595051766276759,
+                1.9910074120074497,
+                1.932340419564912,
+                1.9880445000239835,
+                1.8325819718969016,
+                1.975127937078436
+            ],
+            [
+                1.83039227897866,
+                1.9335901162355618,
+                1.8758109942757233,
+                1.959795426624322,
+                1.9069365333116697,
+                1.8800828796827502,
+                1.8383957567917333,
+                1.9175580713605425,
+                1.8590828038897351
+            ]
+        ],
+        "b": [
+            [
+                -57.562231028378655,
+                -81.0157479203902,
+                80.34780765550374,
+                63.31307472316644,
+                55.50305798390326,
+                7.203181347118544,
+                -19.782288782094938,
+                82.3196048896576,
+                -27.33766647462788
+            ],
+            [
+                23.072794178713735,
+                -59.84606149306979,
+                -2.4503119140609755,
+                40.44539997883044,
+                65.38580674998082,
+                54.89224990342953,
+                -83.30599740938764,
+                -36.23938140977425,
+                -71.88463998653665
+            ],
+            [
+                72.82708641771583,
+                -68.72919173917444,
+                69.18972846604657,
+                6.005387398461309,
+                -41.12980871547711,
+                -81.05926210703373,
+                -77.6916522063496,
+                -23.355243166530286,
+                -16.4517029161823
+            ],
+            [
+                -88.08882181888578,
+                -61.90035618037329,
+                58.72808471330387,
+                87.10290684189258,
+                -2.7290815262708463,
+                4.318162383248065,
+                91.21124112518063,
+                27.13516194662175,
+                94.27148952077917
+            ],
+            [
+                -50.564407474966266,
+                -4.544021941995638,
+                -49.725262385229804,
+                54.18060733492234,
+                20.217972345673132,
+                -13.098668232301563,
+                -64.0597287248664,
+                65.90607986533422,
+                -87.48059643538342
+            ]
+        ],
+        "m": 5,
+        "n": 9
+    },
+    "Test 10": {
+        "results": {
+            "balance": {
+                "50": {
+                    "mean of mis estimates": 325.2078682315264,
+                    "mean of variances": 140199.48435588277,
+                    "mean of advanced variances": 140199.48435588283,
+                    "mean of standard deviations": 116.32849396438795,
+                    "mean of advanced standard deviations": 116.32849396438795,
+                    "mean of errors": -7.812278693495092,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.003636932373046875
+                },
+                "100": {
+                    "mean of mis estimates": 275.864108879111,
+                    "mean of variances": 5360.448708800808,
+                    "mean of advanced variances": 5360.448708800808,
+                    "mean of standard deviations": 56.140456531672115,
+                    "mean of advanced standard deviations": 56.140456531672115,
+                    "mean of errors": 41.53148065892041,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.007218172550201416
+                },
+                "500": {
+                    "mean of mis estimates": 356.045780925183,
+                    "mean of variances": 186053.602099594,
+                    "mean of advanced variances": 186053.60209959396,
+                    "mean of standard deviations": 110.18101088262547,
+                    "mean of advanced standard deviations": 110.18101088262546,
+                    "mean of errors": -38.650191387151665,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.035683298110961915
+                },
+                "1000": {
+                    "mean of mis estimates": 306.70060402461627,
+                    "mean of variances": 7787.233770194268,
+                    "mean of advanced variances": 7787.233770194265,
+                    "mean of standard deviations": 49.891704475664966,
+                    "mean of advanced standard deviations": 49.89170447566496,
+                    "mean of errors": 10.694985513415071,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.07133405447006226
+                },
+                "5000": {
+                    "mean of mis estimates": 297.1391453942693,
+                    "mean of variances": 1418.1153556567099,
+                    "mean of advanced variances": 1418.115355656712,
+                    "mean of standard deviations": 25.246240683877996,
+                    "mean of advanced standard deviations": 25.246240683878003,
+                    "mean of errors": 20.256444143762018,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.35608338356018066
+                }
+            },
+            "power": {
+                "50": {
+                    "mean of mis estimates": 300.1650892384955,
+                    "mean of variances": 58438.9518566062,
+                    "mean of advanced variances": 58438.951856606174,
+                    "mean of standard deviations": 102.15034496818987,
+                    "mean of advanced standard deviations": 102.15034496818987,
+                    "mean of errors": 17.23050029953579,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.00292940616607666
+                },
+                "100": {
+                    "mean of mis estimates": 349.6520897892265,
+                    "mean of variances": 327957.6224340199,
+                    "mean of advanced variances": 327957.62243402,
+                    "mean of standard deviations": 128.70503726053025,
+                    "mean of advanced standard deviations": 128.70503726053028,
+                    "mean of errors": -32.256500251195185,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.005788969993591309
+                },
+                "500": {
+                    "mean of mis estimates": 294.3356869670537,
+                    "mean of variances": 9142.230980276852,
+                    "mean of advanced variances": 9142.230980276852,
+                    "mean of standard deviations": 49.36813885112996,
+                    "mean of advanced standard deviations": 49.36813885112997,
+                    "mean of errors": 23.05990257097767,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.028802413940429688
+                },
+                "1000": {
+                    "mean of mis estimates": 381.79690206496,
+                    "mean of variances": 717004.1532811831,
+                    "mean of advanced variances": 717004.1532811822,
+                    "mean of standard deviations": 125.0114409616007,
+                    "mean of advanced standard deviations": 125.01144096160066,
+                    "mean of errors": -64.4013125269286,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.05751039266586304
+                },
+                "5000": {
+                    "mean of mis estimates": 310.9418993330477,
+                    "mean of variances": 8304.330180620904,
+                    "mean of advanced variances": 8304.330180620902,
+                    "mean of standard deviations": 37.54134275758648,
+                    "mean of advanced standard deviations": 37.54134275758648,
+                    "mean of errors": 6.453690204983632,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.2870922613143921
+                }
+            },
+            "maximum": {
+                "50": {
+                    "mean of mis estimates": 321.2978272510897,
+                    "mean of variances": 118405.53017801799,
+                    "mean of advanced variances": 118405.53017801791,
+                    "mean of standard deviations": 110.50413428206919,
+                    "mean of advanced standard deviations": 110.50413428206917,
+                    "mean of errors": -3.9022377130583292,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.002927074432373047
+                },
+                "100": {
+                    "mean of mis estimates": 273.3862304460888,
+                    "mean of variances": 8605.56424808598,
+                    "mean of advanced variances": 8605.56424808598,
+                    "mean of standard deviations": 60.96860189122604,
+                    "mean of advanced standard deviations": 60.968601891226044,
+                    "mean of errors": 44.00935909194251,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.0057656621932983395
+                },
+                "500": {
+                    "mean of mis estimates": 295.47020666366546,
+                    "mean of variances": 13287.391811497018,
+                    "mean of advanced variances": 13287.391811497018,
+                    "mean of standard deviations": 50.059308562276854,
+                    "mean of advanced standard deviations": 50.059308562276854,
+                    "mean of errors": 21.925382874365866,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.028608427047729493
+                },
+                "1000": {
+                    "mean of mis estimates": 285.56541642766035,
+                    "mean of variances": 2748.9661372098226,
+                    "mean of advanced variances": 2748.966137209822,
+                    "mean of standard deviations": 33.99353842070032,
+                    "mean of advanced standard deviations": 33.99353842070032,
+                    "mean of errors": 31.830173110370975,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.057090203762054446
+                },
+                "5000": {
+                    "mean of mis estimates": 324.2364377606351,
+                    "mean of variances": 56398.34864804946,
+                    "mean of advanced variances": 56398.348648049425,
+                    "mean of standard deviations": 52.084933350792014,
+                    "mean of advanced standard deviations": 52.084933350792014,
+                    "mean of errors": -6.8408482226038,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.2851929235458374
+                }
+            },
+            "cutoff": {
+                "50": {
+                    "mean of mis estimates": 294.227557820326,
+                    "mean of variances": 23726.170566593424,
+                    "mean of advanced variances": 23726.170566593417,
+                    "mean of standard deviations": 90.85940443039945,
+                    "mean of advanced standard deviations": 90.85940443039945,
+                    "mean of errors": 23.168031717705336,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.0029366612434387207
+                },
+                "100": {
+                    "mean of mis estimates": 511.92755102988014,
+                    "mean of variances": 2305230.9905729075,
+                    "mean of advanced variances": 2305230.9905729075,
+                    "mean of standard deviations": 235.14861530550652,
+                    "mean of advanced standard deviations": 235.1486153055065,
+                    "mean of errors": -194.5319614918488,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.00581439733505249
+                },
+                "500": {
+                    "mean of mis estimates": 308.96168102834764,
+                    "mean of variances": 18680.614924823545,
+                    "mean of advanced variances": 18680.614924823538,
+                    "mean of standard deviations": 60.66127941219565,
+                    "mean of advanced standard deviations": 60.661279412195654,
+                    "mean of errors": 8.433908509683677,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.02879976511001587
+                },
+                "1000": {
+                    "mean of mis estimates": 297.9213582691987,
+                    "mean of variances": 3261.8186690064454,
+                    "mean of advanced variances": 3261.8186690064454,
+                    "mean of standard deviations": 40.9829893694413,
+                    "mean of advanced standard deviations": 40.98298936944131,
+                    "mean of errors": 19.474231268832618,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.05752325296401978
+                },
+                "5000": {
+                    "mean of mis estimates": 296.73497587696403,
+                    "mean of variances": 1311.3310511536722,
+                    "mean of advanced variances": 1311.3310511536758,
+                    "mean of standard deviations": 24.71559270679119,
+                    "mean of advanced standard deviations": 24.7155927067912,
+                    "mean of errors": 20.66061366106732,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.2873772931098938
+                }
+            },
+            "sbert": {
+                "50": {
+                    "mean of mis estimates": 307.8669569397141,
+                    "mean of variances": 37183.47836177885,
+                    "mean of advanced variances": 37183.478361778856,
+                    "mean of standard deviations": 100.93130158617407,
+                    "mean of advanced standard deviations": 100.93130158617407,
+                    "mean of errors": 9.528632598317257,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.003632242679595947
+                },
+                "100": {
+                    "mean of mis estimates": 360.79387710125974,
+                    "mean of variances": 477937.5421961947,
+                    "mean of advanced variances": 477937.5421961945,
+                    "mean of standard deviations": 145.34016756549582,
+                    "mean of advanced standard deviations": 145.34016756549582,
+                    "mean of errors": -43.39828756322841,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.007209670543670654
+                },
+                "500": {
+                    "mean of mis estimates": 320.8966731963228,
+                    "mean of variances": 50591.996459817514,
+                    "mean of advanced variances": 50591.9964598176,
+                    "mean of standard deviations": 73.06005843712472,
+                    "mean of advanced standard deviations": 73.06005843712477,
+                    "mean of errors": -3.501083658291449,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.03563438892364502
+                },
+                "1000": {
+                    "mean of mis estimates": 281.21379597547536,
+                    "mean of variances": 1775.9500068172856,
+                    "mean of advanced variances": 1775.9500068172865,
+                    "mean of standard deviations": 31.23172362840033,
+                    "mean of advanced standard deviations": 31.231723628400335,
+                    "mean of errors": 36.181793562555995,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.07119721174240112
+                },
+                "5000": {
+                    "mean of mis estimates": 307.06570444073185,
+                    "mean of variances": 4270.711923533594,
+                    "mean of advanced variances": 4270.711923533586,
+                    "mean of standard deviations": 32.501573647046555,
+                    "mean of advanced standard deviations": 32.50157364704654,
+                    "mean of errors": 10.329885097299453,
+                    "exact integral": 317.39558953803135,
+                    "mean of times": 0.3555994248390198
+                }
+            }
+        },
+        "a": [
+            [
+                1.9362256998531957,
+                1.8721792303407558,
+                1.9126630547096206,
+                1.995305179085266,
+                1.8353096541214209,
+                1.8506489937164914,
+                1.9557691015271632,
+                1.8632799938118887,
+                1.8155270051750658,
+                1.88068701559756
+            ],
+            [
+                1.8631387626858695,
+                1.8982846538132991,
+                1.88082034284026,
+                1.9644961652168378,
+                1.8446766465833342,
+                1.8708626287922516,
+                1.9134317252651885,
+                1.8646253215238269,
+                1.8913860200980206,
+                1.957230286468048
+            ]
+        ],
+        "b": [
+            [
+                -37.71149030970178,
+                59.16328797587738,
+                43.25105053307479,
+                42.08996743181689,
+                64.95014737423813,
+                -45.373641812508694,
+                -49.27233911787674,
+                25.67345489269013,
+                -63.41341291839795,
+                15.730706148314738
+            ],
+            [
+                4.7034561911386135,
+                -13.318733793950727,
+                2.4227394391815835,
+                -50.01006439497673,
+                -45.26501597633037,
+                -38.13673223192862,
+                -64.21798763449584,
+                -4.744219821926961,
+                -70.74483001357896,
+                62.89708159101238
+            ]
+        ],
+        "m": 2,
+        "n": 10
+    }
+}
