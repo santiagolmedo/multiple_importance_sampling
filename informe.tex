@@ -11,6 +11,7 @@
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{makecell}
+\usepackage{url}
 \floatname{algorithm}{Algoritmo}
 
 
@@ -946,6 +947,30 @@ La dimensionalidad afecta significativamente el rendimiento de las heurísticas.
 En resumen, 'Balance' y 'Sbert' emergen como las heurísticas más robustas y consistentes en la Prueba 3, demostrando una buena precisión y estabilidad a lo largo de diferentes tamaños de muestra y en varias dimensiones. En contraste, 'Maximum' muestra una tendencia a la subestimación y es menos confiable, especialmente en dimensiones más altas. 'Power' y 'Cutoff' ofrecen un rendimiento intermedio, pero su precisión y consistencia son menos predecibles en comparación con 'Balance' y 'Sbert'.
 
 \section{Conclusiones}
+
+Las pruebas realizadas en este trabajo muestran que el MIS es una buena técnica para la estimación de distintas integrales.
+Se probó en un espacio amplio de dimensiones y con distintas heurísticas en cada caso.
+
+El caso 1, que es el más simple, mostró que el MIS es efectivo en dimensiones bajas y que la heurística 'Balance' es la más efectiva.
+Este caso fue útil para entender cómo funciona el MIS y cómo se comporta en un caso simple.
+
+El caso 2, que es un caso más complejo, mostró que el MIS es efectivo en dimensiones más altas y que la heurística 'Balance' mostró de nuevo ser la más efectiva.
+Este caso fue útil para entender cómo se comporta el MIS en dimensiones más altas y cómo se comporta con distintas heurísticas en estas condiciones.
+
+El caso 3, nos ayudó a entender cómo funciona el MIS en un producto de hipercubos y cómo se comporta en dimensiones más altas.
+Sirvió para hacer un análisis en donde se multiplica una función de baja integral con una de alta integral y ver cómo el MIS se comporta en este caso.
+De vuelta, la heurística 'Balance' mostró ser la más efectiva.
+
+En resumen, el MIS es una técnica efectiva para la estimación de integrales en espacios de alta dimensión y la heurística 'Balance' es la más efectiva en la mayoría de los casos.
+Se vio que la heurística presentada por Sbert también es efectiva en la mayoría de los casos y que se comporta de manera muy similar a 'Balance'.
+
+Se pudo observar que las funciones utilizadas claramente no aportan el contexto necesario para que las heurísticas 'Power' 'Maximum' y 'Cutoff'.
+Como explicado en las primeras secciones, estas heurísticas son efectivas en contextos muy particulares que no son reflejados en estos casos de prueba.
+
+Para más información se puede ver el repositorio de GitHub en el que se encuentra el código utilizado para este trabajo: \url{https://github.com/santiagolmedo/multiple_importance_sampling}.
+En él, se encuentran los códigos utilizados para las pruebas y los todos los resultados obtenidos.
+
+\section{Bibliografía}
 
 \end{document}
 
