@@ -280,6 +280,14 @@ Veach recomienda usar cutoff y power en lugar de maximum ya que maximum desecha 
 
 \subsubsection{Modelo one-sample}
 
+El modelo one-sample consiste en elegir en cada corrida una distribución de muestreo de manera aleatoria y usarla para estimar la integral.
+Dadas las distribuciones de muestreo $p_{1}, p_{2}, ..., p_{n}$, se elige una distribución de muestreo $p_{i}$ con probabilidades $c_{1}, c_{2}, ..., c_{n}$ (donde $\sum_{i} c_{i} = 1$).
+
+El estimador one-sample es de la forma:
+$$F = \frac{w_{I}(X_{I}) f(X_{I})}{c_{I} p_{I}(X_{I})}$$
+
+donde $X_{I}$ es una muestra generada con $p_{I}$ y $I$ es una variable aleatoria con distribución $c_{1}, c_{2}, ..., c_{n}$.
+
 \subsubsection{Sbert}
 
 \section{Experimentación práctica}
