@@ -292,6 +292,24 @@ donde $X_{I}$ es una muestra generada con $p_{I}$ y $I$ es una variable aleatori
 
 Sbert, en su artículo \cite{Sbert2016} presenta una nueva heurística para combinar las distribuciones de muestreo.
 
+\paragraph{Sbert} La heurística 'Sbert' es de la forma:
+$$ w_{i}(x) = \frac{p_{i}(x)}{\sum_{k} p_{k}(x)}$$
+
+% Varianza del estimador de MIS presentada por Veach en la demostración del Teorema 9.2 es:
+% \begin{align*}
+%   V[F] &= V\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} F_{i,j}\right] \\
+%   &= \sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} V[F_{i,j}] \\
+%   &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}^2]\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}]^2\right) \\
+%   &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} \int_{\Omega} \frac{w_i(x)^2 f(x)^2}{p_i(x)^2} p_{i}(x) d\mu(x)\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} n_i  \mu_i^2\right) \\
+%   &= \int_{\Omega} \left(\sum_{i=1}^n \frac{w_i(x)^2 f(x)^2}{n_i p_i(x)} d\mu(x)\right) - \left(\sum_{i=1}^n \frac{\mu_i^2}{n_i}\right).
+% \end{align*}
+
+% Sea $\sigma_{i}^{2} = E[F_{i,j}^2] - E^2[F_{i,j}]$ la varianza de $F_{i,j}$.
+% A partir de esto Sbert propone los siguientes teoremas.
+
+% \textbf{Teorema 1} Dado $n_{i}$, $\sigma_{i}^{2}$ y $1 \leq i \leq n$.
+% Si la varianza no depende de la cantidad de muestras $n_{i}$, entonc
+
 \section{Experimentación práctica}
 
 Dentro de esta sección se presenta la implementación del MIS en un conjunto de pruebas que va a permitir analizar el comportamiento de MIS en distintos escenarios.
