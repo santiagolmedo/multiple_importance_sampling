@@ -185,7 +185,7 @@ Por lo tanto, el estimador \( F \) es imparcial. La última igualdad se debe a q
 
 $$ \hat{w}_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
 
-\textbf{Teorema 9.2} Dado $f$, $n_{i}$ y $p_{i}$ para $i \in \{1, 2, ..., n\}$. Sea F cualquier estimador insesgado de la forma del multi-sample estimator y $\hat{F}$ el estimador balance heuristic. Entonces:
+\textbf{Teorema 9.2} Dado $f$, $n_{i}$ y $p_{i}$ para $i \in \{1, 2, ..., n\}$. Sea F cualquier estimador insesgado de la forma del multi-sample estimator y $\hat{F}$ el estimador 'Balance' heuristic. Entonces:
 
 $$V[\hat{F}] - V[F] \leq ( \frac{1}{min_{i} n_{i}} - \frac{1}{\sum_{i} n_{i}} ) * \mu^{2}$$
 
@@ -215,8 +215,8 @@ donde $\mu = E[F] = E[\hat{F}]$.
 
 \subsubsection{Otras Heurísticas}
 
-Dentro de los límites presentados en el Teorema 9.2, Veach presenta más heurísticas que son demostrablemente mejores que balance heuristic en circunstancias particulares.
-Estas heurísticas son insesgadas al igual que balance heuristic.
+Dentro de los límites presentados en el Teorema 9.2, Veach presenta más heurísticas que son demostrablemente mejores que 'Balance' heuristic en circunstancias particulares.
+Estas heurísticas son insesgadas al igual que 'Balance' heuristic.
 
 Se considera la situación donde una de las distribuciones de muestreo es una coincidencia perfecta para la función a integrar. En este caso, es deseable que la heurística le de un peso de 1 a esta distribución de muestreo y 0 a las demás.
 La idea entonces es ir muestreando con las distintas distribuciones de muestreo y darle un peso de 1 en todo el dominio a la distribución de muestreo cercana a $f$ y 0 a las demás.
@@ -252,31 +252,31 @@ Balance heuristic usaría el peso
 $$ \hat{w}_{1}(x) = \frac{p_1}{p_1 + p_2} $$
 que es mayor que 1/2 en la región A. Una manera de mejorar esto, entonces, es usar los pesos $w_{1}$ y $w_{2}$ que son 1 y 0 cada vez qie $\hat{w}_{1}$ es mayor que 1/2.
 
-Las heuristicas cutoff y power aplican este razonamiento.
-Por facilidad se reescriben los pesos de balance como:
+Las heuristicas 'Cutoff' y 'Power' aplican este razonamiento.
+Por facilidad se reescriben los pesos de 'Balance' como:
 $$ \hat{w}_{i}(x) = \frac{q_{i}}{\sum_{k} q_{k}} $$
 
 donde $q_{i} = n_{i} * p_{i}$.
 
-\paragraph{Cutoff} La heurística cutoff es de la forma:
+\paragraph{Cutoff} La heurística 'Cutoff' es de la forma:
 $$ w_{i}(x) = \begin{cases} 0 & \text{si } q_{i} < \alpha \cdot q_{max} \\ \frac{q_{i}}{\sum_{k} \{ q_{k} | q_{k} \geq \alpha \cdot q_{max} \}} & \text{en otro caso} \end{cases}$$
 
 donde $q_{max} = max_{k} q_{k}$ y $\alpha$ es un parámetro que se elige de antemano $\in [0, 1]$.
 El parámetro $\alpha$ define que tan grande tiene que ser $q_{i}$ para que la muestra tenga un peso distinto de 0.
 
-\paragraph{Power} La heurística power es de la forma:
+\paragraph{Power} La heurística 'Power' es de la forma:
 $$ w_{i}(x) = \frac{(q_{i})^{\beta}}{\sum_{k} (q_{k})^{\beta}}$$
 
 donde Veach recomienda $\beta = 2$.
 
-Se puede ver que balance heuristic se puede obtener cuando los parámetros $\alpha = 0$ o $\beta = 1$.
-La otra heurística que surge de las anteriores 2 es la huerística maximum cuando $\alpha = 1$ o $\beta = \infty$.
+Se puede ver que 'Balance' heuristic se puede obtener cuando los parámetros $\alpha = 0$ o $\beta = 1$.
+La otra heurística que surge de las anteriores 2 es la huerística 'Maximum' cuando $\alpha = 1$ o $\beta = \infty$.
 
-\paragraph{Maximum} La heurística maximum es de la forma:
+\paragraph{Maximum} La heurística 'Maximum' es de la forma:
 $$ w_{i}(x) = \begin{cases} 1 & \text{si } q_{i} = q_{max} \\ 0 & \text{en otro caso} \end{cases}$$
 
 Lo que se hace es darle un peso de 1 a la distribución de muestreo que tiene el máximo $q_{i}$ y 0 a las demás.
-Veach recomienda usar cutoff y power en lugar de maximum ya que maximum desecha muchas muestras.
+Veach recomienda usar 'Cutoff' y 'Power' en lugar de 'Maximum' ya que 'Maximum' desecha muchas muestras.
 
 \subsubsection{Modelo one-sample}
 
@@ -289,6 +289,8 @@ $$F = \frac{w_{I}(X_{I}) f(X_{I})}{c_{I} p_{I}(X_{I})}$$
 donde $X_{I}$ es una muestra generada con $p_{I}$ y $I$ es una variable aleatoria con distribución $c_{1}, c_{2}, ..., c_{n}$.
 
 \subsubsection{Sbert}
+
+Sbert, en su artículo \cite{Sbert2016} presenta una nueva heurística para combinar las distribuciones de muestreo.
 
 \section{Experimentación práctica}
 
@@ -329,7 +331,7 @@ Para poder visualizar la función se considera el siguiente ejemplo donde:
 \end{itemize}
 
 En la figura \ref{fig:mis1} se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
-A su vez, se hizo una corrida con balance heuristic y se puede ver en rojo los puntos muestreados.
+A su vez, se hizo una corrida con 'Balance' heuristic y se puede ver en rojo los puntos muestreados.
 
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{Figure_1_mis.png}
@@ -348,7 +350,7 @@ Para el análisis se hizo lo siguiente:
           Para el tercer rango de \( \mu_{i} \) se fijaron los valores entre 12 y 18.
           Las desviaciones estándar \( \sigma_{i} \) se fijaron entre 0.01 y 1.
           Los rangos \( [a_{i}, b_{i}] \) se calcularon como \( [ \mu_{i} - 2 * \sigma_{i}, \mu_{i} + 2 * \sigma_{i} ] \).
-    \item Para cada test se corrió MIS con las siguientes heurísticas: balance, power, maximum, cutoff y sbert.
+    \item Para cada test se corrió MIS con las siguientes heurísticas: 'Balance', 'Power', 'Maximum', 'Cutoff' y 'Sbert'.
     \item Para cada heurística se corrió MIS con 10, 25, 50, 100 y 150 muestras.
     \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
           el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
@@ -556,7 +558,7 @@ Para poder visualizar la función se considera el siguiente ejemplo donde:
 \end{itemize}
 
 En la figura \ref{fig:mis2} se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
-A su vez, se hizo una corrida con balance heuristic y ver en rojo, verde y azul los puntos muestreados.
+A su vez, se hizo una corrida con 'Balance' heuristic y ver en rojo, verde y azul los puntos muestreados.
 
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{Figure_2_mis.png}
@@ -574,7 +576,7 @@ Para el análisis se hizo lo siguiente:
           Es decir, para el primer test \( n = 1 \), para el segundo test \( n = 2 \), etc. La dimensión entonces es el número del test más 1.
           Para cada test se generaron valores aleatorios para \( a_{ij} \) entre 1.8 y 2.
           Para cada test se generaron valores aleatorios para \( b_{ij} \) entre -100 y 100.
-    \item Para cada test se corrió MIS con las siguientes heurísticas: balance, power, maximum, cutoff y sbert.
+    \item Para cada test se corrió MIS con las siguientes heurísticas: 'Balance', 'Power', 'Maximum', 'Cutoff' y 'Sbert'.
     \item Para cada heurística se corrió MIS con 50, 100, 500, 1000 y 5000 muestras.
     \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
           el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
@@ -810,7 +812,7 @@ $$
 Esta metodología asegura una cobertura adecuada del hipercubo y evita una dispersión excesiva que podría llevar a un muestreo ineficiente.
 
 \paragraph{Cobertura de las Muestras y Elección de \( \sigma \)}
-La elección de \( \sigma \) como un cuarto de la longitud del lado del hipercubo implica que aproximadamente el 68\% de las muestras generadas por la Gaussiana caerán dentro del hipercubo, dado que una desviación estándar (\( \sigma \)) a cada lado de la media cubre aproximadamente el 68\% de la distribución en una Gaussiana. Esta proporción es un balance entre la cobertura eficiente del espacio del hipercubo y la inclusión de una región suficiente fuera de este para un muestreo representativo.
+La elección de \( \sigma \) como un cuarto de la longitud del lado del hipercubo implica que aproximadamente el 68\% de las muestras generadas por la Gaussiana caerán dentro del hipercubo, dado que una desviación estándar (\( \sigma \)) a cada lado de la media cubre aproximadamente el 68\% de la distribución en una Gaussiana. Esta proporción es un 'Balance' entre la cobertura eficiente del espacio del hipercubo y la inclusión de una región suficiente fuera de este para un muestreo representativo.
 
 \subsubsection{Ejemplo}
 Consideremos un ejemplo específico en un espacio bidimensional. En este ejemplo, las funciones \( f \) y \( g \) están definidas dentro de sus respectivos hipercubos en un espacio de dos dimensiones, y sus constantes asociadas son \( c_f = 0.5 \) y \( c_g = 5 \), respectivamente.
@@ -832,7 +834,7 @@ De manera similar, el hipercubo para la función \( g \), denotado como \( H_g \
 Aquí, la constante \( c_g \) de \( g(x) \) es \( 5 \), indicando que \( g(x) = 5 \) dentro de \( H_g \) y es \( 0 \) fuera de este.
 
 \paragraph{Implicaciones y Visualización}
-Este ejemplo se puede ver en la figura \ref{fig:mis3} donde se generaron 5000 muestras y se corrió el MIS con balance heuristic.
+Este ejemplo se puede ver en la figura \ref{fig:mis3} donde se generaron 5000 muestras y se corrió el MIS con 'Balance' heuristic.
 La figura muestra las funciones \( f(x) \) y \( g(x) \) en sus respectivos hipercubos, la función \( f(x) \cdot g(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada función.
 
 \begin{figure}[H]
@@ -851,7 +853,7 @@ Entonces:
       Los valores para \( a_{fi} \) y \( b_{fi} \) son -10 y 10 respectivamente. \( c_f \) es 0.5.
       Los valores para \( a_{gi} \) y \( b_{gi} \) son -0.5 y 0.5 respectivamente. \( c_g \) es 5.
 \item La dimensionalidad de los tests es \( n + 1 \) donde \( n \) toma los siguientes valores: 2, 3, 4, 5, 6, 10, 12, 15, 18, 20.
-\item Para cada test se corrió MIS con las siguientes heurísticas: balance, power, maximum, cutoff y sbert.
+\item Para cada test se corrió MIS con las siguientes heurísticas: 'Balance', 'Power', 'Maximum', 'Cutoff' y 'Sbert'.
 \item Para cada heurística se corrió MIS con 25, 50, 100, 500, 1000, 5000 y 50000 muestras.
 \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
       el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
