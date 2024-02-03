@@ -15,9 +15,9 @@
 \floatname{algorithm}{Algoritmo}
 
 
-\title{Multiple Importance Sampling}
-\author{santiolmedo99}
-\date{July 2023}
+\title{Taller de Multiple Importance Sampling}
+\author{Santiago Olmedo}
+\date{Febrero 2024}
 
 \begin{document}
 
@@ -28,7 +28,7 @@
 En computación gráfica, los problemas de renderizado están llenos de problemas de integración.
 Comúnmente, estás integrales son "difíciles", es decir, las funciones a integrar son discontinuas, multidimensionales o singulares y no tienen soluciones analíticas.
 Es por ello que se recurre a métodos de resolución numéricos que permiten aproximar el valor de la integral con baja varianza.
-Por la naturaleza de los problemas de renderizado, donde por ejemplo, se requiere renderizar cada pixel de una imagen en tiempo real, es necesario que los métodos de resolución sean eficientes en tiempo de ejecución y errores de estimación.
+Por la naturaleza de los problemas de renderizado, donde por ejemplo, se requiere renderizar cada píxel de una imagen en tiempo real, es necesario que los métodos de resolución sean eficientes en tiempo de ejecución y errores de estimación.
 Los métodos comunes, como la integración trapezoidal o cuadratura de Gauss son efectivos para la resolución de problemas de baja dimensión pero no son escalables a los problemas que aparecen en computación gráfica.
 La integración por Monte Carlo es particularmente atractivo porque su convergencia es independiente de la dimensionalidad del problema.
 
@@ -41,11 +41,14 @@ solo se necesita la capacidad de evaluar $f(x)$ en un punto dado para poder esti
 Debido a los problemas de integración que aparecen en computación gráfica, es necesario recurrir a métodos de Monte Carlo que permitan reducir la varianza de la estimación.
 En este trabajo se presenta la técnica de Multiple Importance Sampling (MIS) que permite combinar múltiples distribuciones de muestreo para reducir la varianza de la estimación.
 
-El informe está organizado de la siguiente manera: en la sección 2 se presenta el método de Monte Carlo.
-En la sección 3 se presenta la técnica de Multiple Importance Sampling y un estudio del estado del arte.
-En la sección 4 se presentan los resultados de la implementación de MIS en un subconjunto de las heurísticas analizadas.
-Esta comparación se basa en el tiempo de cálculo requerido para obtener una estimación precisa, el número de muestras requeridas y la variabilidad de las estimaciones (estimación de la varianza).
-
+El informe está organizado de la siguiente manera:
+\begin{itemize}
+\item En la sección 2 se presenta el método de Monte Carlo.
+\item En la sección 3 se presenta la técnica de Multiple Importance Sampling y un estudio del estado del arte.
+\item En la sección 4 se presenta la implementación de MIS en un conjunto de pruebas que permiten analizar el comportamiento de MIS en distintos escenarios.
+Esta comparación se basa en los errores de la estimación, el número de muestras requeridas y la variabilidad de las estimaciones (estimación de la varianza).
+\item En la sección 5 se presentan las conclusiones del informe.
+\end{itemize}
 
 \section{Monte Carlo}
 
@@ -94,7 +97,7 @@ $$V[F] = \frac{1}{n^{2}} \sum_{i=1}^{n} V[X_{(i)}] = \frac{1}{n^{2}} * n * \sigm
 
 Por lo tanto, el error de la estimación es $\frac{\sigma^{2}}{n}$, que es del orden de $n^{-1/2}$.
 
-El estimador que se obtinene es insesgado, es decir, $E[F] = I$. Cuando el estimador es sesgado, la diferencia:
+El estimador que se obtiene es insesgado, es decir, $E[F] = I$. Cuando el estimador es sesgado, la diferencia:
 
 $$\beta = E[F] - I$$
 
@@ -116,7 +119,7 @@ El problema también es que la inherencia de la computación gráfica hace que l
 Esto hace que sea difícil encontrar una distribución de muestreo que sea buena para todos los parámetros.
 Por lo tanto, se puede usar MIS para combinar varias distribuciones de muestreo y obtener una estimación con menor varianza para todo el espacio de parámetros.
 
-En las próximas subsecciones se van a presentar las técninas para combinas las distribuciones de muestreo.
+En las próximas subsecciones se van a presentar las técnicas para combinas las distribuciones de muestreo.
 No se explica cómo conseguir las distribuciones de muestreo, sino que se asume que se tienen las distribuciones de muestreo y se trabaja sobre conseguir combinaciones que permitan construir un estimador con menor varianza.
 
 \subsection{Veach}
@@ -178,9 +181,9 @@ dado que por la condición \( (W1) \), \( \sum_{i=1}^n w_i(x) = 1 \) siempre que
 
 Por lo tanto, el estimador \( F \) es imparcial. La última igualdad se debe a que \( \sum_{i=1}^n w_i(x) = 1 \) cuando \( f(x) \neq 0 \).
 
-\subsubsection{Balance Heurística}
+\subsubsection{Balance Heuristic}
 
-$$ w_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
+$$ \hat{w}_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
 
 \textbf{Teorema 9.2} Dado $f$, $n_{i}$ y $p_{i}$ para $i \in \{1, 2, ..., n\}$. Sea F cualquier estimador insesgado de la forma del multi-sample estimator y $\hat{F}$ el estimador balance heuristic. Entonces:
 
@@ -212,15 +215,72 @@ donde $\mu = E[F] = E[\hat{F}]$.
 
 \subsubsection{Otras Heurísticas}
 
-Dentro de los límites presentados en el Teorema 9.2, Veach presenta más heurísticas que son demostrablemente mejores que balance heuristic en circinstancias particulares.
+Dentro de los límites presentados en el Teorema 9.2, Veach presenta más heurísticas que son demostrablemente mejores que balance heuristic en circunstancias particulares.
 Estas heurísticas son insesgadas al igual que balance heuristic.
 
-Se considera la situación donde una de las distribuciones de muestreo es un match perfecto para la función a integrar. En este caso, es deseable que la heurística le de un peso de 1 a esta distribución de muestreo y 0 a las demás. (hacer referencia a la imagen)
-La idea entonces es ir sampleando con las distintas distribuciones de muestreo y darle un peso de 1 en todo el dominio a la distribución de muestreo cercana a $f$ y 0 a las demás.
+Se considera la situación donde una de las distribuciones de muestreo es una coincidencia perfecta para la función a integrar. En este caso, es deseable que la heurística le de un peso de 1 a esta distribución de muestreo y 0 a las demás.
+La idea entonces es ir muestreando con las distintas distribuciones de muestreo y darle un peso de 1 en todo el dominio a la distribución de muestreo cercana a $f$ y 0 a las demás.
 Sería como tomar muestras solo de la distribución de muestreo cercana a $f$ pero de igual manera tomando muestras de todas porque no se sabe de antemano cuál es la distribución de muestreo cercana a $f$.
 
-Para encontrar la heurística se toma como ejemplo la función donde $p1$ es un match perfecto para $f$ y $p2$ es una constante.
-Se quiere encontrar una heurística que le de un peso de 1 a $p1$ y 0 a $p2$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{Screenshot_mis.png}
+\caption{Función f con las dos funciones de densidad $p_{1}$ y $p_{2}$}
+\label{fig:misother}
+\end{figure}
+
+Para encontrar la heurística se toma como ejemplo la función donde $p_{1}$ es una coincidencia perfecta para $f$ y $p_{2}$ es una constante.
+Se quiere encontrar una heurística donde los pesos sean:
+$$w^{*}_{1}(x) \equiv 1$$
+$$w^{*}_{2}(x) \equiv 0$$
+ya que estos pesos nos darían una estimación $F^{*}$ con varianza 0.
+Se puede apreciar un ejemplo de esto en la imagen \ref{fig:misother}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{Screenshot_mis2.png}
+\caption{El dominio de integración se divide en dos regiones A y B.}
+\label{fig:misother2}
+\end{figure}
+
+Ahora se presentan distintas heurísticas que tienen mejor rendimiento en las circunstancias mencionadas.
+Como se muestra en la imagen \ref{fig:misother2}, el dominio de integración se divide en dos regiones A y B.
+
+La observación que se puede hacer es que la mayoría de las muestras de $p_{1}$ caen en la región A donde $p_{1} > p_{2}$.
+Se desea que en esta región las muestras de $p_{1}$ tengan un peso de 1 y las de $p_{2}$ un peso de 0.
+Balance heuristic usaría el peso
+$$ \hat{w}_{1}(x) = \frac{p_1}{p_1 + p_2} $$
+que es mayor que 1/2 en la región A. Una manera de mejorar esto, entonces, es usar los pesos $w_{1}$ y $w_{2}$ que son 1 y 0 cada vez qie $\hat{w}_{1}$ es mayor que 1/2.
+
+Las heuristicas cutoff y power aplican este razonamiento.
+Por facilidad se reescriben los pesos de balance como:
+$$ \hat{w}_{i}(x) = \frac{q_{i}}{\sum_{k} q_{k}} $$
+
+donde $q_{i} = n_{i} * p_{i}$.
+
+\paragraph{Cutoff} La heurística cutoff es de la forma:
+$$ w_{i}(x) = \begin{cases} 0 & \text{si } q_{i} < \alpha \cdot q_{max} \\ \frac{q_{i}}{\sum_{k} \{ q_{k} | q_{k} \geq \alpha \cdot q_{max} \}} & \text{en otro caso} \end{cases}$$
+
+donde $q_{max} = max_{k} q_{k}$ y $\alpha$ es un parámetro que se elige de antemano $\in [0, 1]$.
+El parámetro $\alpha$ define que tan grande tiene que ser $q_{i}$ para que la muestra tenga un peso distinto de 0.
+
+\paragraph{Power} La heurística power es de la forma:
+$$ w_{i}(x) = \frac{(q_{i})^{\beta}}{\sum_{k} (q_{k})^{\beta}}$$
+
+donde Veach recomienda $\beta = 2$.
+
+Se puede ver que balance heuristic se puede obtener cuando los parámetros $\alpha = 0$ o $\beta = 1$.
+La otra heurística que surge de las anteriores 2 es la huerística maximum cuando $\alpha = 1$ o $\beta = \infty$.
+
+\paragraph{Maximum} La heurística maximum es de la forma:
+$$ w_{i}(x) = \begin{cases} 1 & \text{si } q_{i} = q_{max} \\ 0 & \text{en otro caso} \end{cases}$$
+
+Lo que se hace es darle un peso de 1 a la distribución de muestreo que tiene el máximo $q_{i}$ y 0 a las demás.
+Veach recomienda usar cutoff y power en lugar de maximum ya que maximum desecha muchas muestras.
+
+\subsubsection{Modelo one-sample}
+
+\subsubsection{Sbert}
 
 \section{Experimentación práctica}
 
@@ -274,7 +334,7 @@ A su vez, se hizo una corrida con balance heuristic y se puede ver en rojo los p
 Sobre este caso de prueba se generó un análisis de las distintas heurísticas implementadas.
 Para el análisis se hizo lo siguiente:
 \begin{itemize}
-    \item Se hicieron 10 tests diferentes. Para cada test se generaron valores aleatiorios para \( \mu_{i} \), \( \sigma_{i} \), \( a_{i} \) y \( b_{i} \).
+    \item Se hicieron 10 tests diferentes. Para cada test se generaron valores aleatorios para \( \mu_{i} \), \( \sigma_{i} \), \( a_{i} \) y \( b_{i} \).
           Por simplicidad, para el primer rango de  \( \mu_{i} \) se fijaron los valores entre 2 y 7.
           Para el segundo rango de \( \mu_{i} \) se fijaron los valores entre 7 y 12.
           Para el tercer rango de \( \mu_{i} \) se fijaron los valores entre 12 y 18.
@@ -284,7 +344,7 @@ Para el análisis se hizo lo siguiente:
     \item Para cada heurística se corrió MIS con 10, 25, 50, 100 y 150 muestras.
     \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
           el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
-          A su vez, se calculó el promedio de los errores comparados con una estimación hecha con quad y el promedio del tiempo de cómputo.
+          A su vez, se calculó el promedio de los errores comparados con una estimación hecha con un método de cuadratura y el promedio del tiempo de cómputo.
 \end{itemize}
 
 Una, vez hecho esto, debido a la extensión de los resultados, se decidió hacer el siguiente análisis de la varianza de las estimaciones, las desviaciones estándar de las estimaciones, el error de las estimaciones y el promedio del error de las desviaciones en comparación con el método de cuadratura.
@@ -468,9 +528,10 @@ Para calcular el volumen (integral) de esta función sobre el espacio \( n \)-di
 Para la aproximación gaussiana de la función \textit{sech} en múltiples dimensiones, consideramos gaussianas estándar con medias centradas y desviaciones estándar ajustadas.
 La correspondencia entre las \"anchuras\" de las funciones \textit{sech} y las desviaciones estándar de las gaussianas se establece mediante un mapeo aproximado, asegurando que ambas funciones tengan anchuras comparables en el punto donde caen a la mitad de su valor máximo.
 
-\color{red}
-aca se podria explicar mas lo que se hizo con el sigma
-\color{black}
+Para la aproximación gaussiana de la función \textit{sech} en múltiples dimensiones, se consideran gaussianas estándar con medias centradas y desviaciones estándar ajustadas.
+La correspondencia entre las 'anchuras' de las funciones \textit{sech} y las desviaciones estándar de las gaussianas se establece mediante el mapeo aproximado $$ \sigma(a) = \frac{\ln(2 + \sqrt{3})}{a \cdot \sqrt{2\ln(2)}} \ $$.
+Esto asegura que ambas funciones tengan anchuras comparables en el punto donde caen a la mitad de su valor máximo, facilitando la aplicación de MIS para estimar la integral de la función compleja multidimensional.
+
 
 El objetivo principal de este análisis es aplicar el MIS para estimar la integral de una función compleja, que es una suma de funciones \textit{sech} multidimensionales, a través de varias distribuciones propuestas.
 Esta función nos va a permitir analizar el MIS en varias dimensiones y comparar las diferentes heurísticas implementadas.
@@ -500,11 +561,11 @@ A su vez, se hizo una corrida con balance heuristic y ver en rojo, verde y azul 
 Sobre este caso de prueba se generó un análisis de las distintas heurísticas implementadas.
 Para el análisis se hizo lo siguiente:
 \begin{itemize}
-    \item Se hicieron 10 tests diferentes. Para cada test se generaron valores aleatiorios para \( a_{ij} \), \( b_{ij} \), \( m \) y \( n \).
-          En cada test se generó un número aleatiorio entre 2 y 10 para \( m \) y \( n \) se fijó en el número del test.
+    \item Se hicieron 10 tests diferentes. Para cada test se generaron valores aleatorios para \( a_{ij} \), \( b_{ij} \), \( m \) y \( n \).
+          En cada test se generó un número aleatorio entre 2 y 10 para \( m \) y \( n \) se fijó en el número del test.
           Es decir, para el primer test \( n = 1 \), para el segundo test \( n = 2 \), etc. La dimensión entonces es el número del test más 1.
-          Para cada test se generaron valores aleatiorios para \( a_{ij} \) entre 1.8 y 2.
-          Para cada test se generaron valores aleatiorios para \( b_{ij} \) entre -100 y 100.
+          Para cada test se generaron valores aleatorios para \( a_{ij} \) entre 1.8 y 2.
+          Para cada test se generaron valores aleatorios para \( b_{ij} \) entre -100 y 100.
     \item Para cada test se corrió MIS con las siguientes heurísticas: balance, power, maximum, cutoff y sbert.
     \item Para cada heurística se corrió MIS con 50, 100, 500, 1000 y 5000 muestras.
     \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
@@ -547,7 +608,6 @@ Maximum & 36.01 & 34.19 & 34.76 & 18.94 & 15.45 \\ \hline
 Cutoff & 37.73 & 46.92 & 28.03 & 21.41 & 12.85 \\ \hline
 Sbert & 32.84 & 39.51 & 27.41 & 16.83 & 15.55 \\ \hline
 \end{tabular}%
-}
 \caption{Análisis de los resultados por heurística y cantidad de muestras}
 \end{table}
 
@@ -688,9 +748,6 @@ En términos de dimensionalidad, MIS mantiene un rendimiento aceptable hasta apr
 
 En esta sección, nos centramos en el análisis de una función multidimensional que emerge del producto de hipercubos en un espacio de \( n + 1 \) dimensiones.
 La razón de implementar este ejemplo es hacer una prueba de la implementación del MIS en un caso donde haya una función de mayor extensión con una integral de bajo valor y una función más acotada con una integral de alto valor.
-\color{red}
-En cierto sentido este caso es similar a escenarios que se pueden dar en computación gráfica porque...
-\color{black}
 
 \subsubsection{Construcción y Caracterización de las Funciones}
 Las funciones multidimensionales \( f \) y \( g \), definidas hipercubos, pueden representar una amplia gama de fenómenos en el contexto de problemas físicos, distribuciones de probabilidad o modelos matemáticos en espacios de alta dimensión. Se caracterizan por:
@@ -782,7 +839,7 @@ Sobre este caso de prueba se generó un análisis de las distintas heurísticas 
 El análisis de este ejemplo se hizo de manera diferente a los anteriores y se corrieron todos los tests con los mismos hipercubos.
 Entonces:
 \begin{itemize}
-\item Se hicieron 10 tests diferentes. Para cada test se utlizaron los mismos valores para \( a_{fi} \), \( b_{fi} \), \( c_f \), \( a_{gi} \), \( b_{gi} \) y \( c_g \).
+\item Se hicieron 10 tests diferentes. Para cada test se utilizaron los mismos valores para \( a_{fi} \), \( b_{fi} \), \( c_f \), \( a_{gi} \), \( b_{gi} \) y \( c_g \).
       Los valores para \( a_{fi} \) y \( b_{fi} \) son -10 y 10 respectivamente. \( c_f \) es 0.5.
       Los valores para \( a_{gi} \) y \( b_{gi} \) son -0.5 y 0.5 respectivamente. \( c_g \) es 5.
 \item La dimensionalidad de los tests es \( n + 1 \) donde \( n \) toma los siguientes valores: 2, 3, 4, 5, 6, 10, 12, 15, 18, 20.
@@ -970,7 +1027,15 @@ Como explicado en las primeras secciones, estas heurísticas son efectivas en co
 Para más información se puede ver el repositorio de GitHub en el que se encuentra el código utilizado para este trabajo: \url{https://github.com/santiagolmedo/multiple_importance_sampling}.
 En él, se encuentran los códigos utilizados para las pruebas y los todos los resultados obtenidos.
 
-\section{Bibliografía}
+\begin{thebibliography}{99}
+
+\bibitem{Veach1997}
+Eric Veach (1997) \emph{Multiple Importance Sampling}, Chapter 9 in Ph.D. thesis, Stanford University. [Online]. Available: \url{https://graphics.stanford.edu/courses/cs348b-03/papers/veach-chapter9.pdf}
+
+\bibitem{Sbert2016}
+M. Sbert, V. Havran, László Szirmay-Kalos (2016) \emph{Variance Analysis of Multi-sample and One-sample Multiple Importance Sampling}, Computer Graphics Forum, Vol. 35, No. 7, DOI: 10.1111/cgf.13042. [Online]. Available: \url{https://dx.doi.org/10.1111/cgf.13042}
+
+\end{thebibliography}
 
 \end{document}
 
