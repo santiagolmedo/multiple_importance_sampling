@@ -26,10 +26,24 @@
 
 \section{Introducción}
 
-En computación gráfica, los problemas de renderizado están llenos de problemas de integración.
-Comúnmente, estás integrales son "difíciles", es decir, las funciones a integrar son discontinuas, multidimensionales o singulares y no tienen soluciones analíticas.
+En computación gráfica, los problemas de renderizado de imágenes se definen a través de la resolución de problemas de integración. Por ejemplo, la Ecuación de Rendering, ecuación~\ref{eq:rendering}, que se describe como una integral de Fredholm de segunda especie, de carácter recursivo. Esta ecuación presenta la particularidad de incluir la función incógnita en ambos lados de la igualdad, lo que conlleva a su resolución aproximada mediante procesos iterativos.
+
+\begin{equation} \label{eq:rendering}
+I(x,x') = g(x,x') \left[ e(x,x') + \int_{S} \rho(x,x',x'')I(x',x'') \, dx'' \right]
+\end{equation}
+
+donde:
+\begin{itemize}
+    \item \( I(x,x') \) es la intensidad de la luz que pasa del punto \( x' \) al punto \( x \).
+    \item \( g(x,x') \) es un término geométrico.
+    \item \( e(x,x') \) se refiere a la intensidad de luz emitida desde \( x' \) hacia \( x \).
+    \item \( \rho(x,x',x'') \) se relaciona con la intensidad de luz dispersada desde \( x'' \) por una superficie en \( x' \).
+\end{itemize}
+
+
+Comúnmente, estás integrales son "difíciles", es decir, las funciones a integrar son discontinuas, multidimensionales o singulares y en general no poseen soluciones analíticas.
 Es por ello que se recurre a métodos de resolución numéricos que permiten aproximar el valor de la integral con baja varianza.
-Por la naturaleza de los problemas de renderizado, donde por ejemplo, se requiere renderizar cada píxel de una imagen en tiempo real, es necesario que los métodos de resolución sean eficientes en tiempo de ejecución y errores de estimación.
+Por la naturaleza de los problemas de renderizado, donde por ejemplo, se requiere calcular la luz de cada píxel de una imagen en tiempo real, es necesario que los métodos de resolución sean eficientes en tiempo de ejecución y errores de estimación.
 Los métodos comunes, como la integración trapezoidal o cuadratura de Gauss son efectivos para la resolución de problemas de baja dimensión pero no son escalables a los problemas que aparecen en computación gráfica.
 La integración por Monte Carlo es particularmente atractivo porque su convergencia es independiente de la dimensionalidad del problema.
 
@@ -40,6 +54,7 @@ $$ \int f(x) \,d(x)$$
 solo se necesita la capacidad de evaluar $f(x)$ en un punto dado para poder estimar el valor de la integral.
 
 Debido a los problemas de integración que aparecen en computación gráfica, es necesario recurrir a métodos de Monte Carlo que permitan reducir la varianza de la estimación.
+
 En este trabajo se presenta la técnica de Multiple Importance Sampling (MIS) que permite combinar múltiples distribuciones de muestreo para reducir la varianza de la estimación.
 
 El informe está organizado de la siguiente manera:
@@ -77,7 +92,7 @@ Supongamos que deseo calcular un cierto valor $\phi$, y conozco una variable ale
 
 Se dice que $\hat{X}$ es un estimador de $\phi$ y $\hat{V}$ es un estimador de la varianza de $\hat{X}$.
 
-Ahora, supongamos que se quiere evaluar el valor de la integral $I = \int_{a}^{b} f(x) \,dx$. Dado un conjunto de $n$ variables aleatorias $X_1, X_2, \dots, X_n$ independientes e idénticamente distribuidas con distribución $p(x)$, se puede decir que el valor esperado del estimador
+Ahora, supongamos que se quiere evaluar el valor de la integral $I = \int_{a}^{b} f(x) \,dx$. Dado un conjunto de $n$ variables aleatorias $X_1, X_2, \dots, X_n$ independientes e idénticamente distribuidas con distribución uniforme $p(x)$, se puede decir que el valor esperado del estimador
 $$F = \frac{b-a}{n} \sum_{i=1}^{n} f(X_i)$$
 es igual a $I$. Esto se puede ver de la siguiente manera:
 $$E[F] = E\left[\frac{b-a}{n} \sum_{i=1}^{n} f(X_i)\right] = \frac{b-a}{n} \sum_{i=1}^{n} E[f(X_i)] = \frac{b-a}{n} \sum_{i=1}^{n} \int_{a}^{b} f(x) p(x) \,dx = \int_{a}^{b} f(x) \,dx.$$
@@ -98,12 +113,6 @@ $$V[F] = \frac{1}{n^{2}} \sum_{i=1}^{n} V[X_{(i)}] = \frac{1}{n^{2}} * n * \sigm
 
 Por lo tanto, el error de la estimación es $\frac{\sigma^{2}}{n}$, que es del orden de $n^{-1/2}$.
 
-El estimador que se obtiene es insesgado, es decir, $E[F] = I$. Cuando el estimador es sesgado, la diferencia:
-
-$$\beta = E[F] - I$$
-
-es el sesgo.
-
 \section{Multiple Importance Sampling}
 
 En esta sección se va a presentar la técnica de Multiple Importance Sampling (MIS) y un estudio del estado del arte.
@@ -113,27 +122,25 @@ En esta sección se va a presentar la técnica de Multiple Importance Sampling (
 Tenemos una integral que puede ser de de la forma
 $$ \int f_{1}(x) * f_{2}(x) * f_{3}(x) * ... * f_{k}(x) \,d(x)$$
 
-y $ p_{1}, p_{2}, p_{3}, ..., p_{k}$ proporcionales a $f_{1}, f_{2}, f_{3}, ..., f_{k}$.
-La idea es usar las distintas distribuciones de muestreo y combinarlas para encontrar una estimación de la integral con menor varianza y en poco tiempo de cómputo.
+y $ p_{1}, p_{2}, p_{3}, ..., p_{k}$ parecidas a $f_{1}, f_{2}, f_{3}, ..., f_{k}$.
+La idea es usar las distintas distribuciones de muestreo y combinarlas para encontrar una estimación de la integral con menor varianza y y con bajo costo computacional.
 
 El problema también es que la inherencia de la computación gráfica hace que las funciones a integrar dependan de varios parámetros del modelo de la escena.
 Esto hace que sea difícil encontrar una distribución de muestreo que sea buena para todos los parámetros.
 Por lo tanto, se puede usar MIS para combinar varias distribuciones de muestreo y obtener una estimación con menor varianza para todo el espacio de parámetros.
 
-En las próximas subsecciones se van a presentar las técnicas para combinas las distribuciones de muestreo.
-No se explica cómo conseguir las distribuciones de muestreo, sino que se asume que se tienen las distribuciones de muestreo y se trabaja sobre conseguir combinaciones que permitan construir un estimador con menor varianza.
+En las próximas subsecciones se van a presentar las técnicas para combinar las distribuciones de muestreo.
+Se asume que ya están definidas las distribuciones de muestreo y a partir de estas se construyen estimadores con baja varianza.
 
-\subsection{Veach}
-
-Veach propone en su tesis técnicas para combinas las distribuciones y obtener un estimador con varianza baja y demostrablemente bueno.
+Veach propone en su tesis técnicas para combinar las distribuciones y obtener un estimador con varianza baja y demostrablemente bueno.
 En su tesis presenta el modelo multi-sample y distintas heurísticas para combinar las distribuciones de muestreo.
-A su vez, presenta el modelo one-sample que consiste en elegir en cada corrida una distribución de muestreo y usarla para estimar la integral.
+A su vez, presenta el modelo one-sample que consiste en elegir en cada ejecución una distribución de muestreo y usarla para estimar la integral.
 
-\subsubsection{Modelo multi-sample}
+\subsection{Modelo multi-sample}
 
-Queremos estimar:
+Sea la siguiente integral que se quiere estimar:
 
-$$ \int f_(x) \,d\mu(x)$$
+$$ \int f(x) \,d\mu(x)$$
 
 donde el dominio de integración es $\Omega$ y $\mu$ es dado. Tenemos $n$ distribuciones de muestreo $p_{1}, p_{2}, ..., p_{n}$, en el dominio $\Omega$.
 Tenemos las siguientes operaciones:
@@ -149,7 +156,7 @@ Notación:
     \item Para $j \in \{1, 2, ..., N\}$, $X_{i,j}$ es la $j$-ésima muestra generada con $p_{i}$
 \end{itemize}
 
-\subsubsection{Estimador multi-sample}
+\subsection{Estimador multi-sample}
 
 Objetivo: encontrar un estimador insesgado combinando las muestras generadas con las distintas distribuciones de muestreo.
 Para esto, consideramos estimadores que le dan pesos diferentes a cada muestra.
@@ -182,11 +189,11 @@ dado que por la condición \( (W1) \), \( \sum_{i=1}^n w_i(x) = 1 \) siempre que
 
 Por lo tanto, el estimador \( F \) es imparcial. La última igualdad se debe a que \( \sum_{i=1}^n w_i(x) = 1 \) cuando \( f(x) \neq 0 \).
 
-\subsubsection{Balance Heuristic}
+\subsection{Balance Heuristic}
 
 $$ \hat{w}_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
 
-\textbf{Teorema 9.2} Dado $f$, $n_{i}$ y $p_{i}$ para $i \in \{1, 2, ..., n\}$. Sea F cualquier estimador insesgado de la forma del multi-sample estimator y $\hat{F}$ el estimador 'Balance' heuristic. Entonces:
+\textbf{Teorema 9.2} Dado $f$, $n_{i}$ y $p_{i}$ para $i \in \{1, 2, ..., n\}$. Sea F cualquier estimador insesgado de la forma del multi-sample estimator y $\hat{F}$ el estimador \textit{balance heuristic}. Entonces:
 
 $$V[\hat{F}] - V[F] \leq ( \frac{1}{min_{i} n_{i}} - \frac{1}{\sum_{i} n_{i}} ) * \mu^{2}$$
 
@@ -214,10 +221,10 @@ donde $\mu = E[F] = E[\hat{F}]$.
 
 % ... seguir viendo y entendiendo la demostración.
 
-\subsubsection{Otras Heurísticas}
+\subsection{Otras Heurísticas}
 
-Dentro de los límites presentados en el Teorema 9.2, Veach presenta más heurísticas que son demostrablemente mejores que 'Balance' heuristic en circunstancias particulares.
-Estas heurísticas son insesgadas al igual que 'Balance' heuristic.
+Dentro de los límites presentados en el Teorema 9.2, Veach presenta más heurísticas que son demostrablemente mejores que \textit{balance heuristic} en circunstancias particulares.
+Estas heurísticas son insesgadas al igual que \textit{balance heuristic}.
 
 Se considera la situación donde una de las distribuciones de muestreo es una coincidencia perfecta para la función a integrar. En este caso, es deseable que la heurística le de un peso de 1 a esta distribución de muestreo y 0 a las demás.
 La idea entonces es ir muestreando con las distintas distribuciones de muestreo y darle un peso de 1 en todo el dominio a la distribución de muestreo cercana a $f$ y 0 a las demás.
@@ -253,35 +260,35 @@ Balance heuristic usaría el peso
 $$ \hat{w}_{1}(x) = \frac{p_1}{p_1 + p_2} $$
 que es mayor que 1/2 en la región A. Una manera de mejorar esto, entonces, es usar los pesos $w_{1}$ y $w_{2}$ que son 1 y 0 cada vez qie $\hat{w}_{1}$ es mayor que 1/2.
 
-Las heuristicas 'Cutoff' y 'Power' aplican este razonamiento.
-Por facilidad se reescriben los pesos de 'Balance' como:
+Las heuristicas \textit{cutoff heuristic} y \textit{power heuristic} aplican este razonamiento.
+Por facilidad se reescriben los pesos de \textit{balance heuristic} como:
 $$ \hat{w}_{i}(x) = \frac{q_{i}}{\sum_{k} q_{k}} $$
 
 donde $q_{i} = n_{i} * p_{i}$.
 
-\paragraph{Cutoff} La heurística 'Cutoff' es de la forma:
+\paragraph{Cutoff} La heurística \textit{cutoff heuristic} es de la forma:
 $$ w_{i}(x) = \begin{cases} 0 & \text{si } q_{i} < \alpha \cdot q_{max} \\ \frac{q_{i}}{\sum_{k} \{ q_{k} | q_{k} \geq \alpha \cdot q_{max} \}} & \text{en otro caso} \end{cases}$$
 
 donde $q_{max} = max_{k} q_{k}$ y $\alpha$ es un parámetro que se elige de antemano $\in [0, 1]$.
 El parámetro $\alpha$ define que tan grande tiene que ser $q_{i}$ para que la muestra tenga un peso distinto de 0.
 
-\paragraph{Power} La heurística 'Power' es de la forma:
+\paragraph{Power} La heurística \textit{power heuristic} es de la forma:
 $$ w_{i}(x) = \frac{(q_{i})^{\beta}}{\sum_{k} (q_{k})^{\beta}}$$
 
 donde Veach recomienda $\beta = 2$.
 
-Se puede ver que 'Balance' heuristic se puede obtener cuando los parámetros $\alpha = 0$ o $\beta = 1$.
-La otra heurística que surge de las anteriores 2 es la huerística 'Maximum' cuando $\alpha = 1$ o $\beta = \infty$.
+Se puede ver que \textit{balance heuristic} se puede obtener cuando los parámetros $\alpha = 0$ o $\beta = 1$.
+La otra heurística que surge de las anteriores 2 es la huerística \textit{maximum heuristic} cuando $\alpha = 1$ o $\beta = \infty$.
 
-\paragraph{Maximum} La heurística 'Maximum' es de la forma:
+\paragraph{Maximum} La heurística \textit{maximum heuristic} es de la forma:
 $$ w_{i}(x) = \begin{cases} 1 & \text{si } q_{i} = q_{max} \\ 0 & \text{en otro caso} \end{cases}$$
 
 Lo que se hace es darle un peso de 1 a la distribución de muestreo que tiene el máximo $q_{i}$ y 0 a las demás.
-Veach recomienda usar 'Cutoff' y 'Power' en lugar de 'Maximum' ya que 'Maximum' desecha muchas muestras.
+Veach recomienda usar \textit{cutoff heuristic} y \textit{power heuristic} en lugar de \textit{maximum heuristic} ya que \textit{maximum heuristic} desecha muchas muestras.
 
-\subsubsection{Modelo one-sample}
+\subsection{Modelo one-sample}
 
-El modelo one-sample consiste en elegir en cada corrida una distribución de muestreo de manera aleatoria y usarla para estimar la integral.
+El modelo one-sample consiste en elegir en cada ejecución una distribución de muestreo de manera aleatoria y usarla para estimar la integral.
 Dadas las distribuciones de muestreo $p_{1}, p_{2}, ..., p_{n}$, se elige una distribución de muestreo $p_{i}$ con probabilidades $c_{1}, c_{2}, ..., c_{n}$ (donde $\sum_{i} c_{i} = 1$).
 
 El estimador one-sample es de la forma:
@@ -289,11 +296,11 @@ $$F = \frac{w_{I}(X_{I}) f(X_{I})}{c_{I} p_{I}(X_{I})}$$
 
 donde $X_{I}$ es una muestra generada con $p_{I}$ y $I$ es una variable aleatoria con distribución $c_{1}, c_{2}, ..., c_{n}$.
 
-\subsubsection{Sbert}
+\subsection{Sbert}
 
 Sbert, en su artículo \cite{Sbert2016} presenta una nueva heurística para combinar las distribuciones de muestreo.
 
-\paragraph{Sbert} La heurística 'Sbert' es de la forma:
+\paragraph{Sbert} La heurística \textit{sbert heuristic} es de la forma:
 $$ w_{i}(x) = \frac{p_{i}(x)}{\sum_{k} p_{k}(x)}$$
 
 % Varianza del estimador de MIS presentada por Veach en la demostración del Teorema 9.2 es:
@@ -350,7 +357,7 @@ Para poder visualizar la función se considera el siguiente ejemplo donde:
 \end{itemize}
 
 En la figura \ref{fig:mis1} se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
-A su vez, se hizo una corrida con 'Balance' heuristic y se puede ver en rojo los puntos muestreados.
+A su vez, se hizo una ejecución con \textit{balance heuristic} y se puede ver en rojo los puntos muestreados.
 
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{Figure_1_mis.png}
@@ -369,7 +376,7 @@ Para el análisis se hizo lo siguiente:
           Para el tercer rango de \( \mu_{i} \) se fijaron los valores entre 12 y 18.
           Las desviaciones estándar \( \sigma_{i} \) se fijaron entre 0.01 y 1.
           Los rangos \( [a_{i}, b_{i}] \) se calcularon como \( [ \mu_{i} - 2 * \sigma_{i}, \mu_{i} + 2 * \sigma_{i} ] \).
-    \item Para cada test se corrió MIS con las siguientes heurísticas: 'Balance', 'Power', 'Maximum', 'Cutoff' y 'Sbert'.
+    \item Para cada test se corrió MIS con las siguientes heurísticas: \textit{balance heuristic}, \textit{power heuristic}, \textit{maximum heuristic}, \textit{cutoff heuristic} y \textit{sbert heuristic}.
     \item Para cada heurística se corrió MIS con 10, 25, 50, 100 y 150 muestras.
     \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
           el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
@@ -524,21 +531,21 @@ Sbert & 0.1473 & 0.0063 & 0.3102 \\ \hline
 
 
 \paragraph{Diferencias entre Heurísticas}
-Varianza de las Estimaciones: Las heurísticas 'Balance' y 'Sbert' muestran consistentemente las varianzas más bajas a través de todos los tamaños de muestra, lo que indica una mayor precisión en sus estimaciones.
-Por otro lado, 'Maximum' presenta la varianza más alta, especialmente con tamaños de muestra más pequeños, lo que sugiere una menor fiabilidad en comparación con otras heurísticas.
+Varianza de las Estimaciones: Las heurísticas \textit{balance heuristic} y \textit{sbert heuristic} muestran consistentemente las varianzas más bajas a través de todos los tamaños de muestra, lo que indica una mayor precisión en sus estimaciones.
+Por otro lado, \textit{maximum heuristic} presenta la varianza más alta, especialmente con tamaños de muestra más pequeños, lo que sugiere una menor fiabilidad en comparación con otras heurísticas.
 
-Error de las Estimaciones: 'Balance' y 'Sbert' muestran los números más bajos para los errores, lo que indica una mayor precisión en sus resultados.
-Las heurísticas 'Maximum' y 'Cutoff' presentan errores más significativos.
+Error de las Estimaciones: \textit{balance heuristic} y \textit{sbert heuristic} muestran los números más bajos para los errores, lo que indica una mayor precisión en sus resultados.
+Las heurísticas \textit{maximum heuristic} y \textit{cutoff heuristic} presentan errores más significativos.
 
-Desviaciones Estándar de las Estimaciones: Las heurísticas 'Balance', 'Power', y 'Sbert' mantienen desviaciones estándar más bajas, lo que sugiere estimaciones más consistentes.
-'Maximum' presenta la mayor desviación estándar, reafirmando su menor consistencia en las estimaciones.
+Desviaciones Estándar de las Estimaciones: Las heurísticas \textit{balance heuristic}, \textit{power heuristic}, y \textit{sbert heuristic} mantienen desviaciones estándar más bajas, lo que sugiere estimaciones más consistentes.
+\textit{maximum heuristic} presenta la mayor desviación estándar, reafirmando su menor consistencia en las estimaciones.
 
 \paragraph{Competitividad del MIS en Función del Tamaño de Muestra}
 Se observa que a medida que el tamaño de la muestra aumenta, todas las heurísticas mejoran en términos de varianza, error, y desviación estándar de las estimaciones. Esto es un indicativo de que el MIS se vuelve más competitivo y confiable con un mayor número de muestras.
 Específicamente, con tamaños de muestra de 50 en adelante, se empieza a notar una mejora significativa en la precisión y consistencia de las estimaciones para todas las heurísticas.
-Las heurísticas 'Balance' y 'Sbert' demuestran ser competitivas incluso con tamaños de muestra más pequeños (25 muestras), mientras que otras heurísticas como 'Maximum' y 'Cutoff' requieren tamaños de muestra mayores para alcanzar niveles similares de precisión y confiabilidad.
+Las heurísticas \textit{balance heuristic} y \textit{sbert heuristic} demuestran ser competitivas incluso con tamaños de muestra más pequeños (25 muestras), mientras que otras heurísticas como \textit{maximum heuristic} y \textit{cutoff heuristic} requieren tamaños de muestra mayores para alcanzar niveles similares de precisión y confiabilidad.
 
-En resumen, las heurísticas 'Balance' y 'Sbert' muestran un rendimiento superior en términos de varianza, error y consistencia de las estimaciones a través de todos los tamaños de muestra. El MIS se vuelve notablemente más competitivo y preciso con tamaños de muestra de 50 o más, aunque algunas heurísticas como 'Balance' y 'Sbert' ya muestran resultados prometedores con tamaños de muestra de 25. En contraste, heurísticas como 'Maximum' y 'Cutoff' requieren tamaños de muestra más grandes para ofrecer un nivel de precisión y consistencia comparable.
+En resumen, las heurísticas \textit{balance heuristic} y \textit{sbert heuristic} muestran un rendimiento superior en términos de varianza, error y consistencia de las estimaciones a través de todos los tamaños de muestra. El MIS se vuelve notablemente más competitivo y preciso con tamaños de muestra de 50 o más, aunque algunas heurísticas como \textit{balance heuristic} y \textit{sbert heuristic} ya muestran resultados prometedores con tamaños de muestra de 25. En contraste, heurísticas como \textit{maximum heuristic} y \textit{cutoff heuristic} requieren tamaños de muestra más grandes para ofrecer un nivel de precisión y consistencia comparable.
 
 \subsection{Prueba 2 - Análisis Multidimensional}
 
@@ -577,7 +584,7 @@ Para poder visualizar la función se considera el siguiente ejemplo donde:
 \end{itemize}
 
 En la figura \ref{fig:mis2} se puede ver la función \( f(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada rango \( [a_{i}, b_{i}] \).
-A su vez, se hizo una corrida con 'Balance' heuristic y ver en rojo, verde y azul los puntos muestreados.
+A su vez, se hizo una ejecución con \textit{balance heuristic} y ver en rojo, verde y azul los puntos muestreados.
 
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{Figure_2_mis.png}
@@ -595,7 +602,7 @@ Para el análisis se hizo lo siguiente:
           Es decir, para el primer test \( n = 1 \), para el segundo test \( n = 2 \), etc. La dimensión entonces es el número del test más 1.
           Para cada test se generaron valores aleatorios para \( a_{ij} \) entre 1.8 y 2.
           Para cada test se generaron valores aleatorios para \( b_{ij} \) entre -100 y 100.
-    \item Para cada test se corrió MIS con las siguientes heurísticas: 'Balance', 'Power', 'Maximum', 'Cutoff' y 'Sbert'.
+    \item Para cada test se corrió MIS con las siguientes heurísticas: \textit{balance heuristic}, \textit{power heuristic}, \textit{maximum heuristic}, \textit{cutoff heuristic} y \textit{sbert heuristic}.
     \item Para cada heurística se corrió MIS con 50, 100, 500, 1000 y 5000 muestras.
     \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
           el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
@@ -742,34 +749,34 @@ Sbert & 18498.62 & 4.21 & 26.43 \\ \hline
 \end{table}
 
 \paragraph{Varianza de las Estimaciones}
-La heurística 'Balance' muestra una reducción sustancial en la varianza a medida que el tamaño de la muestra aumenta, lo que indica que es efectiva para estabilizar las estimaciones.
-'Power' presenta una varianza significativamente alta con 100 muestras, lo que sugiere una inestabilidad en ciertos casos, pero mejora con tamaños de muestra más grandes.
-'Maximum' muestra una variabilidad considerablemente alta con 500 muestras, lo que podría implicar que no es tan robusta frente a ciertas distribuciones de la función objetivo.
-'Cutoff' tiene la varianza más alta entre todas las heurísticas, especialmente con 100 y 500 muestras, lo que indica que podría no ser la heurística más confiable.
-'Sbert' presenta una varianza relativamente baja en comparación, lo que sugiere una buena consistencia en las estimaciones.
+La heurística \textit{balance heuristic} muestra una reducción sustancial en la varianza a medida que el tamaño de la muestra aumenta, lo que indica que es efectiva para estabilizar las estimaciones.
+\textit{power heuristic} presenta una varianza significativamente alta con 100 muestras, lo que sugiere una inestabilidad en ciertos casos, pero mejora con tamaños de muestra más grandes.
+\textit{maximum heuristic} muestra una variabilidad considerablemente alta con 500 muestras, lo que podría implicar que no es tan robusta frente a ciertas distribuciones de la función objetivo.
+\textit{cutoff heuristic} tiene la varianza más alta entre todas las heurísticas, especialmente con 100 y 500 muestras, lo que indica que podría no ser la heurística más confiable.
+\textit{sbert heuristic} presenta una varianza relativamente baja en comparación, lo que sugiere una buena consistencia en las estimaciones.
 
 \paragraph{Error de las Estimaciones}
-Los errores de 'Balance' son relativamente bajos y consistentes, lo que sugiere una buena precisión en general.
-'Power' y 'Maximum' muestran fluctuaciones en el error, algunas negativas, lo que indica sobreestimación o subestimación en ciertos casos.
-'Cutoff' presenta errores que sugieren una subestimación significativa en varios tamaños de muestra.
-'Sbert' tiene errores variados, pero tienden a ser menores, especialmente con muestras más grandes.
+Los errores de \textit{balance heuristic} son relativamente bajos y consistentes, lo que sugiere una buena precisión en general.
+\textit{power heuristic} y \textit{maximum heuristic} muestran fluctuaciones en el error, algunas negativas, lo que indica sobreestimación o subestimación en ciertos casos.
+\textit{cutoff heuristic} presenta errores que sugieren una subestimación significativa en varios tamaños de muestra.
+\textit{sbert heuristic} tiene errores variados, pero tienden a ser menores, especialmente con muestras más grandes.
 
 \paragraph{Desviaciones Estándar de las Estimaciones}
-'Balance' y 'Sbert' tienen desviaciones estándar que disminuyen con el tamaño de la muestra, indicando una mayor precisión a medida que se incrementa el número de muestras.
-'Power', 'Maximum' y 'Cutoff' muestran un comportamiento más errático en la desviación estándar, lo que refleja que la función a estimar no son las condiciones donde estas heurísticas se destacan.
+\textit{balance heuristic} y \textit{sbert heuristic} tienen desviaciones estándar que disminuyen con el tamaño de la muestra, indicando una mayor precisión a medida que se incrementa el número de muestras.
+\textit{power heuristic}, \textit{maximum heuristic} y \textit{cutoff heuristic} muestran un comportamiento más errático en la desviación estándar, lo que refleja que la función a estimar no son las condiciones donde estas heurísticas se destacan.
 
 \paragraph{Dimensionalidad}
 2-Dimensiones (Test 1): Todas las heurísticas funcionan bien, con varianzas y errores mínimos, lo que indica que el MIS es efectivo en espacios de baja dimensión para todas las heurísticas probadas.
 
-3-Dimensiones en Adelante: A medida que la dimensión aumenta, se observa un aumento general en la varianza y la desviación estándar para todas las heurísticas. La heurística 'Sbert' parece tener un rendimiento inconsistente en función de la dimensión, con una varianza particularmente alta en la dimensión 4, lo que sugiere que su eficacia puede depender de la especificidad del problema.
-'Balance' tiende a mantener un mejor control sobre la varianza y la desviación estándar, incluso a medida que la dimensión aumenta, lo que indica que puede ser una heurística más robusta en espacios de mayor dimensión.
+3-Dimensiones en Adelante: A medida que la dimensión aumenta, se observa un aumento general en la varianza y la desviación estándar para todas las heurísticas. La heurística \textit{sbert heuristic} parece tener un rendimiento inconsistente en función de la dimensión, con una varianza particularmente alta en la dimensión 4, lo que sugiere que su eficacia puede depender de la especificidad del problema.
+\textit{balance heuristic} tiende a mantener un mejor control sobre la varianza y la desviación estándar, incluso a medida que la dimensión aumenta, lo que indica que puede ser una heurística más robusta en espacios de mayor dimensión.
 
-Dimensiones Altas (Test 7-10): En espacios de alta dimensión, todas las heurísticas luchan con un aumento significativo en la varianza y la desviación estándar, pero algunas como 'Balance' y 'Sbert' parecen controlar mejor la escalada de estos valores.
-La heurística 'Maximum' muestra la varianza más alta en la dimensión 9, lo que sugiere una gran inestabilidad en espacios de mayor dimensión.
-'Cutoff' también muestra una alta varianza en dimensiones más altas, especialmente en la dimensión 10, lo que puede indicar problemas de eficiencia o precisión en espacios complejos.
+Dimensiones Altas (Test 7-10): En espacios de alta dimensión, todas las heurísticas luchan con un aumento significativo en la varianza y la desviación estándar, pero algunas como \textit{balance heuristic} y \textit{sbert heuristic} parecen controlar mejor la escalada de estos valores.
+La heurística \textit{maximum heuristic} muestra la varianza más alta en la dimensión 9, lo que sugiere una gran inestabilidad en espacios de mayor dimensión.
+\textit{cutoff heuristic} también muestra una alta varianza en dimensiones más altas, especialmente en la dimensión 10, lo que puede indicar problemas de eficiencia o precisión en espacios complejos.
 
 \paragraph{Conclusiones}
-El MIS comienza a ser competitivo con tamaños de muestra a partir de 1000 en adelante, donde se observa una mejora notable en la varianza y los errores para la mayoría de las heurísticas. La heurística 'Balance' parece ser la más robusta y consistente, seguida por 'Sbert', que también muestra un buen rendimiento. 'Power', 'Maximum' y 'Cutoff' presentan desafíos en términos de consistencia y precisión, lo que sugiere, como se mencionó antes, que estas no son sus condiciones óptimas de uso.
+El MIS comienza a ser competitivo con tamaños de muestra a partir de 1000 en adelante, donde se observa una mejora notable en la varianza y los errores para la mayoría de las heurísticas. La heurística \textit{balance heuristic} parece ser la más robusta y consistente, seguida por \textit{sbert heuristic}, que también muestra un buen rendimiento. \textit{power heuristic}, \textit{maximum heuristic} y \textit{cutoff heuristic} presentan desafíos en términos de consistencia y precisión, lo que sugiere, como se mencionó antes, que estas no son sus condiciones óptimas de uso.
 
 En términos de dimensionalidad, MIS mantiene un rendimiento aceptable hasta aproximadamente 3 dimensiones sin mucha pérdida de precisión. Sin embargo, a medida que la dimensión aumenta, se necesita un tamaño de muestra más grande para mantener la precisión y la confiabilidad de las estimaciones. Esto destaca la importancia de una selección cuidadosa del tamaño de la muestra y la heurística en función de la complejidad del espacio de integración.
 
@@ -831,7 +838,7 @@ $$
 Esta metodología asegura una cobertura adecuada del hipercubo y evita una dispersión excesiva que podría llevar a un muestreo ineficiente.
 
 \paragraph{Cobertura de las Muestras y Elección de \( \sigma \)}
-La elección de \( \sigma \) como un cuarto de la longitud del lado del hipercubo implica que aproximadamente el 68\% de las muestras generadas por la Gaussiana caerán dentro del hipercubo, dado que una desviación estándar (\( \sigma \)) a cada lado de la media cubre aproximadamente el 68\% de la distribución en una Gaussiana. Esta proporción es un 'Balance' entre la cobertura eficiente del espacio del hipercubo y la inclusión de una región suficiente fuera de este para un muestreo representativo.
+La elección de \( \sigma \) como un cuarto de la longitud del lado del hipercubo implica que aproximadamente el 68\% de las muestras generadas por la Gaussiana caerán dentro del hipercubo, dado que una desviación estándar (\( \sigma \)) a cada lado de la media cubre aproximadamente el 68\% de la distribución en una Gaussiana. Esta proporción es un \textit{balance heuristic} entre la cobertura eficiente del espacio del hipercubo y la inclusión de una región suficiente fuera de este para un muestreo representativo.
 
 \subsubsection{Ejemplo}
 Consideremos un ejemplo específico en un espacio bidimensional. En este ejemplo, las funciones \( f \) y \( g \) están definidas dentro de sus respectivos hipercubos en un espacio de dos dimensiones, y sus constantes asociadas son \( c_f = 0.5 \) y \( c_g = 5 \), respectivamente.
@@ -853,7 +860,7 @@ De manera similar, el hipercubo para la función \( g \), denotado como \( H_g \
 Aquí, la constante \( c_g \) de \( g(x) \) es \( 5 \), indicando que \( g(x) = 5 \) dentro de \( H_g \) y es \( 0 \) fuera de este.
 
 \paragraph{Implicaciones y Visualización}
-Este ejemplo se puede ver en la figura \ref{fig:mis3} donde se generaron 5000 muestras y se corrió el MIS con 'Balance' heuristic.
+Este ejemplo se puede ver en la figura \ref{fig:mis3} donde se generaron 5000 muestras y se corrió el MIS con \textit{balance heuristic}.
 La figura muestra las funciones \( f(x) \) y \( g(x) \) en sus respectivos hipercubos, la función \( f(x) \cdot g(x) \) y las distribuciones de muestreo \( p_{i}(x) \) para cada función.
 
 \begin{figure}[H]
@@ -872,7 +879,7 @@ Entonces:
       Los valores para \( a_{fi} \) y \( b_{fi} \) son -10 y 10 respectivamente. \( c_f \) es 0.5.
       Los valores para \( a_{gi} \) y \( b_{gi} \) son -0.5 y 0.5 respectivamente. \( c_g \) es 5.
 \item La dimensionalidad de los tests es \( n + 1 \) donde \( n \) toma los siguientes valores: 2, 3, 4, 5, 6, 10, 12, 15, 18, 20.
-\item Para cada test se corrió MIS con las siguientes heurísticas: 'Balance', 'Power', 'Maximum', 'Cutoff' y 'Sbert'.
+\item Para cada test se corrió MIS con las siguientes heurísticas: \textit{balance heuristic}, \textit{power heuristic}, \textit{maximum heuristic}, \textit{cutoff heuristic} y \textit{sbert heuristic}.
 \item Para cada heurística se corrió MIS con 25, 50, 100, 500, 1000, 5000 y 50000 muestras.
 \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
       el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
@@ -1017,40 +1024,40 @@ Sbert & 16.30 & 0.883 & 0.675 \\ \hline
 \subsubsection{Análisis}
 
 \paragraph{Varianza de las Estimaciones}
-En términos de varianza, la heurística 'Balance' muestra un rendimiento consistentemente bueno, con una disminución notable en la varianza al aumentar el tamaño de la muestra. 'Sbert' también se destaca por tener varianzas bajas, lo que indica una mayor estabilidad en sus estimaciones. Por el contrario, 'Maximum' muestra la mayor variabilidad, lo que sugiere una menor fiabilidad y estabilidad en sus resultados.
+En términos de varianza, la heurística \textit{balance heuristic} muestra un rendimiento consistentemente bueno, con una disminución notable en la varianza al aumentar el tamaño de la muestra. \textit{sbert heuristic} también se destaca por tener varianzas bajas, lo que indica una mayor estabilidad en sus estimaciones. Por el contrario, \textit{maximum heuristic} muestra la mayor variabilidad, lo que sugiere una menor fiabilidad y estabilidad en sus resultados.
 
 
 \paragraph{Error de las Estimaciones}
-Respecto a los errores, 'Balance' y 'Sbert' mantienen errores bajos y consistentes a través de los diferentes tamaños de muestra, lo que implica una mayor precisión en sus estimaciones. En cambio, 'Maximum' se inclina hacia errores negativos, indicando una tendencia a la subestimación. 'Cutoff' y 'Power' muestran más variabilidad en sus errores, lo que sugiere una precisión menos consistente.
+Respecto a los errores, \textit{balance heuristic} y \textit{sbert heuristic} mantienen errores bajos y consistentes a través de los diferentes tamaños de muestra, lo que implica una mayor precisión en sus estimaciones. En cambio, \textit{maximum heuristic} se inclina hacia errores negativos, indicando una tendencia a la subestimación. \textit{cutoff heuristic} y \textit{power heuristic} muestran más variabilidad en sus errores, lo que sugiere una precisión menos consistente.
 
 \paragraph{Desviaciones Estándar de las Estimaciones}
-Las desviaciones estándar más bajas se observan en las heurísticas 'Balance' y 'Sbert', lo que señala una mayor precisión y fiabilidad en sus estimaciones. 'Power', 'Maximum' y 'Cutoff' muestran desviaciones estándar más altas y variables, lo que refleja una consistencia y precisión menos fiables.
+Las desviaciones estándar más bajas se observan en las heurísticas \textit{balance heuristic} y \textit{sbert heuristic}, lo que señala una mayor precisión y fiabilidad en sus estimaciones. \textit{power heuristic}, \textit{maximum heuristic} y \textit{cutoff heuristic} muestran desviaciones estándar más altas y variables, lo que refleja una consistencia y precisión menos fiables.
 
 \paragraph{Dimensionalidad}
-La dimensionalidad afecta significativamente el rendimiento de las heurísticas. En dimensiones más bajas, todas las heurísticas muestran un buen rendimiento. Sin embargo, en dimensiones más altas, 'Balance' y 'Sbert' logran mantener un control más efectivo sobre la varianza y el error, mientras que 'Maximum' y 'Cutoff' experimentan un aumento significativo en la varianza y el error.
+La dimensionalidad afecta significativamente el rendimiento de las heurísticas. En dimensiones más bajas, todas las heurísticas muestran un buen rendimiento. Sin embargo, en dimensiones más altas, \textit{balance heuristic} y \textit{sbert heuristic} logran mantener un control más efectivo sobre la varianza y el error, mientras que \textit{maximum heuristic} y \textit{cutoff heuristic} experimentan un aumento significativo en la varianza y el error.
 
 \paragraph{Conclusiones}
-En resumen, 'Balance' y 'Sbert' emergen como las heurísticas más robustas y consistentes en la Prueba 3, demostrando una buena precisión y estabilidad a lo largo de diferentes tamaños de muestra y en varias dimensiones. En contraste, 'Maximum' muestra una tendencia a la subestimación y es menos confiable, especialmente en dimensiones más altas. 'Power' y 'Cutoff' ofrecen un rendimiento intermedio, pero su precisión y consistencia son menos predecibles en comparación con 'Balance' y 'Sbert'.
+En resumen, \textit{balance heuristic} y \textit{sbert heuristic} emergen como las heurísticas más robustas y consistentes en la Prueba 3, demostrando una buena precisión y estabilidad a lo largo de diferentes tamaños de muestra y en varias dimensiones. En contraste, \textit{maximum heuristic} muestra una tendencia a la subestimación y es menos confiable, especialmente en dimensiones más altas. \textit{power heuristic} y \textit{cutoff heuristic} ofrecen un rendimiento intermedio, pero su precisión y consistencia son menos predecibles en comparación con \textit{balance heuristic} y \textit{sbert heuristic}.
 
 \section{Conclusiones}
 
 Las pruebas realizadas en este trabajo muestran que el MIS es una buena técnica para la estimación de distintas integrales.
 Se probó en un espacio amplio de dimensiones y con distintas heurísticas en cada caso.
 
-El caso 1, que es el más simple, mostró que el MIS es efectivo en dimensiones bajas y que la heurística 'Balance' es la más efectiva.
+El caso 1, que es el más simple, mostró que el MIS es efectivo en dimensiones bajas y que la heurística \textit{balance heuristic} es la más efectiva.
 Este caso fue útil para entender cómo funciona el MIS y cómo se comporta en un caso simple.
 
-El caso 2, que es un caso más complejo, mostró que el MIS es efectivo en dimensiones más altas y que la heurística 'Balance' mostró de nuevo ser la más efectiva.
+El caso 2, que es un caso más complejo, mostró que el MIS es efectivo en dimensiones más altas y que la heurística \textit{balance heuristic} mostró de nuevo ser la más efectiva.
 Este caso fue útil para entender cómo se comporta el MIS en dimensiones más altas y cómo se comporta con distintas heurísticas en estas condiciones.
 
 El caso 3, nos ayudó a entender cómo funciona el MIS en un producto de hipercubos y cómo se comporta en dimensiones más altas.
 Sirvió para hacer un análisis en donde se multiplica una función de baja integral con una de alta integral y ver cómo el MIS se comporta en este caso.
-De vuelta, la heurística 'Balance' mostró ser la más efectiva.
+De vuelta, la heurística \textit{balance heuristic} mostró ser la más efectiva.
 
-En resumen, el MIS es una técnica efectiva para la estimación de integrales en espacios de alta dimensión y la heurística 'Balance' es la más efectiva en la mayoría de los casos.
-Se vio que la heurística presentada por Sbert también es efectiva en la mayoría de los casos y que se comporta de manera muy similar a 'Balance'.
+En resumen, el MIS es una técnica efectiva para la estimación de integrales en espacios de alta dimensión y la heurística \textit{balance heuristic} es la más efectiva en la mayoría de los casos.
+Se vio que la heurística presentada por Sbert también es efectiva en la mayoría de los casos y que se comporta de manera muy similar a \textit{balance heuristic}.
 
-Se pudo observar que las funciones utilizadas claramente no aportan el contexto necesario para que las heurísticas 'Power' 'Maximum' y 'Cutoff'.
+Se pudo observar que las funciones utilizadas claramente no aportan el contexto necesario para que las heurísticas \textit{power heuristic} \textit{maximum heuristic} y \textit{cutoff heuristic}.
 Como explicado en las primeras secciones, estas heurísticas son efectivas en contextos muy particulares que no son reflejados en estos casos de prueba.
 
 Para más información se puede ver el repositorio de GitHub en el que se encuentra el código utilizado para este trabajo: \url{https://github.com/santiagolmedo/multiple_importance_sampling}.
@@ -1063,6 +1070,9 @@ Eric Veach (1997) \emph{Multiple Importance Sampling}, Chapter 9 in Ph.D. thesis
 
 \bibitem{Sbert2016}
 M. Sbert, V. Havran, László Szirmay-Kalos (2016) \emph{Variance Analysis of Multi-sample and One-sample Multiple Importance Sampling}, Computer Graphics Forum, Vol. 35, No. 7, DOI: 10.1111/cgf.13042. [Online]. Available: \url{https://dx.doi.org/10.1111/cgf.13042}
+
+\bibitem{Kajiya1986}
+James T. Kajiya (1986) \emph{The Rendering Equation}, ACM SIGGRAPH Computer Graphics, Vol. 20, No. 4, pp. 143-150. [Online]. Available: \url{https://dl.acm.org/doi/pdf/10.1145/15922.15902}
 
 \end{thebibliography}
 
