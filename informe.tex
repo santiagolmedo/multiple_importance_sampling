@@ -189,7 +189,7 @@ dado que por la condición \( (W1) \), \( \sum_{i=1}^n w_i(x) = 1 \) siempre que
 
 Por lo tanto, el estimador \( F \) es imparcial. La última igualdad se debe a que \( \sum_{i=1}^n w_i(x) = 1 \) cuando \( f(x) \neq 0 \).
 
-\subsection{Balance Heuristic}
+\subsection{\textit{Balance Heuristic}}
 
 $$ \hat{w}_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
 
@@ -256,7 +256,7 @@ Como se muestra en la imagen \ref{fig:misother2}, el dominio de integración se 
 
 La observación que se puede hacer es que la mayoría de las muestras de $p_{1}$ caen en la región A donde $p_{1} > p_{2}$.
 Se desea que en esta región las muestras de $p_{1}$ tengan un peso de 1 y las de $p_{2}$ un peso de 0.
-Balance heuristic usaría el peso
+\textit{balance heuristic} usaría el peso
 $$ \hat{w}_{1}(x) = \frac{p_1}{p_1 + p_2} $$
 que es mayor que 1/2 en la región A. Una manera de mejorar esto, entonces, es usar los pesos $w_{1}$ y $w_{2}$ que son 1 y 0 cada vez qie $\hat{w}_{1}$ es mayor que 1/2.
 
@@ -266,13 +266,13 @@ $$ \hat{w}_{i}(x) = \frac{q_{i}}{\sum_{k} q_{k}} $$
 
 donde $q_{i} = n_{i} * p_{i}$.
 
-\paragraph{Cutoff} La heurística \textit{cutoff heuristic} es de la forma:
+\paragraph{\textit{cutoff heuristic}} La heurística \textit{cutoff heuristic} es de la forma:
 $$ w_{i}(x) = \begin{cases} 0 & \text{si } q_{i} < \alpha \cdot q_{max} \\ \frac{q_{i}}{\sum_{k} \{ q_{k} | q_{k} \geq \alpha \cdot q_{max} \}} & \text{en otro caso} \end{cases}$$
 
 donde $q_{max} = max_{k} q_{k}$ y $\alpha$ es un parámetro que se elige de antemano $\in [0, 1]$.
 El parámetro $\alpha$ define que tan grande tiene que ser $q_{i}$ para que la muestra tenga un peso distinto de 0.
 
-\paragraph{Power} La heurística \textit{power heuristic} es de la forma:
+\paragraph{\textit{power heuristic}} La heurística \textit{power heuristic} es de la forma:
 $$ w_{i}(x) = \frac{(q_{i})^{\beta}}{\sum_{k} (q_{k})^{\beta}}$$
 
 donde Veach recomienda $\beta = 2$.
@@ -280,7 +280,7 @@ donde Veach recomienda $\beta = 2$.
 Se puede ver que \textit{balance heuristic} se puede obtener cuando los parámetros $\alpha = 0$ o $\beta = 1$.
 La otra heurística que surge de las anteriores 2 es la huerística \textit{maximum heuristic} cuando $\alpha = 1$ o $\beta = \infty$.
 
-\paragraph{Maximum} La heurística \textit{maximum heuristic} es de la forma:
+\paragraph{\textit{maximum heuristic}} La heurística \textit{maximum heuristic} es de la forma:
 $$ w_{i}(x) = \begin{cases} 1 & \text{si } q_{i} = q_{max} \\ 0 & \text{en otro caso} \end{cases}$$
 
 Lo que se hace es darle un peso de 1 a la distribución de muestreo que tiene el máximo $q_{i}$ y 0 a las demás.
@@ -300,7 +300,7 @@ donde $X_{I}$ es una muestra generada con $p_{I}$ y $I$ es una variable aleatori
 
 Sbert, en su artículo \cite{Sbert2016} presenta una nueva heurística para combinar las distribuciones de muestreo.
 
-\paragraph{Sbert} La heurística \textit{sbert heuristic} es de la forma:
+\paragraph{\textit{sbert heuristic}} La heurística \textit{sbert heuristic} es de la forma:
 $$ w_{i}(x) = \frac{p_{i}(x)}{\sum_{k} p_{k}(x)}$$
 
 % Varianza del estimador de MIS presentada por Veach en la demostración del Teorema 9.2 es:
@@ -313,7 +313,7 @@ $$ w_{i}(x) = \frac{p_{i}(x)}{\sum_{k} p_{k}(x)}$$
 % \end{align*}
 
 % Sea $\sigma_{i}^{2} = E[F_{i,j}^2] - E^2[F_{i,j}]$ la varianza de $F_{i,j}$.
-% A partir de esto Sbert propone los siguientes teoremas.
+% A partir de esto \textit{sbert heuristic} propone los siguientes teoremas.
 
 % \textbf{Teorema 1} Dado $n_{i}$, $\sigma_{i}^{2}$ y $1 \leq i \leq n$.
 % Si la varianza no depende de la cantidad de muestras $n_{i}$, entonc
@@ -405,23 +405,23 @@ Este análisis se hizo para:
 \hline
 \textbf{\makecell{Heurística / \\ \# de muestras}} & \textbf{10} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{150} \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Var}} \\ \hline
-Balance & 0.4441 & 0.1579 & 0.0735 & 0.0376 & 0.0247 \\ \hline
-Power & 0.4505 & 0.1615 & 0.0749 & 0.0384 & 0.0253 \\ \hline
-Maximum & 0.4766 & 0.1719 & 0.0797 & 0.0408 & 0.0269 \\ \hline
-Cutoff & 0.4575 & 0.1642 & 0.0760 & 0.0389 & 0.0257 \\ \hline
-Sbert & 0.4423 & 0.1584 & 0.0734 & 0.0374 & 0.0247 \\ \hline
+\textit{balance heuristic} & 0.4441 & 0.1579 & 0.0735 & 0.0376 & 0.0247 \\ \hline
+\textit{power heuristic} & 0.4505 & 0.1615 & 0.0749 & 0.0384 & 0.0253 \\ \hline
+\textit{maximum heuristic} & 0.4766 & 0.1719 & 0.0797 & 0.0408 & 0.0269 \\ \hline
+\textit{cutoff heuristic} & 0.4575 & 0.1642 & 0.0760 & 0.0389 & 0.0257 \\ \hline
+\textit{sbert heuristic} & 0.4423 & 0.1584 & 0.0734 & 0.0374 & 0.0247 \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Err}} \\ \hline
-Balance & 0.0122 & 0.0062 & 0.0036 & 0.0028 & 0.0019 \\ \hline
-Power & 0.0078 & 0.0062 & 0.0051 & 0.0039 & 0.0024 \\ \hline
-Maximum & 0.0135 & 0.0066 & 0.0041 & 0.0015 & 0.0015 \\ \hline
-Cutoff & 0.0089 & 0.0068 & 0.0058 & 0.0045 & 0.0032 \\ \hline
-Sbert & 0.0148 & 0.0059 & 0.0031 & 0.0042 & 0.0033 \\ \hline
+\textit{balance heuristic} & 0.0122 & 0.0062 & 0.0036 & 0.0028 & 0.0019 \\ \hline
+\textit{power heuristic} & 0.0078 & 0.0062 & 0.0051 & 0.0039 & 0.0024 \\ \hline
+\textit{maximum heuristic} & 0.0135 & 0.0066 & 0.0041 & 0.0015 & 0.0015 \\ \hline
+\textit{cutoff heuristic} & 0.0089 & 0.0068 & 0.0058 & 0.0045 & 0.0032 \\ \hline
+\textit{sbert heuristic} & 0.0148 & 0.0059 & 0.0031 & 0.0042 & 0.0033 \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de DE}} \\ \hline
-Balance & 0.6009 & 0.3674 & 0.2533 & 0.1818 & 0.1477 \\ \hline
-Power & 0.6059 & 0.3727 & 0.2563 & 0.1843 & 0.1496 \\ \hline
-Maximum & 0.6238 & 0.3848 & 0.2646 & 0.1900 & 0.1545 \\ \hline
-Cutoff & 0.6112 & 0.3762 & 0.2583 & 0.1856 & 0.1510 \\ \hline
-Sbert & 0.6003 & 0.3685 & 0.2533 & 0.1815 & 0.1475 \\ \hline
+\textit{balance heuristic} & 0.6009 & 0.3674 & 0.2533 & 0.1818 & 0.1477 \\ \hline
+\textit{power heuristic} & 0.6059 & 0.3727 & 0.2563 & 0.1843 & 0.1496 \\ \hline
+\textit{maximum heuristic} & 0.6238 & 0.3848 & 0.2646 & 0.1900 & 0.1545 \\ \hline
+\textit{cutoff heuristic} & 0.6112 & 0.3762 & 0.2583 & 0.1856 & 0.1510 \\ \hline
+\textit{sbert heuristic} & 0.6003 & 0.3685 & 0.2533 & 0.1815 & 0.1475 \\ \hline
 \end{tabular}
 \caption{Análisis de los resultados por heurística y cantidad de muestras}
 \label{table:heuristic_analysis}
@@ -436,35 +436,35 @@ Sbert & 0.6003 & 0.3685 & 0.2533 & 0.1815 & 0.1475 \\ \hline
 \hline
 \textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 1}} \\ \hline
-Balance & 0.1039 & 0.0067 & 0.2665 \\ \hline
-Power & 0.1015 & 0.0103 & 0.2645 \\ \hline
-Maximum & 0.1023 & 0.0024 & 0.2657 \\ \hline
-Cutoff & 0.1026 & 0.0091 & 0.2646 \\ \hline
-Sbert & 0.1035 & 0.0050 & 0.2662 \\ \hline
+\textit{balance heuristic} & 0.1039 & 0.0067 & 0.2665 \\ \hline
+\textit{power heuristic} & 0.1015 & 0.0103 & 0.2645 \\ \hline
+\textit{maximum heuristic} & 0.1023 & 0.0024 & 0.2657 \\ \hline
+\textit{cutoff heuristic} & 0.1026 & 0.0091 & 0.2646 \\ \hline
+\textit{sbert heuristic} & 0.1035 & 0.0050 & 0.2662 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 2}} \\ \hline
-Balance & 0.1625 & 0.0055 & 0.3500 \\ \hline
-Power & 0.1640 & 0.0081 & 0.3512 \\ \hline
-Maximum & 0.1641 & 0.0065 & 0.3518 \\ \hline
-Cutoff & 0.1628 & 0.0075 & 0.3507 \\ \hline
-Sbert & 0.1630 & 0.0060 & 0.3501 \\ \hline
+\textit{balance heuristic} & 0.1625 & 0.0055 & 0.3500 \\ \hline
+\textit{power heuristic} & 0.1640 & 0.0081 & 0.3512 \\ \hline
+\textit{maximum heuristic} & 0.1641 & 0.0065 & 0.3518 \\ \hline
+\textit{cutoff heuristic} & 0.1628 & 0.0075 & 0.3507 \\ \hline
+\textit{sbert heuristic} & 0.1630 & 0.0060 & 0.3501 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 3}} \\ \hline
-Balance & 0.0907 & 0.0047 & 0.2497 \\ \hline
-Power & 0.0912 & 0.0040 & 0.2503 \\ \hline
-Maximum & 0.0890 & 0.0082 & 0.2480 \\ \hline
-Cutoff & 0.0936 & 0.0076 & 0.2531 \\ \hline
-Sbert & 0.0950 & 0.0139 & 0.2543 \\ \hline
+\textit{balance heuristic} & 0.0907 & 0.0047 & 0.2497 \\ \hline
+\textit{power heuristic} & 0.0912 & 0.0040 & 0.2503 \\ \hline
+\textit{maximum heuristic} & 0.0890 & 0.0082 & 0.2480 \\ \hline
+\textit{cutoff heuristic} & 0.0936 & 0.0076 & 0.2531 \\ \hline
+\textit{sbert heuristic} & 0.0950 & 0.0139 & 0.2543 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 4}} \\ \hline
-Balance & 0.3690 & 0.0088 & 0.5303 \\ \hline
-Power & 0.3670 & 0.0045 & 0.5295 \\ \hline
-Maximum & 0.3659 & 0.0054 & 0.5288 \\ \hline
-Cutoff & 0.3675 & 0.0038 & 0.5296 \\ \hline
-Sbert & 0.3644 & 0.0032 & 0.5278 \\ \hline
+\textit{balance heuristic} & 0.3690 & 0.0088 & 0.5303 \\ \hline
+\textit{power heuristic} & 0.3670 & 0.0045 & 0.5295 \\ \hline
+\textit{maximum heuristic} & 0.3659 & 0.0054 & 0.5288 \\ \hline
+\textit{cutoff heuristic} & 0.3675 & 0.0038 & 0.5296 \\ \hline
+\textit{sbert heuristic} & 0.3644 & 0.0032 & 0.5278 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 5}} \\ \hline
-Balance & 0.0929 & 0.0062 & 0.2582 \\ \hline
-Power & 0.1225 & 0.0084 & 0.2969 \\ \hline
-Maximum & 0.2178 & 0.0118 & 0.3975 \\ \hline
-Cutoff & 0.1440 & 0.0082 & 0.3215 \\ \hline
-Sbert & 0.0920 & 0.0083 & 0.2575 \\ \hline
+\textit{balance heuristic} & 0.0929 & 0.0062 & 0.2582 \\ \hline
+\textit{power heuristic} & 0.1225 & 0.0084 & 0.2969 \\ \hline
+\textit{maximum heuristic} & 0.2178 & 0.0118 & 0.3975 \\ \hline
+\textit{cutoff heuristic} & 0.1440 & 0.0082 & 0.3215 \\ \hline
+\textit{sbert heuristic} & 0.0920 & 0.0083 & 0.2575 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 1-5}
@@ -478,35 +478,35 @@ Sbert & 0.0920 & 0.0083 & 0.2575 \\ \hline
 \hline
 \textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6}} \\ \hline
-Balance & 0.2760 & 0.0057 & 0.4588 \\ \hline
-Power & 0.2763 & 0.0032 & 0.4590 \\ \hline
-Maximum & 0.2750 & 0.0045 & 0.4584 \\ \hline
-Cutoff & 0.2748 & 0.0062 & 0.4581 \\ \hline
-Sbert & 0.2740 & 0.0086 & 0.4578 \\ \hline
+\textit{balance heuristic} & 0.2760 & 0.0057 & 0.4588 \\ \hline
+\textit{power heuristic} & 0.2763 & 0.0032 & 0.4590 \\ \hline
+\textit{maximum heuristic} & 0.2750 & 0.0045 & 0.4584 \\ \hline
+\textit{cutoff heuristic} & 0.2748 & 0.0062 & 0.4581 \\ \hline
+\textit{sbert heuristic} & 0.2740 & 0.0086 & 0.4578 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 7}} \\ \hline
-Balance & 0.0882 & 0.0029 & 0.2594 \\ \hline
-Power & 0.0878 & 0.0029 & 0.2590 \\ \hline
-Maximum & 0.0874 & 0.0023 & 0.2585 \\ \hline
-Cutoff & 0.0877 & 0.0037 & 0.2589 \\ \hline
-Sbert & 0.0879 & 0.0029 & 0.2590 \\ \hline
+\textit{balance heuristic} & 0.0882 & 0.0029 & 0.2594 \\ \hline
+\textit{power heuristic} & 0.0878 & 0.0029 & 0.2590 \\ \hline
+\textit{maximum heuristic} & 0.0874 & 0.0023 & 0.2585 \\ \hline
+\textit{cutoff heuristic} & 0.0877 & 0.0037 & 0.2589 \\ \hline
+\textit{sbert heuristic} & 0.0879 & 0.0029 & 0.2590 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 8}} \\ \hline
-Balance & 0.0354 & 0.0023 & 0.1630 \\ \hline
-Power & 0.0352 & 0.0015 & 0.1628 \\ \hline
-Maximum & 0.0353 & 0.0030 & 0.1628 \\ \hline
-Cutoff & 0.0347 & 0.0047 & 0.1620 \\ \hline
-Sbert & 0.0357 & 0.0020 & 0.1636 \\ \hline
+\textit{balance heuristic} & 0.0354 & 0.0023 & 0.1630 \\ \hline
+\textit{power heuristic} & 0.0352 & 0.0015 & 0.1628 \\ \hline
+\textit{maximum heuristic} & 0.0353 & 0.0030 & 0.1628 \\ \hline
+\textit{cutoff heuristic} & 0.0347 & 0.0047 & 0.1620 \\ \hline
+\textit{sbert heuristic} & 0.0357 & 0.0020 & 0.1636 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 9}} \\ \hline
-Balance & 0.2219 & 0.0026 & 0.4122 \\ \hline
-Power & 0.2221 & 0.0049 & 0.4124 \\ \hline
-Maximum & 0.2220 & 0.0052 & 0.4124 \\ \hline
-Cutoff & 0.2224 & 0.0025 & 0.4126 \\ \hline
-Sbert & 0.2230 & 0.0098 & 0.4128 \\ \hline
+\textit{balance heuristic} & 0.2219 & 0.0026 & 0.4122 \\ \hline
+\textit{power heuristic} & 0.2221 & 0.0049 & 0.4124 \\ \hline
+\textit{maximum heuristic} & 0.2220 & 0.0052 & 0.4124 \\ \hline
+\textit{cutoff heuristic} & 0.2224 & 0.0025 & 0.4126 \\ \hline
+\textit{sbert heuristic} & 0.2230 & 0.0098 & 0.4128 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 10}} \\ \hline
-Balance & 0.0351 & 0.0081 & 0.1543 \\ \hline
-Power & 0.0337 & 0.0031 & 0.1521 \\ \hline
-Maximum & 0.0332 & 0.0054 & 0.1515 \\ \hline
-Cutoff & 0.0348 & 0.0049 & 0.1538 \\ \hline
-Sbert & 0.0340 & 0.0029 & 0.1529 \\ \hline
+\textit{balance heuristic} & 0.0351 & 0.0081 & 0.1543 \\ \hline
+\textit{power heuristic} & 0.0337 & 0.0031 & 0.1521 \\ \hline
+\textit{maximum heuristic} & 0.0332 & 0.0054 & 0.1515 \\ \hline
+\textit{cutoff heuristic} & 0.0348 & 0.0049 & 0.1538 \\ \hline
+\textit{sbert heuristic} & 0.0340 & 0.0029 & 0.1529 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 6-10}
@@ -519,11 +519,11 @@ Sbert & 0.0340 & 0.0029 & 0.1529 \\ \hline
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Heurística} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
-Balance & 0.1476 & 0.0054 & 0.3102 \\ \hline
-Power & 0.1501 & 0.0051 & 0.3138 \\ \hline
-Maximum & 0.1592 & 0.0055 & 0.3235 \\ \hline
-Cutoff & 0.1525 & 0.0058 & 0.3165 \\ \hline
-Sbert & 0.1473 & 0.0063 & 0.3102 \\ \hline
+\textit{balance heuristic} & 0.1476 & 0.0054 & 0.3102 \\ \hline
+\textit{power heuristic} & 0.1501 & 0.0051 & 0.3138 \\ \hline
+\textit{maximum heuristic} & 0.1592 & 0.0055 & 0.3235 \\ \hline
+\textit{cutoff heuristic} & 0.1525 & 0.0058 & 0.3165 \\ \hline
+\textit{sbert heuristic} & 0.1473 & 0.0063 & 0.3102 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística}
@@ -626,23 +626,23 @@ El análisis se hizo para los mismos casos que en la prueba anterior.
 \hline
 \textbf{\makecell{Heurística / \\ \# de muestras}} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Var}} \\ \hline
-Balance & 28542.80 & 11755.25 & 32890.92 & 2082.61 & 1470.44 \\ \hline
-Power & 16022.84 & 136709.92 & 3707.40 & 75721.90 & 2557.03 \\ \hline
-Maximum & 16750.33 & 16552.90 & 111964.69 & 3072.33 & 7038.19 \\ \hline
-Cutoff & 23826.31 & 236449.12 & 74333.52 & 5878.86 & 1416.80 \\ \hline
-Sbert & 6603.14 & 59408.55 & 17053.03 & 1951.91 & 7476.45 \\ \hline
+\textit{balance heuristic} & 28542.80 & 11755.25 & 32890.92 & 2082.61 & 1470.44 \\ \hline
+\textit{power heuristic} & 16022.84 & 136709.92 & 3707.40 & 75721.90 & 2557.03 \\ \hline
+\textit{maximum heuristic} & 16750.33 & 16552.90 & 111964.69 & 3072.33 & 7038.19 \\ \hline
+\textit{cutoff heuristic} & 23826.31 & 236449.12 & 74333.52 & 5878.86 & 1416.80 \\ \hline
+\textit{sbert heuristic} & 6603.14 & 59408.55 & 17053.03 & 1951.91 & 7476.45 \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Err}} \\ \hline
-Balance & 3.63 & 8.93 & -1.65 & 6.80 & 6.29 \\ \hline
-Power & 10.67 & -6.78 & 5.86 & -1.69 & 2.84 \\ \hline
-Maximum & 8.21 & 5.28 & -6.80 & 5.43 & 1.24 \\ \hline
-Cutoff & 8.08 & -12.71 & 0.51 & 2.23 & 4.12 \\ \hline
-Sbert & 13.10 & -0.75 & 0.52 & 7.51 & 0.67 \\ \hline
+\textit{balance heuristic} & 3.63 & 8.93 & -1.65 & 6.80 & 6.29 \\ \hline
+\textit{power heuristic} & 10.67 & -6.78 & 5.86 & -1.69 & 2.84 \\ \hline
+\textit{maximum heuristic} & 8.21 & 5.28 & -6.80 & 5.43 & 1.24 \\ \hline
+\textit{cutoff heuristic} & 8.08 & -12.71 & 0.51 & 2.23 & 4.12 \\ \hline
+\textit{sbert heuristic} & 13.10 & -0.75 & 0.52 & 7.51 & 0.67 \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de DE}} \\ \hline
-Balance & 40.21 & 31.19 & 29.39 & 17.13 & 10.70 \\ \hline
-Power & 36.94 & 46.45 & 21.71 & 26.32 & 13.61 \\ \hline
-Maximum & 36.01 & 34.19 & 34.76 & 18.94 & 15.45 \\ \hline
-Cutoff & 37.73 & 46.92 & 28.03 & 21.41 & 12.85 \\ \hline
-Sbert & 32.84 & 39.51 & 27.41 & 16.83 & 15.55 \\ \hline
+\textit{balance heuristic} & 40.21 & 31.19 & 29.39 & 17.13 & 10.70 \\ \hline
+\textit{power heuristic} & 36.94 & 46.45 & 21.71 & 26.32 & 13.61 \\ \hline
+\textit{maximum heuristic} & 36.01 & 34.19 & 34.76 & 18.94 & 15.45 \\ \hline
+\textit{cutoff heuristic} & 37.73 & 46.92 & 28.03 & 21.41 & 12.85 \\ \hline
+\textit{sbert heuristic} & 32.84 & 39.51 & 27.41 & 16.83 & 15.55 \\ \hline
 \end{tabular}%
 \caption{Análisis de los resultados por heurística y cantidad de muestras}
 \end{table}
@@ -655,35 +655,35 @@ Sbert & 32.84 & 39.51 & 27.41 & 16.83 & 15.55 \\ \hline
 \hline
 \textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 1 (2 dimensiones)}} \\ \hline
-Balance & 0.04 & 0.03 & 0.12 \\ \hline
-Power & 0.12 & 0.00 & 0.15 \\ \hline
-Maximum & 30.53 & -0.24 & 0.40 \\ \hline
-Cutoff & 0.07 & 0.01 & 0.14 \\ \hline
-Sbert & 0.06 & 0.02 & 0.13 \\ \hline
+\textit{balance heuristic} & 0.04 & 0.03 & 0.12 \\ \hline
+\textit{power heuristic} & 0.12 & 0.00 & 0.15 \\ \hline
+\textit{maximum heuristic} & 30.53 & -0.24 & 0.40 \\ \hline
+\textit{cutoff heuristic} & 0.07 & 0.01 & 0.14 \\ \hline
+\textit{sbert heuristic} & 0.06 & 0.02 & 0.13 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 2 (3 dimensiones)}} \\ \hline
-Balance & 1.86 & 0.11 & 0.52 \\ \hline
-Power & 0.76 & 0.11 & 0.50 \\ \hline
-Maximum & 8.76 & 0.00 & 0.62 \\ \hline
-Cutoff & 1.07 & 0.12 & 0.51 \\ \hline
-Sbert & 2.64 & -0.02 & 0.64 \\ \hline
+\textit{balance heuristic} & 1.86 & 0.11 & 0.52 \\ \hline
+\textit{power heuristic} & 0.76 & 0.11 & 0.50 \\ \hline
+\textit{maximum heuristic} & 8.76 & 0.00 & 0.62 \\ \hline
+\textit{cutoff heuristic} & 1.07 & 0.12 & 0.51 \\ \hline
+\textit{sbert heuristic} & 2.64 & -0.02 & 0.64 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 3 (4 dimensiones)}} \\ \hline
-Balance & 29.51 & 0.49 & 2.21 \\ \hline
-Power & 105.99 & -0.14 & 2.86 \\ \hline
-Maximum & 18.16 & 0.70 & 2.06 \\ \hline
-Cutoff & 23.96 & 0.28 & 2.43 \\ \hline
-Sbert & 278.20 & 0.10 & 2.65 \\ \hline
+\textit{balance heuristic} & 29.51 & 0.49 & 2.21 \\ \hline
+\textit{power heuristic} & 105.99 & -0.14 & 2.86 \\ \hline
+\textit{maximum heuristic} & 18.16 & 0.70 & 2.06 \\ \hline
+\textit{cutoff heuristic} & 23.96 & 0.28 & 2.43 \\ \hline
+\textit{sbert heuristic} & 278.20 & 0.10 & 2.65 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 4 (5 dimensiones)}} \\ \hline
-Balance & 18.61 & 0.27 & 1.62 \\ \hline
-Power & 85.91 & -0.21 & 2.14 \\ \hline
-Maximum & 40.65 & -0.12 & 1.95 \\ \hline
-Cutoff & 9.87 & 0.46 & 1.47 \\ \hline
-Sbert & 9.34 & 0.37 & 1.54 \\ \hline
+\textit{balance heuristic} & 18.61 & 0.27 & 1.62 \\ \hline
+\textit{power heuristic} & 85.91 & -0.21 & 2.14 \\ \hline
+\textit{maximum heuristic} & 40.65 & -0.12 & 1.95 \\ \hline
+\textit{cutoff heuristic} & 9.87 & 0.46 & 1.47 \\ \hline
+\textit{sbert heuristic} & 9.34 & 0.37 & 1.54 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 5 (6 dimensiones)}} \\ \hline
-Balance & 481.61 & 2.76 & 11.17 \\ \hline
-Power & 943.69 & 2.36 & 11.74 \\ \hline
-Maximum & 1771.43 & 0.04 & 14.19 \\ \hline
-Cutoff & 863.24 & 0.92 & 13.37 \\ \hline
-Sbert & 724.53 & 1.85 & 12.35 \\ \hline
+\textit{balance heuristic} & 481.61 & 2.76 & 11.17 \\ \hline
+\textit{power heuristic} & 943.69 & 2.36 & 11.74 \\ \hline
+\textit{maximum heuristic} & 1771.43 & 0.04 & 14.19 \\ \hline
+\textit{cutoff heuristic} & 863.24 & 0.92 & 13.37 \\ \hline
+\textit{sbert heuristic} & 724.53 & 1.85 & 12.35 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 1-5}
@@ -697,35 +697,35 @@ Sbert & 724.53 & 1.85 & 12.35 \\ \hline
 \hline
 \textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6 (7 dimensiones)}} \\ \hline
-Balance & 1306.95 & 2.46 & 15.34 \\ \hline
-Power & 963.76 & 3.33 & 14.93 \\ \hline
-Maximum & 9279.05 & -0.52 & 18.93 \\ \hline
-Cutoff & 1088.97 & 3.46 & 15.06 \\ \hline
-Sbert & 1070.86 & 1.33 & 16.57 \\ \hline
+\textit{balance heuristic} & 1306.95 & 2.46 & 15.34 \\ \hline
+\textit{power heuristic} & 963.76 & 3.33 & 14.93 \\ \hline
+\textit{maximum heuristic} & 9279.05 & -0.52 & 18.93 \\ \hline
+\textit{cutoff heuristic} & 1088.97 & 3.46 & 15.06 \\ \hline
+\textit{sbert heuristic} & 1070.86 & 1.33 & 16.57 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 7 (8 dimensiones)}} \\ \hline
-Balance & 25439.79 & 4.67 & 45.24 \\ \hline
-Power & 4664.42 & 15.44 & 36.94 \\ \hline
-Maximum & 10284.54 & 8.22 & 41.82 \\ \hline
-Cutoff & 7801.54 & 12.21 & 38.41 \\ \hline
-Sbert & 9223.81 & 10.39 & 38.39 \\ \hline
+\textit{balance heuristic} & 25439.79 & 4.67 & 45.24 \\ \hline
+\textit{power heuristic} & 4664.42 & 15.44 & 36.94 \\ \hline
+\textit{maximum heuristic} & 10284.54 & 8.22 & 41.82 \\ \hline
+\textit{cutoff heuristic} & 7801.54 & 12.21 & 38.41 \\ \hline
+\textit{sbert heuristic} & 9223.81 & 10.39 & 38.39 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 8 (9 dimensiones)}} \\ \hline
-Balance & 3084.19 & 7.14 & 25.95 \\ \hline
-Power & 2962.02 & 8.85 & 24.88 \\ \hline
-Maximum & 209686.80 & -16.35 & 49.79 \\ \hline
-Cutoff & 170432.00 & -18.71 & 52.89 \\ \hline
-Sbert & 2462.07 & 8.43 & 25.26 \\ \hline
+\textit{balance heuristic} & 3084.19 & 7.14 & 25.95 \\ \hline
+\textit{power heuristic} & 2962.02 & 8.85 & 24.88 \\ \hline
+\textit{maximum heuristic} & 209686.80 & -16.35 & 49.79 \\ \hline
+\textit{cutoff heuristic} & 170432.00 & -18.71 & 52.89 \\ \hline
+\textit{sbert heuristic} & 2462.07 & 8.43 & 25.26 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 9 (10 dimensiones)}} \\ \hline
-Balance & 54957.71 & 24.84 & 83.50 \\ \hline
-Power & 235542.00 & 2.03 & 107.36 \\ \hline
-Maximum & 39747.77 & 17.58 & 87.42 \\ \hline
-Cutoff & 33146.26 & 30.28 & 79.06 \\ \hline
-Sbert & 56862.70 & 17.78 & 90.10 \\ \hline
+\textit{balance heuristic} & 54957.71 & 24.84 & 83.50 \\ \hline
+\textit{power heuristic} & 235542.00 & 2.03 & 107.36 \\ \hline
+\textit{maximum heuristic} & 39747.77 & 17.58 & 87.42 \\ \hline
+\textit{cutoff heuristic} & 33146.26 & 30.28 & 79.06 \\ \hline
+\textit{sbert heuristic} & 56862.70 & 17.78 & 90.10 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 10 (11 dimensiones)}} \\ \hline
-Balance & 68163.77 & 5.20 & 71.55 \\ \hline
-Power & 224169.45 & -9.98 & 88.55 \\ \hline
-Maximum & 39889.16 & 17.40 & 61.52 \\ \hline
-Cutoff & 470442.18 & -24.55 & 90.47 \\ \hline
-Sbert & 114351.93 & 1.82 & 76.61 \\ \hline
+\textit{balance heuristic} & 68163.77 & 5.20 & 71.55 \\ \hline
+\textit{power heuristic} & 224169.45 & -9.98 & 88.55 \\ \hline
+\textit{maximum heuristic} & 39889.16 & 17.40 & 61.52 \\ \hline
+\textit{cutoff heuristic} & 470442.18 & -24.55 & 90.47 \\ \hline
+\textit{sbert heuristic} & 114351.93 & 1.82 & 76.61 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 6-10}
@@ -738,11 +738,11 @@ Sbert & 114351.93 & 1.82 & 76.61 \\ \hline
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Heurística} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
-Balance & 15348.41 & 4.80 & 25.73 \\ \hline
-Power & 46943.82 & 2.18 & 29.01 \\ \hline
-Maximum & 31075.69 & 2.67 & 27.87 \\ \hline
-Cutoff & 68380.92 & 0.45 & 29.39 \\ \hline
-Sbert & 18498.62 & 4.21 & 26.43 \\ \hline
+\textit{balance heuristic} & 15348.41 & 4.80 & 25.73 \\ \hline
+\textit{power heuristic} & 46943.82 & 2.18 & 29.01 \\ \hline
+\textit{maximum heuristic} & 31075.69 & 2.67 & 27.87 \\ \hline
+\textit{cutoff heuristic} & 68380.92 & 0.45 & 29.39 \\ \hline
+\textit{sbert heuristic} & 18498.62 & 4.21 & 26.43 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística}
@@ -900,23 +900,23 @@ Luego, el análisis se hizo de la misma manera que en las pruebas anteriores.
 \hline
 \textbf{\makecell{Heurística / \\ \# de muestras}} & \textbf{25} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} & \textbf{50000} \\ \hline
 \multicolumn{8}{|c|}{\textbf{Promedio de Var}} \\ \hline
-Balance & 83.88 & 5.48 & 10.06 & 16.93 & 4.61 & 25.98 & 78.95 \\ \hline
-Power & 8.37 & 14.03 & 19.82 & 1.74 & 12.64 & 25.50 & 78.43 \\ \hline
-Maximum & 159.54 & 60.44 & 41.34 & 11.77 & 18.73 & 5.72 & 4.50 \\ \hline
-Cutoff & 42.11 & 43.85 & 8.61 & 16.80 & 4.83 & 25.96 & 3.60 \\ \hline
-Sbert & 41.98 & 25.07 & 11.88 & 2.49 & 5.01 & 25.56 & 2.11 \\ \hline
+\textit{balance heuristic} & 83.88 & 5.48 & 10.06 & 16.93 & 4.61 & 25.98 & 78.95 \\ \hline
+\textit{power heuristic} & 8.37 & 14.03 & 19.82 & 1.74 & 12.64 & 25.50 & 78.43 \\ \hline
+\textit{maximum heuristic} & 159.54 & 60.44 & 41.34 & 11.77 & 18.73 & 5.72 & 4.50 \\ \hline
+\textit{cutoff heuristic} & 42.11 & 43.85 & 8.61 & 16.80 & 4.83 & 25.96 & 3.60 \\ \hline
+\textit{sbert heuristic} & 41.98 & 25.07 & 11.88 & 2.49 & 5.01 & 25.56 & 2.11 \\ \hline
 \multicolumn{8}{|c|}{\textbf{Promedio de Err}} \\ \hline
-Balance & 0.76 & 1.11 & 0.94 & 0.93 & 0.96 & 0.73 & 0.34 \\ \hline
-Power & 1.02 & 1.00 & 0.78 & 1.04 & 0.77 & 0.76 & 0.37 \\ \hline
-Maximum & -0.41 & -0.31 & -0.60 & -0.46 & -0.50 & -0.67 & -0.83 \\ \hline
-Cutoff & 1.04 & 0.66 & 1.05 & 0.94 & 0.92 & 0.75 & 0.63 \\ \hline
-Sbert & 0.93 & 0.93 & 0.94 & 0.97 & 0.90 & 0.74 & 0.76 \\ \hline
+\textit{balance heuristic} & 0.76 & 1.11 & 0.94 & 0.93 & 0.96 & 0.73 & 0.34 \\ \hline
+\textit{power heuristic} & 1.02 & 1.00 & 0.78 & 1.04 & 0.77 & 0.76 & 0.37 \\ \hline
+\textit{maximum heuristic} & -0.41 & -0.31 & -0.60 & -0.46 & -0.50 & -0.67 & -0.83 \\ \hline
+\textit{cutoff heuristic} & 1.04 & 0.66 & 1.05 & 0.94 & 0.92 & 0.75 & 0.63 \\ \hline
+\textit{sbert heuristic} & 0.93 & 0.93 & 0.94 & 0.97 & 0.90 & 0.74 & 0.76 \\ \hline
 \multicolumn{8}{|c|}{\textbf{Promedio de DE}} \\ \hline
-Balance & 1.24 & 0.78 & 0.81 & 0.59 & 0.47 & 0.54 & 0.72 \\ \hline
-Power & 0.97 & 0.88 & 0.99 & 0.50 & 0.66 & 0.51 & 0.71 \\ \hline
-Maximum & 1.89 & 1.57 & 1.64 & 1.02 & 0.88 & 0.71 & 0.50 \\ \hline
-Cutoff & 0.97 & 1.19 & 0.72 & 0.59 & 0.51 & 0.52 & 0.42 \\ \hline
-Sbert & 1.06 & 0.93 & 0.82 & 0.56 & 0.52 & 0.52 & 0.31 \\ \hline
+\textit{balance heuristic} & 1.24 & 0.78 & 0.81 & 0.59 & 0.47 & 0.54 & 0.72 \\ \hline
+\textit{power heuristic} & 0.97 & 0.88 & 0.99 & 0.50 & 0.66 & 0.51 & 0.71 \\ \hline
+\textit{maximum heuristic} & 1.89 & 1.57 & 1.64 & 1.02 & 0.88 & 0.71 & 0.50 \\ \hline
+\textit{cutoff heuristic} & 0.97 & 1.19 & 0.72 & 0.59 & 0.51 & 0.52 & 0.42 \\ \hline
+\textit{sbert heuristic} & 1.06 & 0.93 & 0.82 & 0.56 & 0.52 & 0.52 & 0.31 \\ \hline
 \end{tabular}
 \caption{Análisis de los resultados por heurística y cantidad de muestras}
 \end{table}
@@ -929,35 +929,35 @@ Sbert & 1.06 & 0.93 & 0.82 & 0.56 & 0.52 & 0.52 & 0.31 \\ \hline
 \hline
 \textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 1 (3 dimensiones)}} \\ \hline
-Balance & 4.99 & -0.038 & 0.92 \\ \hline
-Power & 7.62 & -0.215 & 1.11 \\ \hline
-Maximum & 17.32 & -2.37 & 1.67 \\ \hline
-Cutoff & 4.45 & 0.016 & 0.86 \\ \hline
-Sbert & 6.67 & -0.106 & 0.96 \\ \hline
+\textit{balance heuristic} & 4.99 & -0.038 & 0.92 \\ \hline
+\textit{power heuristic} & 7.62 & -0.215 & 1.11 \\ \hline
+\textit{maximum heuristic} & 17.32 & -2.37 & 1.67 \\ \hline
+\textit{cutoff heuristic} & 4.45 & 0.016 & 0.86 \\ \hline
+\textit{sbert heuristic} & 6.67 & -0.106 & 0.96 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 2 (4 dimensiones)}} \\ \hline
-Balance & 112.57 & -0.084 & 1.32 \\ \hline
-Power & 41.46 & -0.107 & 1.35 \\ \hline
-Maximum & 312.36 & -2.44 & 2.43 \\ \hline
-Cutoff & 121.58 & -0.488 & 1.73 \\ \hline
-Sbert & 96.73 & -0.375 & 1.59 \\ \hline
+\textit{balance heuristic} & 112.57 & -0.084 & 1.32 \\ \hline
+\textit{power heuristic} & 41.46 & -0.107 & 1.35 \\ \hline
+\textit{maximum heuristic} & 312.36 & -2.44 & 2.43 \\ \hline
+\textit{cutoff heuristic} & 121.58 & -0.488 & 1.73 \\ \hline
+\textit{sbert heuristic} & 96.73 & -0.375 & 1.59 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 3 (5 dimensiones)}} \\ \hline
-Balance & 30.21 & 0.636 & 0.80 \\ \hline
-Power & 18.34 & 0.700 & 0.74 \\ \hline
-Maximum & 30.56 & -0.766 & 1.14 \\ \hline
-Cutoff & 29.77 & 0.609 & 0.80 \\ \hline
-Sbert & 7.62 & 0.833 & 0.60 \\ \hline
+\textit{balance heuristic} & 30.21 & 0.636 & 0.80 \\ \hline
+\textit{power heuristic} & 18.34 & 0.700 & 0.74 \\ \hline
+\textit{maximum heuristic} & 30.56 & -0.766 & 1.14 \\ \hline
+\textit{cutoff heuristic} & 29.77 & 0.609 & 0.80 \\ \hline
+\textit{sbert heuristic} & 7.62 & 0.833 & 0.60 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 4 (6 dimensiones)}} \\ \hline
-Balance & 38.13 & 0.814 & 0.68 \\ \hline
-Power & 37.52 & 0.820 & 0.68 \\ \hline
-Maximum & 6.52 & -0.206 & 0.72 \\ \hline
-Cutoff & 40.02 & 0.735 & 0.76 \\ \hline
-Sbert & 37.37 & 0.852 & 0.64 \\ \hline
+\textit{balance heuristic} & 38.13 & 0.814 & 0.68 \\ \hline
+\textit{power heuristic} & 37.52 & 0.820 & 0.68 \\ \hline
+\textit{maximum heuristic} & 6.52 & -0.206 & 0.72 \\ \hline
+\textit{cutoff heuristic} & 40.02 & 0.735 & 0.76 \\ \hline
+\textit{sbert heuristic} & 37.37 & 0.852 & 0.64 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 5 (7 dimensiones)}} \\ \hline
-Balance & 109.74 & 0.655 & 0.87 \\ \hline
-Power & 109.28 & 0.686 & 0.85 \\ \hline
-Maximum & 2.66 & -0.104 & 0.66 \\ \hline
-Cutoff & 0.38 & 1.217 & 0.32 \\ \hline
-Sbert & 0.57 & 1.226 & 0.31 \\ \hline
+\textit{balance heuristic} & 109.74 & 0.655 & 0.87 \\ \hline
+\textit{power heuristic} & 109.28 & 0.686 & 0.85 \\ \hline
+\textit{maximum heuristic} & 2.66 & -0.104 & 0.66 \\ \hline
+\textit{cutoff heuristic} & 0.38 & 1.217 & 0.32 \\ \hline
+\textit{sbert heuristic} & 0.57 & 1.226 & 0.31 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 1-5}
@@ -971,35 +971,35 @@ Sbert & 0.57 & 1.226 & 0.31 \\ \hline
 \hline
 \textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 6 (11 dimensiones)}} \\ \hline
-Balance & 1.68 & 1.265 & 0.41 \\ \hline
-Power & 2.27 & 1.190 & 0.46 \\ \hline
-Maximum & 2.10 & 0.095 & 0.77 \\ \hline
-Cutoff & 1.19 & 1.234 & 0.43 \\ \hline
-Sbert & 0.68 & 1.306 & 0.38 \\ \hline
+\textit{balance heuristic} & 1.68 & 1.265 & 0.41 \\ \hline
+\textit{power heuristic} & 2.27 & 1.190 & 0.46 \\ \hline
+\textit{maximum heuristic} & 2.10 & 0.095 & 0.77 \\ \hline
+\textit{cutoff heuristic} & 1.19 & 1.234 & 0.43 \\ \hline
+\textit{sbert heuristic} & 0.68 & 1.306 & 0.38 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 7 (13 dimensiones)}} \\ \hline
-Balance & 0.88 & 1.294 & 0.44 \\ \hline
-Power & 2.60 & 1.243 & 0.48 \\ \hline
-Maximum & 3.59 & 0.072 & 0.86 \\ \hline
-Cutoff & 1.18 & 1.256 & 0.48 \\ \hline
-Sbert & 0.73 & 1.292 & 0.43 \\ \hline
+\textit{balance heuristic} & 0.88 & 1.294 & 0.44 \\ \hline
+\textit{power heuristic} & 2.60 & 1.243 & 0.48 \\ \hline
+\textit{maximum heuristic} & 3.59 & 0.072 & 0.86 \\ \hline
+\textit{cutoff heuristic} & 1.18 & 1.256 & 0.48 \\ \hline
+\textit{sbert heuristic} & 0.73 & 1.292 & 0.43 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 8 (16 dimensiones)}} \\ \hline
-Balance & 2.77 & 1.259 & 0.54 \\ \hline
-Power & 2.11 & 1.265 & 0.55 \\ \hline
-Maximum & 11.72 & -0.016 & 1.13 \\ \hline
-Cutoff & 5.39 & 1.199 & 0.61 \\ \hline
-Sbert & 3.23 & 1.256 & 0.57 \\ \hline
+\textit{balance heuristic} & 2.77 & 1.259 & 0.54 \\ \hline
+\textit{power heuristic} & 2.11 & 1.265 & 0.55 \\ \hline
+\textit{maximum heuristic} & 11.72 & -0.016 & 1.13 \\ \hline
+\textit{cutoff heuristic} & 5.39 & 1.199 & 0.61 \\ \hline
+\textit{sbert heuristic} & 3.23 & 1.256 & 0.57 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 9 (19 dimensiones)}} \\ \hline
-Balance & 4.73 & 1.264 & 0.63 \\ \hline
-Power & 2.87 & 1.302 & 0.60 \\ \hline
-Maximum & 5.19 & 0.405 & 0.88 \\ \hline
-Cutoff & 0.72 & 1.414 & 0.47 \\ \hline
-Sbert & 5.63 & 1.278 & 0.60 \\ \hline
+\textit{balance heuristic} & 4.73 & 1.264 & 0.63 \\ \hline
+\textit{power heuristic} & 2.87 & 1.302 & 0.60 \\ \hline
+\textit{maximum heuristic} & 5.19 & 0.405 & 0.88 \\ \hline
+\textit{cutoff heuristic} & 0.72 & 1.414 & 0.47 \\ \hline
+\textit{sbert heuristic} & 5.63 & 1.278 & 0.60 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 10 (21 dimensiones)}} \\ \hline
-Balance & 17.01 & 1.180 & 0.75 \\ \hline
-Power & 5.24 & 1.314 & 0.64 \\ \hline
-Maximum & 39.47 & -0.077 & 1.45 \\ \hline
-Cutoff & 3.54 & 1.375 & 0.56 \\ \hline
-Sbert & 3.79 & 1.265 & 0.67 \\ \hline
+\textit{balance heuristic} & 17.01 & 1.180 & 0.75 \\ \hline
+\textit{power heuristic} & 5.24 & 1.314 & 0.64 \\ \hline
+\textit{maximum heuristic} & 39.47 & -0.077 & 1.45 \\ \hline
+\textit{cutoff heuristic} & 3.54 & 1.375 & 0.56 \\ \hline
+\textit{sbert heuristic} & 3.79 & 1.265 & 0.67 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 6-10}
@@ -1011,11 +1011,11 @@ Sbert & 3.79 & 1.265 & 0.67 \\ \hline
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Heurística} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
-Balance & 32.27 & 0.825 & 0.736 \\ \hline
-Power & 22.93 & 0.820 & 0.746 \\ \hline
-Maximum & 43.15 & -0.541 & 1.172 \\ \hline
-Cutoff & 20.82 & 0.857 & 0.704 \\ \hline
-Sbert & 16.30 & 0.883 & 0.675 \\ \hline
+\textit{balance heuristic} & 32.27 & 0.825 & 0.736 \\ \hline
+\textit{power heuristic} & 22.93 & 0.820 & 0.746 \\ \hline
+\textit{maximum heuristic} & 43.15 & -0.541 & 1.172 \\ \hline
+\textit{cutoff heuristic} & 20.82 & 0.857 & 0.704 \\ \hline
+\textit{sbert heuristic} & 16.30 & 0.883 & 0.675 \\ \hline
 \end{tabular}
 \caption{Análisis de los resultados por heurística}
 \end{table}
