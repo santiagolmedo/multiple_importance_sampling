@@ -96,22 +96,26 @@ Ahora, supongamos que se quiere evaluar el valor de la integral $I = \int_{a}^{b
 $$F = \frac{b-a}{n} \sum_{i=1}^{n} f(X_i)$$
 es igual a $I$. Esto se puede ver de la siguiente manera:
 $$E[F] = E\left[\frac{b-a}{n} \sum_{i=1}^{n} f(X_i)\right] = \frac{b-a}{n} \sum_{i=1}^{n} E[f(X_i)] = \frac{b-a}{n} \sum_{i=1}^{n} \int_{a}^{b} f(x) p(x) \,dx = \int_{a}^{b} f(x) \,dx.$$
-Dado que $X_i$ es muestreado de $[a,b]$, $p(x) = \frac{1}{b-a}$ para $x \in [a,b]$. Entonces, sustituyendo $p(x)$ por $\frac{1}{b-a}$, y haciendo $\frac{b-a}{n} * n = b-a$, se cancela con $\frac{1}{b-a}$, y se obtiene la última igualdad.
+Dado que $X_i$ es muestreado de $[a,b]$, $p(x) = \frac{1}{b-a}$ para $x \in [a,b]$. Entonces, sustituyendo $p(x)$ por $\frac{1}{b-a}$, y haciendo $\frac{b-a}{n} n = b-a$, se cancela con $\frac{1}{b-a}$, y se obtiene la última igualdad.
 
-Esto se puede extender a
+La restricción de usar distribuciones uniformes se puede sacar haciendo una generalización. Para una distribución arbitraria $p(x)$ que satisface que sea distinto de 0 para todo $x$ donde $f(x)$ es distinto de 0, se puede decir que el valor esperado del estimador
 $$ F = \frac{1}{n} \sum_{i=1}^{n} \frac{f(X_i)}{p(X_i)}$$
-es igual a I con la condición de que $p(x) > 0$. De manera parecida, se puede ver que el valor esperado del estimador:
+se puede usar para estimar la integral I. De manera parecida, se puede ver que el valor esperado del estimador es igual a I:
 $$E[F] = E\left[\frac{1}{n} \sum_{i=1}^{n} \frac{f(X_i)}{p(X_i)}\right] = \frac{1}{n} \sum_{i=1}^{n} \int_{a}^{b} \frac{f(x)}{p(x)} p(x) \,dx = \frac{1}{n} \sum_{i=1}^{n} \int_{a}^{b} f(x) \,dx = \int_{a}^{b} f(x) \,dx$$
 
 Ahora, es importante mostrar el error de la estimación. Para esto, se puede usar el estimador del esquema básico de Monte Carlo para la varianza de $F$:
 
 $$V[\frac{1}{n}\sum_{i=1}^{n} X_{(i)}] = \frac{1}{n^{2}} \sum_{i=1}^{n} V[X_{(i)}]$$
 
-dado que las variables aleatorias $X_{i}$ son independientes. Teniendo en cuenta que $X_{i}$ tienen la misma distribución y por lo tanto la misma varianza, se puede escribir:
+dado que las variables aleatorias $X_{i}$ son independientes. Teniendo en cuenta que $X_{i}$ tienen la misma distribución y por lo tanto la misma desviación estándar, se puede escribir la varianza del estimador $F$ como:
 
-$$V[F] = \frac{1}{n^{2}} \sum_{i=1}^{n} V[X_{(i)}] = \frac{1}{n^{2}} * n * \sigma^{2} = \frac{\sigma^{2}}{n}$$.
+$$V[F] = \frac{1}{n^{2}} \sum_{i=1}^{n} V[X_{i}] = \frac{1}{n^{2}} \cdot n \cdot \sigma^{2} = \frac{\sigma^{2}}{n}.$$
 
-Por lo tanto, el error de la estimación es $\frac{\sigma^{2}}{n}$, que es del orden de $n^{-1/2}$.
+Sin embargo, el error estándar del estimador, que proporciona una medida de la precisión de la estimación de $\phi$, se calcula como la raíz cuadrada de esta varianza, resultando en:
+
+$$\text{Error estándar} = \sqrt{\frac{\sigma^{2}}{n}} = \frac{\sigma}{\sqrt{n}}.$$
+
+Por lo tanto, el error de la estimación disminuye a una tasa de $n^{-1/2}$, reflejando la precisión de la estimación del valor esperado $\phi$ en términos de la desviación estándar $\sigma$.
 
 \section{Multiple Importance Sampling}
 
@@ -119,8 +123,32 @@ En esta sección se va a presentar la técnica de Multiple Importance Sampling (
 
 \subsection{Motivación}
 
-Tenemos una integral que puede ser de de la forma
-$$ \int f_{1}(x) * f_{2}(x) * f_{3}(x) * ... * f_{k}(x) \,d(x)$$
+Según vimos en la sección anterior, el método de Monte Carlo nos provee de un buen estimador para la integral de una función.
+Ahora, cuando nos enfrentamos a problemas de computación gráfica donde la función a integrar puede ser compleja como la ecuación de rendering necesitamos más muestras para obtener una estimación precisa.
+La cantidad de muestras trae consigo un costo computacional y por lo tanto se buscan técnicas que permitan mejorar la eficiencia de la estimación.
+
+\paragraph{Importance Sampling}
+Una de las técnicas que se pueden usar para mejorar la eficiencia de la estimación es Importance Sampling (IS).
+
+Esta técnica consiste en, dado el estimador de Monte Carlo
+
+$$ F = \frac{1}{n} \sum_{i=1}^{n} \frac{f(X_{i})}{p(X_{i})}$$
+
+aprovechar que la varianza de $F$ se puede reducir si se elige una distribución de muestreo $p(x)$ que sea cercana a $f(x)$.
+
+La clave para reducir la varianza del estimador con Importance Sampling recae en la elección de la distribución de muestreo $p(x)$.
+Al seleccionar una $p(x)$ que sea cercana a $f(x)$, se logra que las muestras generadas $X_{i}$ se concentren en las regiones donde $f(x)$ es más grande lo que resulta en:
+
+\begin{itemize}
+    \item Al enfocarse más en las áreas donde $f(x)$ tiene valores más altos, cada muestra contribuye más información útil para la estimación.
+          Esto hace que el estimador sea más eficiente con menos muestras.
+    \item Las muestras no se desperdician en regiones donde $f(x)$ contribuye poco y nada al valor de la integral.
+\end{itemize}
+
+\paragraph{Multiple Importance Sampling}
+
+En este caso, tenemos una integral que puede ser de de la forma
+$$ \int f_{1}(x) f_{2}(x) f_{3}(x) ... f_{k}(x) \,d(x)$$
 
 y $ p_{1}, p_{2}, p_{3}, ..., p_{k}$ parecidas a $f_{1}, f_{2}, f_{3}, ..., f_{k}$.
 La idea es usar las distintas distribuciones de muestreo y combinarlas para encontrar una estimación de la integral con menor varianza y y con bajo costo computacional.
@@ -145,15 +173,15 @@ $$ \int f(x) \,d\mu(x)$$
 donde el dominio de integración es $\Omega$ y $\mu$ es dado. Tenemos $n$ distribuciones de muestreo $p_{1}, p_{2}, ..., p_{n}$, en el dominio $\Omega$.
 Tenemos las siguientes operaciones:
 \begin{itemize}
-    \item dado $x \in \Omega$, podemos evaluar $f(x)$ y $p_{i}(x)$
-    \item la posibilidad de generar una muestra X con distribución $p_{i}$
+    \item dado $x \in \Omega$, podemos evaluar $f(x)$ y $p_{i}(x)$.
+    \item la posibilidad de generar una muestra X con distribución $p_{i}$ para $i \in \{1, 2, ..., n\}$.
 \end{itemize}
 
 Notación:
 \begin{itemize}
     \item $n_{i}$: número de muestras generadas con $p_{i}$. Este numéro es conocido a priori.
-    \item $N = \sum_{i=1}^{n} n_{i}$: número total de muestras
-    \item Para $j \in \{1, 2, ..., N\}$, $X_{i,j}$ es la $j$-ésima muestra generada con $p_{i}$
+    \item $N = \sum_{i=1}^{n} n_{i}$: número total de muestras.
+    \item Para $j \in \{1, 2, ..., N\}$, $X_{i,j}$ es la $j$-ésima muestra generada con $p_{i}$.
 \end{itemize}
 
 \subsection{Estimador multi-sample}
@@ -173,9 +201,9 @@ donde se tiene que cumplir que:
 
 Esto implica que en cada punto donde f(x) es distinto de 0, al menos una de $p_{i}(x)$ es positivo.
 
-Lema de que el estimador es insesgado:
+\textbf{Lema 9.1} Sea $F$ el estimador multi-sample. Entonces, $F$ es insesgado, es decir:
 
-$$E[F] = \int f_(x) \,d\mu(x)$$
+$$E[F] = \int f(x) \,d\mu(x)$$
 
 Podemos demostrar que:
 \begin{align*}
@@ -187,46 +215,25 @@ E[F] &= E\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} w_i(X_{i,j}) \frac{f(
 \end{align*}
 dado que por la condición \( (W1) \), \( \sum_{i=1}^n w_i(x) = 1 \) siempre que \( f(x) \neq 0 \).
 
-Por lo tanto, el estimador \( F \) es imparcial. La última igualdad se debe a que \( \sum_{i=1}^n w_i(x) = 1 \) cuando \( f(x) \neq 0 \).
+Por lo tanto, el estimador \( F \) es insesgado. La última igualdad se debe a que \( \sum_{i=1}^n w_i(x) = 1 \) cuando \( f(x) \neq 0 \).
 
 \subsection{\textit{Balance Heuristic}}
 
-$$ \hat{w}_{i}(x) = \frac{n_{i} * p_{i}(x)}{\sum_{k} n_{k} * p_{k}(x)}$$
+$$ \hat{w}_{i}(x) = \frac{n_{i} p_{i}(x)}{\sum_{k} n_{k} p_{k}(x)}$$
 
 \textbf{Teorema 9.2} Dado $f$, $n_{i}$ y $p_{i}$ para $i \in \{1, 2, ..., n\}$. Sea F cualquier estimador insesgado de la forma del multi-sample estimator y $\hat{F}$ el estimador \textit{balance heuristic}. Entonces:
 
-$$V[\hat{F}] - V[F] \leq ( \frac{1}{min_{i} n_{i}} - \frac{1}{\sum_{i} n_{i}} ) * \mu^{2}$$
+$$V[\hat{F}] - V[F] \leq ( \frac{1}{min_{i} n_{i}} - \frac{1}{\sum_{i} n_{i}} ) \mu^{2}$$
 
 donde $\mu = E[F] = E[\hat{F}]$.
-
-% \textbf{Demostración}:
-
-% Sean:
-
-% $$ F_{i}{j} = \frac{w_{i}(X_{i,j}) f(X_{i,j})}{p_{i}(X_{i,j})}$$
-
-% y
-
-% $$ \mu_{i} = E[F_{i}{j}] =  \int_{\Omega} w_{i}(x) f(x) d\mu(x)$$.
-
-% Entonces:
-
-% \begin{align*}
-%   V[F] &= V\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} F_{i,j}\right] \\
-%   &= \sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} V[F_{i,j}] \\
-%   &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}^2]\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}]^2\right) \\
-%   &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} \int_{\Omega} \frac{w_i(x)^2 f(x)^2}{p_i(x)^2} p_{i}(x) d\mu(x)\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} n_i  \mu_i^2\right) \\
-%   &= \int_{\Omega} \left(\sum_{i=1}^n \frac{w_i(x)^2 f(x)^2}{n_i p_i(x)} d\mu(x)\right) - \left(\sum_{i=1}^n \frac{\mu_i^2}{n_i}\right).
-% \end{align*}
-
-% ... seguir viendo y entendiendo la demostración.
 
 \subsection{Otras Heurísticas}
 
 Dentro de los límites presentados en el Teorema 9.2, Veach presenta más heurísticas que son demostrablemente mejores que \textit{balance heuristic} en circunstancias particulares.
 Estas heurísticas son insesgadas al igual que \textit{balance heuristic}.
 
-Se considera la situación donde una de las distribuciones de muestreo es una coincidencia perfecta para la función a integrar. En este caso, es deseable que la heurística le de un peso de 1 a esta distribución de muestreo y 0 a las demás.
+Se considera la situación donde una de las distribuciones de muestreo es una muy buena aproximación a la función a integrar (ver figura \ref{fig:misother}).
+En este caso, es deseable que la heurística le de un peso de 1 a esta distribución de muestreo y 0 a las demás.
 La idea entonces es ir muestreando con las distintas distribuciones de muestreo y darle un peso de 1 en todo el dominio a la distribución de muestreo cercana a $f$ y 0 a las demás.
 Sería como tomar muestras solo de la distribución de muestreo cercana a $f$ pero de igual manera tomando muestras de todas porque no se sabe de antemano cuál es la distribución de muestreo cercana a $f$.
 
@@ -237,12 +244,12 @@ Sería como tomar muestras solo de la distribución de muestreo cercana a $f$ pe
 \label{fig:misother}
 \end{figure}
 
-Para encontrar la heurística se toma como ejemplo la función donde $p_{1}$ es una coincidencia perfecta para $f$ y $p_{2}$ es una constante.
+Para encontrar la heurística se toma como ejemplo la función donde $p_{1}$ es una coincidencia muy buena para $f$ y $p_{2}$ es una constante.
 Se quiere encontrar una heurística donde los pesos sean:
 $$w^{*}_{1}(x) \equiv 1$$
 $$w^{*}_{2}(x) \equiv 0$$
 ya que estos pesos nos darían una estimación $F^{*}$ con varianza 0.
-Se puede apreciar un ejemplo de esto en la imagen \ref{fig:misother}.
+Se puede apreciar un ejemplo de esto en la Figura \ref{fig:misother}.
 
 \begin{figure}[H]
 \centering
@@ -252,19 +259,20 @@ Se puede apreciar un ejemplo de esto en la imagen \ref{fig:misother}.
 \end{figure}
 
 Ahora se presentan distintas heurísticas que tienen mejor rendimiento en las circunstancias mencionadas.
-Como se muestra en la imagen \ref{fig:misother2}, el dominio de integración se divide en dos regiones A y B.
+Como se muestra en la Figura \ref{fig:misother2}, el dominio de integración se divide en dos regiones A y B.
 
 La observación que se puede hacer es que la mayoría de las muestras de $p_{1}$ caen en la región A donde $p_{1} > p_{2}$.
 Se desea que en esta región las muestras de $p_{1}$ tengan un peso de 1 y las de $p_{2}$ un peso de 0.
 \textit{balance heuristic} usaría el peso
 $$ \hat{w}_{1}(x) = \frac{p_1}{p_1 + p_2} $$
-que es mayor que 1/2 en la región A. Una manera de mejorar esto, entonces, es usar los pesos $w_{1}$ y $w_{2}$ que son 1 y 0 cada vez qie $\hat{w}_{1}$ es mayor que 1/2.
+que es mayor que 1/2 en la región A. Una manera de mejorar esto sería usando los pesos $w_{1}$ y $w_{2}$ que son 1 y 0 cada vez qie $\hat{w}_{1}$ es mayor que 1/2.
 
-Las heuristicas \textit{cutoff heuristic} y \textit{power heuristic} aplican este razonamiento.
+Veach propone dos combinaciones diferentes que aplican la idea de arriba. La primera es \textit{cutoff heuristic} y la segunda es \textit{power heuristic}.
+Cada una pertenece a una familia de heurísticas controladas por un parámetro.
 Por facilidad se reescriben los pesos de \textit{balance heuristic} como:
 $$ \hat{w}_{i}(x) = \frac{q_{i}}{\sum_{k} q_{k}} $$
 
-donde $q_{i} = n_{i} * p_{i}$.
+donde $q_{i} = n_{i} p_{i}$.
 
 \paragraph{\textit{cutoff heuristic}} La heurística \textit{cutoff heuristic} es de la forma:
 $$ w_{i}(x) = \begin{cases} 0 & \text{si } q_{i} < \alpha \cdot q_{max} \\ \frac{q_{i}}{\sum_{k} \{ q_{k} | q_{k} \geq \alpha \cdot q_{max} \}} & \text{en otro caso} \end{cases}$$
@@ -302,21 +310,6 @@ Sbert, en su artículo \cite{Sbert2016} presenta una nueva heurística para comb
 
 \paragraph{\textit{sbert heuristic}} La heurística \textit{sbert heuristic} es de la forma:
 $$ w_{i}(x) = \frac{p_{i}(x)}{\sum_{k} p_{k}(x)}$$
-
-% Varianza del estimador de MIS presentada por Veach en la demostración del Teorema 9.2 es:
-% \begin{align*}
-%   V[F] &= V\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} F_{i,j}\right] \\
-%   &= \sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} V[F_{i,j}] \\
-%   &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}^2]\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} E[F_{i,j}]^2\right) \\
-%   &= \left(\sum_{i=1}^n \frac{1}{n_i^2} \sum_{j=1}^{n_i} \int_{\Omega} \frac{w_i(x)^2 f(x)^2}{p_i(x)^2} p_{i}(x) d\mu(x)\right) - \left(\sum_{i=1}^n \frac{1}{n_i^2} n_i  \mu_i^2\right) \\
-%   &= \int_{\Omega} \left(\sum_{i=1}^n \frac{w_i(x)^2 f(x)^2}{n_i p_i(x)} d\mu(x)\right) - \left(\sum_{i=1}^n \frac{\mu_i^2}{n_i}\right).
-% \end{align*}
-
-% Sea $\sigma_{i}^{2} = E[F_{i,j}^2] - E^2[F_{i,j}]$ la varianza de $F_{i,j}$.
-% A partir de esto \textit{sbert heuristic} propone los siguientes teoremas.
-
-% \textbf{Teorema 1} Dado $n_{i}$, $\sigma_{i}^{2}$ y $1 \leq i \leq n$.
-% Si la varianza no depende de la cantidad de muestras $n_{i}$, entonc
 
 \section{Experimentación práctica}
 
