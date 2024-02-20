@@ -160,7 +160,7 @@ Por lo tanto, se puede usar MIS para combinar varias distribuciones de muestreo 
 En las próximas subsecciones se van a presentar las técnicas para combinar las distribuciones de muestreo.
 Se asume que ya están definidas las distribuciones de muestreo y a partir de estas se construyen estimadores con baja varianza.
 
-Veach propone en su tesis técnicas para combinar las distribuciones y obtener un estimador con varianza baja y demostrablemente bueno.
+Veach, en su tesis de doctorado \cite{Veach1997} introduce el concepto de MIS y presenta técnicas para combinar las distribuciones y obtener un estimador con varianza baja y demostrablemente bueno.
 En su tesis presenta el modelo multi-sample y distintas heurísticas para combinar las distribuciones de muestreo.
 A su vez, presenta el modelo one-sample que consiste en elegir en cada ejecución una distribución de muestreo y usarla para estimar la integral.
 
@@ -192,14 +192,14 @@ El estimador multi-sample es de la forma:
 
 $$F = \sum_{i=1}^{n} \frac{1}{n_{i}} \sum_{j=1}^{n_{i}} w_{i}(X_{i,j}) \frac{f(X_{i,j})}{p_{i}(X_{i,j})}$$
 
-donde se tiene que cumplir que:
+donde se tienen que cumplir las siguientes condiciones:
 
 \begin{itemize}
     \item $\sum_{i=1}^{n} w_{i}(x) = 1$ si $f(x) \neq 0$
     \item $w_{i}(x) = 0$ si $p_{i}(x) = 0$
 \end{itemize}
 
-Esto implica que en cada punto donde f(x) es distinto de 0, al menos una de $p_{i}(x)$ es positivo.
+Esto implica que en cada punto donde f(x) es distinto de 0, al menos una de las distribuciones $p_{i}(x)$ es positiva.
 
 \textbf{Lema 9.1} Sea $F$ el estimador multi-sample. Entonces, $F$ es insesgado, es decir:
 
@@ -213,9 +213,9 @@ E[F] &= E\left[\sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} w_i(X_{i,j}) \frac{f(
 &= \int_{\Omega} \left(\sum_{i=1}^n w_i(x)\right) f(x) d\mu(x) \\
 &= \int_{\Omega} f(x) d\mu(x),
 \end{align*}
-dado que por la condición \( (W1) \), \( \sum_{i=1}^n w_i(x) = 1 \) siempre que \( f(x) \neq 0 \).
+dado que por la primera condición mencionada, \( \sum_{i=1}^n w_i(x) = 1 \) siempre que \( f(x) \neq 0 \).
 
-Por lo tanto, el estimador \( F \) es insesgado. La última igualdad se debe a que \( \sum_{i=1}^n w_i(x) = 1 \) cuando \( f(x) \neq 0 \).
+Por lo tanto, el estimador \( F \) es insesgado.
 
 \subsection{\textit{Balance Heuristic}}
 
@@ -304,7 +304,7 @@ $$F = \frac{w_{I}(X_{I}) f(X_{I})}{c_{I} p_{I}(X_{I})}$$
 
 donde $X_{I}$ es una muestra generada con $p_{I}$ y $I$ es una variable aleatoria con distribución $c_{1}, c_{2}, ..., c_{n}$.
 
-\subsection{Sbert}
+\subsection{Enfoque de Sbert}
 
 Sbert, en su artículo \cite{Sbert2016} presenta una nueva heurística para combinar las distribuciones de muestreo.
 
