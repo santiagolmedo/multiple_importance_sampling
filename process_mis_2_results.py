@@ -3,7 +3,7 @@ from collections import defaultdict
 import numpy as np
 
 # Read the JSON file
-with open('results_mis_2_sech2.txt') as f:
+with open('results_mis_2_sech.txt') as f:
     data = json.load(f)
 
 variances, errors, std_devs = defaultdict(lambda: defaultdict(list)), defaultdict(lambda: defaultdict(list)), defaultdict(lambda: defaultdict(list))

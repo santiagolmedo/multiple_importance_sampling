@@ -306,7 +306,20 @@ donde $X_{I}$ es una muestra generada con $p_{I}$ y $I$ es una variable aleatori
 
 \subsection{Enfoque de Sbert}
 
-Sbert, en su artículo \cite{Sbert2016} presenta una nueva heurística para combinar las distribuciones de muestreo.
+Sbert, en su artículo \cite{Sbert2016} presenta un enfoque diferente donde propone un cambio: en lugar de utilizar las mismas cantidad de muestras para todas las distribuciones de muestreo, se utilizan distintas cantidades de muestras para cada distribución de muestreo.
+Esto, a grandes rasgos, se hace de la siguiente manera: las distribuciones con menor desviación estándar se muestrean con menos muestras y las distribuciones con mayor desviación estándar se muestrean con más muestras.
+
+El enfoque de Sbert se basa en la idea de que las distribuciones de muestreo con menor desviación estándar contribuyen más a la estimación de la integral.
+Sbert presenta los siguientes teoremas en su artículo:
+
+\textbf{Teorema 1:} Dadas de números de muestras \(\{n_i\}\) y varianzas \(\{\sigma^2_i\}\), la disposición que minimiza (maximiza) la varianza \(V[F]\) es aquella que asocia las secuencias \(\{n_i\}\) y \(\{\sigma^2_i\}\) en el mismo orden (orden inverso), respectivamente.
+
+\textbf{Teorema 2:} Si las varianzas \(\{\sigma^2_i\}\) son independientes del número de muestras, entonces la distribución \(\{n_i\}\) que minimiza la varianza \(V[F]\) es proporcional a las raíces cuadradas de las varianzas \(\sigma_i\).
+
+\textbf{Teorema 3:} Si las varianzas \(\{\sigma^2_i\}\) son independientes del número de muestras, dados los costos de muestreo \(\{c_i\}\), la distribución \(\{n_i\}\) que minimiza la varianza \(V[F]\) es proporcional a las raíces cuadradas de las varianzas \(\sigma_i\) y los costos de muestreo \(c_i\).
+$$ n_i \propto \frac{\sigma_i}{\sqrt{c_i}} $$
+
+Por simplicidad, en la experimentación práctica no se consideró el costo de muestreo y se asumió que todas las distribuciones de muestreo tienen el mismo costo.
 
 \paragraph{\textit{sbert heuristic}} La heurística \textit{sbert heuristic} es de la forma:
 $$ w_{i}(x) = \frac{p_{i}(x)}{\sum_{k} p_{k}(x)}$$
@@ -369,7 +382,7 @@ Para el análisis se hizo lo siguiente:
           Para el tercer rango de \( \mu_{i} \) se fijaron los valores entre 12 y 18.
           Las desviaciones estándar \( \sigma_{i} \) se fijaron entre 0.01 y 1.
           Los rangos \( [a_{i}, b_{i}] \) se calcularon como \( [ \mu_{i} - 2 * \sigma_{i}, \mu_{i} + 2 * \sigma_{i} ] \).
-    \item Para cada test se corrió MIS con las siguientes heurísticas: \textit{balance heuristic}, \textit{power heuristic}, \textit{maximum heuristic}, \textit{cutoff heuristic} y \textit{sbert heuristic}.
+    \item Para cada test se corrió MIS con las siguientes heurísticas: \textit{balance heuristic}, \textit{power heuristic}, \textit{maximum heuristic} y \textit{cutoff heuristic}.
     \item Para cada heurística se corrió MIS con 10, 25, 50, 100 y 150 muestras.
     \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
           el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
@@ -402,19 +415,16 @@ Este análisis se hizo para:
 \textit{power heuristic} & 0.4505 & 0.1615 & 0.0749 & 0.0384 & 0.0253 \\ \hline
 \textit{maximum heuristic} & 0.4766 & 0.1719 & 0.0797 & 0.0408 & 0.0269 \\ \hline
 \textit{cutoff heuristic} & 0.4575 & 0.1642 & 0.0760 & 0.0389 & 0.0257 \\ \hline
-\textit{sbert heuristic} & 0.4423 & 0.1584 & 0.0734 & 0.0374 & 0.0247 \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Err}} \\ \hline
 \textit{balance heuristic} & 0.0122 & 0.0062 & 0.0036 & 0.0028 & 0.0019 \\ \hline
 \textit{power heuristic} & 0.0078 & 0.0062 & 0.0051 & 0.0039 & 0.0024 \\ \hline
 \textit{maximum heuristic} & 0.0135 & 0.0066 & 0.0041 & 0.0015 & 0.0015 \\ \hline
 \textit{cutoff heuristic} & 0.0089 & 0.0068 & 0.0058 & 0.0045 & 0.0032 \\ \hline
-\textit{sbert heuristic} & 0.0148 & 0.0059 & 0.0031 & 0.0042 & 0.0033 \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de DE}} \\ \hline
 \textit{balance heuristic} & 0.6009 & 0.3674 & 0.2533 & 0.1818 & 0.1477 \\ \hline
 \textit{power heuristic} & 0.6059 & 0.3727 & 0.2563 & 0.1843 & 0.1496 \\ \hline
 \textit{maximum heuristic} & 0.6238 & 0.3848 & 0.2646 & 0.1900 & 0.1545 \\ \hline
 \textit{cutoff heuristic} & 0.6112 & 0.3762 & 0.2583 & 0.1856 & 0.1510 \\ \hline
-\textit{sbert heuristic} & 0.6003 & 0.3685 & 0.2533 & 0.1815 & 0.1475 \\ \hline
 \end{tabular}
 \caption{Análisis de los resultados por heurística y cantidad de muestras}
 \label{table:heuristic_analysis}
@@ -433,31 +443,26 @@ Este análisis se hizo para:
 \textit{power heuristic} & 0.1015 & 0.0103 & 0.2645 \\ \hline
 \textit{maximum heuristic} & 0.1023 & 0.0024 & 0.2657 \\ \hline
 \textit{cutoff heuristic} & 0.1026 & 0.0091 & 0.2646 \\ \hline
-\textit{sbert heuristic} & 0.1035 & 0.0050 & 0.2662 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 2}} \\ \hline
 \textit{balance heuristic} & 0.1625 & 0.0055 & 0.3500 \\ \hline
 \textit{power heuristic} & 0.1640 & 0.0081 & 0.3512 \\ \hline
 \textit{maximum heuristic} & 0.1641 & 0.0065 & 0.3518 \\ \hline
 \textit{cutoff heuristic} & 0.1628 & 0.0075 & 0.3507 \\ \hline
-\textit{sbert heuristic} & 0.1630 & 0.0060 & 0.3501 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 3}} \\ \hline
 \textit{balance heuristic} & 0.0907 & 0.0047 & 0.2497 \\ \hline
 \textit{power heuristic} & 0.0912 & 0.0040 & 0.2503 \\ \hline
 \textit{maximum heuristic} & 0.0890 & 0.0082 & 0.2480 \\ \hline
 \textit{cutoff heuristic} & 0.0936 & 0.0076 & 0.2531 \\ \hline
-\textit{sbert heuristic} & 0.0950 & 0.0139 & 0.2543 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 4}} \\ \hline
 \textit{balance heuristic} & 0.3690 & 0.0088 & 0.5303 \\ \hline
 \textit{power heuristic} & 0.3670 & 0.0045 & 0.5295 \\ \hline
 \textit{maximum heuristic} & 0.3659 & 0.0054 & 0.5288 \\ \hline
 \textit{cutoff heuristic} & 0.3675 & 0.0038 & 0.5296 \\ \hline
-\textit{sbert heuristic} & 0.3644 & 0.0032 & 0.5278 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 5}} \\ \hline
 \textit{balance heuristic} & 0.0929 & 0.0062 & 0.2582 \\ \hline
 \textit{power heuristic} & 0.1225 & 0.0084 & 0.2969 \\ \hline
 \textit{maximum heuristic} & 0.2178 & 0.0118 & 0.3975 \\ \hline
 \textit{cutoff heuristic} & 0.1440 & 0.0082 & 0.3215 \\ \hline
-\textit{sbert heuristic} & 0.0920 & 0.0083 & 0.2575 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 1-5}
@@ -475,31 +480,26 @@ Este análisis se hizo para:
 \textit{power heuristic} & 0.2763 & 0.0032 & 0.4590 \\ \hline
 \textit{maximum heuristic} & 0.2750 & 0.0045 & 0.4584 \\ \hline
 \textit{cutoff heuristic} & 0.2748 & 0.0062 & 0.4581 \\ \hline
-\textit{sbert heuristic} & 0.2740 & 0.0086 & 0.4578 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 7}} \\ \hline
 \textit{balance heuristic} & 0.0882 & 0.0029 & 0.2594 \\ \hline
 \textit{power heuristic} & 0.0878 & 0.0029 & 0.2590 \\ \hline
 \textit{maximum heuristic} & 0.0874 & 0.0023 & 0.2585 \\ \hline
 \textit{cutoff heuristic} & 0.0877 & 0.0037 & 0.2589 \\ \hline
-\textit{sbert heuristic} & 0.0879 & 0.0029 & 0.2590 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 8}} \\ \hline
 \textit{balance heuristic} & 0.0354 & 0.0023 & 0.1630 \\ \hline
 \textit{power heuristic} & 0.0352 & 0.0015 & 0.1628 \\ \hline
 \textit{maximum heuristic} & 0.0353 & 0.0030 & 0.1628 \\ \hline
 \textit{cutoff heuristic} & 0.0347 & 0.0047 & 0.1620 \\ \hline
-\textit{sbert heuristic} & 0.0357 & 0.0020 & 0.1636 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 9}} \\ \hline
 \textit{balance heuristic} & 0.2219 & 0.0026 & 0.4122 \\ \hline
 \textit{power heuristic} & 0.2221 & 0.0049 & 0.4124 \\ \hline
 \textit{maximum heuristic} & 0.2220 & 0.0052 & 0.4124 \\ \hline
 \textit{cutoff heuristic} & 0.2224 & 0.0025 & 0.4126 \\ \hline
-\textit{sbert heuristic} & 0.2230 & 0.0098 & 0.4128 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 10}} \\ \hline
 \textit{balance heuristic} & 0.0351 & 0.0081 & 0.1543 \\ \hline
 \textit{power heuristic} & 0.0337 & 0.0031 & 0.1521 \\ \hline
 \textit{maximum heuristic} & 0.0332 & 0.0054 & 0.1515 \\ \hline
 \textit{cutoff heuristic} & 0.0348 & 0.0049 & 0.1538 \\ \hline
-\textit{sbert heuristic} & 0.0340 & 0.0029 & 0.1529 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 6-10}
@@ -516,7 +516,6 @@ Este análisis se hizo para:
 \textit{power heuristic} & 0.1501 & 0.0051 & 0.3138 \\ \hline
 \textit{maximum heuristic} & 0.1592 & 0.0055 & 0.3235 \\ \hline
 \textit{cutoff heuristic} & 0.1525 & 0.0058 & 0.3165 \\ \hline
-\textit{sbert heuristic} & 0.1473 & 0.0063 & 0.3102 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística}
@@ -524,21 +523,21 @@ Este análisis se hizo para:
 
 
 \paragraph{Diferencias entre Heurísticas}
-Varianza de las Estimaciones: Las heurísticas \textit{balance heuristic} y \textit{sbert heuristic} muestran consistentemente las varianzas más bajas a través de todos los tamaños de muestra, lo que indica una mayor precisión en sus estimaciones.
+Varianza de las Estimaciones: La heurística \textit{balance heuristic} muestra consistentemente las varianzas más bajas a través de todos los tamaños de muestra, lo que indica una mayor precisión en sus estimaciones.
 Por otro lado, \textit{maximum heuristic} presenta la varianza más alta, especialmente con tamaños de muestra más pequeños, lo que sugiere una menor fiabilidad en comparación con otras heurísticas.
 
-Error de las Estimaciones: \textit{balance heuristic} y \textit{sbert heuristic} muestran los números más bajos para los errores, lo que indica una mayor precisión en sus resultados.
+Error de las Estimaciones: \textit{balance heuristic} muestra los números más bajos para los errores, lo que indica una mayor precisión en sus resultados.
 Las heurísticas \textit{maximum heuristic} y \textit{cutoff heuristic} presentan errores más significativos.
 
-Desviaciones Estándar de las Estimaciones: Las heurísticas \textit{balance heuristic}, \textit{power heuristic}, y \textit{sbert heuristic} mantienen desviaciones estándar más bajas, lo que sugiere estimaciones más consistentes.
+Desviaciones Estándar de las Estimaciones: Las heurísticas \textit{balance heuristic} y \textit{power heuristic} mantienen desviaciones estándar más bajas, lo que sugiere estimaciones más consistentes.
 \textit{maximum heuristic} presenta la mayor desviación estándar, reafirmando su menor consistencia en las estimaciones.
 
 \paragraph{Competitividad del MIS en Función del Tamaño de Muestra}
 Se observa que a medida que el tamaño de la muestra aumenta, todas las heurísticas mejoran en términos de varianza, error, y desviación estándar de las estimaciones. Esto es un indicativo de que el MIS se vuelve más competitivo y confiable con un mayor número de muestras.
 Específicamente, con tamaños de muestra de 50 en adelante, se empieza a notar una mejora significativa en la precisión y consistencia de las estimaciones para todas las heurísticas.
-Las heurísticas \textit{balance heuristic} y \textit{sbert heuristic} demuestran ser competitivas incluso con tamaños de muestra más pequeños (25 muestras), mientras que otras heurísticas como \textit{maximum heuristic} y \textit{cutoff heuristic} requieren tamaños de muestra mayores para alcanzar niveles similares de precisión y confiabilidad.
+La heurística \textit{balance heuristic} demuestra ser competitiva incluso con tamaños de muestra más pequeños (25 muestras), mientras que otras heurísticas como \textit{maximum heuristic} y \textit{cutoff heuristic} requieren tamaños de muestra mayores para alcanzar niveles similares de precisión y confiabilidad.
 
-En resumen, las heurísticas \textit{balance heuristic} y \textit{sbert heuristic} muestran un rendimiento superior en términos de varianza, error y consistencia de las estimaciones a través de todos los tamaños de muestra. El MIS se vuelve notablemente más competitivo y preciso con tamaños de muestra de 50 o más, aunque algunas heurísticas como \textit{balance heuristic} y \textit{sbert heuristic} ya muestran resultados prometedores con tamaños de muestra de 25. En contraste, heurísticas como \textit{maximum heuristic} y \textit{cutoff heuristic} requieren tamaños de muestra más grandes para ofrecer un nivel de precisión y consistencia comparable.
+En resumen, la heurística \textit{balance heuristic} muestra un rendimiento superior en términos de varianza, error y consistencia de las estimaciones a través de todos los tamaños de muestra. El MIS se vuelve notablemente más competitivo y preciso con tamaños de muestra de 50 o más, aunque algunas heurísticas como \textit{balance heuristic} ya muestran resultados prometedores con tamaños de muestra de 25. En contraste, heurísticas como \textit{maximum heuristic} y \textit{cutoff heuristic} requieren tamaños de muestra más grandes para ofrecer un nivel de precisión y consistencia comparable.
 
 \subsection{Prueba 2 - Análisis Multidimensional}
 
@@ -561,9 +560,10 @@ Para la aproximación gaussiana de la función \textit{sech} en múltiples dimen
 La correspondencia entre las 'anchuras' de las funciones \textit{sech} y las desviaciones estándar de las gaussianas se establece mediante el mapeo aproximado $$ \sigma(a) = \frac{\ln(2 + \sqrt{3})}{a \cdot \sqrt{2\ln(2)}} \ $$.
 Esto asegura que ambas funciones tengan anchuras comparables en el punto donde caen a la mitad de su valor máximo, facilitando la aplicación de MIS para estimar la integral de la función compleja multidimensional.
 
-
 El objetivo principal de este análisis es aplicar el MIS para estimar la integral de una función compleja, que es una suma de funciones \textit{sech} multidimensionales, a través de varias distribuciones propuestas.
 Esta función nos va a permitir analizar el MIS en varias dimensiones y comparar las diferentes heurísticas implementadas.
+
+Por temas de implementación, se decidió aplicar \textit{sbert heuristic} para este caso de prueba.
 
 En las siguientes subsecciones, detallaremos la implementación y los resultados de aplicar MIS a esta función multidimensional, examinando la eficacia de diferentes estrategias de muestreo y distribuciones propuestas.
 
@@ -590,17 +590,23 @@ A su vez, se hizo una ejecución con \textit{balance heuristic} y ver en rojo, v
 Sobre este caso de prueba se generó un análisis de las distintas heurísticas implementadas.
 Para el análisis se hizo lo siguiente:
 \begin{itemize}
-    \item Se hicieron 10 tests diferentes. Para cada test se generaron valores aleatorios para \( a_{ij} \), \( b_{ij} \), \( m \) y \( n \).
-          En cada test se generó un número aleatorio entre 2 y 10 para \( m \) y \( n \) se fijó en el número del test.
-          Es decir, para el primer test \( n = 1 \), para el segundo test \( n = 2 \), etc. La dimensión entonces es el número del test más 1.
+    \item Se hicieron 5 tests diferentes. Para cada test se generaron valores aleatorios para \( a_{ij} \), \( b_{ij} \), \( m \) y \( n \).
+          En cada test se generó un número aleatorio entre 3 y 10 para \( m \) y \( n \) se fijó en el número del test multiplicado por 2.
+          Es decir, para el primer test \( n = 2 \), para el segundo test \( n = 4 \), etc.
           Para cada test se generaron valores aleatorios para \( a_{ij} \) entre 1.8 y 2.
           Para cada test se generaron valores aleatorios para \( b_{ij} \) entre -100 y 100.
     \item Para cada test se corrió MIS con las siguientes heurísticas: \textit{balance heuristic}, \textit{power heuristic}, \textit{maximum heuristic}, \textit{cutoff heuristic} y \textit{sbert heuristic}.
-    \item Para cada heurística se corrió MIS con 50, 100, 500, 1000 y 5000 muestras.
-    \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
+    \item Para cada heurística se corrió MIS con 500, 1000, 5000, 10000 y 50000 muestras.
+    \item Para cada heurística y cantidad de muestras se corrió MIS 25 veces y se calculó el promedio de las estimaciones,
           el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
           A su vez, se calculó el promedio de los errores comparados el valor exacto de la integral y el promedio del tiempo de cómputo.
 \end{itemize}
+
+\paragraph{\textit{sbert heuristic}}
+Para la implementación de \textit{sbert heuristic} se hizo lo siguiente:
+En 0.2 * N muestras se calculó la desviación estándar que aporta cada distribución de muestreo a la estimación de la integral.
+En base al porcentaje de desviación estándar que aporta cada distribución de muestreo, se asignó una cantidad de muestras $n_i$ a cada distribución de muestreo proporcional a la desviación estándar que aporta para las próximas 0.1 * N muestras.
+Luego, cada 0.1 * N muestras, se hizo este cálculo y se asignaron las muestras a cada distribución de muestreo.
 
 De la misma manera que para la prueba pasada, se hizo un resumen de los resultados debido a la extensión de los mismos.
 Se hizo el siguiente análisis de la varianza de las estimaciones, las desviaciones estándar de las estimaciones, el error de las estimaciones.
@@ -617,25 +623,25 @@ El análisis se hizo para los mismos casos que en la prueba anterior.
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
-\textbf{\makecell{Heurística / \\ \# de muestras}} & \textbf{50} & \textbf{100} & \textbf{500} & \textbf{1000} & \textbf{5000} \\ \hline
+\textbf{\makecell{Heurística / \# de muestras}} & \textbf{500} & \textbf{1000} & \textbf{5000} & \textbf{10000} & \textbf{50000} \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Var}} \\ \hline
-\textit{balance heuristic} & 28542.80 & 11755.25 & 32890.92 & 2082.61 & 1470.44 \\ \hline
-\textit{power heuristic} & 16022.84 & 136709.92 & 3707.40 & 75721.90 & 2557.03 \\ \hline
-\textit{maximum heuristic} & 16750.33 & 16552.90 & 111964.69 & 3072.33 & 7038.19 \\ \hline
-\textit{cutoff heuristic} & 23826.31 & 236449.12 & 74333.52 & 5878.86 & 1416.80 \\ \hline
-\textit{sbert heuristic} & 6603.14 & 59408.55 & 17053.03 & 1951.91 & 7476.45 \\ \hline
+\textit{balance heuristic} & 3340.00 & 51772.11 & 422.07 & 4702.57 & 1353.72 \\ \hline
+\textit{power heuristic} & 3751.58 & 4028.67 & 2346.01 & 2573.97 & 363.62 \\ \hline
+\textit{maximum heuristic} & 3266.44 & 1012.95 & 4484.42 & 1664.93 & 141.13 \\ \hline
+\textit{cutoff heuristic} & 4237.50 & 1033.27 & 1062.86 & 1286.96 & 3935.98 \\ \hline
+\textit{sbert heuristic} & 2498.12 & 4106.75 & 530.31 & 893.72 & 177.02 \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de Err}} \\ \hline
-\textit{balance heuristic} & 3.63 & 8.93 & -1.65 & 6.80 & 6.29 \\ \hline
-\textit{power heuristic} & 10.67 & -6.78 & 5.86 & -1.69 & 2.84 \\ \hline
-\textit{maximum heuristic} & 8.21 & 5.28 & -6.80 & 5.43 & 1.24 \\ \hline
-\textit{cutoff heuristic} & 8.08 & -12.71 & 0.51 & 2.23 & 4.12 \\ \hline
-\textit{sbert heuristic} & 13.10 & -0.75 & 0.52 & 7.51 & 0.67 \\ \hline
+\textit{balance heuristic} & 13.37 & -0.88 & 14.59 & -2.29 & -1.12 \\ \hline
+\textit{power heuristic} & 11.08 & 9.92 & 6.86 & 5.82 & 7.01 \\ \hline
+\textit{maximum heuristic} & 8.73 & 17.05 & 6.30 & 4.93 & 8.87 \\ \hline
+\textit{cutoff heuristic} & 12.47 & 17.35 & 8.68 & 5.87 & -0.15 \\ \hline
+\textit{sbert heuristic} & 39.52 & 26.78 & 27.67 & 17.75 & 23.03 \\ \hline
 \multicolumn{6}{|c|}{\textbf{Promedio de DE}} \\ \hline
-\textit{balance heuristic} & 40.21 & 31.19 & 29.39 & 17.13 & 10.70 \\ \hline
-\textit{power heuristic} & 36.94 & 46.45 & 21.71 & 26.32 & 13.61 \\ \hline
-\textit{maximum heuristic} & 36.01 & 34.19 & 34.76 & 18.94 & 15.45 \\ \hline
-\textit{cutoff heuristic} & 37.73 & 46.92 & 28.03 & 21.41 & 12.85 \\ \hline
-\textit{sbert heuristic} & 32.84 & 39.51 & 27.41 & 16.83 & 15.55 \\ \hline
+\textit{balance heuristic} & 26.30 & 37.80 & 11.22 & 21.91 & 14.29 \\ \hline
+\textit{power heuristic} & 26.74 & 25.24 & 17.81 & 16.22 & 8.98 \\ \hline
+\textit{maximum heuristic} & 27.27 & 18.37 & 18.51 & 15.47 & 6.53 \\ \hline
+\textit{cutoff heuristic} & 27.08 & 17.69 & 15.20 & 14.35 & 15.48 \\ \hline
+\textit{sbert heuristic} & 20.63 & 23.07 & 11.26 & 13.81 & 6.51 \\ \hline
 \end{tabular}%
 \caption{Análisis de los resultados por heurística y cantidad de muestras}
 \end{table}
@@ -647,81 +653,39 @@ El análisis se hizo para los mismos casos que en la prueba anterior.
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 1 (2 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 0.04 & 0.03 & 0.12 \\ \hline
-\textit{power heuristic} & 0.12 & 0.00 & 0.15 \\ \hline
-\textit{maximum heuristic} & 30.53 & -0.24 & 0.40 \\ \hline
-\textit{cutoff heuristic} & 0.07 & 0.01 & 0.14 \\ \hline
-\textit{sbert heuristic} & 0.06 & 0.02 & 0.13 \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 2 (3 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 1.86 & 0.11 & 0.52 \\ \hline
-\textit{power heuristic} & 0.76 & 0.11 & 0.50 \\ \hline
-\textit{maximum heuristic} & 8.76 & 0.00 & 0.62 \\ \hline
-\textit{cutoff heuristic} & 1.07 & 0.12 & 0.51 \\ \hline
-\textit{sbert heuristic} & 2.64 & -0.02 & 0.64 \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 3 (4 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 29.51 & 0.49 & 2.21 \\ \hline
-\textit{power heuristic} & 105.99 & -0.14 & 2.86 \\ \hline
-\textit{maximum heuristic} & 18.16 & 0.70 & 2.06 \\ \hline
-\textit{cutoff heuristic} & 23.96 & 0.28 & 2.43 \\ \hline
-\textit{sbert heuristic} & 278.20 & 0.10 & 2.65 \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 4 (5 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 18.61 & 0.27 & 1.62 \\ \hline
-\textit{power heuristic} & 85.91 & -0.21 & 2.14 \\ \hline
-\textit{maximum heuristic} & 40.65 & -0.12 & 1.95 \\ \hline
-\textit{cutoff heuristic} & 9.87 & 0.46 & 1.47 \\ \hline
-\textit{sbert heuristic} & 9.34 & 0.37 & 1.54 \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 5 (6 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 481.61 & 2.76 & 11.17 \\ \hline
-\textit{power heuristic} & 943.69 & 2.36 & 11.74 \\ \hline
-\textit{maximum heuristic} & 1771.43 & 0.04 & 14.19 \\ \hline
-\textit{cutoff heuristic} & 863.24 & 0.92 & 13.37 \\ \hline
-\textit{sbert heuristic} & 724.53 & 1.85 & 12.35 \\ \hline
+\multicolumn{4}{|c|}{\textbf{Test 1 (3 dimensiones)}} \\ \hline
+\textit{balance heuristic} & 1.59 & 0.11 & 0.76 \\ \hline
+\textit{power heuristic} & 0.85 & 0.19 & 0.67 \\ \hline
+\textit{maximum heuristic} & 1.87 & 0.20 & 0.75 \\ \hline
+\textit{cutoff heuristic} & 3.91 & 0.19 & 0.79 \\ \hline
+\textit{sbert heuristic} & 1.06 & 2.31 & 0.67 \\ \hline
+\multicolumn{4}{|c|}{\textbf{Test 2 (5 dimensiones)}} \\ \hline
+\textit{balance heuristic} & 114.70 & 0.70 & 3.67 \\ \hline
+\textit{power heuristic} & 1111.22 & -2.45 & 6.93 \\ \hline
+\textit{maximum heuristic} & 19.08 & 1.80 & 2.71 \\ \hline
+\textit{cutoff heuristic} & 89.26 & -0.09 & 4.25 \\ \hline
+\textit{sbert heuristic} & 32.60 & 6.57 & 3.14 \\ \hline
+\multicolumn{4}{|c|}{\textbf{Test 3 (7 dimensiones)}} \\ \hline
+\textit{balance heuristic} & 332.17 & -0.31 & 5.55 \\ \hline
+\textit{power heuristic} & 43.55 & 1.69 & 3.74 \\ \hline
+\textit{maximum heuristic} & 43.72 & 1.40 & 3.76 \\ \hline
+\textit{cutoff heuristic} & 79.01 & 1.56 & 3.92 \\ \hline
+\textit{sbert heuristic} & 16.07 & 4.37 & 2.90 \\ \hline
+\multicolumn{4}{|c|}{\textbf{Test 4 (9 dimensiones)}} \\ \hline
+\textit{balance heuristic} & 1993.48 & 6.15 & 23.27 \\ \hline
+\textit{power heuristic} & 2620.65 & 5.51 & 23.09 \\ \hline
+\textit{maximum heuristic} & 4353.52 & 6.82 & 23.37 \\ \hline
+\textit{cutoff heuristic} & 1706.67 & 6.96 & 23.43 \\ \hline
+\textit{sbert heuristic} & 915.21 & 30.17 & 18.33 \\ \hline
+\multicolumn{4}{|c|}{\textbf{Test 5 (11 dimensiones)}} \\ \hline
+\textit{balance heuristic} & 59148.53 & 17.02 & 78.27 \\ \hline
+\textit{power heuristic} & 9287.59 & 35.74 & 60.55 \\ \hline
+\textit{maximum heuristic} & 6151.68 & 35.66 & 55.56 \\ \hline
+\textit{cutoff heuristic} & 9677.71 & 35.61 & 57.41 \\ \hline
+\textit{sbert heuristic} & 7241.00 & 91.32 & 50.23 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 1-5}
-\end{table}
-
-\begin{table}[H]
-\centering
-\label{table:heuristic_test_analysis}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf{Heurística/Test} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 6 (7 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 1306.95 & 2.46 & 15.34 \\ \hline
-\textit{power heuristic} & 963.76 & 3.33 & 14.93 \\ \hline
-\textit{maximum heuristic} & 9279.05 & -0.52 & 18.93 \\ \hline
-\textit{cutoff heuristic} & 1088.97 & 3.46 & 15.06 \\ \hline
-\textit{sbert heuristic} & 1070.86 & 1.33 & 16.57 \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 7 (8 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 25439.79 & 4.67 & 45.24 \\ \hline
-\textit{power heuristic} & 4664.42 & 15.44 & 36.94 \\ \hline
-\textit{maximum heuristic} & 10284.54 & 8.22 & 41.82 \\ \hline
-\textit{cutoff heuristic} & 7801.54 & 12.21 & 38.41 \\ \hline
-\textit{sbert heuristic} & 9223.81 & 10.39 & 38.39 \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 8 (9 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 3084.19 & 7.14 & 25.95 \\ \hline
-\textit{power heuristic} & 2962.02 & 8.85 & 24.88 \\ \hline
-\textit{maximum heuristic} & 209686.80 & -16.35 & 49.79 \\ \hline
-\textit{cutoff heuristic} & 170432.00 & -18.71 & 52.89 \\ \hline
-\textit{sbert heuristic} & 2462.07 & 8.43 & 25.26 \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 9 (10 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 54957.71 & 24.84 & 83.50 \\ \hline
-\textit{power heuristic} & 235542.00 & 2.03 & 107.36 \\ \hline
-\textit{maximum heuristic} & 39747.77 & 17.58 & 87.42 \\ \hline
-\textit{cutoff heuristic} & 33146.26 & 30.28 & 79.06 \\ \hline
-\textit{sbert heuristic} & 56862.70 & 17.78 & 90.10 \\ \hline
-\multicolumn{4}{|c|}{\textbf{Test 10 (11 dimensiones)}} \\ \hline
-\textit{balance heuristic} & 68163.77 & 5.20 & 71.55 \\ \hline
-\textit{power heuristic} & 224169.45 & -9.98 & 88.55 \\ \hline
-\textit{maximum heuristic} & 39889.16 & 17.40 & 61.52 \\ \hline
-\textit{cutoff heuristic} & 470442.18 & -24.55 & 90.47 \\ \hline
-\textit{sbert heuristic} & 114351.93 & 1.82 & 76.61 \\ \hline
-\end{tabular}%
-}
-\caption{Análisis de los resultados por heurística en los tests 6-10}
 \end{table}
 
 \begin{table}[H]
@@ -731,47 +695,29 @@ El análisis se hizo para los mismos casos que en la prueba anterior.
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Heurística} & \textbf{Promedio de Var} & \textbf{Promedio de Err} & \textbf{Promedio de DE} \\ \hline
-\textit{balance heuristic} & 15348.41 & 4.80 & 25.73 \\ \hline
-\textit{power heuristic} & 46943.82 & 2.18 & 29.01 \\ \hline
-\textit{maximum heuristic} & 31075.69 & 2.67 & 27.87 \\ \hline
-\textit{cutoff heuristic} & 68380.92 & 0.45 & 29.39 \\ \hline
-\textit{sbert heuristic} & 18498.62 & 4.21 & 26.43 \\ \hline
+\textit{balance heuristic} & 12318.09 & 4.73 & 22.30 \\ \hline
+\textit{power heuristic} & 2612.77 & 8.14 & 18.99 \\ \hline
+\textit{maximum heuristic} & 2113.97 & 9.18 & 17.23 \\ \hline
+\textit{cutoff heuristic} & 2311.31 & 8.84 & 17.96 \\ \hline
+\textit{sbert heuristic} & 1641.18 & 26.95 & 15.05 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística}
 \end{table}
 
-\paragraph{Varianza de las Estimaciones}
-La heurística \textit{balance heuristic} muestra una reducción sustancial en la varianza a medida que el tamaño de la muestra aumenta, lo que indica que es efectiva para estabilizar las estimaciones.
-\textit{power heuristic} presenta una varianza significativamente alta con 100 muestras, lo que sugiere una inestabilidad en ciertos casos, pero mejora con tamaños de muestra más grandes.
-\textit{maximum heuristic} muestra una variabilidad considerablemente alta con 500 muestras, lo que podría implicar que no es tan robusta frente a ciertas distribuciones de la función objetivo.
-\textit{cutoff heuristic} tiene la varianza más alta entre todas las heurísticas, especialmente con 100 y 500 muestras, lo que indica que podría no ser la heurística más confiable.
-\textit{sbert heuristic} presenta una varianza relativamente baja en comparación, lo que sugiere una buena consistencia en las estimaciones.
-
-\paragraph{Error de las Estimaciones}
-Los errores de \textit{balance heuristic} son relativamente bajos y consistentes, lo que sugiere una buena precisión en general.
-\textit{power heuristic} y \textit{maximum heuristic} muestran fluctuaciones en el error, algunas negativas, lo que indica sobreestimación o subestimación en ciertos casos.
-\textit{cutoff heuristic} presenta errores que sugieren una subestimación significativa en varios tamaños de muestra.
-\textit{sbert heuristic} tiene errores variados, pero tienden a ser menores, especialmente con muestras más grandes.
-
-\paragraph{Desviaciones Estándar de las Estimaciones}
-\textit{balance heuristic} y \textit{sbert heuristic} tienen desviaciones estándar que disminuyen con el tamaño de la muestra, indicando una mayor precisión a medida que se incrementa el número de muestras.
-\textit{power heuristic}, \textit{maximum heuristic} y \textit{cutoff heuristic} muestran un comportamiento más errático en la desviación estándar, lo que refleja que la función a estimar no son las condiciones donde estas heurísticas se destacan.
-
-\paragraph{Dimensionalidad}
-2-Dimensiones (Test 1): Todas las heurísticas funcionan bien, con varianzas y errores mínimos, lo que indica que el MIS es efectivo en espacios de baja dimensión para todas las heurísticas probadas.
-
-3-Dimensiones en Adelante: A medida que la dimensión aumenta, se observa un aumento general en la varianza y la desviación estándar para todas las heurísticas. La heurística \textit{sbert heuristic} parece tener un rendimiento inconsistente en función de la dimensión, con una varianza particularmente alta en la dimensión 4, lo que sugiere que su eficacia puede depender de la especificidad del problema.
-\textit{balance heuristic} tiende a mantener un mejor control sobre la varianza y la desviación estándar, incluso a medida que la dimensión aumenta, lo que indica que puede ser una heurística más robusta en espacios de mayor dimensión.
-
-Dimensiones Altas (Test 7-10): En espacios de alta dimensión, todas las heurísticas luchan con un aumento significativo en la varianza y la desviación estándar, pero algunas como \textit{balance heuristic} y \textit{sbert heuristic} parecen controlar mejor la escalada de estos valores.
-La heurística \textit{maximum heuristic} muestra la varianza más alta en la dimensión 9, lo que sugiere una gran inestabilidad en espacios de mayor dimensión.
-\textit{cutoff heuristic} también muestra una alta varianza en dimensiones más altas, especialmente en la dimensión 10, lo que puede indicar problemas de eficiencia o precisión en espacios complejos.
-
 \paragraph{Conclusiones}
-El MIS comienza a ser competitivo con tamaños de muestra a partir de 1000 en adelante, donde se observa una mejora notable en la varianza y los errores para la mayoría de las heurísticas. La heurística \textit{balance heuristic} parece ser la más robusta y consistente, seguida por \textit{sbert heuristic}, que también muestra un buen rendimiento. \textit{power heuristic}, \textit{maximum heuristic} y \textit{cutoff heuristic} presentan desafíos en términos de consistencia y precisión, lo que sugiere, como se mencionó antes, que estas no son sus condiciones óptimas de uso.
+La evaluación de las heurísticas se basó en el promedio de la varianza, el error y la desviación estándar de las estimaciones.
+Además, se consideraron las dimensiones incrementales y el número de muestras, variando desde 500 hasta 50000, para abarcar un espectro amplio de escenarios.
 
-En términos de dimensionalidad, MIS mantiene un rendimiento aceptable hasta aproximadamente 3 dimensiones sin mucha pérdida de precisión. Sin embargo, a medida que la dimensión aumenta, se necesita un tamaño de muestra más grande para mantener la precisión y la confiabilidad de las estimaciones. Esto destaca la importancia de una selección cuidadosa del tamaño de la muestra y la heurística en función de la complejidad del espacio de integración.
+\paragraph{Eficiencia de las Heurísticas}: La heurística \textit{sbert heuristic} muestra una variabilidad significativa en el promedio de error a través de diferentes tamaños de muestra y dimensionalidades, indicando una adaptabilidad específica a contextos donde la precisión en la estimación es crítica, a pesar de tener un mayor error promedio. Las otras heurísticas, aunque con menor error promedio, no demuestran la misma adaptabilidad.
+
+\paragraph{Variabilidad de la Varianza y Estabilidad}: Contrario a lo esperado, la heurística \textit{sbert heuristic} junto con \textit{maximum heuristic} y \textit{power heuristic} presentan una variabilidad útil en el manejo de la varianza y la desviación estándar, sugiriendo un equilibrio entre la precisión de la estimación y la confiabilidad en diferentes configuraciones de muestra.
+
+\paragraph{Desempeño en Diferentes Dimensionalidades}: Todas las heurísticas enfrentan retos en escenarios de alta dimensión, pero la \textit{sbert heuristic} muestra un aumento considerable en el error promedio, lo cual destaca la importancia de su aplicación en contextos donde se puede beneficiar de su particular enfoque de asignación de muestras basado en la desviación estándar.
+
+\paragraph{Tamaño de Muestra y Precisión de Estimación}: Se confirma la mejora general en la precisión con el aumento del tamaño de la muestra para todas las heurísticas. Sin embargo, la heurística \textit{sbert heuristic} demuestra cómo una asignación estratégica de muestras puede influir en la precisión de las estimaciones, especialmente en configuraciones con menor número de muestras.
+
+\paragraph{Comparación entre Heurísticas}: A pesar de su mayor error promedio, \textit{sbert heuristic} ofrece perspectivas valiosas sobre cómo la distribución estratégica de muestras puede impactar en la precisión de las estimaciones en escenarios complejos, sugiriendo su potencial utilidad en aplicaciones específicas donde las otras heurísticas pueden no rendir tan eficientemente.
 
 \subsection{Prueba 3 - Producto de hipercubos}
 
@@ -872,7 +818,7 @@ Entonces:
       Los valores para \( a_{fi} \) y \( b_{fi} \) son -10 y 10 respectivamente. \( c_f \) es 0.5.
       Los valores para \( a_{gi} \) y \( b_{gi} \) son -0.5 y 0.5 respectivamente. \( c_g \) es 5.
 \item La dimensionalidad de los tests es \( n + 1 \) donde \( n \) toma los siguientes valores: 2, 3, 4, 5, 6, 10, 12, 15, 18, 20.
-\item Para cada test se corrió MIS con las siguientes heurísticas: \textit{balance heuristic}, \textit{power heuristic}, \textit{maximum heuristic}, \textit{cutoff heuristic} y \textit{sbert heuristic}.
+\item Para cada test se corrió MIS con las siguientes heurísticas: \textit{balance heuristic}, \textit{power heuristic}, \textit{maximum heuristic} y \textit{cutoff heuristic}.
 \item Para cada heurística se corrió MIS con 25, 50, 100, 500, 1000, 5000 y 50000 muestras.
 \item Para cada heurística y cantidad de muestras se corrió MIS 100 veces y se calculó el promedio de las estimaciones,
       el promedio de la varianza de las estimaciones y el promedio de las desviaciones estándar de las estimaciones.
@@ -897,19 +843,16 @@ Luego, el análisis se hizo de la misma manera que en las pruebas anteriores.
 \textit{power heuristic} & 8.37 & 14.03 & 19.82 & 1.74 & 12.64 & 25.50 & 78.43 \\ \hline
 \textit{maximum heuristic} & 159.54 & 60.44 & 41.34 & 11.77 & 18.73 & 5.72 & 4.50 \\ \hline
 \textit{cutoff heuristic} & 42.11 & 43.85 & 8.61 & 16.80 & 4.83 & 25.96 & 3.60 \\ \hline
-\textit{sbert heuristic} & 41.98 & 25.07 & 11.88 & 2.49 & 5.01 & 25.56 & 2.11 \\ \hline
 \multicolumn{8}{|c|}{\textbf{Promedio de Err}} \\ \hline
 \textit{balance heuristic} & 0.76 & 1.11 & 0.94 & 0.93 & 0.96 & 0.73 & 0.34 \\ \hline
 \textit{power heuristic} & 1.02 & 1.00 & 0.78 & 1.04 & 0.77 & 0.76 & 0.37 \\ \hline
 \textit{maximum heuristic} & -0.41 & -0.31 & -0.60 & -0.46 & -0.50 & -0.67 & -0.83 \\ \hline
 \textit{cutoff heuristic} & 1.04 & 0.66 & 1.05 & 0.94 & 0.92 & 0.75 & 0.63 \\ \hline
-\textit{sbert heuristic} & 0.93 & 0.93 & 0.94 & 0.97 & 0.90 & 0.74 & 0.76 \\ \hline
 \multicolumn{8}{|c|}{\textbf{Promedio de DE}} \\ \hline
 \textit{balance heuristic} & 1.24 & 0.78 & 0.81 & 0.59 & 0.47 & 0.54 & 0.72 \\ \hline
 \textit{power heuristic} & 0.97 & 0.88 & 0.99 & 0.50 & 0.66 & 0.51 & 0.71 \\ \hline
 \textit{maximum heuristic} & 1.89 & 1.57 & 1.64 & 1.02 & 0.88 & 0.71 & 0.50 \\ \hline
 \textit{cutoff heuristic} & 0.97 & 1.19 & 0.72 & 0.59 & 0.51 & 0.52 & 0.42 \\ \hline
-\textit{sbert heuristic} & 1.06 & 0.93 & 0.82 & 0.56 & 0.52 & 0.52 & 0.31 \\ \hline
 \end{tabular}
 \caption{Análisis de los resultados por heurística y cantidad de muestras}
 \end{table}
@@ -926,31 +869,26 @@ Luego, el análisis se hizo de la misma manera que en las pruebas anteriores.
 \textit{power heuristic} & 7.62 & -0.215 & 1.11 \\ \hline
 \textit{maximum heuristic} & 17.32 & -2.37 & 1.67 \\ \hline
 \textit{cutoff heuristic} & 4.45 & 0.016 & 0.86 \\ \hline
-\textit{sbert heuristic} & 6.67 & -0.106 & 0.96 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 2 (4 dimensiones)}} \\ \hline
 \textit{balance heuristic} & 112.57 & -0.084 & 1.32 \\ \hline
 \textit{power heuristic} & 41.46 & -0.107 & 1.35 \\ \hline
 \textit{maximum heuristic} & 312.36 & -2.44 & 2.43 \\ \hline
 \textit{cutoff heuristic} & 121.58 & -0.488 & 1.73 \\ \hline
-\textit{sbert heuristic} & 96.73 & -0.375 & 1.59 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 3 (5 dimensiones)}} \\ \hline
 \textit{balance heuristic} & 30.21 & 0.636 & 0.80 \\ \hline
 \textit{power heuristic} & 18.34 & 0.700 & 0.74 \\ \hline
 \textit{maximum heuristic} & 30.56 & -0.766 & 1.14 \\ \hline
 \textit{cutoff heuristic} & 29.77 & 0.609 & 0.80 \\ \hline
-\textit{sbert heuristic} & 7.62 & 0.833 & 0.60 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 4 (6 dimensiones)}} \\ \hline
 \textit{balance heuristic} & 38.13 & 0.814 & 0.68 \\ \hline
 \textit{power heuristic} & 37.52 & 0.820 & 0.68 \\ \hline
 \textit{maximum heuristic} & 6.52 & -0.206 & 0.72 \\ \hline
 \textit{cutoff heuristic} & 40.02 & 0.735 & 0.76 \\ \hline
-\textit{sbert heuristic} & 37.37 & 0.852 & 0.64 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 5 (7 dimensiones)}} \\ \hline
 \textit{balance heuristic} & 109.74 & 0.655 & 0.87 \\ \hline
 \textit{power heuristic} & 109.28 & 0.686 & 0.85 \\ \hline
 \textit{maximum heuristic} & 2.66 & -0.104 & 0.66 \\ \hline
 \textit{cutoff heuristic} & 0.38 & 1.217 & 0.32 \\ \hline
-\textit{sbert heuristic} & 0.57 & 1.226 & 0.31 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 1-5}
@@ -968,31 +906,26 @@ Luego, el análisis se hizo de la misma manera que en las pruebas anteriores.
 \textit{power heuristic} & 2.27 & 1.190 & 0.46 \\ \hline
 \textit{maximum heuristic} & 2.10 & 0.095 & 0.77 \\ \hline
 \textit{cutoff heuristic} & 1.19 & 1.234 & 0.43 \\ \hline
-\textit{sbert heuristic} & 0.68 & 1.306 & 0.38 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 7 (13 dimensiones)}} \\ \hline
 \textit{balance heuristic} & 0.88 & 1.294 & 0.44 \\ \hline
 \textit{power heuristic} & 2.60 & 1.243 & 0.48 \\ \hline
 \textit{maximum heuristic} & 3.59 & 0.072 & 0.86 \\ \hline
 \textit{cutoff heuristic} & 1.18 & 1.256 & 0.48 \\ \hline
-\textit{sbert heuristic} & 0.73 & 1.292 & 0.43 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 8 (16 dimensiones)}} \\ \hline
 \textit{balance heuristic} & 2.77 & 1.259 & 0.54 \\ \hline
 \textit{power heuristic} & 2.11 & 1.265 & 0.55 \\ \hline
 \textit{maximum heuristic} & 11.72 & -0.016 & 1.13 \\ \hline
 \textit{cutoff heuristic} & 5.39 & 1.199 & 0.61 \\ \hline
-\textit{sbert heuristic} & 3.23 & 1.256 & 0.57 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 9 (19 dimensiones)}} \\ \hline
 \textit{balance heuristic} & 4.73 & 1.264 & 0.63 \\ \hline
 \textit{power heuristic} & 2.87 & 1.302 & 0.60 \\ \hline
 \textit{maximum heuristic} & 5.19 & 0.405 & 0.88 \\ \hline
 \textit{cutoff heuristic} & 0.72 & 1.414 & 0.47 \\ \hline
-\textit{sbert heuristic} & 5.63 & 1.278 & 0.60 \\ \hline
 \multicolumn{4}{|c|}{\textbf{Test 10 (21 dimensiones)}} \\ \hline
 \textit{balance heuristic} & 17.01 & 1.180 & 0.75 \\ \hline
 \textit{power heuristic} & 5.24 & 1.314 & 0.64 \\ \hline
 \textit{maximum heuristic} & 39.47 & -0.077 & 1.45 \\ \hline
 \textit{cutoff heuristic} & 3.54 & 1.375 & 0.56 \\ \hline
-\textit{sbert heuristic} & 3.79 & 1.265 & 0.67 \\ \hline
 \end{tabular}%
 }
 \caption{Análisis de los resultados por heurística en los tests 6-10}
@@ -1008,7 +941,6 @@ Luego, el análisis se hizo de la misma manera que en las pruebas anteriores.
 \textit{power heuristic} & 22.93 & 0.820 & 0.746 \\ \hline
 \textit{maximum heuristic} & 43.15 & -0.541 & 1.172 \\ \hline
 \textit{cutoff heuristic} & 20.82 & 0.857 & 0.704 \\ \hline
-\textit{sbert heuristic} & 16.30 & 0.883 & 0.675 \\ \hline
 \end{tabular}
 \caption{Análisis de los resultados por heurística}
 \end{table}
@@ -1017,20 +949,19 @@ Luego, el análisis se hizo de la misma manera que en las pruebas anteriores.
 \subsubsection{Análisis}
 
 \paragraph{Varianza de las Estimaciones}
-En términos de varianza, la heurística \textit{balance heuristic} muestra un rendimiento consistentemente bueno, con una disminución notable en la varianza al aumentar el tamaño de la muestra. \textit{sbert heuristic} también se destaca por tener varianzas bajas, lo que indica una mayor estabilidad en sus estimaciones. Por el contrario, \textit{maximum heuristic} muestra la mayor variabilidad, lo que sugiere una menor fiabilidad y estabilidad en sus resultados.
-
+En términos de varianza, la heurística \textit{balance heuristic} muestra un rendimiento consistentemente bueno, con una disminución notable en la varianza al aumentar el tamaño de la muestra. Por el contrario, \textit{maximum heuristic} muestra la mayor variabilidad, lo que sugiere una menor fiabilidad y estabilidad en sus resultados.
 
 \paragraph{Error de las Estimaciones}
-Respecto a los errores, \textit{balance heuristic} y \textit{sbert heuristic} mantienen errores bajos y consistentes a través de los diferentes tamaños de muestra, lo que implica una mayor precisión en sus estimaciones. En cambio, \textit{maximum heuristic} se inclina hacia errores negativos, indicando una tendencia a la subestimación. \textit{cutoff heuristic} y \textit{power heuristic} muestran más variabilidad en sus errores, lo que sugiere una precisión menos consistente.
+Respecto a los errores, \textit{balance heuristic} mantiene errores bajos y consistentes a través de los diferentes tamaños de muestra, lo que implica una mayor precisión en sus estimaciones. En cambio, \textit{maximum heuristic} se inclina hacia errores negativos, indicando una tendencia a la subestimación. \textit{cutoff heuristic} y \textit{power heuristic} muestran más variabilidad en sus errores, lo que sugiere una precisión menos consistente.
 
 \paragraph{Desviaciones Estándar de las Estimaciones}
-Las desviaciones estándar más bajas se observan en las heurísticas \textit{balance heuristic} y \textit{sbert heuristic}, lo que señala una mayor precisión y fiabilidad en sus estimaciones. \textit{power heuristic}, \textit{maximum heuristic} y \textit{cutoff heuristic} muestran desviaciones estándar más altas y variables, lo que refleja una consistencia y precisión menos fiables.
+Las desviaciones estándar más bajas se observan en la heurística \textit{balance heuristic}, lo que señala una mayor precisión y fiabilidad en sus estimaciones. \textit{power heuristic}, \textit{maximum heuristic}, y \textit{cutoff heuristic} muestran desviaciones estándar más altas y variables, lo que refleja una consistencia y precisión menos fiables.
 
 \paragraph{Dimensionalidad}
-La dimensionalidad afecta significativamente el rendimiento de las heurísticas. En dimensiones más bajas, todas las heurísticas muestran un buen rendimiento. Sin embargo, en dimensiones más altas, \textit{balance heuristic} y \textit{sbert heuristic} logran mantener un control más efectivo sobre la varianza y el error, mientras que \textit{maximum heuristic} y \textit{cutoff heuristic} experimentan un aumento significativo en la varianza y el error.
+La dimensionalidad afecta significativamente el rendimiento de las heurísticas. En dimensiones más bajas, todas las heurísticas muestran un buen rendimiento. Sin embargo, en dimensiones más altas, \textit{balance heuristic} logra mantener un control más efectivo sobre la varianza y el error, mientras que \textit{maximum heuristic} y \textit{cutoff heuristic} experimentan un aumento significativo en la varianza y el error.
 
 \paragraph{Conclusiones}
-En resumen, \textit{balance heuristic} y \textit{sbert heuristic} emergen como las heurísticas más robustas y consistentes en la Prueba 3, demostrando una buena precisión y estabilidad a lo largo de diferentes tamaños de muestra y en varias dimensiones. En contraste, \textit{maximum heuristic} muestra una tendencia a la subestimación y es menos confiable, especialmente en dimensiones más altas. \textit{power heuristic} y \textit{cutoff heuristic} ofrecen un rendimiento intermedio, pero su precisión y consistencia son menos predecibles en comparación con \textit{balance heuristic} y \textit{sbert heuristic}.
+En resumen, \textit{balance heuristic} emerge como la heurística más robusta y consistente en la Prueba 3, demostrando una buena precisión y estabilidad a lo largo de diferentes tamaños de muestra y en varias dimensiones. En contraste, \textit{maximum heuristic} muestra una tendencia a la subestimación y es menos confiable, especialmente en dimensiones más altas. \textit{power heuristic} y \textit{cutoff heuristic} ofrecen un rendimiento intermedio, pero su precisión y consistencia son menos predecibles en comparación con \textit{balance heuristic}.
 
 \section{Conclusiones}
 
@@ -1040,8 +971,7 @@ Se probó en un espacio amplio de dimensiones y con distintas heurísticas en ca
 El caso 1, que es el más simple, mostró que el MIS es efectivo en dimensiones bajas y que la heurística \textit{balance heuristic} es la más efectiva.
 Este caso fue útil para entender cómo funciona el MIS y cómo se comporta en un caso simple.
 
-El caso 2, que es un caso más complejo, mostró que el MIS es efectivo en dimensiones más altas y que la heurística \textit{balance heuristic} mostró de nuevo ser la más efectiva.
-Este caso fue útil para entender cómo se comporta el MIS en dimensiones más altas y cómo se comporta con distintas heurísticas en estas condiciones.
+El caso 2, que es un caso más complejo, dio la posibilidad de probar una heurística nueva (\textit{sbert heuristic}) y ver como su varianza y desviación estándar son levemente menores a las otras heurísticas.
 
 El caso 3, nos ayudó a entender cómo funciona el MIS en un producto de hipercubos y cómo se comporta en dimensiones más altas.
 Sirvió para hacer un análisis en donde se multiplica una función de baja integral con una de alta integral y ver cómo el MIS se comporta en este caso.
